@@ -4,14 +4,22 @@ Styles that should apply everywhere should go here.
 
 Component styles should be inined directly on the component.
 
+Right now we're not using any preprocessors, just CSS variables, but Tailwind is available and nesting is enabled through Astro.
+
 */
+
 /* Variables */
 :root {
     /* to use in rgba functions later */
     --main-bg-rgb: 7, 2, 24;
     --main-bg-color: rgb(var(--main-bg-rgb));
-    /* #97a3ff */
-    --main-text-color: #f2f2f2;
+    --main-text-color: #bfd5ff;
+
+    /* Change these to change colors throughout the site */
+    --stop-one-color: #00d75a;
+    --stop-two-color: #470cec;
+
+    /* Various color combos */
     /* --stop-one-color: #1a0b49;
     --stop-two-color: #10bd6f; */
 
@@ -23,13 +31,10 @@ Component styles should be inined directly on the component.
 
     /* --stop-one-color: #6f40ef;
     --stop-two-color: #d79a00; */
-
-    --stop-one-color: #470cec;
-    --stop-two-color: #00d75a;
-    /* f4c95d */
 }
 
 /* Fonts */
+/* TODO: Move Lora to self-hosted and remove unused weights. */
 @font-face {
     font-family: 'Poppins';
     src: url('Poppins-ExtraBoldItalic.woff') format('woff'),
@@ -196,10 +201,9 @@ body {
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
     font-family: 'Poppins';
+    /* TODO: Move second gradient color to css variables */
     background: linear-gradient(to bottom, rgba(var(--main-bg-rgb),1) 50%, #0D003E 100%);
 }
-
-
 
 * {
     -webkit-font-smoothing: antialiased;
@@ -212,53 +216,63 @@ h3,
 h4,
 h5,
 h6 {
-    line-height: 1;
+    line-height: 1.25;
     font-weight: 700;
     margin-bottom: 2rem;
 }
 
 h1 {
-    font-size: 6rem;
-    /* color: #fe8152; */
-    /* background: var(--Gradient,
-            linear-gradient(-45deg,
-                var(--stop-one-color) 0%,
-                var(--stop-two-color) 100%));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding-bottom: 1rem; */
-    /* -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #f2f2f2;
-    color: var(--main-bg-color); */
-   
+    font-size: 6rem;   
+}
+
+h2 {
+    font-size: 4rem;
 }
 
 p {
-    font-size: 1.25rem;
-    line-height: 1.25;
+    font-size: 2rem;
+    line-height: 1.4;
     margin-bottom: 2rem;
+    font-family: 'Lora', serif;
+   
 }
 
 a {
     transition: 0.1s;
     text-decoration: underline;
-    text-decoration-color: var(--stop-one-color);
-    text-decoration-thickness: 0.25rem;
-    text-underline-offset: -0.125rem;
+    text-decoration-color: var(--stop-two-color);
+    text-decoration-thickness: 0.15rem;
+    text-underline-offset: 0.25rem;
     text-decoration-skip-ink: none;
-    font-weight: 500;
+    font-weight: 700;
 
     &:hover {
         text-decoration-thickness: 1.5rem;
-        text-underline-offset: -1.25rem;
+        text-underline-offset: -1.115rem;
     }
 }
 
 /* Nav */
 /* TODO: move to component */
 nav {
-    color: #f2f2f2;
+    color: var(--main-text-color);
+    position: relative;
+    padding-left: 1.25rem;
+    font-size: 1.25rem;
+
+    &:before {
+        content: "";
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 0px;
+        height: 0px;
+        bottom: 0.5rem;
+        border-style: solid;
+        border-width: 0.6rem 0.8rem 0px 0;
+        border-color: transparent var(--stop-two-color) transparent transparent;
+        transform: rotate(0deg);
+    }
 
     a {
         text-underline-offset: -1.5rem;
@@ -266,7 +280,6 @@ nav {
         text-decoration-skip-ink: none;
         text-decoration-thickness: 2px;
         text-decoration-color: rgba(0,0,0,0);
-        /* color: color-mix(in srgb, var(--stop-one-color), var(--main-bg-color)); */
         opacity: 1;
 
         transition: 0.125s;
@@ -276,15 +289,31 @@ nav {
 
         &:hover {
             opacity: 1;
-            text-decoration-color: rgba(var(--stop-one-color));
             text-decoration-thickness: unset;
             text-underline-offset: -1.5rem;
-            color: #470cec;
+            color: var(--stop-two-color);
         }
     }
 
     li {
         display: inline-block;
-        margin-right: 2rem;
+        margin-right: 1rem;
+    }
+}
+
+/* Debug */
+.debug {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 100;
+    background-color: rgba(0,0,0,.8);
+    padding: 1rem;
+    border-radius: 100px;
+    align-items: center;
+    font-weight: 700;
+
+    label {
+        margin-right: 1rem;
     }
 }

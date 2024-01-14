@@ -1,16 +1,22 @@
 ---
-const { text } = Astro.props;
+const { text, link } = Astro.props;
 ---
 
-<button>{text}</button>
+<a class="button rounded-2xl" href={link}>{text}</a>
 
 <style>
-    button {
-        background: var(--stop-one-color);
-        color: white;
+    .button {
+        text-decoration: none;
+        background: linear-gradient(to bottom right, var(--stop-two-color), var(--stop-two-color));
+        /* color: white; */
         font-weight: bold;
-        border-radius: 100px;
-        padding: 2rem 2rem;
-        font-size: 2rem;
+        padding: 1rem 2rem;
+        font-size: 1.5rem;
+        transition: 0.25s;
+        width: auto;
+
+        &:hover {
+            background: linear-gradient(to bottom right, var(--stop-one-color), var(--stop-two-color));
+        }
     }
 </style>
