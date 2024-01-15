@@ -6,6 +6,7 @@ import tailwind from "@astrojs/tailwind";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://withtheranks.github.io',
+  base: '/withtheranks-astro',
   integrations: [mdx(), tailwind({
     nesting: true,
   })]
