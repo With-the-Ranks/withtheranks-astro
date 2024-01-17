@@ -9,18 +9,18 @@ import "animate.css";
 	<nav
 		class="max-w-screen-2xl w-10/12 mx-auto pt-10 animate__animated animate__fadeIn animate__delay-2s"
 	>
-		<ul>
-			<li class="inline-block">
-				<a href="/">Home</a>
-			</li>
-			<li class="inline-block"><a href="/work">Our Work</a></li>
-			<li class="inline-block"><a href="/blog">Blog</a></li>
-			<li class="inline-block">
-				<button id="theme-toggle" class="theme-toggle-button">
-						<i class="fas fa-moon"></i> <!-- Default icon -->
-				</button>
-		</li>		
-	</ul>
+		<div class="flex justify-between">
+			<ul class="flex">
+				<li class="inline-block">
+					<a href="/">Home</a>
+				</li>
+				<li class="inline-block"><a href="/work">Our Work</a></li>
+				<li class="inline-block"><a href="/blog">Blog</a></li>
+			</ul>
+			<button id="theme-toggle" class="theme-toggle-button">
+				<i class="fas fa-moon"></i> <!-- Default icon -->
+			</button>
+		</div>
 	</nav>
 
 	<main class="animate__animated animate__fadeIn animate__slow py-20 md:py-40">

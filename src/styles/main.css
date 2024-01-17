@@ -28,8 +28,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --light-text-color: #000000;
 
     /* Light theme gradient colors */
-    --gradient-light-start: #FADBD8; /* Gentle peach/pink */
-    --gradient-light-end: #d8e5ee; /* Soft blue */
+    --gradient-light-start: rgba(233, 230, 255, 0); /* Gentle peach/pink */
+    --gradient-light-end: rgba(233, 230, 255, 1); /* Soft blue */
 
     /* Various color combos */
     /* --stop-one-color: #1a0b49;
@@ -51,6 +51,25 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --gradient-dark-start: var(--gradient-light-start);
     --gradient-dark-end: var(--gradient-light-end);
 }
+[data-theme="light"] footer p
+{
+    color: var(--main-text-color)
+}
+[data-theme="light"] #color_picker label{
+    color: #bfd5ff;
+}
+
+[data-theme="light"] header[data-astro-cid-j7pv25f6]::after {
+    background: linear-gradient(
+        var(--gradient-light-start),
+        var(--gradient-light-end) 100%
+    );
+}	
+
+[data-theme="light"] .button {
+    color: #bfd5ff;
+}
+
 /* Fonts */
 /* TODO: Move Lora to self-hosted and remove unused weights. */
 @font-face {
