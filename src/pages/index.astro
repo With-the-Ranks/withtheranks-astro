@@ -15,7 +15,12 @@ import "animate.css";
 			</li>
 			<li class="inline-block"><a href="/work">Our Work</a></li>
 			<li class="inline-block"><a href="/blog">Blog</a></li>
-		</ul>
+			<li class="inline-block">
+				<button id="theme-toggle" class="theme-toggle-button">
+						<i class="fas fa-moon"></i> <!-- Default icon -->
+				</button>
+		</li>		
+	</ul>
 	</nav>
 
 	<main class="animate__animated animate__fadeIn animate__slow py-20 md:py-40">
@@ -209,4 +214,32 @@ import "animate.css";
 			});
 		});
 	}
+
+	const toggleButton = document.getElementById('theme-toggle') as HTMLButtonElement;
+
+	function updateIcon(theme: 'light' | 'dark') {
+			const toggleIcon = toggleButton.querySelector('i');
+
+			if (theme === 'light') {
+					toggleIcon?.classList.remove('fa-sun');
+					toggleIcon?.classList.add('fa-moon');
+			} else {
+					toggleIcon?.classList.remove('fa-moon');
+					toggleIcon?.classList.add('fa-sun');
+			}
+	}
+
+	if (toggleButton) {
+			toggleButton.addEventListener('click', () => {
+					const currentTheme = document.documentElement.getAttribute('data-theme');
+					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+					document.documentElement.setAttribute('data-theme', newTheme);
+					updateIcon(newTheme as 'light' | 'dark'); // Explicit type casting
+			});
+	}
+
+	// Initialize icon based on current theme
+	const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+	updateIcon(currentTheme as 'light' | 'dark');
 </script>
