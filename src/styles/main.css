@@ -28,8 +28,10 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --light-text-color: #000000;
 
     /* Light theme gradient colors */
-    --gradient-light-start: rgba(233, 230, 255, 0); /* Gentle peach/pink */
-    --gradient-light-end: rgba(233, 230, 255, 1); /* Soft blue */
+    --gradient-light-start: rgba(233, 230, 255, 0);
+    /* Gentle peach/pink */
+    --gradient-light-end: rgba(233, 230, 255, 1);
+    /* Soft blue */
 
     /* Various color combos */
     /* --stop-one-color: #1a0b49;
@@ -51,20 +53,19 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --gradient-dark-start: var(--gradient-light-start);
     --gradient-dark-end: var(--gradient-light-end);
 }
-[data-theme="light"] footer p
-{
+
+[data-theme="light"] footer p {
     color: var(--main-text-color)
 }
-[data-theme="light"] #color_picker label{
+
+[data-theme="light"] #color_picker label {
     color: #bfd5ff;
 }
 
 [data-theme="light"] header[data-astro-cid-j7pv25f6]::after {
-    background: linear-gradient(
-        var(--gradient-light-start),
-        var(--gradient-light-end) 100%
-    );
-}	
+    background: linear-gradient(var(--gradient-light-start),
+            var(--gradient-light-end) 100%);
+}
 
 [data-theme="light"] .button {
     color: #bfd5ff;
@@ -245,7 +246,7 @@ body {
 * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }  
+}
 
 h1,
 h2,
@@ -259,7 +260,7 @@ h6 {
 }
 
 h1 {
-    font-size: 6rem;   
+    font-size: 6rem;
 }
 
 h2 {
@@ -271,7 +272,7 @@ p {
     line-height: 1.4;
     margin-bottom: 2rem;
     font-family: 'Lora', serif;
-   
+
 }
 
 a {
@@ -316,7 +317,7 @@ nav {
         text-decoration: underline;
         text-decoration-skip-ink: none;
         text-decoration-thickness: 2px;
-        text-decoration-color: rgba(0,0,0,0);
+        text-decoration-color: rgba(0, 0, 0, 0);
         opacity: 1;
 
         transition: 0.125s;
@@ -344,7 +345,7 @@ nav {
     bottom: 2rem;
     right: 2rem;
     z-index: 100;
-    background-color: rgba(0,0,0,.8);
+    background-color: rgba(0, 0, 0, .8);
     padding: 1rem;
     border-radius: 100px;
     align-items: center;
