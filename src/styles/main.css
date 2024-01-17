@@ -19,6 +19,18 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --stop-one-color: #00d75a;
     --stop-two-color: #470cec;
 
+    /* Dark theme gradient colors */
+    --gradient-dark-start: rgba(var(--main-bg-rgb), 1);
+    --gradient-dark-end: #0D003E;
+
+    /* Light theme variables */
+    --light-bg-color: #ffffff;
+    --light-text-color: #000000;
+
+    /* Light theme gradient colors */
+    --gradient-light-start: rgba(233, 230, 255, 0); /* Gentle peach/pink */
+    --gradient-light-end: rgba(233, 230, 255, 1); /* Soft blue */
+
     /* Various color combos */
     /* --stop-one-color: #1a0b49;
     --stop-two-color: #10bd6f; */
@@ -31,6 +43,31 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
     /* --stop-one-color: #6f40ef;
     --stop-two-color: #d79a00; */
+}
+
+[data-theme="light"] {
+    --main-bg-color: var(--light-bg-color);
+    --main-text-color: var(--light-text-color);
+    --gradient-dark-start: var(--gradient-light-start);
+    --gradient-dark-end: var(--gradient-light-end);
+}
+[data-theme="light"] footer p
+{
+    color: var(--main-text-color)
+}
+[data-theme="light"] #color_picker label{
+    color: #bfd5ff;
+}
+
+[data-theme="light"] header[data-astro-cid-j7pv25f6]::after {
+    background: linear-gradient(
+        var(--gradient-light-start),
+        var(--gradient-light-end) 100%
+    );
+}	
+
+[data-theme="light"] .button {
+    color: #bfd5ff;
 }
 
 /* Fonts */
@@ -202,7 +239,7 @@ body {
     color: var(--main-text-color);
     font-family: 'Poppins';
     /* TODO: Move second gradient color to css variables */
-    background: linear-gradient(to bottom, rgba(var(--main-bg-rgb),1) 50%, #0D003E 100%);
+    background: linear-gradient(to bottom, var(--gradient-dark-start) 50%, var(--gradient-dark-end) 100%);
 }
 
 * {
