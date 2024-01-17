@@ -228,18 +228,21 @@ import "animate.css";
 					toggleIcon?.classList.add('fa-sun');
 			}
 	}
+	function setTheme(newTheme: 'light' | 'dark') {
+    document.documentElement.setAttribute('data-theme', newTheme);
+    updateIcon(newTheme);
+    localStorage.setItem('theme', newTheme);
+  }
 
-	if (toggleButton) {
-			toggleButton.addEventListener('click', () => {
-					const currentTheme = document.documentElement.getAttribute('data-theme');
-					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+	toggleButton.addEventListener('click', () => {
+			const currentTheme = document.documentElement.getAttribute('data-theme');
+			const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+			setTheme(newTheme);
+	});
 
-					document.documentElement.setAttribute('data-theme', newTheme);
-					updateIcon(newTheme as 'light' | 'dark'); // Explicit type casting
-			});
-	}
-
-	// Initialize icon based on current theme
-	const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-	updateIcon(currentTheme as 'light' | 'dark');
+  // Check local storage for a stored theme preference
+  document.addEventListener('DOMContentLoaded', () => {
+    const storedTheme = (localStorage.getItem('theme') as 'light' | 'dark') || 'dark';
+    setTheme(storedTheme);
+  });
 </script>
