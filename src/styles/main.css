@@ -294,11 +294,14 @@ a {
 /* TODO: move to component */
 nav {
     color: var(--main-text-color);
-    position: relative;
-    padding-left: 1.25rem;
-    font-size: 1.25rem;
 
-    &:before {
+    ul {
+        position: relative;
+        padding-left: 1.25rem;
+        font-size: 1.25rem;     
+    }
+   
+    ul:before {
         content: "";
         display: block;
         position: absolute;
