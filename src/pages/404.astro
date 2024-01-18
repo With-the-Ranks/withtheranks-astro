@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import MineCraft from "../components/minecraft/index.jsx";
+---
+<MineCraft client:only='react'>
+
+<Layout title='404 - Page Not Found'>
+		<Nav />
+		<main
+			class='animate__animated animate__fadeIn animate__slow py-20 md:py-40'
+		>
+			<div
+				class='max-w-screen-xl w-11/12 md:w-7/12 mx-auto md:-translate-y-20 pt-10'
+			>
+				<h1 class='text-5xl md:text-6xl lg:text-7xl xl:text-8xl'>
+					Oops! Page Not Found.
+				</h1>
+				<p>
+					The page you're looking for might have been removed, had its name
+					changed, or is temporarily unavailable.
+				</p>
+				<p>
+					But don't worry, you can play this game while you're here or return to
+					our homepage.
+				</p>
+			</div>
+		</main>
+	</MineCraft>
+</Layout>
