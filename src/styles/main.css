@@ -24,8 +24,9 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --gradient-dark-end: #0D003E;
 
     /* Light theme variables */
-    --light-bg-color: #ffffff;
-    --light-text-color: #000000;
+    --light-bg-rgb: 255, 255, 255;
+    --light-bg-color: rgb(var(--light-bg-rgb));
+    --light-text-color: #070218;
 
     /* Light theme gradient colors */
     --gradient-light-start: rgba(233, 230, 255, 0);
@@ -49,6 +50,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 [data-theme="light"] {
     --main-bg-color: var(--light-bg-color);
+    --main-bg-rgb: var(--light-bg-rgb);
     --main-text-color: var(--light-text-color);
     --gradient-dark-start: var(--gradient-light-start);
     --gradient-dark-end: var(--gradient-light-end);
@@ -62,9 +64,9 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     color: #bfd5ff;
 }
 
-[data-theme="light"] header[data-astro-cid-j7pv25f6]::after {
-    background: linear-gradient(var(--gradient-light-start),
-            var(--gradient-light-end) 100%);
+[data-theme="light"] header::after {
+    background: linear-gradient(rgba(var(--light-bg-rgb), 0),
+            rgba(var(--light-bg-rgb), 1) 100%);
 }
 
 [data-theme="light"] .button {
