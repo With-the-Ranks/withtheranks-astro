@@ -28,8 +28,10 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --light-text-color: #000000;
 
     /* Light theme gradient colors */
-    --gradient-light-start: rgba(233, 230, 255, 0); /* Gentle peach/pink */
-    --gradient-light-end: rgba(233, 230, 255, 1); /* Soft blue */
+    --gradient-light-start: rgba(233, 230, 255, 0);
+    /* Gentle peach/pink */
+    --gradient-light-end: rgba(233, 230, 255, 1);
+    /* Soft blue */
 
     /* Various color combos */
     /* --stop-one-color: #1a0b49;
@@ -51,20 +53,19 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --gradient-dark-start: var(--gradient-light-start);
     --gradient-dark-end: var(--gradient-light-end);
 }
-[data-theme="light"] footer p
-{
+
+[data-theme="light"] footer p {
     color: var(--main-text-color)
 }
-[data-theme="light"] #color_picker label{
+
+[data-theme="light"] #color_picker label {
     color: #bfd5ff;
 }
 
 [data-theme="light"] header[data-astro-cid-j7pv25f6]::after {
-    background: linear-gradient(
-        var(--gradient-light-start),
-        var(--gradient-light-end) 100%
-    );
-}	
+    background: linear-gradient(var(--gradient-light-start),
+            var(--gradient-light-end) 100%);
+}
 
 [data-theme="light"] .button {
     color: #bfd5ff;
@@ -92,8 +93,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-ExtraBold.woff') format('woff'),
-        url('/fonts/poppins/Poppins-ExtraBold.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-ExtraBold.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-ExtraBold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
     font-display: swap;
@@ -101,8 +102,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-Italic.woff') format('woff'),
-        url('/fonts/poppins/Poppins-Italic.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-Italic.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-Italic.ttf') format('truetype');
     font-weight: normal;
     font-style: italic;
     font-display: swap;
@@ -110,8 +111,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-ExtraLight.woff') format('woff'),
-        url('/fonts/poppins/Poppins-ExtraLight.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-ExtraLight.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-ExtraLight.ttf') format('truetype');
     font-weight: 200;
     font-style: normal;
     font-display: swap;
@@ -119,8 +120,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-BlackItalic.woff') format('woff'),
-        url('/fonts/poppins/Poppins-BlackItalic.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-BlackItalic.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-BlackItalic.ttf') format('truetype');
     font-weight: 900;
     font-style: italic;
     font-display: swap;
@@ -128,8 +129,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-Black.woff') format('woff'),
-        url('/fonts/poppins/Poppins-Black.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-Black.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-Black.ttf') format('truetype');
     font-weight: 900;
     font-style: normal;
     font-display: swap;
@@ -137,8 +138,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-ExtraLightItalic.woff') format('woff'),
-        url('/fonts/poppins/Poppins-ExtraLightItalic.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-ExtraLightItalic.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-ExtraLightItalic.ttf') format('truetype');
     font-weight: 200;
     font-style: italic;
     font-display: swap;
@@ -146,8 +147,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-BoldItalic.woff') format('woff'),
-        url('/fonts/poppins/Poppins-BoldItalic.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-BoldItalic.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-BoldItalic.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
     font-display: swap;
@@ -155,8 +156,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-SemiBold.woff') format('woff'),
-        url('/fonts/poppins/Poppins-SemiBold.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-SemiBold.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-SemiBold.ttf') format('truetype');
     font-weight: 600;
     font-style: normal;
     font-display: swap;
@@ -164,8 +165,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-Medium.woff') format('woff'),
-        url('/fonts/poppins/Poppins-Medium.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-Medium.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-Medium.ttf') format('truetype');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -173,8 +174,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-Thin.woff') format('woff'),
-        url('/fonts/poppins/Poppins-Thin.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-Thin.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-Thin.ttf') format('truetype');
     font-weight: 100;
     font-style: normal;
     font-display: swap;
@@ -182,8 +183,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-Regular.woff') format('woff'),
-        url('/fonts/poppins/Poppins-Regular.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-Regular.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -191,8 +192,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-LightItalic.woff') format('woff'),
-        url('/fonts/poppins/Poppins-LightItalic.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-LightItalic.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-LightItalic.ttf') format('truetype');
     font-weight: 300;
     font-style: italic;
     font-display: swap;
@@ -200,8 +201,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-Light.woff') format('woff'),
-        url('/fonts/poppins/Poppins-Light.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-Light.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-Light.ttf') format('truetype');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -209,8 +210,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-SemiBoldItalic.woff') format('woff'),
-        url('/fonts/poppins/Poppins-SemiBoldItalic.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-SemiBoldItalic.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-SemiBoldItalic.ttf') format('truetype');
     font-weight: 600;
     font-style: italic;
     font-display: swap;
@@ -218,8 +219,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-MediumItalic.woff') format('woff'),
-        url('/fonts/poppins/Poppins-MediumItalic.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-MediumItalic.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-MediumItalic.ttf') format('truetype');
     font-weight: 500;
     font-style: italic;
     font-display: swap;
@@ -227,8 +228,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/fonts/poppins/Poppins-ThinItalic.woff') format('woff'),
-        url('/fonts/poppins/Poppins-ThinItalic.ttf') format('truetype');
+    src: url('/withtheranks-astro/fonts/poppins/Poppins-ThinItalic.woff') format('woff'),
+        url('/withtheranks-astro/fonts/poppins/Poppins-ThinItalic.ttf') format('truetype');
     font-weight: 100;
     font-style: italic;
     font-display: swap;
@@ -245,7 +246,7 @@ body {
 * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }  
+}
 
 h1,
 h2,
@@ -259,7 +260,7 @@ h6 {
 }
 
 h1 {
-    font-size: 6rem;   
+    font-size: 6rem;
 }
 
 h2 {
@@ -271,7 +272,7 @@ p {
     line-height: 1.4;
     margin-bottom: 2rem;
     font-family: 'Lora', serif;
-   
+
 }
 
 a {
@@ -316,7 +317,7 @@ nav {
         text-decoration: underline;
         text-decoration-skip-ink: none;
         text-decoration-thickness: 2px;
-        text-decoration-color: rgba(0,0,0,0);
+        text-decoration-color: rgba(0, 0, 0, 0);
         opacity: 1;
 
         transition: 0.125s;
@@ -344,7 +345,7 @@ nav {
     bottom: 2rem;
     right: 2rem;
     z-index: 100;
-    background-color: rgba(0,0,0,.8);
+    background-color: rgba(0, 0, 0, .8);
     padding: 1rem;
     border-radius: 100px;
     align-items: center;
