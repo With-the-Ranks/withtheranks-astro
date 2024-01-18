@@ -1,5 +1,6 @@
 ---
 import "../styles/main.css";
+import Nav from "../components/Nav.astro";
 
 interface Props {
 	title: string;
@@ -27,6 +28,7 @@ const { title } = Astro.props;
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 	</head>
 	<body>
+		<Nav />
 		<slot />
 
 		<footer class="w-10/12 mx-auto"><p class="text-base font-sans text-slate-400 text-center">With the Ranks is 100% worker-owned, and we don't use cookies.</p></footer>
