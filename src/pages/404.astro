@@ -24,10 +24,10 @@ import Button from "../components/Button.astro";
 	<Layout title='404 - Page Not Found'>
 		<Nav />
 		<main
-			class='animate__animated animate__fadeIn animate__slow py-20 md:py-40'
+			class='animate__animated animate__fadeIn animate__slow py-20 md:py-24'
 		>
 			<div
-				class='max-w-screen-xl w-11/12 md:w-7/12 mx-auto md:-translate-y-20 pt-10'
+				class='max-w-screen-xl w-11/12 lg:w-7/12 mx-auto md:-translate-y-20 pt-10'
 			>
 				<h1 class='text-5xl md:text-6xl lg:text-7xl xl:text-8xl'>
 					Oops! Page Not Found.
@@ -40,8 +40,10 @@ import Button from "../components/Button.astro";
 					But don't worry, you can play this game while you're here or return to
 					our homepage.
 				</p>
-				<Button id='playMinecraftButton' text='Play Minecraft' classes=""/>
-                <Button link='/' text='Return Home' class='ml-5'/>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <Button id='playMinecraftButton' text='Play Minecraft' class=""/>
+                    <Button link='/' text='Return Home' class=''/>
+                </div>
 			</div>
 		</main>
 	</Layout>
