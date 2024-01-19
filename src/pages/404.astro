@@ -2,10 +2,26 @@
 import Layout from "../layouts/Layout.astro";
 import Nav from "../components/Nav.astro";
 import MineCraft from "../components/minecraft/index.jsx";
+import Button from "../components/Button.astro";
 ---
-<MineCraft client:only='react'>
 
-<Layout title='404 - Page Not Found'>
+<style>
+	#minecraftGame {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+	}
+</style>
+
+<div id='minecraftGame' style='display: none;'>
+	<MineCraft client:only='react' />
+</div>
+<div id='layoutContent'>
+	<Layout title='404 - Page Not Found'>
 		<Nav />
 		<main
 			class='animate__animated animate__fadeIn animate__slow py-20 md:py-40'
@@ -24,7 +40,29 @@ import MineCraft from "../components/minecraft/index.jsx";
 					But don't worry, you can play this game while you're here or return to
 					our homepage.
 				</p>
+				<Button id='playMinecraftButton' text='Play Minecraft' classes=""/>
+                <Button link='/' text='Return Home' class='ml-5'/>
 			</div>
 		</main>
-	</MineCraft>
-</Layout>
+	</Layout>
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", (event) => {
+		const playButton = document.getElementById("playMinecraftButton");
+		const minecraft = document.getElementById("minecraftGame");
+		const layoutContent = document.getElementById("layoutContent");
+
+		if (playButton && minecraft && layoutContent) {
+			playButton.addEventListener("click", function () {
+				if (minecraft.style.display === "none") {
+					minecraft.style.display = "block";
+					layoutContent.style.display = "none";
+				} else {
+					minecraft.style.display = "none";
+					layoutContent.style.display = "block";
+				}
+			});
+		}
+	});
+</script>

@@ -3,15 +3,12 @@ import "./styles.css";
 import App from "./App";
 
 export default function Minecraft() {
-  const [ready, set] = useState(false);
+  const [ready, set] = useState(true);
   return (
     <>
       <App />
       <div className="dot" />
       <div className={`fullscreen bg ${ready ? "ready" : "notready"} ${ready && "clicked"}`}>
-        <div className="stack">
-          <button onClick={() => set(true)}>Start</button>
-        </div>
       </div>
     </>
   );
