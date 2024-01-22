@@ -1,0 +1,16 @@
+---
+import SpokeDocsList from "../../../../components/DocsCollection/SpokeDocsList.astro";
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+    <main
+        class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+    >
+        <h2 class="text-center">For Spoke Admins</h2>
+        <div class="flex items-center flex-col">
+            <SpokeDocsList collectionType="for-spoke-admins" />
+        </div>
+    </main>
+</Layout>

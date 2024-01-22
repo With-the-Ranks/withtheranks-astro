@@ -1,0 +1,42 @@
+---
+import * as fs from "fs";
+import { kebabCasetoTitleCase } from "../../utils.ts";
+import { type LinkProps } from "../../types.ts";
+
+type SpokeDocCollectionType = "for-spoke-admins" | "for-spoke-texters";
+
+interface Props {
+    collectionType: SpokeDocCollectionType;
+}
+
+const { collectionType } = Astro.props;
+
+const DOCS_DIRECTORY = `${process.cwd()}/src/pages/docs/spoke`;
+const HTML_EXTENSION_LENGTH = ".html".length;
+const SPOKE_LINK_PATH = "/withtheranks-astro/docs/spoke";
+
+const path = DOCS_DIRECTORY + "/" + collectionType;
+const fileNames = fs.readdirSync(path);
+const collectionFileNames = fileNames.filter(
+    (fileName) => fileName != "index.astro",
+);
+
+const docList: LinkProps[] = collectionFileNames.map((fileName) => {
+    const endOfSlug = fileName.length - HTML_EXTENSION_LENGTH - 1;
+    const slug = fileName.substring(0, endOfSlug);
+
+    const docLink = `${SPOKE_LINK_PATH}/${collectionType.toString()}/${slug}`;
+    const docTitle = kebabCasetoTitleCase(slug);
+    return { text: docTitle, link: docLink };
+});
+---
+
+<ul>
+    {
+        docList.map((doc: LinkProps) => (
+            <li class="m-2">
+                <a href={doc.link}>{doc.text}</a>
+            </li>
+        ))
+    }
+</ul>
