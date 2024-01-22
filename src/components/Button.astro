@@ -1,13 +1,23 @@
 ---
-const { text, link } = Astro.props;
+import type { LinkProps } from "../types";
+
+interface Props extends LinkProps {
+    marginClass?: string;
+}
+
+const { text, link, marginClass } = Astro.props;
 ---
 
-<a class="button rounded-2xl" href={link}>{text}</a>
+<a class=`button rounded-2xl ${marginClass}` href={link}>{text}</a>
 
 <style>
     .button {
         text-decoration: none;
-        background: linear-gradient(to bottom right, var(--stop-two-color), var(--stop-two-color));
+        background: linear-gradient(
+            to bottom right,
+            var(--stop-two-color),
+            var(--stop-two-color)
+        );
         font-weight: bold;
         padding: 1rem 2rem;
         font-size: 1.5rem;
@@ -15,7 +25,11 @@ const { text, link } = Astro.props;
         width: auto;
 
         &:hover {
-            background: linear-gradient(to bottom right, var(--stop-one-color), var(--stop-two-color));
+            background: linear-gradient(
+                to bottom right,
+                var(--stop-one-color),
+                var(--stop-two-color)
+            );
         }
     }
 </style>
