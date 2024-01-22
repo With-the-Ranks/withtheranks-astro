@@ -1,0 +1,76 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex items-center flex-col">
+			<h2 class="text-center">Survey Responses Vs Canned Responses</h2>
+
+			<p>
+				One of most common mistakes made by Spoke users is to mix up the
+				use of
+				<strong>survey responses</strong>&nbsp;and <strong
+					>canned responses</strong
+				> when building campaign scripts. Using each feature correctly will
+				ensure that you have easy-to-navigate scripts that log all the data
+				you want to capture. Using them incorrectly may result in loss of
+				data and a frustrating experience for your texters.
+			</p><h3>Survey Responses</h3><p>
+				Survey Responses constitute the core building blocks of your
+				campaigns. Creating survey responses in your
+				<a
+					href="https://docs.spokerewired.com/article/43-create-interaction-script"
+					>Interaction Script</a
+				> allows your texters to select a from a menu of survey responses
+				while in a texting conversation, each with it's own prepared script.
+				Once the survey response is selected and sent, the texter is also
+				simultaneously logging data about how that contact responded. In
+				other words, <strong
+					>survey responses combine the functions of providing a
+					ready-made script for your texters and logging data about
+					the conversation.
+				</strong>Therefore, in order to both log data and make life
+				easier for your texters, the vast majority of your campaign's
+				responses should typically be built into your Interaction Script
+				as survey responses.
+			</p><p>
+				For example, if you're asking a Yes/No question in your initial
+				message, then "Yes,"&nbsp;"No," and "Maybe" should all be
+				different survey responses. Similarly, if you're gauging support
+				for a candidate using a 1-5 Voter ID score, then you should have
+				five different survey responses, one for each level of support
+				(see example survey response scripts
+				<a
+					href="https://docs.spokerewired.com/article/120-writing-scripts"
+					>here</a
+				>). Note that in addition to generating useful scripts for your
+				texters, it would be critical to capture the data on how
+				contacts answered these questions.
+			</p><h3>Canned Responses</h3><p>
+				Canned Responses constitute a supplemental menu of common
+				answers to common questions that your texters may encounter.
+				Applying a canned response to a conversation does
+				<em>not</em>log any data about that conversation. Therefore, <strong
+					>c</strong
+				><strong
+					>anned responses should <em>only</em> be used to answer questions
+					where you don't care about collecting data.&nbsp;</strong
+				>
+			</p><p>
+				Below are some common examples of canned responses. Note that
+				answering these questions would provide the contact with
+				important information, but it wouldn't typically be important to
+				log data indicating that they asked the question.
+			</p><ul>
+				<li>Where did you get my information?</li>
+				<li>What is {organization_name}?</li>
+				<li>How do I check if I'm registered to vote?</li>
+				<li>Where is my polling place?</li>
+			</ul>
+		</div>
+	</main>
+</Layout>

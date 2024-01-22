@@ -1,0 +1,84 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex items-center flex-col">
+			<h2 class="text-center">Segments And Encodings</h2>
+
+			<p>
+				In Spoke, SMS messages are billed by the
+				<strong>segment</strong>, rather than the whole message.&nbsp;To
+				learn about MMS messages, scroll to the MMS section below.
+			</p><h4><strong>What is a segment?</strong></h4><p>
+				A segment is a component of a larger overall text message. You
+				can think of it as a single page in a letter. You can read more
+				about segments
+				<a
+					href="https://www.twilio.com/blog/2017/03/what-the-heck-is-a-segment.html"
+					>here</a
+				>.&nbsp;
+			</p><p>
+				Most of the time, an SMS segment can be up to 160 characters. An
+				SMS message under 160 characters will often be one segment,
+				while a message between 160 and 320 characters will be 2
+				segments.&nbsp;
+				<br />
+				<br />
+				However, depending on the characters present in your message, your
+				message may be encoded differently. Encoding can affect the number
+				of characters that networks can fit into a single segment.
+			</p><h4><strong>What is character encoding?</strong></h4><p>
+				The most common and efficient character encoding is called
+				<em>GSM.</em> Most standard characters will be able to be encoded
+				using GSM encoding. If you use certain characters like emojis (e.g.,&nbsp;<strong
+					>🙂</strong
+				>), non-English characters (e.g. <em>í, ü</em>), or certain
+				punctuation (e.g. <em>`, –</em>), your message will require
+				Unicode character encoding. Unicode is limited to 70 characters
+				per segment.
+			</p><h4><strong>Segments within Spoke</strong></h4><p>
+				To help you keep track of the number of segments you're sending,
+				we've added a segment counter that also informs you of the
+				character set with which your message is likely to be encoded.
+				This counter is only relevant for SMS messages, not MMS.
+				<br />
+				For example, when typing an emdash (&mdash;), you can see the character
+				set switch to Unicode and the segment count and characters left adjust
+				accordingly:
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5ea1bdee04286364bc98e446/file-oLo299bMdf.png"
+					alt="GSM Encoded Message"
+					style="display: block; margin: auto;"
+				/>
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5ea1be602c7d3a7e9aeb8352/file-EEtCIm0orL.png"
+					alt="Unicode Encoded Message"
+					style="display: block; margin: auto;"
+				/>
+			</p><h4>Segments within Spoke exports</h4><p>
+				By using the
+				<em>Export Data</em>&nbsp;button from the individual campaign
+				page, you&nbsp;will be emailed two links to download your data
+				exports. The second of these is your <em>messages export</em>,
+				where you can find a breakdown of the number of segments on a
+				particular campaign. For a more robust segment breakdown, please
+				email support@spokerewired.com.&nbsp;
+			</p><h3>How is MMS different?</h3><p>
+				Unlike SMS, MMS pricing does not take into consideration the
+				number of characters. When you include an image with your text,
+				the entire text will be priced at our MMS price of $0.03,
+				regardless of length.&nbsp;
+			</p><p>
+				<strong>Note:</strong> Spoke has a universal limit of 1600 characters
+				for any text.
+			</p>
+		</div>
+	</main>
+</Layout>
