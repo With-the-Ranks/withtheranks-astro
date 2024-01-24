@@ -2,13 +2,13 @@
 import type { LinkProps } from "../types";
 
 interface Props extends LinkProps {
-    marginClass?: string;
+    class?: string;
 }
 
-const { text, link, marginClass } = Astro.props;
+const { text, link, class: customClass } = Astro.props;
 ---
 
-<a class=`button rounded-2xl ${marginClass}` href={link}>{text}</a>
+<a class=`button rounded-2xl ${customClass}` href={link}>{text}</a>
 
 <style>
     .button {
