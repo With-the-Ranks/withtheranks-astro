@@ -8,14 +8,18 @@ import "animate.css";
 <Layout title="With the Ranks">
 	<Nav />
 
-	<main class="animate__animated animate__fadeIn animate__slow py-20 md:py-40">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
 		<div class="debug hidden" id="color_picker">
 			<label for="favcolor">Logo colors:</label>
 			<input type="color" data-stop-id="stop_one" />
 			<input type="color" data-stop-id="stop_two" />
 		</div>
 
-		<header class="max-w-screen-2xl w-11/12 md:w-10/12 mx-auto relative z-0">
+		<header
+			class="max-w-screen-2xl w-11/12 md:w-10/12 mx-auto relative z-0"
+		>
 			<!-- Logo -->
 			<svg
 				fill="none"
@@ -94,7 +98,9 @@ import "animate.css";
 			</svg>
 		</header>
 
-		<div class="max-w-screen-xl w-11/12 md:w-7/12 mx-auto md:-translate-y-20 pt-10">
+		<div
+			class="max-w-screen-xl w-11/12 md:w-7/12 mx-auto md:-translate-y-20 pt-10"
+		>
 			<h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
 				We build great tech for good causes.
 			</h1>
@@ -105,12 +111,19 @@ import "animate.css";
 			</p>
 
 			<p>
-				We work with folks like <a
+				We love building beautiful websites, developing custom
+				organizing tools, running A/B testing programs, hosting Spoke,
+				and doing whatever we can to help good causes prevail.
+			</p>
+
+			<p>
+				We've worked with folks like <a
 					href="https://350.org"
 					target="_blank">350.org</a
-				>, <a href="https://berniesanders.org" target="_blank">Bernie Sanders</a>, <a
-					href="https://ambriaforalderman.org"
-					target="_blank">Ambria Taylor for Alderman</a
+				>, <a href="https://berniesanders.com" target="_blank"
+					>Bernie Sanders</a
+				>, <a href="https://ambriaforalderman.com" target="_blank"
+					>Ambria Taylor for Alderman</a
 				>, <a href="https://uwunited.org" target="_blank"
 					>Unemployed Workers United</a
 				>, <a
@@ -118,15 +131,9 @@ import "animate.css";
 					target="_blank">Fight Corporate Monopolies</a
 				>, <a href="https://indivisible.org" target="_blank"
 					>The Indivisible Project</a
-				>, <a href="https://aelp.org" target="_blank"
+				>, and <a href="https://economicliberties.us" target="_blank"
 					>American Economic Liberties Project</a
-				> and more.
-			</p>
-
-			<p>
-				We love building beautiful websites, developing custom
-				organizing tools, running A/B testing programs, getting out the
-				vote, raising money, and helping unions.
+				>.
 			</p>
 
 			<p>
@@ -134,16 +141,19 @@ import "animate.css";
 				else afraid to stand up for workers or the planet.
 			</p>
 
-			<p class="pb-10">
-				We're always interested in learning about cool projects, whether
-				you're running for city council or leading a global nonprofit.
-				If you think we'd get along, let us know at
+			<p>
+				Whether you're running for city council, leading a global
+				non-profit or building open-source tech, we're always interested
+				in working with good people. If you think we'd get along, let us know at 
 				<a href="mailto:hello@withtheranks.com&subject=Hello!"
 					>hello@withtheranks.com</a
-				> - we'd love to meet!
+				>.
 			</p>
 
-			<Button text="Get in touch!" link="mailto:hello@withtheranks.com&subject=Hello!" />
+			<Button
+				text="Get in touch!"
+				link="mailto:hello@withtheranks.com&subject=Hello!"
+			/>
 		</div>
 	</main>
 </Layout>
@@ -200,34 +210,38 @@ import "animate.css";
 		});
 	}
 
-	const toggleButton = document.getElementById('theme-toggle') as HTMLButtonElement;
+	const toggleButton = document.getElementById(
+		"theme-toggle",
+	) as HTMLButtonElement;
 
-	function updateIcon(theme: 'light' | 'dark') {
-			const toggleIcon = toggleButton.querySelector('i');
+	function updateIcon(theme: "light" | "dark") {
+		const toggleIcon = toggleButton.querySelector("i");
 
-			if (theme === 'light') {
-					toggleIcon?.classList.remove('fa-sun');
-					toggleIcon?.classList.add('fa-moon');
-			} else {
-					toggleIcon?.classList.remove('fa-moon');
-					toggleIcon?.classList.add('fa-sun');
-			}
+		if (theme === "light") {
+			toggleIcon?.classList.remove("fa-sun");
+			toggleIcon?.classList.add("fa-moon");
+		} else {
+			toggleIcon?.classList.remove("fa-moon");
+			toggleIcon?.classList.add("fa-sun");
+		}
 	}
-	function setTheme(newTheme: 'light' | 'dark') {
-    document.documentElement.setAttribute('data-theme', newTheme);
-    updateIcon(newTheme);
-    localStorage.setItem('theme', newTheme);
-  }
+	function setTheme(newTheme: "light" | "dark") {
+		document.documentElement.setAttribute("data-theme", newTheme);
+		updateIcon(newTheme);
+		localStorage.setItem("theme", newTheme);
+	}
 
-	toggleButton.addEventListener('click', () => {
-			const currentTheme = document.documentElement.getAttribute('data-theme');
-			const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-			setTheme(newTheme);
+	toggleButton.addEventListener("click", () => {
+		const currentTheme =
+			document.documentElement.getAttribute("data-theme");
+		const newTheme = currentTheme === "dark" ? "light" : "dark";
+		setTheme(newTheme);
 	});
 
-  // Check local storage for a stored theme preference
-  document.addEventListener('DOMContentLoaded', () => {
-    const storedTheme = (localStorage.getItem('theme') as 'light' | 'dark') || 'dark';
-    setTheme(storedTheme);
-  });
+	// Check local storage for a stored theme preference
+	document.addEventListener("DOMContentLoaded", () => {
+		const storedTheme =
+			(localStorage.getItem("theme") as "light" | "dark") || "dark";
+		setTheme(storedTheme);
+	});
 </script>
