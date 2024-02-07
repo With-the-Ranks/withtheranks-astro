@@ -278,7 +278,6 @@ p {
 }
 
 a {
-    transition: 0.1s;
     text-decoration: underline;
     text-decoration-color: var(--stop-two-color);
     text-decoration-thickness: 0.15rem;
@@ -287,8 +286,14 @@ a {
     font-weight: 700;
 
     &:hover {
-        text-decoration-thickness: 1.5rem;
-        text-underline-offset: -1.115rem;
+        text-decoration-thickness: 1.8rem;
+        text-underline-offset: -1.375rem;
+    }
+}
+
+[data-theme="light"] a {
+    &:hover {
+        color: white;
     }
 }
 
