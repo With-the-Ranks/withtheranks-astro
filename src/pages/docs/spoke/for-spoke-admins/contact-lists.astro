@@ -1,0 +1,174 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex items-center flex-col">
+			<h2 class="text-center">Contact Lists</h2>
+
+			<p>
+				Every campaign requires a contact list, which provides the full
+				set of people you wish to contact with that campaign. If loading
+				contacts via a file rather than a <a
+					href="https://docs.spokerewired.com/article/93-van-list-loading"
+					>VAN integration</a
+				>, you must provide the contact list in a <b
+					>comma separated values (CSV) format</b
+				>.
+			</p><p>
+				Once uploaded to the campaign, Spoke maintains an internal
+				version of the list and modifies it as the campaign progresses.
+				You can export the modified contact list for your own record
+				keeping. For more information, see <a
+					href="https://docs.spokerewired.com/article/71-export-data-from-a-campaign"
+					>Export Data from a Campaign</a
+				>.
+			</p><h2><b>CSV Files</b></h2><h4><b>Column Headers</b></h4><p>
+				If loading your contact list as a file, your list should be a
+				comma separated values (CSV) file with the following column
+				headings in the first row:
+			</p><ul>
+				<li>
+					<b>firstName</b>— <span>Required</span> — First names of your
+					contacts.
+				</li><li>
+					<b>lastName</b>— <span>Required</span>— Last names of your
+					contacts.
+				</li><li>
+					<b>cell</b>— <span>Required</span>— Cell number of your
+					contacts<b>.</b>
+				</li><li>
+					<b>zip</b>—<span> Recommended</span>— Zip code of your
+					contacts. The zip code is used to estimate your
+					contact&#39;s timezone and allow texters to have
+					conversations with them at the appropriate time.
+				</li><li>
+					<b>external_id</b> — <span>Recommended</span> — ID to map your
+					contacts to a CRM. This value is often made up of VAN IDs.
+				</li>
+			</ul><p>
+				Note:  The <b> firstName</b>and <b>lastName</b>fields will be
+				automatically capitalized for all values other than common
+				placeholders for unknown names: &quot;friend&quot; and
+				&quot;there&quot;.
+			</p><h4><b>Custom Fields</b></h4><p>
+				You have the option to include additional custom fields in the
+				contact list. You can use these fields in the campaign&#39;s <a
+					href="https://docs.spokerewired.com/article/38-interaction-scripts"
+					>interaction script</a
+				>. Just as with the <b>firstName</b> field, these values will dynamically
+				populate in your script for each contact. An example of this is &lcub;
+				polling_location &rcub;, where each contact may have their specific
+				polling location appended.
+			</p><h2><b>Uploading a Contact List</b></h2><p>
+				You can upload contact lists from the campaign settings page.
+				Click the <b>Contacts</b> window and then either:
+			</p><ol>
+				<li>Click <b>Select a File</b>or</li><li>
+					Drag and drop the file into the dotted-line rectangle
+				</li>
+			</ol><p>
+				<img
+					src="https://lh4.googleusercontent.com/EfxgdyBzzn2Hl-ELdAzXlIdA0TuXOxcPb6mRJ9lwJuDqA9haWwRAyv7oI2C7oSsSZQH1HHnHDnOub9DXdCMD1a4O8DH-O8-g2HMdqHjd1hKkQ1pcwhR-LfxeFiraiPleXauMWJASB4bl_ucmvF7uhS4"
+					style="max-width: 100%; "
+				/>
+			</p><ol start="3">
+				<li>
+					After uploading a csv file, a popup menu will appear
+					allowing you to map the column headers of your csv to the
+					required column headers (First Name, Last Name, and Cell
+					Phone), as well as map the optional headers (Zip and
+					External ID).
+				</li>
+			</ol><p style="text-align: center;" class="align-center">
+				<img
+					src="https://lh5.googleusercontent.com/Xfv5mgVxggIXqrYWB50eLEKd1eE6JCyMufIo7x_-VLf70PPhyfHWxbR0C3wfXFJkr7IUd7I_ecp_4kr3bPThu4FcSCSKadRNPgjfey_caH-bZA4DUomo9JN_imKGqey3B794F2PWsJGrIZ6XEGCo22U"
+					style="max-width: 100%; text-align: center;"
+				/>
+			</p><p style="text-align: center;" class="align-center">
+				<img
+					src="https://lh5.googleusercontent.com/17hMw0YzflF7ln_klrxQzqRPlgHQwl_kCiGwP_EzZbN3dPRIDhmPy2qPpGa8Rm4oZsve3ORGGWunrja1ZZWvylDjZhLdL_WuKYVAbx8LLYS-D5IjFH6_Wy57qnbFho7nsyS8G-BywJVIwcFqnuB3xiE"
+					style="max-width: 100%; text-align: center;"
+				/>
+			</p><p>
+				Then hit <b>Save.</b> The name of your csv will now appear in the
+				file upload box with a green background, indicating a successful
+				upload.
+			</p><p>
+				Note: You can use the <b>Configure Column Mapping</b> button to open
+				the popup again and update the mappings you chose.
+			</p><p>
+				<img
+					src="https://lh6.googleusercontent.com/zpGMQ74h9RiFV_2l5FPgbaexgXXAdrC70zuV-F3rMCQtr0-3_3lGIENxplmeWsTXqVZ19bwHX8r7BpQr0XAibcKpKnYgCJBnRnazHzHfglEsfnio03iDPNyih9-J_oBNrMQh9O5hPButF31WOddYXz0"
+					style="max-width: 100%; "
+				/>
+			</p><p>
+				<span>Optional</span> — Exclude contacts who also appear as contacts
+				within another campaign using the drop down menu.
+			</p><p>
+				<img
+					src="https://lh5.googleusercontent.com/PjL4c34dSxex9bUAgT_YATRktpVkPuxQXQ7dAtIl8ZsrByfiZ5pYvgDNqJax6xYEVA8Z5Zv1vds3lvj5p5Su6HT9X724r3-l7cFrLl46M2x3Nlw2KUgBM2hC2hItRI1uJji_Pp10fAlhBIjgEFm2PWE"
+					style="max-width: 100%; "
+				/>
+			</p><ol>
+				<li>
+					Start typing the name of the campaign you want to use for
+					filtering (or open the drop-down menu).
+				</li><li>Click the campaign name in the list.</li><li>
+					Repeat until you&#39;ve finished adding the campaigns you
+					want to exclude.
+				</li>
+			</ol><h4>List Processing</h4><p>
+				When you upload a contact list, Spoke performs two rounds of
+				processing. The first round, which happens in the Spoke
+				application, handles the following:
+			</p><ul>
+				<li>
+					The removal of duplicate contacts (duplicates are determined
+					based on phone number; the first instance is kept).
+				</li><li>The removal of contacts without phone numbers.</li><li>
+					The removal of contacts with invalid phone numbers.
+				</li>
+			</ul><p>
+				After you click <b>Save</b>, the second round of processing
+				handles the following:
+			</p><ul>
+				<li>The removal of all contacts that have opted out.</li><li>
+					The removal of all contacts from campaigns that you
+					specified in <span>Filter Existing Campaigns</span> (see below).
+				</li>
+			</ul><p>
+				Any automated handling of your contact list is detailed in the
+				upload report. You can view the upload report from the contacts
+				window of the campaign settings page.
+			</p><p>
+				Note: If you upload another contact list, it removes all
+				previously uploaded contacts and replaces them with the most
+				recent contact list. This is true up until the point that your
+				campaign is started, after which you will no longer be able to
+				modify the contact list.
+			</p><h4><b>Filtering Existing Campaigns</b></h4><p>
+				You can choose to filter contacts who already exist as contacts
+				within another campaign. This helps you prevent sending too many
+				messages to a contact or sending redundant information from two
+				similar campaigns.
+			</p><p>
+				To use this feature, enter the names of the campaigns that are
+				used to filter out contacts. You can enter multiple campaign
+				names at once. <b
+					>This step must be done before loading the CSV.</b
+				>
+			</p><p>
+				You can also achieve the same function of eliminating overlap
+				with previous campaigns by using <a
+					href="https://docs.spokerewired.com/article/46-contact-overlap-management"
+					>Contact Overlap Management</a
+				>.
+			</p>
+		</div>
+	</main>
+</Layout>

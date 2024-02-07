@@ -1,0 +1,131 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex items-center flex-col">
+			<h2 class="text-center">Campaign Actions</h2>
+
+			<p>
+				You can manage active <a
+					href="https://docs.spokerewired.com/article/25-campaigns"
+					target="_blank">campaigns</a
+				> with campaign actions. The following actions are available for
+				each campaign as viewed on the <strong>Campaigns</strong>page of
+				the administration <a
+					href="https://docs.spokerewired.com/article/52-dashboards"
+					target="_blank">dashboard</a
+				>. You can access these options by clicking the three vertical
+				dots to the right of each campaign.
+			</p><h3>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5fcad12feb7cc612aa3551cd/file-qbTtSMwLDp.png"
+				/><p>
+					<img
+						src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5fcae792d580ce55a38b48e1/file-OM7WMNkH6x.png"
+					/>
+				</p>
+			</h3><h3>Release Unsent Messages</h3><h5>
+				Unassigns all conversations waiting for an initial message from
+				a texter.
+			</h5><p>
+				Texters may not all always send out all the initial messages
+				assigned to them. When that happens, you can select&nbsp; <strong
+					>Release Unsent Messages</strong
+				><em>,</em>which will make all previously stranded&nbsp;initial
+				messages available for assignment to other texters via the <a
+					href="https://docs.spokerewired.com/article/110-request-form"
+					target="_blank">request form</a
+				>.
+			</p><h4>Mark For Second Pass</h4><h5>
+				Marks all conversations that didn't receive a response from the
+				contact as needing an initial message.
+			</h5><p>
+				This action is useful for following up with contacts who didn't
+				see the initial message or who forgot to reply. If you use this
+				action, you should also change the script's initial message so
+				that texters don't send the exact same message twice. For
+				example, you could start the new initial message with, <em
+					>"Hey &lcub;firstName&rcub;, just wanted to make sure you
+					saw our first message..."&nbsp;</em
+				>
+			</p><p>
+				When you use this action, a notification displays the number of
+				conversations that are marked for a second pass. After marking
+				for a pass, you'll need to <strong
+					>Release Unsent Messages
+				</strong>in order to make them available for assignment via the
+				request form. <a
+					href="https://docs.spokerewired.com/article/101-running-a-second-pass"
+					target="_blank">Click here</a
+				> to learn more about running a second pass.
+			</p><blockquote>
+				Note: You can only mark for a second pass before the due date of
+				a campaign.&nbsp;
+			</blockquote><h4>Release Unreplied Conversations</h4><h5>
+				Unassigns conversations where the contact has replied and is
+				awaiting a response from a texter.
+			</h5><p>
+				Texters may not finish responding to all their replies before
+				signing off for the day. Or even if they do, additional replies
+				may continue to come in from the initial message they've already
+				sent. In either case, administrators can <strong
+					>Release Unreplied Conversations
+				</strong>in order to grab those conversations out of their
+				existing workflows and make them available for assignment to
+				other texters via the request form.&nbsp;
+			</p><p>
+				To ensure that you're not ripping away conversations that
+				texters are actively working on, you must specify the amount of
+				time conversations have been idle in order to be released.
+			</p><h4>Archive Campaign</h4><h5>
+				Stops the campaign, marks it as archived, and disables all
+				future texting and notifications for the campaign.
+			</h5><p>
+				Use <strong>Archive Campaign</strong> when you're sure you're&nbsp;done
+				texting on it or if you need to immediately stop all texts from going
+				out to campaign contacts. You can unarchive archived campaigns.&nbsp;
+			</p><h4>Delete Unmessaged Contacts</h4><h5>
+				Removes contacts that have not yet received a message.
+			</h5><p>
+				Use this action if you don't want to message any more contacts
+				on a campaign, but you still want to use auto-assignment to
+				handle replies. For example, you may catch an error in the
+				initial message or realize you've already passed an important
+				deadline. In these scenarios, you won't want to keep
+				sending&nbsp;out incorrect or outdated information, but you'll
+				still need to handle replies from contacts who already received
+				the initial message.
+			</p><h4>Un-Mark for Second Pass</h4><h5>
+				Marks contacts that have been sent a message but are marked as
+				unmessaged&mdash;because they were marked for a second
+				pass&mdash;as having been message.
+			</h5><p>
+				This is effectively an "undo" button for <strong
+					>Mark for Second Pass</strong
+				>. Just as with <strong>Delete Unmessaged Contacts</strong>, you
+				can use this action if you don't want to message any more
+				contacts on a campaign, but you still want to use
+				auto-assignment to handle replies.&nbsp;
+			</p><h4>Turn auto-assign ON/OFF</h4><h5>
+				Makes campaign conversations eligible or ineligible for
+				automatic <a
+					href="https://docs.spokerewired.com/article/33-text-assignment"
+					target="_blank">assignment</a
+				> to texters via the <a
+					href="https://docs.spokerewired.com/article/110-request-form"
+					target="_blank">request form</a
+				>.
+			</h5><p>
+				This is a shortcut action to toggle auto-assignment on or off, <a
+					href="https://docs.spokerewired.com/article/110-request-form"
+					target="_blank">just as you would</a
+				> from the campaign settings page.
+			</p><h5></h5>
+		</div>
+	</main>
+</Layout>

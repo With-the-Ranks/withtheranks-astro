@@ -1,0 +1,44 @@
+<button id="theme-toggle" class="theme-toggle-button">
+    <i class="fas fa-moon"></i>
+    <!-- Default icon -->
+</button>
+
+<script>
+    import { type themeMode } from "../styles/types.ts";
+
+    const toggleButton = document.getElementById(
+        "theme-toggle",
+    ) as HTMLButtonElement;
+
+    function updateIcon(theme: themeMode) {
+        const toggleIcon = toggleButton.querySelector("i");
+
+        if (theme === "light") {
+            toggleIcon?.classList.remove("fa-sun");
+            toggleIcon?.classList.add("fa-moon");
+        } else {
+            toggleIcon?.classList.remove("fa-moon");
+            toggleIcon?.classList.add("fa-sun");
+        }
+    }
+
+    function setTheme(newTheme: themeMode) {
+        document.documentElement.setAttribute("data-theme", newTheme);
+        updateIcon(newTheme);
+        localStorage.setItem("theme", newTheme);
+    }
+
+    toggleButton.addEventListener("click", () => {
+        const currentTheme =
+            document.documentElement.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        setTheme(newTheme);
+    });
+
+    // Check local storage for a stored theme preference
+    document.addEventListener("DOMContentLoaded", () => {
+        const storedTheme =
+            (localStorage.getItem("theme") as themeMode) || "dark";
+        setTheme(storedTheme);
+    });
+</script>

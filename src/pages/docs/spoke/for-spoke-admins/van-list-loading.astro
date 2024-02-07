@@ -1,0 +1,292 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex items-center flex-col">
+			<h2 class="text-center">Van List Loading</h2>
+
+			<h2>Setting up your VAN integration&nbsp;</h2><p>
+				Using the version (or
+				<em>fork</em>) of Spoke specific to Politics Rewired, you are
+				able to load <strong>saved lists</strong><strong>
+					from VAN</strong
+				> directly into texting campaigns. This is done through a <a
+					href="https://help.ngpvan.com/van/s/article/2969508-requesting-and-approving-api-keys"
+					>VAN integration</a
+				>.
+			</p><h2>Set up VAN for Spoke integration</h2><p>
+				1. You will need the application name and API key from
+				VAN.&nbsp;
+			</p><p style="margin-left: 40px;">
+				<b style="background-color: initial;">Accepted:</b> Politics Rewired-,
+				Hustle-, or Civis-type VAN API keys.
+			</p><p style="margin-left: 40px;">
+				<b style="background-color: initial;">Not Accepted:</b> Spoke- type
+				VAN API keys.
+			</p><ul>
+				<li>
+					<strong>Application name</strong> -- This will be the "username"
+					for the Spoke integration. It will be of the form: DNCNY.000.hustle
+				</li>
+				<li>
+					<strong>API Key</strong> -- This&nbsp;will be of the form:&nbsp;b1b9de3b-12b1-4e13-bebe-115123aa6536
+				</li>
+			</ul><p>
+				2. Be sure that you've saved a
+				<strong>LIST</strong>rather than a <strong>QUERY</strong>. Saved
+				searches can't be pulled into Spoke, but saved lists can be!
+			</p>
+			<div>
+				3. The list in VAN must be in a folder shared with the API key
+				user. Follow the steps below to allow this access:&nbsp;
+			</div><ol>
+				<li>
+					In VAN, go to the folder that contains the lists you want to
+					show up in Spoke
+				</li>
+				<li>In the top right corner, click "Edit Folder"</li>
+				<li>Turn on "Allow other user to save into this folder"</li>
+				<li>Turn on "Allow the API to save into this folder"</li>
+				<li>
+					Go down to the "User Access" section and add the API user
+					into the "Users with Access" column
+				</li>
+				<li>Press save</li>
+			</ol><h2>Create VAN integration in Spoke</h2><p>
+				1. First, navigate to
+				<em>Integrations&nbsp;</em>on your left-side admin panel.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5ee9247b2c7d3a10cba90472/file-XxYzNfOZT2.png"
+					style="background-color: initial; width: 143px; margin: auto;"
+					alt=""
+				/>
+			</p><p>
+				2. Click on the "+" symbol in the bottom right corner of your
+				screen.&nbsp;
+			</p><p>3. Create and save the integration:</p><ul>
+				<li>
+					<strong>Integration name</strong> -- You can name your integration
+					whatever you'd like! <em>Archie</em>&nbsp;has a nice ring.
+				</li>
+				<li>
+					<strong>System type</strong> -- This should be "Votebuilder."
+				</li>
+				<li>
+					<strong>Van operation mode</strong> -- Select "Voterfile" if
+					you will be pulling voter lists and select "MyCampaign" if you
+					would like to pull lists on volunteers you load into VAN. If
+					you are not sure what to select, select "Voterfile."
+				</li>
+				<li>
+					<strong>Username</strong> -- This is your "Application name"
+					from VAN. If it ends in <em>spoke</em>, refer to the section
+					above as this is (counterintuitively) invalid!
+				</li>
+				<li>
+					<strong>API key</strong> -- This is your "API key" from VAN.
+				</li>
+			</ul><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/62a1ff6857320007925231e6/file-8aK9syO5SL.png"
+					style="width: 260px;"
+				/>
+			</p><h2>Pull list information</h2><p>
+				You will need to pull list information from VAN before you can
+				select a list to load into a campaign.
+			</p><p>
+				1. Click
+				<em>Sync&nbsp;</em>on the Integration page.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/63238369b0f178684ee3b1d8/file-Kf88HxQIKm.png"
+				/>
+			</p><p>
+				2. Refresh the integrations list. The&nbsp;
+				<em>sync options last fetched&nbsp;</em>column will update when
+				the list information has been pulled.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/632383a4b0f178684ee3b1dc/file-y1nEkObCD6.jpg"
+				/>
+			</p><p>
+				Please note, our configure opt outs feature is under
+				construction. Please email us if you'd like to configure how
+				opt-outs appear in your VAN.&nbsp;
+			</p><h2>Load a list</h2><p>
+				1. Click into the
+				<em>Integration</em>&nbsp;drop-down menu in the Campaign Edit
+				page and link your new campaign to your VAN Integration then
+				click SAVE.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5f7654bb52faff0016aebda4/file-6IND6pTRa7.png"
+				/>
+			</p><p>
+				2. Then click into the
+				<em>Contacts</em> drop-down menu. Update the <em
+					>Contact source</em
+				> to <em>Integration&nbsp;</em>(replacing&nbsp;<em
+					style="background-color: initial;">CSV</em
+				>)<i style="background-color: initial;">&nbsp;</i>and choose
+				which saved list from VAN that you would like to
+				text.&nbsp;Click Save to begin importing the list's contacts
+				into Spoke.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5f76561dc9e77c0016213b21/file-gW82xMKCqF.png"
+				/>
+			</p><h2>Write script with VAN-provided fields</h2><p>
+				VAN provides a large assortment of custom fields to use in
+				scripts. Depending on your VAN committee, however, many of these
+				may not have values. You should check with your VAN
+				administrator about which fields are guaranteed to contain
+				values.
+			</p><h2>Sync data back to VAN</h2><p>
+				1. Click the&nbsp;
+				<em>Sync To VAN</em>button&nbsp;on the top right corner of the
+				Individual Campaign Page.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5f765ccb46e0fb0017988f3b/file-LF5Am59eAF.png"
+				/>
+			</p><p>
+				2. Then click
+				<em>Configure Mapping</em> on the Sync to VAN pop-up menu.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5f765ce4cff47e001a58a5c2/file-LdAIB5OJZI.png"
+				/>
+			</p><p>
+				3. All of your survey answers will be displayed on the Configure
+				Mapping pop-up. Survey answers that have currently been selected
+				by your texters will be tagged with the yellow triangle. Survey
+				answers that have not been used yet in conversations will be
+				tagged with a gray circle.
+			</p><p>
+				To start linking your survey options back to VAN click the plus
+				sign to the right of the survey answer.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5f765cf8cff47e001a58a5c3/file-RQfWXu399I.png"
+				/>
+			</p><p>
+				4. Select between VAN&nbsp;
+				<em>Survey Response, Activist Code</em> and <em>Result Code</em>
+				in the <em>Mapping Type</em> drop-down menu. Once you have finished
+				selecting your VAN pathway, click <em>ADD</em>.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5f765d2046e0fb0017988f3c/file-ednffR3Gos.png"
+				/>
+			</p><p>
+				5. After you have linked all of your survey answers back to VAN,
+				click
+				<em>OK</em>.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5f765d4752faff0016aebdc0/file-oDRbwQ4B6K.png"
+				/>
+			</p><p>
+				8. Finish the process by clicking
+				<em>Sync</em>!
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5f765d60c9e77c0016213b37/file-q7aiEXr51e.png"
+				/>
+			</p><h1></h1><h1>Troubleshooting your VAN integration</h1><h4>
+				<strong><br /></strong>
+			</h4><h4></h4><h4>
+				After setting up the integration, the contact list won't upload
+				beyond 0%.
+			</h4><p>
+				<strong>Solution:</strong> Refresh sync.&nbsp;
+			</p><p>
+				1. Click&nbsp;
+				<em>Refresh Sync Options</em>&nbsp;on the Integration page.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5f765bd946e0fb0017988f39/file-dk94bikYch.png"
+				/>
+			</p><p>
+				2. Refresh the integrations list. The&nbsp;
+				<em>last synced&nbsp;</em>column will update when the list
+				information has been pulled.
+			</p><p>
+				<img
+					src="https://s3.amazonaws.com/helpscout.net/docs/assets/5d4878eb2c7d3a330e3c1b86/images/5f765c7dcff47e001a58a5c1/file-EXQ3WL2nxm.png"
+				/>
+			</p><h4><strong><br /></strong></h4><h4>
+				<strong>Lists in VAN will not show up in Spoke.</strong>
+			</h4><p>
+				<strong>Solution:&nbsp;</strong>Share VAN folders with the API
+				key user.
+			</p><ol>
+				<li>
+					In VAN, go to the folder that contains the lists you want to
+					show up in Spoke
+				</li>
+				<li>In the top right corner, click "Edit Folder"</li>
+				<li>Turn on "Allow other user to save into this folder"</li>
+				<li>Turn on "Allow the API to save into this folder"</li>
+				<li>
+					Go down to the "User Access" section and add the API user
+					into the "Users with Access" column
+				</li>
+				<li>Press save</li>
+				<li>
+					In Spoke, go to the "Integrations" menu item on the left
+					menu of your administrative dashboard
+				</li>
+				<li>
+					On the right side of the API integration you have set up,
+					press "Sync Refresh"
+				</li>
+				<li>
+					Above that and on the middle of the screen, press "Refresh"
+				</li>
+			</ol><p>
+				After completing those steps and selecting the API integration
+				in the "Integration" section in the campaign, you will have
+				access to the new lists in the "Contact" section.
+			</p><p>
+				If there are still issues, this is what else you can try:
+			</p><ul>
+				<li>
+					Check to confirm the username and API key are in the correct
+					format
+				</li>
+				<li>Try both modes of VAN integration</li><li>
+					Do a hard refresh of the campaign page after any changes
+				</li>
+			</ul><h4><strong><br /></strong></h4><h4>
+				<strong>No options show up when configuring the mapping.</strong
+				>
+			</h4><p>
+				<strong>Solution:</strong>&nbsp;Create questions and survey
+				responses in the script.
+			</p><ol>
+				<li>
+					Go to interactions and under the initial text, write a
+					question
+				</li>
+				<li>
+					Provide responses to the question by clicking&nbsp;<strong
+						>Add a Response</strong
+					>
+				</li>
+			</ol><p>
+				Learn more about
+				<a
+					href="https://docs.spokerewired.com/article/43-create-interaction-script"
+					>writing responses to surveys here</a
+				>.
+			</p>
+		</div>
+	</main>
+</Layout>

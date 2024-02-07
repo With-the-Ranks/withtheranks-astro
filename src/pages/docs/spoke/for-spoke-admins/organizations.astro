@@ -1,0 +1,54 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex items-center flex-col">
+			<h2 class="text-center">Organizations</h2>
+
+			<p>
+				An
+				<strong>organizatio</strong><strong>n</strong> is a distinct sending
+				identity within your Spoke instance.&nbsp;Each instance of Spoke
+				Rewired can have multiple organizations.
+			</p><p>
+				Organizations can be useful if your texting goals are different
+				enough to keep separate. For example, there may be overlap
+				between a volunteer contact list and a voter contact list. If
+				you send out both volunteer information and voter information,
+				your volunteers would receive both conversations from the same
+				sending number, creating a single thread in their inbox. If you
+				create one organization for volunteers and another organization
+				for voters, your volunteer could receive information from you
+				through two distinct sending numbers, thus separating those
+				conversations distinct threads.
+			</p><p>
+				Each organization is defined by a number, which is visible in
+				the URL of both
+				<a
+					href="https://docs.spokerewired.com/article/52-dashboards"
+					target="_blank">dashboards</a
+				>.
+			</p><h5><em>Each organization has a separate:</em></h5><ul>
+				<li>Pool of phone numbers for sending messages&nbsp;</li>
+				<li>Opt-out list*</li>
+			</ul><blockquote>
+				*Note: If you wish to have instance-wide, rather than
+				organization-wide, opt outs, please contact
+				support@spokerewired.com.
+			</blockquote><h4>User Permissions Across Organizations</h4><p>
+				Any user designated as a
+				<strong>Superadmin</strong>&nbsp;will be added to all new
+				organizations as an <strong>Owner.</strong> This can be useful if
+				you plan to manage many organizations on a shared Spoke instance.
+				Superadmin status must be managed directly in the database. Please
+				contact support@spokerewired.com if this is something you'd like
+				to set up.
+			</p>
+		</div>
+	</main>
+</Layout>

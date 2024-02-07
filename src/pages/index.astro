@@ -1,13 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
-import Nav from "../components/Nav.astro";
 import "animate.css";
 ---
 
 <Layout title="With the Ranks">
-	<Nav />
-
 	<main
 		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
 	>
@@ -17,6 +14,9 @@ import "animate.css";
 			<input type="color" data-stop-id="stop_two" />
 		</div>
 
+		<header
+			class="max-w-screen-2xl w-11/12 md:w-10/12 mx-auto relative z-0"
+		>
 		<header
 			class="max-w-screen-2xl w-11/12 md:w-10/12 mx-auto relative z-0"
 		>
@@ -209,39 +209,4 @@ import "animate.css";
 			});
 		});
 	}
-
-	const toggleButton = document.getElementById(
-		"theme-toggle",
-	) as HTMLButtonElement;
-
-	function updateIcon(theme: "light" | "dark") {
-		const toggleIcon = toggleButton.querySelector("i");
-
-		if (theme === "light") {
-			toggleIcon?.classList.remove("fa-sun");
-			toggleIcon?.classList.add("fa-moon");
-		} else {
-			toggleIcon?.classList.remove("fa-moon");
-			toggleIcon?.classList.add("fa-sun");
-		}
-	}
-	function setTheme(newTheme: "light" | "dark") {
-		document.documentElement.setAttribute("data-theme", newTheme);
-		updateIcon(newTheme);
-		localStorage.setItem("theme", newTheme);
-	}
-
-	toggleButton.addEventListener("click", () => {
-		const currentTheme =
-			document.documentElement.getAttribute("data-theme");
-		const newTheme = currentTheme === "dark" ? "light" : "dark";
-		setTheme(newTheme);
-	});
-
-	// Check local storage for a stored theme preference
-	document.addEventListener("DOMContentLoaded", () => {
-		const storedTheme =
-			(localStorage.getItem("theme") as "light" | "dark") || "dark";
-		setTheme(storedTheme);
-	});
 </script>

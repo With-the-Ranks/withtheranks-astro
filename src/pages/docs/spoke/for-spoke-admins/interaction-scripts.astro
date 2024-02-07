@@ -1,0 +1,43 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex items-center flex-col">
+			<h2 class="text-center">Interaction Scripts</h2>
+
+			<p>
+				Interaction scripts define a campaign's conversation flow and
+				survey questions. They are used by texters to send prepared
+				scripts to contacts and to record responses to survey. Each
+				campaign has an interaction script that can be written and
+				edited on the campaign settings page. Only administrators can
+				edit interactions scripts.
+			</p><h5><em>An interaction script has three parts:</em></h5><ol>
+				<li>
+					An initial message that a texter sends out to all contacts
+					to start a conversation
+				</li>
+				<li>
+					A set of survey questions and answers that texters use to
+					record information about the conversation
+				</li>
+				<li>
+					A set of follow-up messages that correspond with those
+					survey answers and that can vary depending on how a contact
+					replies
+				</li>
+			</ol><p>
+				If a conversation departs from the interaction script, you can
+				provide <a
+					href="https://docs.spokerewired.com/article/47-canned-responses"
+					target="_blank">canned responses</a
+				> that texters use to handle the situation on a case-by-case basis.
+			</p>
+		</div>
+	</main>
+</Layout>
