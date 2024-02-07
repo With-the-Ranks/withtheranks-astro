@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import MineCraft from "../components/minecraft/index.jsx";
+import Button from "../components/Button.astro";
+---
+
+<style>
+	#minecraftGame {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1000;
+	}
+</style>
+
+<div id='minecraftGame' style='display: none;'>
+	<MineCraft client:only='react' />
+</div>
+<div id='layoutContent'>
+	<Layout title='404 - Page Not Found'>
+		<Nav />
+		<main
+			class='animate__animated animate__fadeIn animate__slow py-20 md:py-24'
+		>
+			<div
+				class='max-w-screen-xl w-11/12 lg:w-7/12 mx-auto md:-translate-y-20 pt-10'
+			>
+				<h1 class='text-5xl md:text-6xl lg:text-7xl xl:text-8xl'>
+					Oops! Page Not Found.
+				</h1>
+				<p>
+					The page you're looking for might have been removed, had its name
+					changed, or is temporarily unavailable.
+				</p>
+				<p>
+					But don't worry, you can play this game while you're here or return to
+					our homepage.
+				</p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <Button id='playMinecraftButton' text='Play Minecraft' class=""/>
+                    <Button link='/' text='Return Home' class=''/>
+                </div>
+			</div>
+		</main>
+	</Layout>
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", (event) => {
+		const playButton = document.getElementById("playMinecraftButton");
+		const minecraft = document.getElementById("minecraftGame");
+		const layoutContent = document.getElementById("layoutContent");
+
+		if (playButton && minecraft && layoutContent) {
+			playButton.addEventListener("click", function () {
+				if (minecraft.style.display === "none") {
+					minecraft.style.display = "block";
+					layoutContent.style.display = "none";
+				} else {
+					minecraft.style.display = "none";
+					layoutContent.style.display = "block";
+				}
+			});
+		}
+	});
+</script>

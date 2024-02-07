@@ -1,8 +1,8 @@
 ---
-const { text, link } = Astro.props;
+const { text, link, id, class: customClass } = Astro.props;
 ---
 
-<a class="button rounded-2xl" href={link}>{text}</a>
+<a class={`button rounded-2xl ${customClass}`} href={link} id={id}>{text}</a>
 
 <style>
     .button {
@@ -11,11 +11,12 @@ const { text, link } = Astro.props;
         font-weight: bold;
         padding: 1rem 2rem;
         font-size: 1.5rem;
+        text-align: center;
         transition: 0.25s;
-        width: auto;
-
+        width: auto;        
         &:hover {
             background: linear-gradient(to bottom right, var(--stop-one-color), var(--stop-two-color));
+            cursor: pointer;
         }
     }
 </style>

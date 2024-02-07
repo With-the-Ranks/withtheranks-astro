@@ -1,17 +1,53 @@
 <nav
-    class="max-w-screen-2xl w-10/12 mx-auto pt-10 animate__animated animate__fadeIn animate__delay-2s"
+	class='max-w-screen-2xl w-10/12 mx-auto pt-10 animate__animated animate__fadeIn animate__delay-2s'
 >
-    <div class="flex justify-end">
-        <!-- <ul class="flex">
+	<div class='flex justify-end'>
+		<!-- <ul class="flex">
             <li class="inline-block">
                 <a href="/">Home</a>
             </li>
             <li class="inline-block"><a href="/work">Our Work</a></li>
             <li class="inline-block"><a href="/blog">Blog</a></li>
         </ul> -->
-        <button id="theme-toggle" class="theme-toggle-button">
-            <i class="fas fa-moon"></i>
-            <!-- Default icon -->
-        </button>
-    </div>
+		<button id='theme-toggle' class='theme-toggle-button'>
+			<i class='fas fa-moon'></i>
+			<!-- Default icon -->
+		</button>
+	</div>
 </nav>
+
+<script>
+	const toggleButton = document.getElementById(
+		"theme-toggle"
+	) as HTMLButtonElement;
+
+	function updateIcon(theme: "light" | "dark") {
+		const toggleIcon = toggleButton.querySelector("i");
+
+		if (theme === "light") {
+			toggleIcon?.classList.remove("fa-sun");
+			toggleIcon?.classList.add("fa-moon");
+		} else {
+			toggleIcon?.classList.remove("fa-moon");
+			toggleIcon?.classList.add("fa-sun");
+		}
+	}
+	function setTheme(newTheme: "light" | "dark") {
+		document.documentElement.setAttribute("data-theme", newTheme);
+		updateIcon(newTheme);
+		localStorage.setItem("theme", newTheme);
+	}
+
+	toggleButton.addEventListener("click", () => {
+		const currentTheme = document.documentElement.getAttribute("data-theme");
+		const newTheme = currentTheme === "dark" ? "light" : "dark";
+		setTheme(newTheme);
+	});
+
+	// Check local storage for a stored theme preference
+	document.addEventListener("DOMContentLoaded", () => {
+		const storedTheme =
+			(localStorage.getItem("theme") as "light" | "dark") || "dark";
+		setTheme(storedTheme);
+	});
+</script>
