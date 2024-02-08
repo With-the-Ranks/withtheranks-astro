@@ -74,21 +74,21 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 }
 
 /* Fonts */
-/* TODO: Move Lora to self-hosted and remove unused weights. */
+/* Poppins */
 @font-face {
     font-family: 'Poppins';
-    src: url('Poppins-ExtraBoldItalic.woff') format('woff'),
-        url('Poppins-ExtraBoldItalic.ttf') format('truetype');
-    font-weight: bold;
+    src: url('/fonts/poppins/Poppins-ExtraBoldItalic.woff') format('woff'),
+        url('/fonts/poppins/Poppins-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
     font-style: italic;
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Poppins';
-    src: url('Poppins-Bold.woff') format('woff'),
-        url('Poppins-Bold.ttf') format('truetype');
-    font-weight: bold;
+    src: url('/fonts/poppins/Poppins-Bold.woff') format('woff'),
+        url('/fonts/poppins/Poppins-Bold.ttf') format('truetype');
+    font-weight: 700;
     font-style: normal;
     font-display: swap;
 }
@@ -97,7 +97,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     font-family: 'Poppins';
     src: url('/fonts/poppins/Poppins-ExtraBold.woff') format('woff'),
         url('/fonts/poppins/Poppins-ExtraBold.ttf') format('truetype');
-    font-weight: bold;
+    font-weight: 800;
     font-style: normal;
     font-display: swap;
 }
@@ -106,7 +106,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     font-family: 'Poppins';
     src: url('/fonts/poppins/Poppins-Italic.woff') format('woff'),
         url('/fonts/poppins/Poppins-Italic.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 400;
     font-style: italic;
     font-display: swap;
 }
@@ -151,7 +151,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     font-family: 'Poppins';
     src: url('/fonts/poppins/Poppins-BoldItalic.woff') format('woff'),
         url('/fonts/poppins/Poppins-BoldItalic.ttf') format('truetype');
-    font-weight: bold;
+    font-weight: 700;
     font-style: italic;
     font-display: swap;
 }
@@ -187,7 +187,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     font-family: 'Poppins';
     src: url('/fonts/poppins/Poppins-Regular.woff') format('woff'),
         url('/fonts/poppins/Poppins-Regular.ttf') format('truetype');
-    font-weight: normal;
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
@@ -237,6 +237,43 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     font-display: swap;
 }
 
+/* Lora */
+@font-face {
+    font-family: 'Lora';
+    src: url('/fonts/lora/lora-regular-webfont.woff2') format('woff2'),
+        url('/fonts/lora/lora-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('/fonts/lora/lora-italic-webfont.woff2') format('woff2'),
+        url('/fonts/lora/lora-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('/fonts/lora/lora-bolditalic-webfont.woff2') format('woff2'),
+        url('/fonts/lora/lora-bolditalic-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('/fonts/lora/lora-bold-webfont.woff2') format('woff2'),
+        url('/fonts/lora/lora-bold-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+
+}
+
 body {
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
@@ -259,6 +296,7 @@ h6 {
     line-height: 1.25;
     font-weight: 700;
     margin-bottom: 2rem;
+    font-weight: 800;
 }
 
 h1 {
@@ -305,9 +343,9 @@ nav {
     ul {
         position: relative;
         padding-left: 1.25rem;
-        font-size: 1.25rem;     
+        font-size: 1.25rem;
     }
-   
+
     ul:before {
         content: "";
         display: block;
@@ -347,6 +385,29 @@ nav {
         display: inline-block;
         margin-right: 1rem;
     }
+}
+
+/* Theme Toggle */
+.sun {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    background: black url('/assets/sun.svg') no-repeat center;
+    background-size: cover;
+
+}
+
+.moon {
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    background: white url('/assets/moon.svg') no-repeat center;
+    background-size: cover;
+
 }
 
 /* Debug */
