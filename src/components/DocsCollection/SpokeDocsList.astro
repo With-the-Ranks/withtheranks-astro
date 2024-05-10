@@ -13,7 +13,7 @@ const { collectionType } = Astro.props;
 
 const DOCS_DIRECTORY = `${process.cwd()}/src/pages/docs/spoke`;
 const HTML_EXTENSION_LENGTH = ".html".length;
-const SPOKE_LINK_PATH = "/withtheranks-astro/docs/spoke";
+const SPOKE_LINK_PATH = "/docs/spoke";
 
 const path = DOCS_DIRECTORY + "/" + collectionType;
 const fileNames = fs.readdirSync(path);
