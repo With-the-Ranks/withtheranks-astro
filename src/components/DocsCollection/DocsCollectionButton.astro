@@ -1,10 +1,10 @@
 ---
-import type { LinkProps } from "../../types";
 import Button from "../Button.astro";
+import type { Props as ButtonProps } from "../Button.astro";
 
-interface Props extends LinkProps {}
+interface Props extends ButtonProps {};
 
-const { text, link } = Astro.props;
+const { text, link, id} = Astro.props;
 ---
 
-<Button text={text} link={link} class="m-2" />
+<Button id={id} text={text} link={link} class="m-2" />

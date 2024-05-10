@@ -1,8 +1,9 @@
 ---
-import type { LinkProps } from "../types";
 
-interface Props extends LinkProps {
+export interface Props {
     id: string;
+    text: string;
+    link?: string;
     class?: string;
 }
 

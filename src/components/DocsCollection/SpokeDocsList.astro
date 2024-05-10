@@ -1,7 +1,6 @@
 ---
 import * as fs from "fs";
 import { kebabCasetoTitleCase } from "../../utils.ts";
-import { type LinkProps } from "../../types.ts";
 
 type SpokeDocCollectionType = "for-spoke-admins" | "for-spoke-texters";
 
@@ -21,7 +20,7 @@ const collectionFileNames = fileNames.filter(
     (fileName) => fileName != "index.astro",
 );
 
-const docList: LinkProps[] = collectionFileNames.map((fileName) => {
+const docList = collectionFileNames.map((fileName) => {
     const endOfSlug = fileName.length - HTML_EXTENSION_LENGTH - 1;
     const slug = fileName.substring(0, endOfSlug);
 
@@ -33,7 +32,7 @@ const docList: LinkProps[] = collectionFileNames.map((fileName) => {
 
 <ul>
     {
-        docList.map((doc: LinkProps) => (
+        docList.map((doc) => (
             <li class="m-2">
                 <a href={doc.link}>{doc.text}</a>
             </li>
