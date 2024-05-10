@@ -1,0 +1,100 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex-col">
+			<h2 class="text-center">Include An Image In A Message</h2>
+			<p>
+				You can include images with your messages to send event posters
+				or other media to your contacts.
+			</p>
+			<p>
+				Note: Multimedia messages cost more to send than text-only
+				messages. Ask your organization for guidelines and permission.
+			</p>
+			<p><strong>Attaching images in Spoke:</strong></p>
+			<p><strong>
+				In a message, paste a URL between two square
+				brackets, [ ]. For example: 
+				<code>[https://image-url.com/image-is-here].</code>
+			</strong></p>
+			<p>
+				Write a message to be sent with the image. Any text before
+				and after the bracketed URL is combined into a single
+				message with the bracketed URL removed.
+			</p>
+			<p><strong>Example:</strong></p>
+			<p>
+				Hey <span style="background-color: initial;"
+					>&lcub;firstName&rcub;</span
+				>, this is &lcub;texterFirstName&rcub; with ORGANIZATION. URGENT
+				FACT. That is why we are organizing to X. Will you stand in
+				solidarity and sign our pledge to Y?
+				<strong>[https://i.imgur.com/d2DkMaZ.jpeg]</strong>
+			</p>
+			<h2>Size limitations</h2><p>
+				Cellular carriers have different limitations on MMS attachments.
+				We recommend keeping attachment size below <strong
+					>600 KB</strong
+				> for best results.
+			</p><p>Size limitations for the top 4 US carriers are:</p>
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							<strong>Carrier</strong>
+						</td>
+						<td>
+							<strong>MMS attachment size</strong>
+						</td>
+					</tr>
+					<tr>
+						<td> AT&amp;T</td>
+						<td> 1.4 MB</td>
+					</tr>
+					<tr>
+						<td> Sprint</td>
+						<td> 1.4 MB</td>
+					</tr>
+					<tr>
+						<td> T-mobile</td>
+						<td> 0.675 MB</td>
+					</tr>
+					<tr>
+						<td> Verizon</td>
+						<td> 0.675 MB</td>
+					</tr>
+				</tbody>
+			</table>
+			<h2 class="my-5">Media type limitations</h2><p>
+				MMS attachments may be of the following types:
+			</p><ul>
+				<li>image/jpeg</li><li>image/png</li><li>image/gif</li><li>
+					video/3gpp
+				</li><li>video/mp4</li>
+			</ul>
+			<h2 class="my-5">Send an image with links</h2><p>
+				The SMS/MMS protocol, regardless of provider, does not support
+				hyperlinked images. If you want to provide a link with an
+				accompanying image, you can add <a
+					href="https://css-tricks.com/essential-meta-tags-social-media/"
+					>meta tags for social media</a
+				> to the linked website itself, and then send the link. These tags
+				let messaging applications show a preview of the linked content.
+				For example, this is how YouTube link previews are displayed.
+			</p>
+			<div><p>
+				If you don't have control of the linked website, you can create
+				an intermediate page that redirects to the destination page
+				<a href="https://www.lifewire.com/meta-refresh-tag-3469046"
+					>using a refresh tag</a
+				>. Then, you can add meta tags to the intermediate page.
+			</p></div>
+		</div>
+	</main>
+</Layout>

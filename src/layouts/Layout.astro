@@ -1,5 +1,6 @@
 ---
 import "../styles/main.css";
+// import Nav from "../components/Nav.astro";
 
 interface Props {
 	title: string;
@@ -37,8 +38,12 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
+		<!-- <Nav /> -->
 		<slot />
-
-		<footer class="w-10/12 mx-auto"><p class="text-base font-sans text-slate-400 text-center">With the Ranks is 100% worker-owned, and we don't use cookies.</p></footer>
+		<footer class="w-10/12 mx-auto">
+			<p class="text-base font-sans text-slate-400 text-center">
+				With the Ranks is 100% worker-owned, and we don't use cookies.
+			</p>
+		</footer>
 	</body>
 </html>

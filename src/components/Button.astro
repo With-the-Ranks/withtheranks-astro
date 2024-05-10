@@ -1,4 +1,10 @@
 ---
+import type { LinkProps } from "../types";
+
+interface Props extends LinkProps {
+    class?: string;
+}
+
 const { text, link, id, class: customClass } = Astro.props;
 ---
 
@@ -7,7 +13,11 @@ const { text, link, id, class: customClass } = Astro.props;
 <style>
     .button {
         text-decoration: none;
-        background: linear-gradient(to bottom right, var(--stop-two-color), var(--stop-two-color));
+        background: linear-gradient(
+            to bottom right,
+            var(--stop-two-color),
+            var(--stop-two-color)
+        );
         font-weight: bold;
         padding: 1rem 2rem;
         font-size: 1.5rem;

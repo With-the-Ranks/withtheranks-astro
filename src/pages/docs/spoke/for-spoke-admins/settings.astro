@@ -1,0 +1,64 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex items-center flex-col">
+			<h2 class="text-center">Settings</h2>
+
+			<p>
+				The following settings apply to all campaigns in your Spoke
+				organization. You can access these <strong>Settings</strong> from
+				the administrator
+				<a
+					href="https://docs.spokerewired.com/article/52-dashboards"
+					data-bcup-haslogintext="no">dashboard</a
+				>.
+			</p><h2>Default Text Request Auto-Approval Level</h2><p>
+				Choose the default assignment-approval setting for new
+				texters.&nbsp;To expedite the assignment process, we typically
+				recommend setting the default to Auto Approve. Though no matter
+				the default assignment-approval level, you can modify an
+				individual texter's approval level from the
+				<strong style="background-color: initial;">People</strong> tab on
+				the lefthand side admin panel.&nbsp;
+			</p><h2>Opt-Out Message</h2>
+			<div>
+				You can set the default opt-out message that auto-populates the
+				message field when texters use the opt-out feature.
+				<br />
+			</div><h2>Texting Hours</h2><p>
+				You can enforce
+				<a
+					href="https://docs.spokerewired.com/article/48-texting-hours"
+					data-bcup-haslogintext="no"
+					target="_blank">texting hours</a
+				> across all campaigns by turning on this feature. This prevents
+				you from disturbing contacts outside of these hours. Each campaign
+				has its own set of texting hours that you specify on the campaign
+				settings page.
+			</p><h2>Assemble Numbers API key</h2><p>
+				Assemble Numbers is a service that helps you determine whether
+				you can reach a phone number in your contact list. This API key
+				field is populated by default and allows you to use the
+				<em>Filter Landlines</em> feature within the campaign settings page.
+			</p><h2>Contact Information Display</h2><p>
+				For some specific use cases (e.g., volunteer or member contact)
+				it may be desirable to show the contact's last name and/or cell
+				phone to the texter. The toggles in this section allow you to do
+				that.
+			</p><blockquote>
+				<em
+					>Note: Think carefully about the privacy implications of
+					exposing this information before you enable these options!
+					We strongly dissuade you from using it under most
+					circumstances.</em
+				>
+			</blockquote>
+		</div>
+	</main>
+</Layout>

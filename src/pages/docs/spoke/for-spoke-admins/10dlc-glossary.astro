@@ -1,0 +1,124 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex items-center flex-col">
+			<h2 class="text-center">10dlc Glossary</h2>
+
+			<p>Here is a handy reference for 10DLC terminology:</p>
+			<table>
+				<thead>
+					<tr>
+						<td> Term</td>
+						<td> Definition</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td> P2P</td>
+						<td>
+							Person-to-person SMS describes messages sent to an
+							individual's handset&nbsp;<strong
+								>from a handset</strong
+							>. We have traditionally thought of Spoke as P2P,
+							however, it is now categorized as A2P.
+						</td>
+					</tr>
+					<tr>
+						<td> A2P</td>
+						<td>
+							Application-to-person SMS describes messages sent to
+							an individual's handset <strong
+								>via an application</strong
+							>. Traffic sent via an application is considered A2P
+							by the telecom industry regardless of whether that
+							message was initiated by a person or a program.
+						</td>
+					</tr>
+					<tr>
+						<td> Long Code Phone Number</td>
+						<td>
+							A standard 10-digit phone number in the North
+							American Numbering Plan. Your personal phone number
+							is a long code number.
+						</td>
+					</tr>
+					<tr>
+						<td> Short Code Phone Number</td>
+						<td>
+							A 5 or 6 digit phone number requiring a rigorous
+							registration by the sender and explicit opt in from
+							recipients in exchange for fewer sending
+							restrictions.
+						</td>
+					</tr>
+					<tr>
+						<td> 10-Digit Long Code&nbsp;(10DLC)</td>
+						<td>
+							A system allowing businesses to send A2P-type
+							messages over standard 10-digit long code numbers
+							providing better quality to recipients and lower
+							filtering risk to senders.
+						</td>
+					</tr>
+					<tr>
+						<td> Brand</td>
+						<td>
+							Brand registration identifies who a business is on
+							the carrier network.
+						</td>
+					</tr>
+					<tr>
+						<td> Campaign</td>
+						<td>
+							Campaign registration identifies what type of
+							content a business is sending on the network.
+							Different use cases are subject to different
+							restrictions.
+						</td>
+					</tr>
+					<tr>
+						<td> The Campaign Registry&nbsp;(TCR)&nbsp;</td>
+						<td>
+							The entity responsible for managing brand and
+							campaign registration.
+						</td>
+					</tr>
+					<tr>
+						<td> Campaign Verify</td>
+						<td>
+							The entity responsible for verifying 10DLC campaigns
+							using the <a
+								href="https://docs.spokerewired.com/article/132-transitioning-to-10dlc"
+								target="_blank">Political special use case</a
+							>.
+						</td>
+					</tr>
+					<tr>
+						<td> Campaign Service Provider (CSP)</td>
+						<td>
+							A business responsible for sending messages on
+							behalf of multiple brands and able to manage brand
+							and campaign registration on their behalf. Politics
+							Rewired is a campaign service provider.
+						</td>
+					</tr>
+					<tr>
+						<td> Direct Connect Aggregator (DCA)</td>
+						<td>
+							A company that has a direct connection to a Mobile
+							Network Operator (MNO) Gateway and transmits
+							messages on behalf of its customers or “content
+							providers”. Twilio is an example of a DCA.
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+</Layout>

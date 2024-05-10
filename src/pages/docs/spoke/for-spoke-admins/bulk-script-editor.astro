@@ -1,0 +1,59 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex items-center flex-col">
+			<h2 class="text-center">Bulk Script Editor</h2>
+
+			<p>
+				The <strong>bulk script editor</strong>is a tool that allows you
+				to simultaneously find and replace parts of your interaction
+				scripts across multiple campaigns. With this tool, you provide
+				the text you want to replace and the text you want to replace it
+				with. The editor searches all campaigns in your organization and
+				performs the replacement for all interaction scripts.&nbsp;
+			</p><p>
+				You can use a filter to restrict the replacement to a smaller
+				set of campaigns. A filter can restrict the editor to active
+				campaigns and to campaigns with names that begin with specific
+				text (this is one reason why having a consistent campaign <strong
+					>naming convention</strong
+				> can be useful).
+			</p><p>
+				To use this tool, you must provide the exact text you want to
+				replace. If your interaction scripts all have slight variations,
+				the bulk script editor must be used for each variation. Keep
+				this in mind when writing interaction scripts.
+			</p><p>
+				If you leave the <strong>"...</strong><strong
+					>with this text"</strong
+				> field blank, the bulk script editor replaces all instances of the
+				text with nothing, effectively deleting them.
+			</p><p>
+				The bulk script editor works only for a single Spoke <a
+					href="https://docs.spokerewired.com/article/79-organizations"
+					>organization</a
+				>. If you have multiple organizations, you must use the bulk
+				script editor for each one.
+			</p><blockquote>
+				Note: Clicking the
+				<strong>Find &amp; Replace</strong> button performs the action without
+				confirmation. Click this button only after you've double-checked
+				the text, filters, and other options.
+				<br />
+			</blockquote><p>
+				After you use the bulk script editor, a notification displays
+				all instances (or occurrences) of replacement. Once you exit
+				this notification, you cannot open it again. If you want to save
+				the details of the replacements, copy them before clicking <strong
+					>OK</strong
+				>.
+			</p>
+		</div>
+	</main>
+</Layout>

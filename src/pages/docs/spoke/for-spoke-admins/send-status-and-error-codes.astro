@@ -1,0 +1,85 @@
+---
+import Layout from "../../../../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks">
+	<main
+		class="animate__animated animate__fadeIn animate__slow py-20 md:py-40"
+	>
+		<div class="flex items-center flex-col">
+			<h2 class="text-center">Send Status And Error Codes</h2>
+
+			<h3>Send Status</h3><p>
+				<em>Send status</em> is a column within the messages export from
+				Spoke. It refers to the status of an outbound message (inbound messages
+				are always DELIVERED).
+			</p><p>
+				There are 3 possible values for send status: <strong
+					>SENT,</strong
+				>&nbsp;<strong>DELIVERED,</strong>and <strong>ERROR</strong>.
+			</p><h4>ERROR</h4><p>
+				A send status of <strong>ERROR</strong>&nbsp;means that the
+				message was <strong>not delivered</strong> to the recipient's phone.
+				Most commonly, this occurs when the recipient's carrier rejects the
+				message as part of their spam filter. This often happens when your
+				message has included links or URLs. To read about methods of increasing
+				deliverability of links, see <a
+					href="https://docs.spokerewired.com/article/113-sending-links"
+					target="_blank">here</a
+				> and <a
+					href="https://docs.spokerewired.com/article/70-short-link-domains"
+					target="_blank">here</a
+				>.
+			</p><p>
+				You may also see an ERROR send status for a contact who has
+				replied "STOP" or "UNSUBSCRIBE" in the past. Don't worry &mdash;
+				You won't be charged for messages rejected for this particular
+				reason (you <em>are</em> charged for messages rejected by carriers
+				for other reasons). It is considered best practice to send an opt-out
+				confirmation message, according to the official CTIA guidelines.
+			</p><h4>DELIVERED</h4><p>
+				A send status of <strong>DELIVERED</strong>&nbsp;means that
+				Spoke <strong>received confirmation</strong> that the message was
+				delivered to the recipient's phone. Almost all of the time, this
+				means that the recipient's phone received the message. Some of the
+				time, however, carriers choose to send affirmative delivery reports
+				<em>without</em> having sent the message; this typically occurs after
+				sending a large volume of a particular URL, and it's likely that
+				they do it in order to prevent you or us from reverse-engineering
+				their spam filters.
+			</p><h4>SENT</h4><p>
+				A send status of&nbsp; <strong
+					style="background-color: initial;">SENT</strong
+				>&nbsp;means that the message was just sent by the user and is <strong
+					style="background-color: initial;"
+					>in the process of being delivered</strong
+				>. This is most often a temporary status, and you'll see many
+				messages marked as SENT if you export from a currently-running
+				campaign. Delivery reports typically arrive in a few seconds,
+				but some arrive minutes or hours later. That said, a small
+				percent of messages will stay SENT for all time. This means that
+				we never received a delivery report from the carrier. Like
+				false-positive delivery reports, this just happens sometimes and
+				is likely done to prevent the reverse-engineering of spam
+				filters.
+			</p><h3>Error Codes</h3><p>
+				<em>Error code</em> is a column on the messages export from Spoke.
+				It refers to the error codes that we receive from underlying telecom
+				providers (expressed as stringified 5-digit integers).&nbsp;
+			</p><p>
+				Error codes are specific to the service that is powering your
+				instance of Spoke, which at the moment is either <a
+					href="https://developers.telnyx.com/docs/api/v2/overview#error-codes"
+					target="_blank">Telnyx</a
+				>, <a
+					href="https://www.twilio.com/docs/api/errors#1-anchor"
+					target="_blank">Twilio</a
+				>, or <a
+					href="https://dev.bandwidth.com/docs/messaging/errors/"
+					target="_blank">Bandwidth</a
+				>.
+			</p>
+		</div>
+	</main>
+</Layout>

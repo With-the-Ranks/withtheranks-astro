@@ -1,19 +1,23 @@
+---
+import ThemeToggleButton from "./ThemeToggleButton.astro";
+---
+
 <nav
 	class='max-w-screen-2xl w-10/12 mx-auto pt-10 animate__animated animate__fadeIn animate__delay-2s'
 >
-	<div class='flex justify-end'>
-		<!-- <ul class="flex">
+    <div class="flex justify-between">
+        <ul class="flex">
             <li class="inline-block">
                 <a href="/">Home</a>
             </li>
-            <li class="inline-block"><a href="/work">Our Work</a></li>
-            <li class="inline-block"><a href="/blog">Blog</a></li>
-        </ul> -->
-		<button id='theme-toggle' class='theme-toggle-button' aria-label="Toggle Dark Theme">
-			<i class='moon'></i>
-			<!-- Default icon -->
-		</button>
-	</div>
+            <!-- <li class="inline-block"><a href="/work">Our Work</a></li>
+            <li class="inline-block"><a href="/blog">Blog</a></li> -->
+            <li class="inline-block">
+                <a href="/docs">Docs</a>
+            </li>
+        </ul>
+        <ThemeToggleButton />
+    </div>
 </nav>
 
 <script>
