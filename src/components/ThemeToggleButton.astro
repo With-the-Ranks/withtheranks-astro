@@ -1,10 +1,10 @@
 <button id="theme-toggle" class="theme-toggle-button">
-    <i class="fas fa-moon"></i>
+    <i class="moon"></i>
     <!-- Default icon -->
 </button>
 
 <script>
-    import { type themeMode } from "../styles/types.ts";
+    type themeMode = "light" | "dark";
 
     const toggleButton = document.getElementById(
         "theme-toggle",
@@ -14,11 +14,11 @@
         const toggleIcon = toggleButton.querySelector("i");
 
         if (theme === "light") {
-            toggleIcon?.classList.remove("fa-sun");
-            toggleIcon?.classList.add("fa-moon");
+            toggleIcon?.classList.remove("sun");
+            toggleIcon?.classList.add("moon");
         } else {
-            toggleIcon?.classList.remove("fa-moon");
-            toggleIcon?.classList.add("fa-sun");
+            toggleIcon?.classList.remove("moon");
+            toggleIcon?.classList.add("sun");
         }
     }
 
