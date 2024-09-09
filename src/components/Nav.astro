@@ -5,13 +5,25 @@ import ThemeToggleButton from "./ThemeToggleButton.astro";
 <nav
 	class='max-w-screen-2xl w-10/12 mx-auto pt-10 animate__animated animate__fadeIn animate__delay-1s'
 >
-    <div class="flex justify-end">
-        <ul class="flex">
+    <div class="flex justify-end gap-6 ">
+        <ul class="flex triangle gap-6">
             <li class="inline-block">
                 <a href="/">Home</a>
             </li>
-            <li class="inline-block"><a href="/work">Our Work</a></li>
-            <li class="inline-block"><a href="/blog">Blog</a></li>
+            <li class="inline-block relative group">
+                <a href="#" class="cursor-pointer">Solutions</a>
+                <ul class="absolute hidden z-50 rounded-lg group-hover:block bg-white border border-gray-200 mt-4 p-4 shadow-lg">
+                    <li class="whitespace-nowrap ml-6 px-4 py-2 hover:bg-gray-100">
+                        <a href="/spoke">Spoke Texting</a>
+                    </li>
+                    <li class="whitespace-nowrap ml-6 px-4 py-2 hover:bg-gray-100">
+                        <a href="/intrepid">Intrepid Email</a>
+                    </li>
+                    <li class="whitespace-nowrap ml-6 px-4 py-2 hover:bg-gray-100">
+                        <a href="/voter-guide">Voter Guide Tool</a>
+                    </li>
+                </ul>
+            </li>
             <li class="inline-block">
                 <a href="/docs">Docs</a>
             </li>

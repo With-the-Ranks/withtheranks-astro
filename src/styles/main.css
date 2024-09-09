@@ -357,7 +357,7 @@ nav {
         font-size: 1.25rem;
     }
 
-    ul:before {
+    ul.triangle:before {
         content: "";
         display: block;
         position: absolute;
