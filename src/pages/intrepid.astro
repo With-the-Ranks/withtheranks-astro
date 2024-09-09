@@ -1,0 +1,124 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/landing/Hero.astro";
+import SectionOne from "../components/landing/SectionOne.astro";
+import SectionTwo from "../components/landing/SectionTwo.astro";
+import Pricing from "../components/landing/Pricing.astro";
+
+// Hero section configuration for Intrepid Email
+const heroProps = {
+  title: "Intrepid: Emails for Campaigns Made Simple",
+  description:
+    "Create powerful, professionally designed emails without needing a team of designers or developers. Intrepid Email helps campaigns and non-profits engage supporters, streamline outreach, and send effective emails quickly.",
+  ctaLink: "/pricing",
+  demoLink: "/get-started",
+  features: [
+    { title: "Designed for Campaigns", description: "Templates and tools tailored to the needs of political campaigns and non-profits." },
+    { title: "Time-Saving Templates", description: "Pre-built templates and blocks make email creation fast and easy." },
+    { title: "Effortless Customization", description: "Drag-and-drop features allow for quick and intuitive customization without tech skills." },
+  ],
+  imageUrl: "https://brightlight.lexingtonthemes.com/assets/dashboard.svg",
+  logos: [
+    { alt: "Bernie logo", src: "/Bernie.svg" },
+    { alt: "350 logo", src: "/350.svg" },
+    { alt: "Indivisible logo", src: "/Indivisible.svg" },
+    { alt: "Power in Numbers logo", src: "/POWER.png" },
+    { alt: "Winning Mark logo", src: "/Winning.svg" },
+    { alt: "Fight Corporate America logo", src: "/FCA.webp" },
+  ],
+};
+
+// SectionOne configuration for Intrepid Email
+const sectionOneProps = {
+  sectionTitle: "Features That Empower Your Email Campaigns",
+  sectionSubtitle: "Intrepid Email is designed to help campaigns and non-profits create beautiful, professional emails without technical skills. Engage your supporters and optimize your outreach with ease.",
+  features: [
+    { icon: "mail-outline", title: "Pre-built Email Templates", description: "Launch your email campaigns fast with our industry-specific templates." },
+    { icon: "sync-outline", title: "Seamless CRM Integration", description: "Sync your email lists with your CRM and automate follow-ups effortlessly." },
+    { icon: "timer-outline", title: "Welcome Series and Recurring Emails", description: "Automate welcome series and keep supporters engaged with recurring emails." },
+  ],
+};
+
+// SectionTwo configuration for Intrepid Email
+const sectionTwoProps = {
+  title: "Built for Campaigns and Non-Profits",
+  description: "Intrepid Email ensures that campaigns and non-profits can easily send effective emails without relying on expensive consultants or design teams. Focus on what matters—mobilizing your supporters.",
+  imageUrl: "https://brightlight.lexingtonthemes.com/assets/dashboard.svg",
+  subFeatures: [
+    { icon: "code-slash-outline", title: "Developer-Friendly Tools", description: "Customize and extend functionality easily with our developer-friendly tools and API integration." },
+    { icon: "brush-outline", title: "Designer-Friendly Interface", description: "Our modern interface makes creating emails intuitive for non-designers." },
+    { icon: "rocket-outline", title: "Effortless Onboarding", description: "Start sending emails quickly with no technical experience required." },
+  ],
+};
+
+// Pricing section configuration for Intrepid Email
+const pricingProps = {
+  sectionTitle: "Intrepid Email: Flexible Plans for Every Campaign",
+  sectionSubtitle: "Choose a plan that fits your campaign’s needs, with transparent pricing and no hidden fees.",
+  tiers: [
+    {
+      title: "Basic Plan",
+      price: "$XX/month",
+      description: "Perfect for small campaigns and non-profits.",
+      details: [
+        "Up to XX emails per month",
+        "Access to pre-built templates",
+        "Basic analytics and CRM integration",
+      ],
+      buttonLabel: "Get started",
+      buttonLink: "/register",
+      buttonAriaLabel: "Basic Plan",
+    },
+    {
+      title: "Advanced Plan",
+      price: "$XX/month",
+      description: "Ideal for larger campaigns needing more features.",
+      details: [
+        "Unlimited emails",
+        "Advanced analytics and priority support",
+        "Customizable templates and full CRM integration",
+      ],
+      buttonLabel: "Get started",
+      buttonLink: "/register",
+      buttonAriaLabel: "Advanced Plan",
+    },
+    {
+      title: "Custom Plan",
+      price: "Custom",
+      description: "For national campaigns or organizations with unique needs.",
+      details: [
+        "Custom integrations and advanced features",
+        "Priority support and service-level agreements",
+        "Unlimited messaging with dedicated support",
+      ],
+      buttonLabel: "Contact us",
+      buttonLink: "/contact",
+      buttonAriaLabel: "Custom Plan",
+      isHighlighted: true,
+    },
+  ],
+  logos: [
+    { alt: "Bernie logo", src: "/Bernie.svg" },
+    { alt: "350 logo", src: "/350.svg" },
+    { alt: "Indivisible logo", src: "/Indivisible.svg" },
+    { alt: "Power in Numbers logo", src: "/POWER.png" },
+    { alt: "Winning Mark logo", src: "/Winning.svg" },
+    { alt: "Fight Corporate America logo", src: "/FCA.webp" },
+  ],
+};
+---
+
+<Layout title="Our Work: Intrepid Email">
+  <main class="animate__animated animate__fadeIn animate__slow landing">
+    <Hero {...heroProps} />
+    <SectionOne {...sectionOneProps} />
+    <SectionTwo {...sectionTwoProps} />
+    <Pricing {...pricingProps} />
+  </main>
+</Layout>
+
+<!--Ionicons -->
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+></script>
