@@ -1,115 +1,102 @@
-<section aria-labelledby="pricing-section" id="pricing">
-  <div class="lg:px-16 max-w-7xl md:px-12 mx-auto px-8 py-24 scroll-mt-12">
-    <div class="text-center max-w-3xl mx-auto">
-      <h2 class="text-4xl tracking-tight font-medium md:text-5xl font-display">
-        Peer-to-Peer Texting at No Markup
-      </h2>
-      <p class="mt-4 text-lg text-gray-500">
-        Spoke is based on open-source software, so you pay exactly what it costs to send SMS or MMS messages. No hidden fees, no infrastructure charges.
-      </p>
-    </div>
-  </div>
-  
-  <div class="items-center px-8 lg:pt-12 pb-24 mx-auto max-w-7xl lg:px-16">
-    <div class="grid max-w-2xl grid-cols-1 py-4 -mx-4 sm:grid-cols-2 gap-y-10 sm:mx-auto lg:max-w-none lg:grid-cols-3 xl:gap-x-4 lg:bg-gray-50 lg:border border-gray-500/10 lg:rounded-3xl">
+---
+export interface Tier {
+	title: string;
+	price: string;
+	description: string;
+	details: string[];
+	buttonLabel: string;
+	buttonLink: string;
+	buttonAriaLabel: string;
+	isHighlighted?: boolean;
+}
 
-      <!-- SMS Tier -->
-      <section class="flex flex-col px-6 rounded-3xl lg:py-8">
-        <h3 class="mt-5 text-lg font-display">SMS</h3>
-        <p class="mt-2 text-sm">
-          For campaigns that need simple and effective outreach via SMS.
-        </p>
-        <p class="order-first text-5xl font-light tracking-tight font-display">1¢</p>
-        <p class="text-sm">per segment</p>
-        <ul role="list" class="flex flex-col order-last mt-10 text-sm gap-y-3">
-          <li class="flex items-center">
-            <ion-icon class="w-4 h-4 md hydrated" name="checkmark-outline" role="img" aria-label="checkmark outline"></ion-icon>
-            <span class="ml-4">Send SMS messages up to 160 characters</span>
-          </li>
-          <li class="flex items-center">
-            <ion-icon class="w-4 h-4 md hydrated" name="checkmark-outline" role="img" aria-label="checkmark outline"></ion-icon>
-            <span class="ml-4">No setup fees or infrastructure costs</span>
-          </li>
-          <li class="flex items-center">
-            <ion-icon class="w-4 h-4 md hydrated" name="checkmark-outline" role="img" aria-label="checkmark outline"></ion-icon>
-            <span class="ml-4">Scalable to any size campaign</span>
-          </li>
-        </ul>
-        <a class="inline-flex items-center justify-center w-full px-6 py-3 h-12 mt-8 text-center transition duration-200 ease-in-out transform bg-white border hover:bg-gray-200 hover:border-gray-200 rounded-xl focus:outline-none border-gray-200" aria-label="SMS tier" href="/register">Get started</a>
-      </section>
+export interface PricingProps {
+	sectionTitle: string;
+	sectionSubtitle: string;
+	tiers: Tier[];
+	logos: { alt: string; src: string }[];
+}
 
-      <!-- MMS Tier -->
-      <section class="flex flex-col px-6 rounded-3xl lg:py-8">
-        <h3 class="mt-5 text-lg font-display">MMS</h3>
-        <p class="mt-2 text-sm">
-          Engage your audience with rich media and longer messages.
-        </p>
-        <p class="order-first text-5xl font-light tracking-tight font-display">3¢</p>
-        <p class="text-sm">per segment</p>
-        <ul role="list" class="flex flex-col order-last mt-10 text-sm gap-y-3">
-          <li class="flex items-center">
-            <ion-icon class="w-4 h-4 md hydrated" name="checkmark-outline" role="img" aria-label="checkmark outline"></ion-icon>
-            <span class="ml-4">Send MMS messages up to 1600 characters</span>
-          </li>
-          <li class="flex items-center">
-            <ion-icon class="w-4 h-4 md hydrated" name="checkmark-outline" role="img" aria-label="checkmark outline"></ion-icon>
-            <span class="ml-4">Attach media (images, GIFs, etc.)</span>
-          </li>
-          <li class="flex items-center">
-            <ion-icon class="w-4 h-4 md hydrated" name="checkmark-outline" role="img" aria-label="checkmark outline"></ion-icon>
-            <span class="ml-4">No setup fees or infrastructure costs</span>
-          </li>
-        </ul>
-        <a class="inline-flex items-center justify-center w-full px-6 py-3 h-12 mt-8 text-center transition duration-200 ease-in-out transform bg-white border hover:bg-gray-200 hover:border-gray-200 rounded-xl focus:outline-none border-gray-200" aria-label="MMS tier" href="/register">Get started</a>
-      </section>
+const { sectionTitle, sectionSubtitle, tiers, logos } = Astro.props;
+---
 
-      <!-- Custom Plan -->
-      <section class="flex flex-col px-6 py-8 rounded-3xl sm:px-8 bg-gray-300 lg:-mt-10 lg:order-none">
-        <h3 class="mt-5 text-lg font-display">Custom Plan</h3>
-        <p class="mt-2 text-sm">
-          Tailored for large-scale campaigns or custom messaging needs.
-        </p>
-        <p class="order-first text-5xl font-light tracking-tight font-display">Custom</p>
-        <ul role="list" class="flex flex-col order-last mt-10 text-sm gap-y-3">
-          <li class="flex items-center">
-            <ion-icon class="w-4 h-4 md hydrated" name="checkmark-outline" role="img" aria-label="checkmark outline"></ion-icon>
-            <span class="ml-4">Unlimited messaging</span>
-          </li>
-          <li class="flex items-center">
-            <ion-icon class="w-4 h-4 md hydrated" name="checkmark-outline" role="img" aria-label="checkmark outline"></ion-icon>
-            <span class="ml-4">Custom integrations & advanced features</span>
-          </li>
-          <li class="flex items-center">
-            <ion-icon class="w-4 h-4 md hydrated" name="checkmark-outline" role="img" aria-label="checkmark outline"></ion-icon>
-            <span class="ml-4">Priority support and SLA agreements</span>
-          </li>
-        </ul>
-        <a class="inline-flex items-center justify-center w-full px-6 py-3 h-12 mt-8 text-centertransition duration-200 ease-in-out transform bg-white border hover:bg-gray-200 hover:border-gray-200 rounded-xl focus:outline-none border-gray-200" aria-label="Custom Plan" href="/register">Contact us</a>
-      </section>
-    </div>
-    
-    <!-- Logos Section -->
-    <div class="mx-auto pt-12 lg:py-16">
-      <div class="grid grid-cols-2 gap-0.5 lg:mt-8 md:grid-cols-6 mt-6">
-        <div class="flex justify-center col-span-1">
-          <img alt="Bernie logo" class="h-8" src="/Bernie.svg" />
-        </div>
-        <div class="flex justify-center col-span-1">
-          <img alt="350 logo" class="h-8" src="/350.svg" />
-        </div>
-        <div class="flex justify-center col-span-1">
-          <img alt="Indivisible logo" class="h-8" src="/Indivisible.svg" />
-        </div>
-        <div class="flex justify-center col-span-1">
-          <img alt="Power in Numbers logo" class="h-8" src="/POWER.png" />
-        </div>
-        <div class="flex justify-center col-span-1">
-          <img alt="Winning Mark logo" class="h-8" src="/Winning.svg" />
-        </div>
-        <div class="flex justify-center col-span-1">
-          <img alt="Fight Coporate America logo" class="h-8" src="/FCA.webp" />
-        </div>
-      </div>
-    </div>
-  </div>
+<section aria-labelledby='pricing-section' id='pricing'>
+	<div class='lg:px-16 max-w-7xl md:px-12 mx-auto px-8 py-24 scroll-mt-12'>
+		<div class='text-center max-w-3xl mx-auto'>
+			<h2 class='text-4xl tracking-tight font-medium md:text-5xl font-display'>
+				{sectionTitle}
+			</h2>
+			<p class='mt-4 text-lg text-gray-500'>
+				{sectionSubtitle}
+			</p>
+		</div>
+	</div>
+
+	<div class='items-center px-8 lg:pt-12 pb-24 mx-auto max-w-7xl lg:px-16'>
+		<div
+			class='grid max-w-2xl grid-cols-1 py-4 -mx-4 sm:grid-cols-2 gap-y-10 sm:mx-auto lg:max-w-none lg:grid-cols-3 xl:gap-x-4 lg:bg-gray-50 lg:border border-gray-500/10 lg:rounded-3xl'
+		>
+			{
+				tiers.map(
+					(tier: {
+						title: string;
+						price: string;
+						description: string;
+						details: string[];
+						buttonLabel: string;
+						buttonLink: string;
+						buttonAriaLabel: string;
+						isHighlighted?: boolean;
+					}) => (
+						<section
+							class={
+								tier.isHighlighted
+									? "flex flex-col px-6 py-8 rounded-3xl sm:px-8 bg-gray-300 lg:-mt-10 lg:order-none"
+									: "flex flex-col px-6 rounded-3xl lg:py-8"
+							}>
+							<h3 class='mt-5 text-lg font-display'>{tier.title}</h3>
+							<p class='mt-2 text-sm'>{tier.description}</p>
+							<p class='order-first text-5xl font-light tracking-tight font-display'>
+								{tier.price}
+							</p>
+							<ul
+								role='list'
+								class='flex flex-col order-last mt-10 text-sm gap-y-3'>
+								{tier.details.map((detail: string) => (
+									<li class='flex items-center'>
+										<ion-icon
+											class='w-4 h-4 md hydrated'
+											name='checkmark-outline'
+											role='img'
+											aria-label='checkmark outline'
+										/>
+										<span class='ml-4'>{detail}</span>
+									</li>
+								))}
+							</ul>
+							<a
+								class='inline-flex items-center justify-center w-full px-6 py-3 h-12 mt-8 text-center transition duration-200 ease-in-out transform bg-white border hover:bg-gray-200 hover:border-gray-200 rounded-xl focus:outline-none border-gray-200'
+								aria-label={tier.buttonAriaLabel}
+								href={tier.buttonLink}>
+								{tier.buttonLabel}
+							</a>
+						</section>
+					)
+				)
+			}
+		</div>
+
+		<!-- Logos Section -->
+		<div class='mx-auto pt-12 lg:py-16'>
+			<div class='grid grid-cols-2 gap-0.5 lg:mt-8 md:grid-cols-6 mt-6'>
+				{
+					logos.map((logo: { alt: string; src: string }) => (
+						<div class='flex justify-center col-span-1'>
+							<img alt={logo.alt} class='h-8' src={logo.src} />
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
 </section>

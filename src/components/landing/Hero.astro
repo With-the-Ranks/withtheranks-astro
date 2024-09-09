@@ -1,17 +1,25 @@
 ---
+export interface HeroProps {
+  title: string;
+  description: string;
+  ctaLink: string;
+  demoLink: string;
+  features: { title: string; description: string }[];
+  imageUrl: string;
+  logos: { alt: string; src: string }[];
+}
 
-const ctaLink = "#";
-const demoLink = "#";
+const { title, description, ctaLink, demoLink, features, imageUrl, logos } = Astro.props;
 ---
 
 <section>
   <div class="mx-auto w-full lg:px-24 max-w-7xl md:px-12 items-center px-8 py-24">
     <div class="text-center max-w-4xl mx-auto">
       <p class="text-4xl tracking-tight font-semibold md:text-5xl font-display mt-8">
-        Spoke: Peer-to-Peer Texting Made Simple
+        {title}
       </p>
       <p class="lg:text-xl max-w-2xl mt-4 mx-auto text-base">
-        Built by experts from the Bernie 2020 campaign, Spoke is the most cost-effective tool to mobilize your base quickly, engage effectively, and scale your outreach efforts seamlessly.
+        {description}
       </p>
     </div>
     <div class="flex justify-center gap-3 mt-10 flex-col sm:flex-row">
@@ -23,44 +31,27 @@ const demoLink = "#";
         href={demoLink}>Get Started &nbsp; &rarr;</a>
     </div>
     <dl class="lg:gap-x-8 lg:grid-cols-3 max-w-4xl mt-8 mx-auto sm:gap-x-6 sm:gap-y-12 sm:grid sm:grid-cols-2 sm:space-y-0 space-y-6 text-center text-sm items-start">
-      <div>
-        <strong>Cost-Effective Texting</strong> ━ Save on infrastructure fees, and only pay for the texts you send with no hidden costs.
-      </div>
-      <div>
-        <strong>Seamless Integration</strong> ━ Easily sync your text campaigns with your CRM, ensuring all data is captured and tracked.
-      </div>
-      <div>
-        <strong>Proven Performance</strong> ━ Over 1 billion texts sent and $15 million saved for campaigns and organizations.
-      </div>
+      {features.map((feature: { title: string; description: string; }) => (
+        <div>
+          <strong>{feature.title}</strong> ━ {feature.description}
+        </div>
+      ))}
     </dl>
     <div class="relative w-full mx-auto max-w-7xl items-center py-12 pb-12">
       <div class="bg-gray-100 p-8 rounded-3xl">
         <img
           alt="Spoke Dashboard"
           class="relative w-full border border-gray-200 lg:rounded-2xl object-cover rounded shadow-2xl"
-          src="https://brightlight.lexingtonthemes.com/assets/dashboard.svg"
+          src={imageUrl}
         />
       </div>
     </div>
     <div class="grid grid-cols-2 gap-0.5 lg:mt-8 md:grid-cols-6 mt-6">
-      <div class="flex justify-center col-span-1">
-        <img alt="Bernie logo" class="h-8" src="/Bernie.svg" />
-      </div>
-      <div class="flex justify-center col-span-1">
-        <img alt="350 logo" class="h-8" src="/350.svg" />
-      </div>
-      <div class="flex justify-center col-span-1">
-        <img alt="Indivisible logo" class="h-8" src="/Indivisible.svg" />
-      </div>
-      <div class="flex justify-center col-span-1">
-        <img alt="Power in Numbers logo" class="h-8" src="/POWER.png" />
-      </div>
-      <div class="flex justify-center col-span-1">
-        <img alt="Winning Mark logo" class="h-8" src="/Winning.svg" />
-      </div>
-      <div class="flex justify-center col-span-1">
-        <img alt="Fight Coporate America logo" class="h-8" src="/FCA.webp" />
-      </div>
+      {logos.map((logo: { alt: string; src: string }) => (
+        <div class="flex justify-center col-span-1">
+          <img alt={logo.alt} class="h-8" src={logo.src} />
+        </div>
+      ))}
     </div>
   </div>
 </section>

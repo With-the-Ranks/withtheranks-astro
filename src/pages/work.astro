@@ -4,20 +4,118 @@ import Hero from "../components/landing/Hero.astro";
 import SectionOne from "../components/landing/SectionOne.astro";
 import SectionTwo from "../components/landing/SectionTwo.astro";
 import Pricing from "../components/landing/Pricing.astro";
-// import Cta from "../components/global/Cta.astro";
-import "animate.css";
+
+// Hero section configuration
+const heroProps = {
+  title: "Spoke: Peer-to-Peer Texting Made Simple",
+  description:
+    "Built by experts from the Bernie 2020 campaign, Spoke is the most cost-effective tool to mobilize your base quickly, engage effectively, and scale your outreach efforts seamlessly.",
+  ctaLink: "/pricing",
+  demoLink: "/get-started",
+  features: [
+    { title: "Cost-Effective Texting", description: "Save on infrastructure fees, and only pay for the texts you send with no hidden costs." },
+    { title: "Seamless Integration", description: "Easily sync your text campaigns with your CRM, ensuring all data is captured and tracked." },
+    { title: "Proven Performance", description: "Over 1 billion texts sent and $15 million saved for campaigns and organizations." },
+  ],
+  imageUrl: "https://brightlight.lexingtonthemes.com/assets/dashboard.svg",
+  logos: [
+    { alt: "Bernie logo", src: "/Bernie.svg" },
+    { alt: "350 logo", src: "/350.svg" },
+    { alt: "Indivisible logo", src: "/Indivisible.svg" },
+    { alt: "Power in Numbers logo", src: "/POWER.png" },
+    { alt: "Winning Mark logo", src: "/Winning.svg" },
+    { alt: "Fight Corporate America logo", src: "/FCA.webp" },
+  ],
+};
+
+// SectionOne configuration
+const sectionOneProps = {
+  sectionTitle: "Features That Empower Your Campaigns",
+  sectionSubtitle: "Spoke is designed to enhance your peer-to-peer texting efforts with powerful tools to manage conversations, optimize outreach, and analyze campaign effectiveness.",
+  features: [
+    { icon: "chatbubbles-outline", title: "Streamlined Conversations", description: "Spoke allows your team to handle thousands of one-on-one conversations at scale with ease. Use advanced tagging, opt-out tracking, and efficient team assignments to manage replies effortlessly." },
+    { icon: "document-text-outline", title: "Script Testing & Optimization", description: "Test multiple script versions with a small audience and review real-time metrics to determine which message resonates most. Deploy the winning version across your campaign with a single click." },
+    { icon: "shield-checkmark-outline", title: "Data Security & Privacy", description: "Spoke ensures your data is secure at every step. Protect your campaign’s sensitive information with robust security measures built into the platform." },
+  ],
+};
+
+// SectionTwo configuration
+const sectionTwoProps = {
+  title: "Robust Data Security",
+  description: "Spoke ensures the highest level of data security, protecting your sensitive information and communication. With multilayered encryption and rigorous privacy controls, you can trust that your data is secure while your team focuses on mobilizing your supporters.",
+  imageUrl: "https://brightlight.lexingtonthemes.com/assets/dashboard.svg",
+  subFeatures: [
+    { icon: "shield-checkmark-outline", title: "Developer-Friendly Tools", description: "Spoke is built with developers in mind. Its flexible architecture and API integration options make it easy for teams to customize and optimize for their specific needs." },
+    { icon: "settings-outline", title: "Designer-Friendly Interface", description: "The intuitive and modern user interface ensures that campaign organizers and volunteers alike can navigate and use the platform with ease." },
+    { icon: "rocket-outline", title: "Effortless Onboarding", description: "Getting started with Spoke is simple. Whether you're a grassroots organization or a national campaign, our platform is built to scale with you from day one." },
+  ],
+};
+
+// Pricing section configuration
+const pricingProps = {
+  sectionTitle: "Peer-to-Peer Texting at No Markup",
+  sectionSubtitle: "Spoke is based on open-source software, so you pay exactly what it costs to send SMS or MMS messages. No hidden fees, no infrastructure charges.",
+  tiers: [
+    {
+      title: "SMS",
+      price: "1¢",
+      description: "For campaigns that need simple and effective outreach via SMS.",
+      details: [
+        "Send SMS messages up to 160 characters",
+        "No setup fees or infrastructure costs",
+        "Scalable to any size campaign",
+      ],
+      buttonLabel: "Get started",
+      buttonLink: "/register",
+      buttonAriaLabel: "SMS tier",
+    },
+    {
+      title: "MMS",
+      price: "3¢",
+      description: "Engage your audience with rich media and longer messages.",
+      details: [
+        "Send MMS messages up to 1600 characters",
+        "Attach media (images, GIFs, etc.)",
+        "No setup fees or infrastructure costs",
+      ],
+      buttonLabel: "Get started",
+      buttonLink: "/register",
+      buttonAriaLabel: "MMS tier",
+    },
+    {
+      title: "Custom Plan",
+      price: "Custom",
+      description: "Tailored for large-scale campaigns or custom messaging needs.",
+      details: [
+        "Unlimited messaging",
+        "Custom integrations & advanced features",
+        "Priority support and SLA agreements",
+      ],
+      buttonLabel: "Contact us",
+      buttonLink: "/contact",
+      buttonAriaLabel: "Custom Plan",
+      isHighlighted: true,
+    },
+  ],
+  logos: [
+    { alt: "Bernie logo", src: "/Bernie.svg" },
+    { alt: "350 logo", src: "/350.svg" },
+    { alt: "Indivisible logo", src: "/Indivisible.svg" },
+    { alt: "Power in Numbers logo", src: "/POWER.png" },
+    { alt: "Winning Mark logo", src: "/Winning.svg" },
+    { alt: "Fight Corporate America logo", src: "/FCA.webp" },
+  ],
+};
+
 ---
 
 <Layout title="Our Work With the Ranks">
-	<main
-		class="animate__animated animate__fadeIn animate__slow landing"
-	>
-  <Hero />
-  <SectionOne />
-  <SectionTwo />
-  <Pricing />
-  <!-- <Cta /> -->
-	</main>
+  <main class="animate__animated animate__fadeIn animate__slow landing">
+    <Hero {...heroProps} />
+    <SectionOne {...sectionOneProps} />
+    <SectionTwo {...sectionTwoProps} />
+    <Pricing {...pricingProps} />
+  </main>
 </Layout>
 
 <!--Ionicons -->
