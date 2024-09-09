@@ -26,13 +26,13 @@ const { sectionTitle, sectionSubtitle, tiers, logos } = Astro.props;
 			<h2 class='text-4xl tracking-tight font-medium md:text-5xl font-display'>
 				{sectionTitle}
 			</h2>
-			<p class='mt-4 text-lg text-gray-500'>
+			<p class='mt-4 text-lg'>
 				{sectionSubtitle}
 			</p>
 		</div>
 	</div>
 
-	<div class='items-center px-8 lg:pt-12 pb-24 mx-auto max-w-7xl lg:px-16'>
+	<div class='items-center px-8 lg:pt-12 pb-24 mx-auto max-w-7xl lg:px-16 text-[#0D003E]'>
 		<div
 			class='grid max-w-2xl grid-cols-1 py-4 -mx-4 sm:grid-cols-2 gap-y-10 sm:mx-auto lg:max-w-none lg:grid-cols-3 xl:gap-x-4 lg:bg-gray-50 lg:border border-gray-500/10 lg:rounded-3xl'
 		>
@@ -65,7 +65,7 @@ const { sectionTitle, sectionSubtitle, tiers, logos } = Astro.props;
 								{tier.details.map((detail: string) => (
 									<li class='flex items-center'>
 										<ion-icon
-											class='w-4 h-4 md hydrated'
+											class='w-4 h-4 md hydrated text-black'
 											name='checkmark-outline'
 											role='img'
 											aria-label='checkmark outline'
