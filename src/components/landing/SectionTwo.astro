@@ -1,0 +1,59 @@
+---
+export interface SubFeature {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface SectionTwoProps {
+  title: string;
+  description: string;
+  imageUrl: string;
+  subFeatures: SubFeature[];
+}
+
+const { title, description, imageUrl, subFeatures } = Astro.props;
+---
+
+<section>
+  <div class="mx-auto w-full lg:px-24 max-w-7xl md:px-12 items-center px-8 py-24 scroll-mt-12">
+    <div class="grid grid-cols-1 gap-4 mt-6 items-center list-none lg:grid-cols-2 lg:gap-24">
+      <div class="text-center lg:text-left">
+        <div>
+          <p class="text-4xl tracking-tight font-medium md:text-5xl font-display">
+            {title}
+          </p>
+          <p class="text-base mt-4">
+            {description}
+          </p>
+        </div>
+      </div>
+      <div class="lg:mt-0 mt-12 h-full hidden lg:block rounded-3xl overflow-hidden border border-gray-200">
+        <div class="bg-gray-100 p-8 rounded-2xl overflow-hidden">
+          <img
+            alt="Spoke Dashboard"
+            class="border border-gray-200 lg:rounded-3xl object-cover rounded shadow-2xl"
+            src={imageUrl}
+          />
+        </div>
+      </div>
+    </div>
+    <div class="mt-24 w-full gap-12 grid grid-cols-1 lg:gap-24 lg:grid-cols-3">
+      {subFeatures.map((subFeature: { icon: string; title: string; description: string; }) => (
+        <div>
+          <div class="gap-3 lg:inline-flex lg:items-center">
+            <div class="items-center justify-center bg-gray-100 rounded-xl flex h-10 w-10">
+              <ion-icon aria-label={subFeature.icon + " outline"} class="hydrated md h-5 w-5" name={subFeature.icon} role="img"></ion-icon>
+            </div>
+            <p class="mt-8 text-lg font-semibold leading-6 font-display">
+              {subFeature.title}
+            </p>
+          </div>
+          <p class="text-sm mt-4">
+            {subFeature.description}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

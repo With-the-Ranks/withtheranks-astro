@@ -1,0 +1,129 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/landing/Hero.astro";
+import SectionOne from "../components/landing/SectionOne.astro";
+import SectionTwo from "../components/landing/SectionTwo.astro";
+import Pricing from "../components/landing/Pricing.astro";
+
+// Hero section configuration for Voter Guide Tool
+const heroProps = {
+  title: "Voter Guide Tool: Personalized Voting Made Simple",
+  description:
+    "Empower voters with personalized ballot information, candidate choices, and important voting details tailored to their district. The Voter Guide Tool ensures that every voter is prepared, informed, and ready for election day.",
+  ctaLink: "/pricing",
+  demoLink: "/get-started",
+  features: [
+    { title: "Personalized Ballots", description: "Provide voters with tailored ballot information based on their political district." },
+    { title: "Voter Registration Check", description: "Help voters verify their registration status and ensure they are ready to vote." },
+    { title: "PDF Ballot Downloads", description: "Allow voters to download and print personalized ballots with ease." },
+  ],
+  imageUrl: "https://brightlight.lexingtonthemes.com/assets/dashboard.svg",
+  logos: [
+    { alt: "Bernie logo", src: "/Bernie.svg" },
+    { alt: "350 logo", src: "/350.svg" },
+    { alt: "Indivisible logo", src: "/Indivisible.svg" },
+    { alt: "Power in Numbers logo", src: "/POWER.png" },
+    { alt: "Winning Mark logo", src: "/Winning.svg" },
+    { alt: "Fight Corporate America logo", src: "/FCA.webp" },
+  ],
+};
+
+// SectionOne configuration for Voter Guide Tool
+const sectionOneProps = {
+  sectionTitle: "Features That Make Voting Easier",
+  sectionSubtitle: "The Voter Guide Tool empowers voters by providing essential information, ensuring a smooth and informed voting experience. From personalized ballots to candidate selections, it's a one-stop resource for voters.",
+  features: [
+    { icon: "document-outline", title: "Personalized Ballots", description: "Voters can access ballot details specific to their political district." },
+    { icon: "checkmark-circle-outline", title: "Voter Registration Check", description: "Voters can easily confirm their registration status in real time." },
+    { icon: "print-outline", title: "Downloadable PDF Ballots", description: "Voters can download and print their ballots to review before election day." },
+  ],
+};
+
+// SectionTwo configuration for Voter Guide Tool
+const sectionTwoProps = {
+  title: "Designed for Scale and Accessibility",
+  description: "The Voter Guide Tool is built to handle high traffic during peak election seasons and offers multilingual support for accessibility. Whether for local, state, or national elections, the tool ensures voters can easily access critical information.",
+  imageUrl: "https://brightlight.lexingtonthemes.com/assets/dashboard.svg",
+  subFeatures: [
+    { icon: "people-outline", title: "Scalable Infrastructure", description: "Handles traffic spikes during election season without interruption." },
+    { icon: "globe-outline", title: "Localization & Multilingual Support", description: "Adapts content to different languages and regions for broader accessibility." },
+    { icon: "analytics-outline", title: "Voter Insights", description: "Collects data to understand voter preferences and improve future outreach efforts." },
+  ],
+};
+
+// Pricing section configuration for Voter Guide Tool
+// Pricing section configuration for Voter Guide Tool
+const pricingProps = {
+  sectionTitle: "Voter Guide Tool: Tailored for Your Campaign",
+  sectionSubtitle: "Choose the plan that fits your campaign’s needs with a transparent one-time setup fee. Contact us for pricing details.",
+  tiers: [
+    {
+      title: "Essential Plan",
+      price: "Contact for pricing",
+      description: "Perfect for small campaigns or organizations with basic needs.",
+      details: [
+        "Personalized ballots",
+        "Voter registration check",
+        "PDF ballot downloads",
+        "Basic support",
+      ],
+      buttonLabel: "Contact us",
+      buttonLink: "/contact",
+      buttonAriaLabel: "Essential Plan",
+    },
+    {
+      title: "Pro Plan",
+      price: "Contact for pricing",
+      description: "Ideal for mid-sized campaigns needing more advanced features.",
+      details: [
+        "Comprehensive CMS for managing candidates and ballot measures",
+        "Voter insights and analytics",
+        "Multilingual support",
+        "Priority support",
+      ],
+      buttonLabel: "Contact us",
+      buttonLink: "/contact",
+      buttonAriaLabel: "Pro Plan",
+    },
+    {
+      title: "Custom Plan",
+      price: "Custom pricing",
+      description: "For national campaigns or organizations with unique requirements.",
+      details: [
+        "Custom integrations and scalability",
+        "Advanced analytics",
+        "Dedicated support and account management",
+        "Unlimited districts",
+      ],
+      buttonLabel: "Contact us",
+      buttonLink: "/contact",
+      buttonAriaLabel: "Custom Plan",
+      isHighlighted: true,
+    },
+  ],
+  logos: [
+    { alt: "Bernie logo", src: "/Bernie.svg" },
+    { alt: "350 logo", src: "/350.svg" },
+    { alt: "Indivisible logo", src: "/Indivisible.svg" },
+    { alt: "Power in Numbers logo", src: "/POWER.png" },
+    { alt: "Winning Mark logo", src: "/Winning.svg" },
+    { alt: "Fight Corporate America logo", src: "/FCA.webp" },
+  ],
+};
+
+---
+
+<Layout title="Our Solution: Voter Guide Tool">
+  <main class="animate__animated animate__fadeIn animate__slow landing">
+    <Hero {...heroProps} />
+    <SectionOne {...sectionOneProps} />
+    <SectionTwo {...sectionTwoProps} />
+    <Pricing {...pricingProps} />
+  </main>
+</Layout>
+
+<!--Ionicons -->
+<script
+  type="module"
+  src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+></script>
