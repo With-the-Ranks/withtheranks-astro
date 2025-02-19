@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Button from "../components/Button.astro";
+import InquiryForm from '../components/InquiryForm';
+
 import "animate.css";
 ---
 
@@ -151,6 +153,7 @@ import "animate.css";
 				text="Get in touch!"
 				link="mailto:hello@withtheranks.com?subject=Hello!"
 			/>
+			<InquiryForm client:load />
 		</div>
 	</main>
 </Layout>
