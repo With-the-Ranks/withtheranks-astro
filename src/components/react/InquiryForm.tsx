@@ -144,13 +144,31 @@ export default function InquiryForm() {
 		}
 	};
 
-	const handleQuickSignUp = (e: React.MouseEvent<HTMLButtonElement>) => {
+	const handleQuickSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-		console.log("Quick Sign Up:", {
-			name: formData.name,
-			email: formData.email,
-		});
-		setFormData((prev) => ({ ...prev, name: "", email: "" }));
+	
+		try {
+			const response = await fetch("/api/send-email", {
+				method: "POST",
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				body: new URLSearchParams({
+					name: formData.name,
+					email: formData.email,
+				}).toString(),
+			});
+	
+			const result = await response.json();
+	
+			if (result.success) {
+				setStep(5);
+				setFormData((prev) => ({ ...prev, name: "", email: "" }));
+			} else {
+				throw new Error(result.error);
+			}
+		} catch (error) {
+			console.error("Signup failed:", error);
+			alert("There was an error signing up. Please try again.");
+		}
 	};
 
 	const renderStep = () => {
@@ -245,6 +263,7 @@ export default function InquiryForm() {
 									placeholder='Email Address'
 									value={formData.email}
 									onChange={handleChange}
+									required
 									className='bg-white/10 border-white/20 text-white placeholder-gray-400 rounded-xl h-10 md:h-12'
 								/>
 								<Button
@@ -290,6 +309,7 @@ export default function InquiryForm() {
 								placeholder='Email Address'
 								value={formData.email}
 								onChange={handleChange}
+								required
 								className='bg-white/10 border-white/20 text-white placeholder-gray-400 rounded-xl h-10 md:h-12'
 							/>
 							<Input
