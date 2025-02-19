@@ -1,6 +1,6 @@
 import type React from "react"
 import * as SliderPrimitive from "@radix-ui/react-slider"
-import { Label } from "./ui/label"
+import { Label } from "../ui/label"
 
 interface ImprovedSliderProps {
   id: string

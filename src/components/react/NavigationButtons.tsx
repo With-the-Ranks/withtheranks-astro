@@ -1,5 +1,5 @@
 import type React from "react"
-import { Button } from "./ui/button"
+import { Button } from "../ui/button"
 import { ChevronRight, Send } from "lucide-react"
 
 interface NavigationButtonsProps {
