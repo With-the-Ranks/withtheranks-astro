@@ -20,5 +20,6 @@ export default defineConfig({
     assetsInclude: ['**/*.glb']
   },
 
+  output: 'server',
   adapter: cloudflare()
 });
