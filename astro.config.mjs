@@ -9,7 +9,8 @@ export default defineConfig({
   site: 'https://withtheranks.com',
   base: '/',
   integrations: [mdx(), tailwind({
-    nesting: true
+    nesting: true,
+    applyBaseStyles: false
   }), react()],
   vite: {
     assetsInclude: ['**/*.glb']
