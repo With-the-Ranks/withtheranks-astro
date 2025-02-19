@@ -1,13 +1,11 @@
 import { Resend } from 'resend';
-import 'dotenv/config'; // Load environment variables
 import { getNewsletterHtml } from '@/lib/emails/newsletterTemplate';
 
 export const prerender = false; // Ensure this is a server-rendered route
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-export const POST = async ({ request }: { request: Request }) => {
+export const POST = async ({ request, locals }: { request: Request; locals: any }) => {
   try {
+    const resend = new Resend(locals.runtime.env.RESEND_API_KEY);
     const formData = await request.formData();
     const email = formData.get("email") as string | null;
     const name = formData.get("name") as string | null;
