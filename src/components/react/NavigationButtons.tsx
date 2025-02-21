@@ -15,7 +15,7 @@ const NavigationButtons: React.FC<NavigationButtonsProps> = ({ step, getMaxSteps
         type="button"
         variant="outline"
         onClick={() => setStep(step - 1)}
-        className="w-full md:w-auto border-white/20 text-black hover:text-white hover:bg-white/10 rounded-full px-4 md:px-6 py-2 md:py-3 text-base md:text-lg"
+        className="w-full solid-button md:w-auto border-white/20 text-black hover:text-white hover:bg-white/50 rounded-full px-4 md:px-6 py-2 md:py-3 text-base md:text-lg"
       >
         Back
       </Button>

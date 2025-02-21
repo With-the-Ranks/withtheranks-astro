@@ -14,14 +14,14 @@ const StepCounter: React.FC<StepCounterProps> = ({ currentStep, maxSteps, onStep
           <button
             onClick={() => onStepClick(i + 1)}
             className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              i < currentStep ? "bg-[#8C9DFF]" : "bg-white/20"
+              i < currentStep ? "bg-[#252753]" : "bg-white/20"
             } ${i === currentStep - 1 ? "scale-150" : ""}`}
             aria-label={`Go to step ${i + 1}`}
           />
           {i < maxSteps - 1 && (
             <div
               className={`h-0.5 w-6 mx-2 transition-all duration-300 ${
-                i < currentStep - 1 ? "bg-[#8C9DFF]" : "bg-white/20"
+                i < currentStep - 1 ? "bg-[#252753]" : "bg-white/20"
               }`}
             />
           )}
