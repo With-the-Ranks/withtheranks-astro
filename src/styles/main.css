@@ -12,7 +12,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 :root {
     /* to use in rgba functions later */
     --main-bg-rgb: 7, 2, 24;
-    --main-bg-color: rgb(var(--main-bg-rgb));
+    --main-bg-color: #252753;
     --main-text-color: #bfd5ff;
 
     /* Change these to change colors throughout the site */
@@ -279,7 +279,7 @@ body {
     color: var(--main-text-color);
     font-family: 'Poppins';
     /* TODO: Move second gradient color to css variables */
-    background: linear-gradient(to bottom, var(--gradient-dark-start) 50%, var(--gradient-dark-end) 100%);
+    /* background: linear-gradient(to bottom, var(--gradient-dark-start) 50%, var(--gradient-dark-end) 100%); */
 }
 
 * {
