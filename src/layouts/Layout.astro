@@ -1,6 +1,7 @@
 ---
 import "../styles/main.css";
 import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
 
 interface Props {
 	title: string;
@@ -40,10 +41,6 @@ const { title } = Astro.props;
 	<body>
 		<Nav />
 		<slot />
-		<footer class="w-10/12 mx-auto">
-			<p class="text-base font-sans text-slate-400 text-center">
-				With the Ranks is 100% worker-owned, and we don't use cookies.
-			</p>
-		</footer>
+		<Footer/>
 	</body>
 </html>
