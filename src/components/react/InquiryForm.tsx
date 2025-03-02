@@ -569,7 +569,7 @@ export default function InquiryForm() {
 	};
 
 	return (
-		<div className='form-container w-full mx-auto p-4 md:p-12 mt-20'>
+		<div className='form-container container w-full mx-auto p-4 md:p-12 mt-20'>
 			<style>{styles}</style>
 			<form
 				onSubmit={handleSubmit}
