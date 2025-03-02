@@ -1,0 +1,86 @@
+---
+import "animate.css";
+---
+
+<section class="container mx-auto px-6 sm:px-8 lg:px-12 text-center py-10 md:py-32 text-white">
+  <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-16 max-w-4xl mx-auto leading-tight">
+    No client too small.<br />
+    No cause too big.
+  </h1>
+
+  <p class="text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed">
+    With the Ranks works with organizations of all sizes, from the smallest city council races to the largest global non-profits.
+  </p>
+
+  <p class="text-lg md:text-xl mb-16 max-w-3xl mx-auto leading-relaxed">
+    We love building beautiful websites, developing custom organizing tools, running A/B testing programs, hosting Spoke peer-to-peer texting, and doing whatever we can to help good causes prevail.
+  </p>
+
+  <p class="text-xl font-medium mb-12">We work with folks like...</p>
+
+  <!-- Scrolling Partner Logos -->
+  <div class="relative overflow-hidden w-full max-w-5xl mx-auto mb-12">
+    <div class="logo-carousel flex gap-8">
+      <div class="flex items-center justify-center gap-8 animate-scroll">
+        <!-- Only show 3 images at a time -->
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%20225-oStGZaKEKe6YCSZxb6Oe7N8mAog0vg.png" alt="350 logo" class="h-32" />
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%20226-z3aIFSWzbT9BEnD3cfM8apQPIotV87.png" alt="Indivisible logo" class="h-32" />
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%20229-76eAbSPo0nJtrYftESNnCUM5OJFsH2.png" alt="Bernie logo" class="h-32" />
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%20228-815CNBvX8XVlzkktQAI9mOsfpULVBZ.png" alt="Power in Numbers logo" class="h-32" />
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%20230-UBAndBF14uPgIXhuYeKwr2VlEXcePD.png" alt="American Economic Liberties Project logo" class="h-32" />
+
+        <!-- Duplicate for infinite scroll -->
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%20225-oStGZaKEKe6YCSZxb6Oe7N8mAog0vg.png" alt="350 logo" class="h-32" />
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%20226-z3aIFSWzbT9BEnD3cfM8apQPIotV87.png" alt="Indivisible logo" class="h-32" />
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%20229-76eAbSPo0nJtrYftESNnCUM5OJFsH2.png" alt="Bernie logo" class="h-32" />
+      </div>
+    </div>
+  </div>
+
+  <p class="text-lg md:text-xl mb-16 max-w-3xl mx-auto leading-relaxed">
+    We don't work for Republicans, grifters, corporations, or anyone else afraid to stand up for workers or the planet.
+  </p>
+</section>
+
+<!-- Full Width Image Section -->
+<section class="relative w-full h-[600px] md:h-[980px] bg-cover bg-center" style="background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%20238-IBnNqE8rlmH7odjQxKXoh0qur61ThZ.png');">
+  <div class="absolute inset-0 bg-gradient-to-t from-[#252753] via-[#252753]/60 to-transparent -z-50"></div>
+
+  <div class="container mx-auto px-6 h-full flex flex-col justify-end pb-20">
+    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-start max-w-6xl">
+      <div>
+        <h2 class="text-6xl md:text-7xl font-extrabold tracking-tight mb-4 text-white text-end">
+          Good tech<br />
+          for <span class="italic">all.</span>
+        </h2>
+      </div>
+
+      <div class="text-lg md:text-xl text-white">
+        <p class="mb-8 leading-relaxed">
+          With the Ranks was built by members of the Bernie 2020 technology team to ensure that people working
+          on good causes - regardless of their size - could have access to presidential quality tech.
+        </p>
+        <a href="#" class="inline-flex items-center text-white hover:text-[#8c9dff] transition-colors group">
+          <span class="border-b border-current">Learn more about our cooperative</span>
+          <span class="ml-2">↝</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .animate-scroll {
+    display: flex;
+    animation: scroll 15s linear infinite;
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+</style>

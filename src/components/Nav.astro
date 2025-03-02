@@ -1,21 +1,93 @@
----
-import ThemeToggleButton from "./ThemeToggleButton.astro";
----
-
-<nav
-	class='max-w-screen-2xl w-10/12 mx-auto pt-10 animate__animated animate__fadeIn animate__delay-2s'
+<!-- Header -->
+<header
+	class='container mx-auto px-6 sm:px-8 lg:px-12 py-6 sm:py-8 flex items-center justify-between'
 >
-    <div class="flex justify-end">
-        <!-- <ul class="flex">
-            <li class="inline-block">
-                <a href="/">Home</a>
-            </li> -->
-            <!-- <li class="inline-block"><a href="/work">Our Work</a></li>
-            <li class="inline-block"><a href="/blog">Blog</a></li> -->
-            <!-- <li class="inline-block">
-                <a href="/docs">Docs</a>
-            </li>
-        </ul> -->
-        <ThemeToggleButton />
-    </div>
-</nav>
+	<div class='text-white'>
+		<img
+			src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo-vJF5V6kpkDP2BKaHvY50ICONGodLFm.png'
+			alt='With the Ranks'
+			width='160'
+			height='60'
+			class='w-32 sm:w-40 lg:w-[160px]'
+		/>
+	</div>
+
+	<!-- Mobile Menu Button -->
+	<button class='md:hidden text-white p-2'>
+		<svg
+			class='w-6 h-6'
+			fill='none'
+			stroke='currentColor'
+			stroke-width='2'
+			viewBox='0 0 24 24'
+			xmlns='http://www.w3.org/2000/svg'
+		>
+			<path
+				stroke-linecap='round'
+				stroke-linejoin='round'
+				d='M4 6h16M4 12h16m-7 6h7'></path>
+		</svg>
+	</button>
+
+	<nav class='hidden md:flex items-center space-x-6 lg:space-x-12'>
+		<a
+			href='#'
+			class='text-white flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
+		>
+			<img
+				src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon1-AaGMCMbQaV06X2iyofPj6MLWSUBCZO.png'
+				alt='About Us icon'
+				width='24'
+				height='24'
+				class='w-5 h-5 lg:w-6 lg:h-6'
+			/>
+			About Us
+		</a>
+		<a
+			href='#'
+			class='text-white flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
+		>
+			<img
+				src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon2-AcV63MsAclENSLBUv5TCNKdRTk3UEI.png'
+				alt='Our Work icon'
+				width='24'
+				height='24'
+				class='w-5 h-5 lg:w-6 lg:h-6'
+			/>
+			Our Work
+		</a>
+		<a
+			href='#'
+			class='text-white flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
+		>
+			<img
+				src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon3-tEukhOUYmBgphvmqteOXCKySulQRND.png'
+				alt='Careers icon'
+				width='24'
+				height='24'
+				class='w-5 h-5 lg:w-6 lg:h-6'
+			/>
+			Careers
+		</a>
+		<a
+			href='#'
+			class='text-white flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
+		>
+			<img
+				src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/icon4-VTVl5qVNXUNyjIqhBTnSlzNNHAD8Lc.png'
+				alt='Support icon'
+				width='24'
+				height='24'
+				class='w-5 h-5 lg:w-6 lg:h-6'
+			/>
+			Support
+		</a>
+	</nav>
+
+	<a
+		href='#contact'
+		class='hidden md:block bg-[#747aff] hover:bg-[#646add] no-underline text-white px-6 lg:px-8 py-2.5 lg:py-3 rounded-full text-sm lg:text-base font-medium transition-colors'
+	>
+		CONTACT US
+	</a>
+</header>
