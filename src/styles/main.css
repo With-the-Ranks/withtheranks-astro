@@ -33,6 +33,8 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --gradient-light-end: rgba(233, 230, 255, 1);
 
     --icon-stroke-color: #FFF;
+
+    scroll-behavior: smooth;
     /* Soft blue */
 
     /* Various color combos */
@@ -89,6 +91,10 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 [data-theme="light"] .light-logo {
     display: none;
+}
+
+[data-theme="light"] a:hover {
+    color: #470cec;
 }
 
 
@@ -343,12 +349,6 @@ a {
     &:hover {
         /*text-decoration-thickness: 1.8rem;
         text-underline-offset: -1.375rem;*/
-    }
-}
-
-[data-theme="light"] a {
-    &:hover {
-        color: white;
     }
 }
 
