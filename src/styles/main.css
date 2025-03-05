@@ -31,6 +31,10 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --gradient-light-start: rgba(233, 230, 255, 0);
     /* Gentle peach/pink */
     --gradient-light-end: rgba(233, 230, 255, 1);
+
+    --icon-stroke-color: #FFF;
+
+    scroll-behavior: smooth;
     /* Soft blue */
 
     /* Various color combos */
@@ -53,6 +57,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --main-text-color: var(--light-text-color);
     --gradient-dark-start: var(--gradient-light-start);
     --gradient-dark-end: var(--gradient-light-end);
+    --icon-stroke-color: #232656;
 }
 
 [data-theme="light"] footer p {
@@ -71,6 +76,27 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 [data-theme="light"] .button {
     color: #bfd5ff;
 }
+
+[data-theme="light"] header a {
+    color: #232656;
+}
+
+[data-theme="dark"] header a {
+    color: #fff;
+}
+
+[data-theme="dark"] .dark-logo {
+    display: none;
+}
+
+[data-theme="light"] .light-logo {
+    display: none;
+}
+
+[data-theme="light"] a:hover {
+    color: #470cec;
+}
+
 
 /* Fonts */
 /* Poppins */
@@ -314,21 +340,15 @@ p {
 
 a {
     text-decoration: underline;
-    text-decoration-color: var(--stop-two-color);
+    /*text-decoration-color: var(--stop-two-color);*/
     text-decoration-thickness: 0.15rem;
     text-underline-offset: 0.25rem;
     text-decoration-skip-ink: none;
     font-weight: 700;
 
     &:hover {
-        text-decoration-thickness: 1.8rem;
-        text-underline-offset: -1.375rem;
-    }
-}
-
-[data-theme="light"] a {
-    &:hover {
-        color: white;
+        /*text-decoration-thickness: 1.8rem;
+        text-underline-offset: -1.375rem;*/
     }
 }
 
