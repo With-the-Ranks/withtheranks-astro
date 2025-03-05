@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import InquiryForm from '../components/react/InquiryForm';
+
 import "animate.css";
 import HeroSection from "../components/HeroSection.astro";
 import Partners from "../components/Partners.astro";
@@ -11,6 +13,7 @@ import Partners from "../components/Partners.astro";
     <main class="mx-auto pb-8 sm:pb-12 lg:pb-16">
 			<HeroSection/>
       <Partners/>
+      <InquiryForm client:load />
     </main>
   </div>
 </Layout>
