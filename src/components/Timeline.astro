@@ -22,13 +22,16 @@ const entries = Astro.props.entries as TimelineEntry[];
 	{
 		entries.map((entry: TimelineEntry, index) => (
 			<div
-				class='timeline-entry relative flex gap-8 mb-16'
+				class='timeline-entry relative flex gap-8 pb-16'
 				data-key={entry.year}>
 				<div class='timeline-year-container relative flex flex-col items-center'>
-					<div class='year-badge bg-[#FFDD57] text-[#252753] font-bold flex justify-center items-center rounded-full text-2xl font-serif w-8 h-8 relative z-10'>
+					<div class='absolute top-0 bottom-0 w-0.5 bg-[#252753]' />
+
+					<div class='year-badge bg-[#FFDD57] text-[#252753] font-bold flex justify-center items-center rounded-full text-2xl font-serif w-10 h-10 relative z-10'>
 						{entry.year}
 					</div>
-					<div class='absolute top-0 h-full w-0.5 bg-[#252753]' />
+
+					<div class='absolute top-full w-0.5 bg-[#252753] h-16' />
 				</div>
 
 				<div class='timeline-content flex-1 space-y-12'>
