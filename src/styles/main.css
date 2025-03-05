@@ -409,6 +409,10 @@ nav {
     }
 }
 
+.on-this-page a {
+    font-family: 'Poppins';
+}
+
 /* Theme Toggle */
 .sun {
     box-sizing: border-box;
