@@ -1,0 +1,105 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "animate.css";
+import Timeline from "../components/Timeline.astro";
+---
+
+<Layout title='Our Work - With the Ranks' theme='light'>
+	<div>
+		<main class='mx-auto pb-16 sm:pb-20 lg:pb-24 px-4 sm:px-6 lg:px-8'>
+			<div
+				class='bg-[#8EFFD0] container mx-auto rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-8 sm:p-12 lg:p-16 xl:p-20 relative overflow-hidden'
+			>
+				<div
+					class='bg-[#252753] bg-opacity-20 text-[#252753] font-bold text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-1.5 rounded-full inline-block mb-4 sm:mb-6'
+				>
+					Our Work
+				</div>
+				<h2
+					class='text-[#252753] text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-8 sm:mb-10 lg:mb-12 lg:max-w-[60%]'
+				>
+					Here’s what we’ve been up to lately.
+				</h2>
+			</div>
+			<div class='container mx-auto relative z-[2]'>
+				<Timeline
+					entries={[
+						{
+							year: "2025",
+							items: [
+								{
+									title:
+										"We’re currently building Intrepid, an open-source email tool.",
+									description:
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+								},
+								{
+									highlight: true,
+									title: "We’re open for work!",
+									description:
+										"Have an interesting project or idea? We’re currently booking work for Q2, 2025.",
+									link: {
+										text: "Let us know what you’re working on",
+										href: "#",
+									},
+								},
+							],
+						},
+						{
+							year: "2024",
+							items: [
+								{
+									title:
+										"We launched a low-cost texting program for campaigns, unions, and non-profits.",
+									description:
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+									link: { text: "Learn more", href: "#" },
+								},
+								{
+									title:
+										"We worked with 350.org to optimize fundraising and their website.",
+									description:
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+									link: { text: "Learn more", href: "#" },
+								},
+								{
+									title:
+										"We built voter guides for Georgia, Oregon, Colorado, Virginia, and Arizona.",
+									description:
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+									link: { text: "Learn more", href: "#" },
+								},
+								{
+									title:
+										"We supported the Oregon Rebate project with a custom website and branding.",
+									description:
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+									link: { text: "Learn more", href: "#" },
+								},
+								{
+									title:
+										"We supported Bernie Sanders on some random project that we all forgot about.",
+									description:
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+									link: { text: "Learn more", href: "#" },
+								},
+							],
+						},
+						{
+							year: "2023",
+							items: [
+								{
+									title:
+										"We supported Bernie Sanders on some random project that we all forgot about.",
+									description:
+										"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem.",
+									link: { text: "Learn more", href: "#" },
+								},
+							],
+						},
+					]}
+				/>
+			</div>
+		</main>
+	</div>
+</Layout>

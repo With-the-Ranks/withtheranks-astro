@@ -60,10 +60,6 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --icon-stroke-color: #232656;
 }
 
-[data-theme="light"] footer p {
-    color: var(--main-text-color)
-}
-
 [data-theme="light"] #color_picker label {
     color: #bfd5ff;
 }
