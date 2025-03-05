@@ -1,0 +1,174 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "animate.css";
+---
+
+<Layout title="With the Ranks" theme="light">
+  <div>
+    <!-- Main Content -->
+    <main class="mx-auto pb-8 sm:pb-12 lg:pb-16">
+      <div
+        class="bg-[#ffe872] container mx-auto rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 sm:p-8 lg:p-12 xl:p-16 relative overflow-hidden"
+      >
+        <div
+          class="bg-[#252753] bg-opacity-20 text-[#252753] font-bold text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-1.5 rounded-full inline-block mb-3 sm:mb-4 max-w-4xl"
+        >
+          Spoke
+        </div>
+        <h2
+          class="text-[#252753] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6 sm:mb-8 lg:mb-10"
+        >
+          Spoke Texting
+        </h2>
+        <p class="text-[#252753] text-3xl mb-8 sm:mb-12 lg:mb-16 max-w-4xl">
+          Built by veterans of the Bernie 2020 campaign and the movements and
+          organizations surrounding it, Spoke is the lowest cost peer-to-peer
+          texting platform on the market.
+        </p>
+        <div class="flex justify-center">
+          <a
+            href="#pricing"
+            class="hidden md:block bg-[#747aff] hover:bg-[#646add] no-underline px-6 lg:px-8 py-2.5 lg:py-3 rounded-full text-sm lg:text-base font-medium transition-colors"
+          >
+            View Pricing
+          </a>
+        </div>
+      </div>
+      <div class="container mx-auto relative z-[2] px-4 sm:px-0">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-20 mt-16 items-start">
+          <div
+            class="bg-[#959AF6] bg-opacity-20 rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-2 sm:p-2 lg:p-6 xl:p-6 md:sticky md:top-10 overflow-hidden md:col-span-1"
+          >
+            <h3 class="font-bold mb-3">On this page</h3>
+            <a class="no-underline hover:bg-[#959AF6]" href="#spoke">
+              <h3 class="font-normal mb-0">Spoke</h3>
+            </a>
+            <hr class="border-[#959AF6] border-t-2 opacity-20 my-3" />
+            <a class="no-underline hover:bg-[#959AF6]" href="#features">
+              <h3 class="font-normal mb-0">Features</h3>
+            </a>
+            <hr class="border-[#959AF6] border-t-2 opacity-20 my-3" />
+            <a class="no-underline hover:bg-[#959AF6]" href="#pricing">
+              <h3 class="font-normal mb-0">Pricing</h3>
+            </a>
+            <hr class="border-[#959AF6] border-t-2 opacity-20 my-3" />
+            <a class="no-underline hover:bg-[#959AF6]" href="#signup">
+              <h3 class="font-normal mb-0">Sign Up!</h3>
+            </a>
+          </div>
+          <div class="relative md:col-span-3">
+            <div id="spoke">
+              <h2 class="text-[#232656] font-bold">Spoke</h2>
+              <p class="text-[#232656] text-2xl">
+                Spoke is open-source software that allows you to send millions
+                of text messages to your supporters and follow up with in-depth,
+                one-on-one conversations with those who reply.
+              </p>
+              <p class="text-[#232656] text-2xl">
+                Record opt outs, tag conversations, and sync all that data back
+                to your CRM without breaking a sweat.
+              </p>
+              <!-- TODO: style these imgs to look like the uncommented screenshot? -->
+              <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <img src="/assets/spoke-campaigns.png" />
+                <img src="/assets/spoke-texter.png" />
+              </div> -->
+              <img src="/assets/sample-spoke-overlay.png" />
+              <div id="features"></div>
+              <h2 class="text-[#232656] font-bold">Features</h2>
+              <p class="text-[#232656] text-2xl">
+                Spoke is built to handle the boring stuff, so that you can spend
+                your time on meaningful conversations with supporters. Here are
+                some of the features that make it the best tool for the job:
+              </p>
+              <!-- grab box: autoassignment, autosending, contact overlap, bulk replacement, opt outs, auto replies (soon) -->
+
+              <!-- Scrolling Partner Logos -->
+              <div
+                class="relative overflow-hidden w-full max-w-5xl mx-auto mb-12"
+              >
+                <div class="grid grid-cols-3 gap-8">
+                  <div
+                    class="bg-[#959AF6] bg-opacity-20 rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-2 sm:p-2 lg:p-6 xl:p-6 md:sticky md:top-10 overflow-hidden"
+                  >
+                    <h3 class="font-bold mb-3">Delegate Conversations</h3>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore
+                      magnam aliquam quaerat voluptatem.
+                    </p>
+                  </div>
+                  <div
+                    class="bg-[#959AF6] bg-opacity-20 rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-2 sm:p-2 lg:p-6 xl:p-6 md:sticky md:top-10 overflow-hidden"
+                  >
+                    <h3 class="font-bold mb-3">Workflow Management</h3>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore
+                      magnam aliquam quaerat voluptatem.
+                    </p>
+                  </div>
+                  <div
+                    class="bg-[#959AF6] bg-opacity-20 rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-2 sm:p-2 lg:p-6 xl:p-6 md:sticky md:top-10 overflow-hidden"
+                  >
+                    <h3 class="font-bold mb-3">A/B Testing</h3>
+                    <p>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                      sed do eiusmod tempor incididunt ut labore et dolore
+                      magnam aliquam quaerat voluptatem.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="pricing" class="mt-16">
+              <h2 class="text-[#232656] font-bold">Pricing</h2>
+              <p class="text-[#232656] text-lg">
+                We offer the lowest texting rates in the industry, with a
+                commitment to providing the most effective outreach for clients
+                trying to do good. Get in touch with us at
+                <a href="mailto:hello@withtheranks.com"
+                  >hello@withtheranks.com</a
+                > and ask us about our volume-based discounts if you're interested
+                in even lower rates!
+              </p>
+
+              <div class="flex justify-center">
+                <div
+                  class="bg-[#959AF6] bg-opacity-20 rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-2 sm:p-2 lg:p-6 xl:p-6 md:sticky md:top-10 overflow-hidden md:col-span-1"
+                >
+                  <!-- TODO: add some tool tips for jargon? -->
+                  <h3 class="font-bold mb-3">Rates</h3>
+                  <h3 class="font-bold mb-0">
+                    <mark>1.25¢</mark> / outbound SMS segment
+                  </h3>
+                  <hr class="border-[#959AF6] border-t-2 opacity-20 my-3" />
+                  <h3 class="font-bold mb-0">
+                    <mark>3¢</mark> / outbound MMS message
+                  </h3>
+                  <hr class="border-[#959AF6] border-t-2 opacity-20 my-3" />
+                  <h3 class="font-bold mb-0">
+                    0.25¢ / contact validated (optional)
+                  </h3>
+                </div>
+              </div>
+              <p class="text-[#232656] text-lg mt-16">
+                Those are the only 3 charges that'll appear on a standard
+                invoice you get from us! No worrying about charges for inbound
+                messages, 10DLC registration, or technical support from our
+                team!
+              </p>
+              <p class="text-[#232656] text-sm">
+                *Some clients may be interested in optional features such as
+                read replica database access, or Spoke team integration with a
+                Slack workspace. These are "add-ons" that have a small monthly
+                fee, and clients can opt in or out of them at any time.
+              </p>
+            </div>
+            <!-- TODO: sign up link -->
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</Layout>
