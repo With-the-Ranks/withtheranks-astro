@@ -1,0 +1,92 @@
+---
+import type { Props } from "astro";
+
+interface TimelineEntry {
+	year: string;
+	title?: string;
+	description?: string;
+	link?: { text: string; href: string };
+	items?: {
+		title?: string;
+		description?: string;
+		highlight?: boolean;
+		content?: string;
+		link?: { text: string; href: string };
+	}[];
+}
+
+const entries = Astro.props.entries as TimelineEntry[];
+---
+
+<div class='timeline-container max-w-4xl mx-auto py-12 px-6 sm:px-12'>
+	{
+		entries.map((entry: TimelineEntry, index) => (
+			<div
+				class='timeline-entry relative flex gap-8 mb-16'
+				data-key={entry.year}>
+				<div class='timeline-year-container relative flex flex-col items-center'>
+					<div class='year-badge bg-[#FFDD57] text-[#252753] font-bold flex justify-center items-center rounded-full text-2xl font-serif w-8 h-8 relative z-10'>
+						{entry.year}
+					</div>
+					<div class='absolute top-0 h-full w-0.5 bg-[#252753]' />
+				</div>
+
+				<div class='timeline-content flex-1 space-y-12'>
+					{entry.items &&
+						entry.items.map((item, idx) => (
+							<div
+								class={`px-6 sm:px-8 rounded-2xl ${
+									item.highlight
+										? "bg-[#FFEB99] text-[#252753] py-6"
+										: "bg-white"
+								}`}
+								data-key={idx}>
+								{item.highlight && (
+									<div class='flex items-start gap-4 mb-4'>
+										<img
+											src='/assets/bulb.svg'
+											alt='Highlight Icon'
+											class='w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0'
+										/>
+									</div>
+								)}
+
+								{item.title && (
+									<h3 class='text-[#252753] font-bold text-2xl sm:text-3xl mb-4'>
+										{item.title}
+									</h3>
+								)}
+
+								{item.description && (
+									<p class='text-[#252753] text-lg leading-relaxed mb-0'>
+										{item.description}
+									</p>
+								)}
+
+								{item.content && (
+									<p
+										class='text-[#252753] text-lg leading-relaxed'
+										data-content={item.content}
+									/>
+								)}
+
+								{item.link && (
+									<a
+										href={item.link.href}
+										class='text-[#252753] font-serif italic no-underline font-semibold inline-flex items-center'>
+										<span class='underline'>{item.link.text}</span>
+										<span class='relative ml-2'>
+											<span class='absolute -right-1 top-2 w-3 h-3 bg-[#FFDD57] rounded-full' />
+											<span class='relative z-10 no-underline font-normal text-2xl'>
+												↝
+											</span>
+										</span>
+									</a>
+								)}
+							</div>
+						))}
+				</div>
+			</div>
+		))
+	}
+</div>
