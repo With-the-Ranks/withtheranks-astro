@@ -18,35 +18,104 @@ interface TimelineEntry {
 const entries = Astro.props.entries as TimelineEntry[];
 ---
 
+<style>
+	.fade-in {
+		opacity: 0;
+		transform: translateY(30px);
+		transition:
+			opacity 2s ease-out,
+			transform 2s ease-out;
+	}
+
+	.fade-in.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
+
+	.grow-line {
+		transform: scaleY(0);
+		transform-origin: top;
+		transition: transform 0.8s ease-out;
+	}
+
+	.grow-line.visible {
+		transform: scaleY(1);
+	}
+
+	.slide-in-left {
+		opacity: 0;
+		transform: translateX(-20px);
+		transition:
+			opacity 2s ease-out,
+			transform 2s ease-out;
+	}
+
+	.slide-in-left.visible {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	.pop-in {
+		opacity: 0;
+		transform: scale(0.8);
+		transition:
+			opacity 2s ease-out,
+			transform 2s ease-out;
+	}
+
+	.pop-in.visible {
+		opacity: 1;
+		transform: scale(1);
+	}
+</style>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const elements = document.querySelectorAll(
+			".fade-in, .grow-line, .slide-in-left, .pop-in"
+		);
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add("visible");
+					}
+				});
+			},
+			{ threshold: 0.2 }
+		);
+
+		elements.forEach((el) => observer.observe(el));
+	});
+</script>
+
 <div class='timeline-container max-w-4xl mx-auto py-12 px-6 sm:px-12'>
 	{
 		entries.map((entry: TimelineEntry, index) => (
 			<div
-				class='timeline-entry relative flex gap-8 pb-16'
+				class='timeline-entry relative flex gap-8 pb-16 fade-in'
 				data-key={entry.year}>
 				<div class='timeline-year-container relative flex flex-col items-center'>
-					<div class='absolute top-0 bottom-0 w-0.5 bg-[#252753]' />
+					<div class='absolute top-0 bottom-0 w-0.5 bg-[#252753] grow-line' />
 
-					<div class='year-badge bg-[#FFDD57] text-[#252753] font-bold flex justify-center items-center rounded-full text-2xl font-serif w-10 h-10 relative z-10'>
+					<div class='year-badge bg-[#FFDD57] text-[#252753] font-bold flex justify-center items-center rounded-full text-2xl font-serif w-10 h-10 relative z-10 slide-in-left'>
 						{entry.year}
 					</div>
 
-					<div class='absolute top-full w-0.5 bg-[#252753] h-16' />
+						<div class='absolute top-full w-0.5 bg-[#252753] h-16 grow-line' />
 				</div>
 
 				<div class='timeline-content flex-1 space-y-12'>
 					{entry.items &&
 						entry.items.map((item, idx) => (
 							<div
-								class={`px-6 sm:px-8 rounded-2xl ${
-									item.highlight
-										? "bg-[#FFEB99] text-[#252753] py-6"
-										: "bg-white"
-								}`}
-								data-key={idx}>
+								class={`px-6 sm:px-8 rounded-2xl ${item.highlight ? "bg-[#FFEB99] text-[#252753] py-6" : "bg-white"}`}
+								data-key={idx}
+								class='fade-in'>
 								<div class='flex items-start gap-4'>
 									{item.highlight && (
-										<div class='flex flex-shrink-0 items-center'>
+										<div class='flex flex-shrink-0 items-center pop-in'>
 											<img
 												src='/assets/bulb.svg'
 												alt='Highlight Icon'
