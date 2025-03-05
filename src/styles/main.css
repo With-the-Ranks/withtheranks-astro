@@ -7,6 +7,9 @@ Component styles should be inined directly on the component.
 Right now we're not using any preprocessors, just CSS variables, but Tailwind is available and nesting is enabled through Astro.
 
 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* Variables */
 :root {
@@ -437,5 +440,10 @@ nav {
 
     label {
         margin-right: 1rem;
+    }
+}
+@layer base {
+  :root {
+        --radius: 0.5rem;
     }
 }
