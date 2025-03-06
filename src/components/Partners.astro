@@ -8,15 +8,15 @@ import "animate.css";
     No cause too big.
   </h1>
 
-  <p class="text-lg md:text-xl mb-12 max-w-3xl mx-auto leading-relaxed">
+  <p class="text-lg sm:text-3xl mb-12 max-w-3xl mx-auto leading-relaxed">
     With the Ranks works with organizations of all sizes, from the smallest city council races to the largest global non-profits.
   </p>
 
-  <p class="text-lg md:text-xl mb-16 max-w-3xl mx-auto leading-relaxed">
+  <p class="text-lg sm:text-3xl mb-16 max-w-3xl mx-auto leading-relaxed">
     We love building beautiful websites, developing custom organizing tools, running A/B testing programs, hosting Spoke peer-to-peer texting, and doing whatever we can to help good causes prevail.
   </p>
 
-  <p class="text-xl font-medium mb-12">We work with folks like...</p>
+  <p class="text-lg sm:text-3xl mb-12">We work with folks like...</p>
 
   <!-- Scrolling Partner Logos -->
   <div class="relative overflow-hidden w-full max-w-5xl mx-auto mb-12">
@@ -51,13 +51,23 @@ import "animate.css";
         </h2>
       </div>
 
-      <div class="text-lg md:text-xl text-white">
-        <p class="mb-8 leading-relaxed">
+      <div class="text-lg sm:text-3xl text-white">
+        <p class="mb-8 leading-relaxed text-lg sm:text-3xl">
           With the Ranks was built by members of the Bernie 2020 technology team, and the movements and organizations surrounding it. Our mission is to provide good causes - regardless of their size - with presidential quality technology.
         </p>
-        <a href="#" class="inline-flex items-center text-white hover:text-[#8c9dff] transition-colors group">
-          <span class="border-b border-current">Learn more about our cooperative</span>
-          <span class="ml-2">↝</span>
+        <a href="#" class="inline-flex items-center text-white hover:text-[#8c9dff] transition-colors group no-underline">
+          <span class="underline">Learn more about our cooperative</span>
+          <div class="relative ml-2">
+						<span
+							class='absolute -right-1 top-2 w-3 h-3 bg-[#8C9DFF] rounded-full group-hover:scale-110'
+						>
+						</span>
+						<span
+							class='text-white text-xl sm:text-3xl leading-none transition-transform flex items-center group-hover:scale-110 font-normal no-underline italic relative'
+						>
+							↝
+						</span>
+					</div>
         </a>
       </div>
     </div>

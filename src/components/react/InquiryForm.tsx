@@ -203,9 +203,9 @@ export default function InquiryForm() {
 								<h3 className='text-xl md:text-2xl font-bold mb-2 md:mb-3'>
 									Start a New Project
 								</h3>
-								<p className='text-sm md:text-base opacity-80 mb-3 md:mb-4'>
+								<span className='text-sm md:text-base opacity-80 mb-3 md:mb-4'>
 									Launch your next digital initiative with us
-								</p>
+								</span>
 							</button>
 							<button
 								onClick={() => {
@@ -217,10 +217,10 @@ export default function InquiryForm() {
 								<h3 className='text-xl md:text-2xl font-bold mb-2 md:mb-3'>
 									Sign Up for Spoke
 								</h3>
-								<p className='text-sm md:text-base opacity-80 mb-3 md:mb-4'>
+								<span className='text-sm md:text-base opacity-80 mb-3 md:mb-4'>
 									Power your organizing efforts with affordable peer-to-peer
 									texting at scale.
-								</p>
+								</span>
 							</button>
 							<button
 								onClick={() => {
@@ -232,10 +232,10 @@ export default function InquiryForm() {
 								<h3 className='text-xl md:text-2xl font-bold mb-2 md:mb-3'>
 									General Contact
 								</h3>
-								<p className='text-sm md:text-base opacity-80 mb-3 md:mb-4'>
+								<span className='text-sm md:text-base opacity-80 mb-3 md:mb-4'>
 									Not sure what to choose? Just drop us a message and we’ll get
 									you pointed in the right direction!
-								</p>
+								</span>
 							</button>
 							<button
 								onClick={() => {
@@ -247,10 +247,10 @@ export default function InquiryForm() {
 								<h3 className='text-xl md:text-2xl font-bold mb-2 md:mb-3'>
 									Schedule a Meeting
 								</h3>
-								<p className='text-sm md:text-base mb-3 md:mb-4'>
+								<span className='text-sm md:text-base mb-3 md:mb-4'>
 									Prefer to meet virtually? Book a time with a team member and
 									we’ll help point you in the right direction.
-								</p>
+								</span>
 							</button>
 						</div>
 						<div className='card text-center p-6 md:p-8 space-y-4 md:space-y-6 py-6 md:py-16'>
@@ -258,12 +258,12 @@ export default function InquiryForm() {
 								<h4 className='text-5xl md:text-2xl mb-0 font-bold'>
 									Just want to stay in the loop?
 								</h4>
-								<p className='text-sm md:text-base'>
+								<span className='text-sm md:text-base'>
 									If you’re just interested in following along with what we’re
 									building - from scaling a tech cooperative to optimizing for
 									organizing at scale - leave your name and email and we’ll send
 									you an email on occasion.
-								</p>
+								</span>
 							</div>
 							<div className='space-x-4 flex max-w-xl mx-auto'>
 								<Input
