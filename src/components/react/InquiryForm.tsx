@@ -97,6 +97,8 @@ type InquiryType =
 	| "schedule-meeting"
 	| "";
 
+var calendlyLink = 'https://calendly.com/with-the-ranks/team-meeting';
+
 export default function InquiryForm() {
 	const [step, setStep] = useState(1);
 	const [inquiryType, setInquiryType] = useState<InquiryType>("");
@@ -241,6 +243,7 @@ export default function InquiryForm() {
 								onClick={() => {
 									setInquiryType("schedule-meeting");
 									setStep(5); // Go directly to thank you screen
+									window.open(calendlyLink);
 								}}
 								className='purple-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
 								<span className='tag'>Quick Chat</span>
@@ -302,7 +305,7 @@ export default function InquiryForm() {
 									"Sign up for Spoke Services"}
 								{inquiryType === "general-contact" && "Get in touch"}
 							</h3>
-							<p className='text-lg md:text-bas'>
+							<p className='text-lg md:text-2xl'>
 								{inquiryType === "new-project" &&
 									"We're excited to learn about your project ideas."}
 								{inquiryType === "spoke-services" &&
@@ -318,7 +321,7 @@ export default function InquiryForm() {
 								placeholder='Your Name'
 								value={formData.name}
 								onChange={handleChange}
-								className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
+								className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
 							/>
 							<Input
 								type='email'
@@ -327,7 +330,7 @@ export default function InquiryForm() {
 								value={formData.email}
 								onChange={handleChange}
 								required
-								className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
+								className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
 							/>
 							<Input
 								type='text'
@@ -335,7 +338,7 @@ export default function InquiryForm() {
 								placeholder='Organization Name'
 								value={formData.organization}
 								onChange={handleChange}
-								className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
+								className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
 							/>
 							{inquiryType === "spoke-services" && (
 								<>
@@ -345,14 +348,14 @@ export default function InquiryForm() {
 										placeholder='Secondary Contact (optional)'
 										value={formData.secondaryContact}
 										onChange={handleChange}
-										className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
+										className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
 									/>
 									<Textarea
 										name='orgDescription'
 										placeholder="Short description of your organization's work"
 										value={formData.orgDescription}
 										onChange={handleChange}
-										className='bg-white/10 border-white/20  placeholder-gray-400 min-h-[100px] md:min-h-[120px] rounded-xl'
+										className='bg-white/10 border-white/20  placeholder:text-white min-h-[100px] md:min-h-[120px] rounded-xl'
 									/>
 								</>
 							)}
@@ -367,7 +370,7 @@ export default function InquiryForm() {
 								}
 								value={formData.needs}
 								onChange={handleChange}
-								className='bg-white/10 border-white/20  placeholder-gray-400 min-h-[100px] md:min-h-[120px] rounded-xl'
+								className='bg-white/10 border-white/20  placeholder:text-white min-h-[100px] md:min-h-[120px] rounded-xl'
 							/>
 						</div>
 					</div>
@@ -436,7 +439,7 @@ export default function InquiryForm() {
 									placeholder='Primary Location (for phone number)'
 									value={formData.primaryLocation}
 									onChange={handleChange}
-									className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
+									className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
 								/>
 								<Input
 									type='text'
@@ -444,14 +447,14 @@ export default function InquiryForm() {
 									placeholder='Preferred Subdomain'
 									value={formData.subdomain}
 									onChange={handleChange}
-									className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
+									className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
 								/>
 								<Textarea
 									name='billingAddress'
 									placeholder='Billing Address'
 									value={formData.billingAddress}
 									onChange={handleChange}
-									className='bg-white/10 border-white/20  placeholder-gray-400 min-h-[100px] md:min-h-[120px] rounded-xl'
+									className='bg-white/10 border-white/20  placeholder:text-white min-h-[100px] md:min-h-[120px] rounded-xl'
 								/>
 							</div>
 						</div>
@@ -528,14 +531,23 @@ export default function InquiryForm() {
 						<h2 className='serif-heading font-bold text-2xl md:text-5xl  leading-tight'>
 							Thank You for Your Inquiry!
 						</h2>
-						<p className='text-lg md:text-xl'>
+						{ inquiryType != "schedule-meeting" && (
+							<p className='text-lg md:text-2xl'>
 							We appreciate you taking the time to reach out to us. Our team
 							will review your information and get back to you shortly.
-						</p>
+						</p>) }
 						{inquiryType === "schedule-meeting" && (
-							<p className='text-base md:text-xl'>
-								You'll be redirected to our scheduling page in a moment.
-							</p>
+							<div>
+								<p className='text-base md:text-2xl'>
+									Navigate to our scheduling page here:
+								</p>
+								<Button
+									className="button font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg"
+									variant="default"
+									onClick={() => window.open(calendlyLink)}>
+									Schedule a call with us!
+								</Button>
+							</div>
 						)}
 						<Button
 							onClick={() => {
