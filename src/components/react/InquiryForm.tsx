@@ -243,9 +243,6 @@ export default function InquiryForm() {
 								onClick={() => {
 									setInquiryType("schedule-meeting");
 									setStep(5); // Go directly to thank you screen
-									setTimeout(function() {
-										window.location.href = calendlyLink;
-									}, 2000);
 								}}
 								className='purple-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
 								<span className='tag'>Quick Chat</span>
@@ -539,9 +536,17 @@ export default function InquiryForm() {
 							will review your information and get back to you shortly.
 						</p>) }
 						{inquiryType === "schedule-meeting" && (
-							<p className='text-base md:text-2xl'>
-								You'll be redirected to our scheduling page in a moment.
-							</p>
+							<div>
+								<p className='text-base md:text-2xl'>
+									Navigate to our scheduling page here:
+								</p>
+								<Button
+									className="button font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg"
+									variant="default"
+									onClick={() => window.open(calendlyLink)}>
+									Schedule a call with us!
+								</Button>
+							</div>
 						)}
 						<Button
 							onClick={() => {
