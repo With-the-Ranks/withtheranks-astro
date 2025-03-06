@@ -38,12 +38,19 @@ import "animate.css";
   </div>
 </section>
 
-<!-- Full Width Image Section -->
-<section class="relative w-full h-[600px] md:h-[980px] bg-cover bg-center" style="background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%20238-IBnNqE8rlmH7odjQxKXoh0qur61ThZ.png');">
-  <div class="absolute inset-0 bg-gradient-to-t from-[#252753] via-[#252753]/60 to-transparent -z-50"></div>
+<!-- Full Width Image Section with Dynamic Background Attachment -->
+<section
+  id="bgSection"
+  class="relative w-full h-[600px] md:h-[980px] bg-scroll bg-cover bg-center"
+  style="background-image: url('/assets/bernie-bg.png');"
+>
+  <div
+    class="absolute inset-0 z-1 pointer-events-none"
+    style="background: linear-gradient(180deg, rgba(0, 2, 39, 0) 36%, #252753 74.27%);"
+  ></div>
 
-  <div class="container mx-auto px-6 h-full flex flex-col justify-end pb-20">
-    <div class="container mx-auto grid md:grid-cols-2 gap-12 items-start max-w-6xl">
+  <div class="container mx-auto px-6 h-full flex flex-col justify-end pb-20 relative z-10">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start">
       <div>
         <h2 class="text-6xl md:text-7xl font-extrabold tracking-tight mb-4 text-white text-end">
           Good tech<br />
@@ -89,3 +96,22 @@ import "animate.css";
     }
   }
 </style>
+
+<script lang="ts">
+document.addEventListener('DOMContentLoaded', () => {
+  const bgSection = document.getElementById('bgSection');
+  if (!bgSection) return;
+
+  window.addEventListener('scroll', () => {
+    const rect = bgSection.getBoundingClientRect();
+    // When the section is in view, switch to bg-fixed; otherwise, revert to bg-scroll.
+    if (rect.top <= 0 && rect.bottom >= 0) {
+      bgSection.classList.remove('bg-scroll');
+      bgSection.classList.add('bg-fixed');
+    } else {
+      bgSection.classList.remove('bg-fixed');
+      bgSection.classList.add('bg-scroll');
+    }
+  });
+});
+</script>
