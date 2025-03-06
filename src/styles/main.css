@@ -355,6 +355,10 @@ main a {
     font-family: 'Crimson Text', serif;
 }
 
+main a.btn {
+    font-family: 'Poppins', sans-serif;
+}
+
 /* Nav */
 /* TODO: move to component */
 nav {
@@ -412,6 +416,7 @@ nav {
 .on-this-page a {
     font-family: 'Poppins';
 }
+
 
 /* Theme Toggle */
 .sun {
