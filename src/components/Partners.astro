@@ -38,8 +38,12 @@ import "animate.css";
   </div>
 </section>
 
-<!-- Full Width Image Section -->
-<section class="relative w-full h-[600px] md:h-[980px] bg-cover bg-center" style="background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%20238-IBnNqE8rlmH7odjQxKXoh0qur61ThZ.png');">
+<!-- Full Width Image Section with Dynamic Background Attachment -->
+<section
+  id="bgSection"
+  class="relative w-full h-[600px] md:h-[980px] bg-scroll bg-cover bg-center"
+  style="background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Group%20238-IBnNqE8rlmH7odjQxKXoh0qur61ThZ.png');"
+>
   <div class="absolute inset-0 bg-gradient-to-t from-[#252753] via-[#252753]/60 to-transparent -z-50"></div>
 
   <div class="container mx-auto px-6 h-full flex flex-col justify-end pb-20">
@@ -89,3 +93,22 @@ import "animate.css";
     }
   }
 </style>
+
+<script lang="ts">
+document.addEventListener('DOMContentLoaded', () => {
+  const bgSection = document.getElementById('bgSection');
+  if (!bgSection) return;
+
+  window.addEventListener('scroll', () => {
+    const rect = bgSection.getBoundingClientRect();
+    // When the section is in view, switch to bg-fixed; otherwise, revert to bg-scroll.
+    if (rect.top <= 0 && rect.bottom >= 0) {
+      bgSection.classList.remove('bg-scroll');
+      bgSection.classList.add('bg-fixed');
+    } else {
+      bgSection.classList.remove('bg-fixed');
+      bgSection.classList.add('bg-scroll');
+    }
+  });
+});
+</script>
