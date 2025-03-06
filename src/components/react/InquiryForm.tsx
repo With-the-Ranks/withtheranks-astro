@@ -243,6 +243,7 @@ export default function InquiryForm() {
 								onClick={() => {
 									setInquiryType("schedule-meeting");
 									setStep(5); // Go directly to thank you screen
+									window.open(calendlyLink);
 								}}
 								className='purple-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
 								<span className='tag'>Quick Chat</span>
