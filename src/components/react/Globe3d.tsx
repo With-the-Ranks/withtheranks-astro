@@ -8,37 +8,31 @@ const Globe = React.lazy(() =>
 );
 
 export default function Globe3D() {
-  // Lighter globe configuration
   const globeConfig = {
-    // Vibrant globe color
-    globeColor: "#eff7f4",
+    globeColor: "#ffffff",
     showAtmosphere: true,
-    atmosphereColor: "#252753",
-    atmosphereAltitude: 0.25,
-
-    // Slight outline on the globe
-    polygonColor: "#dcf8ef",
-    pointSize: 0.5,
+    atmosphereColor: "#000000",
+    atmosphereAltitude: 0.2,
+    polygonColor: "#252753",
+    pointSize: 0.1,
     emissive: "#000000",
-    emissiveIntensity: 0.05,
-    shininess: 0.4,
+    emissiveIntensity: 0.01,
+    shininess: 0.1,
     ambientLight: "#ffffff",
     directionalLeftLight: "#ffffff",
     directionalTopLight: "#ffffff",
     pointLight: "#ffffff",
-
-    // Arc & animation settings
     arcTime: 1200,
     arcLength: 0.8,
     rings: 1,
     maxRings: 3,
-    autoRotateSpeed: 0.05,
+    autoRotateSpeed: 0.01,
     initialPosition: { lat: 21.0278, lng: 105.8342 },
   };
-
-
-  // Light/pastel arc colors
-  const colors = ["#FFD5E5", "#FFFAE0", "#D2E6FF", "#D3FFEA", "#E8E8FF"];
+  
+  // More “With the Ranks” style arc colors:
+  const colors = ["#FFE872", "#7FFFD4", "#8C9DFF", "#FFDD57", "#FFFFFF"];
+  
 
   // Five locations: Los Angeles, Tennessee, Washington, New York, Vietnam
   const hubs = [
