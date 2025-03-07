@@ -14,7 +14,7 @@ export default function Globe3D() {
     atmosphereColor: "#000000",
     atmosphereAltitude: 0.2,
     polygonColor: "#252753",
-    pointSize: 0.1,
+    pointSize: 1,
     emissive: "#000000",
     emissiveIntensity: 0.01,
     shininess: 0.1,
@@ -94,7 +94,7 @@ export default function Globe3D() {
     <div className="relative w-full h-72 md:h-full md:max-h-[800px] z-20" ref={globeRef}>
       {loadGlobe && (
         <Suspense fallback={null}>
-          <Globe data={sampleArcs} globeConfig={globeConfig} />
+          <Globe data={{}} globeConfig={globeConfig} />
         </Suspense>
       )}
     </div>
