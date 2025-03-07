@@ -91,7 +91,7 @@ export default function Globe3D() {
   }, []);
 
   return (
-    <div className="relative w-full h-72 md:h-full md:max-h-[800px] z-20" ref={globeRef}>
+    <div className="relative w-full h-72 md:h-full md:max-h-[750px] z-20" ref={globeRef}>
       {loadGlobe && (
         <Suspense fallback={null}>
           <Globe data={{}} globeConfig={globeConfig} />
