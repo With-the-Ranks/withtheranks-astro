@@ -12,7 +12,7 @@ import Icon from "../components/Icon.astro";
 				alt='With the Ranks'
 				width='160'
 				height='60'
-				class='w-32 sm:w-40 lg:w-[160px] light-logo'
+				class='w-32 sm:w-40 lg:w-[160px] light-logo hover:scale-110 transition-transform duration-500'
 			/>
 		</a>
 		<a href ='/'>
@@ -21,7 +21,7 @@ import Icon from "../components/Icon.astro";
 				alt='With the Ranks'
 				width='160'
 				height='60'
-				class='w-32 sm:w-40 lg:w-[160px] dark-logo'
+				class='w-32 sm:w-40 lg:w-[160px] dark-logo hover:scale-110 transition-transform duration-500'
 			/>
 		</a>
 	</div>
@@ -43,10 +43,10 @@ import Icon from "../components/Icon.astro";
 		</svg>
 	</button>
 
-	<nav class='hidden md:flex items-center space-x-6'>
+	<nav class='hidden md:flex items-center space-x-8'>
 		<a
 			href="/texting"
-			class="flex items-center gap-2 lg:gap-3 text-sm lg:text-base"
+			class="flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500"
 		>
 			<!-- TODO: pick an icon -->
 			<Icon name="texting" />
@@ -54,28 +54,28 @@ import Icon from "../components/Icon.astro";
 		</a>
 		<a
 			href='/about'
-			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
+			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500'
 			>
 			<Icon name="users" />
 			About Us
 		</a>
 		<a
 			href='/our-work'
-			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
+			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500'
 		>
 			<Icon name="work" />
 			Our Work
 		</a>
 		<a
 			href='/careers'
-			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
+			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500'
 		>
 			<Icon name="careers" />
 			Careers
 		</a>
 		<a
 			href='#'
-			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
+			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500'
 		>
 			<Icon name="support" />
 			Support
@@ -83,8 +83,8 @@ import Icon from "../components/Icon.astro";
 	</nav>
 
 	<a
-	href="#contact"
-	class="hidden md:inline-flex no-underline justify-center items-center gap-4 bg-[#747AFF] hover:bg-[#646ADD] !text-[#FFFCF7] text-center font-bold text-base uppercase leading-normal tracking-[1.28px] px-6 py-4 rounded-[32px] transition-colors"
+	href="/#contact"
+	class="hidden md:inline-flex no-underline hover:scale-105 duration-500 justify-center items-center gap-4 bg-[#747AFF] hover:bg-[#646ADD] !text-[#FFFCF7] text-center font-bold text-base uppercase leading-normal tracking-[1.28px] px-6 py-4 rounded-[32px] transition-colors"
 >
 	CONTACT US
 </a>
