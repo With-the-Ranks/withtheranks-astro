@@ -1,12 +1,13 @@
 ---
 import Icon from "../components/Icon.astro";
 ---
+
 <!-- Header -->
 <header
 	class='container mx-auto px-6 sm:px-8 lg:px-12 py-6 sm:py-8 flex items-center justify-between'
 >
 	<div>
-		<a href ='/'>
+		<a href='/'>
 			<img
 				src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo-vJF5V6kpkDP2BKaHvY50ICONGodLFm.png'
 				alt='With the Ranks'
@@ -15,7 +16,7 @@ import Icon from "../components/Icon.astro";
 				class='w-32 sm:w-40 lg:w-[160px] light-logo hover:scale-110 transition-transform duration-500'
 			/>
 		</a>
-		<a href ='/'>
+		<a href='/'>
 			<img
 				src='https://16f7z77xpz.ufs.sh/f/jIPuATEnymTtuY7ZfJ10yUCBQh6fS1NG3dsYTxXrcHz8k759'
 				alt='With the Ranks'
@@ -45,47 +46,64 @@ import Icon from "../components/Icon.astro";
 
 	<nav class='hidden md:flex items-center space-x-8'>
 		<a
-			href="/texting"
-			class="flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500"
-		>
-			<!-- TODO: pick an icon -->
-			<Icon name="texting" />
-			Texting
-		</a>
-		<a
 			href='/about'
 			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500'
-			>
-			<Icon name="users" />
+		>
+			<Icon name='users' />
 			About Us
 		</a>
 		<a
 			href='/our-work'
 			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500'
 		>
-			<Icon name="work" />
+			<Icon name='work' />
 			Our Work
 		</a>
 		<a
 			href='/careers'
 			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500'
 		>
-			<Icon name="careers" />
+			<Icon name='careers' />
 			Careers
 		</a>
-		<a
+		<!-- <a
 			href='#'
 			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500'
 		>
 			<Icon name="support" />
 			Support
-		</a>
+		</a> -->
+		<!-- Dropdown: Spoke -->
+		<div class='relative group'>
+			<a
+				class='cursor-default flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500 relative z-20'
+			>
+				<Icon name='support' class='transition-transform duration-500' />
+				Spoke
+			</a>
+			<div
+				class='absolute -left-5 text-center top-0 h-32 mt-2 w-40 bg-white dark:bg-[#252753] border border-gray-200 dark:border-gray-700 shadow-md rounded-3xl opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10'
+			>
+				<a
+					href='/texting'
+					class='block mt-10 px-4 py-2 text-sm text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#3f438e] transition-colors'
+				>
+					Texting
+				</a>
+				<a
+					href='/support'
+					class='block px-4 py-2 text-sm text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#3f438e] transition-colors'
+				>
+					Support
+				</a>
+			</div>
+		</div>
 	</nav>
 
 	<a
-	href="/#contact"
-	class="hidden md:inline-flex no-underline hover:scale-105 duration-500 justify-center items-center gap-4 bg-[#747AFF] hover:bg-[#646ADD] !text-[#FFFCF7] text-center font-bold text-base uppercase leading-normal tracking-[1.28px] px-6 py-4 rounded-[32px] transition-colors"
->
-	CONTACT US
-</a>
+		href='/#contact'
+		class='hidden md:inline-flex no-underline hover:scale-105 duration-500 justify-center items-center gap-4 bg-[#747AFF] hover:bg-[#646ADD] !text-[#FFFCF7] text-center font-bold text-base uppercase leading-normal tracking-[1.28px] px-6 py-4 rounded-[32px] transition-colors'
+	>
+		CONTACT US
+	</a>
 </header>
