@@ -176,6 +176,7 @@ export default function InquiryForm() {
 						</div>
 						<div className='grid gap-4 md:gap-6 md:grid-cols-2'>
 							<button
+								type="button"
 								onClick={() => {
 									setInquiryType("new-project");
 									setStep(2);
@@ -191,6 +192,7 @@ export default function InquiryForm() {
 								</span>
 							</button>
 							<button
+								type="button"
 								onClick={() => {
 									setInquiryType("spoke-services");
 									setStep(2);
@@ -206,6 +208,7 @@ export default function InquiryForm() {
 								</span>
 							</button>
 							<button
+								type="button"
 								onClick={() => {
 									setInquiryType("general-contact");
 									setStep(getMaxSteps() + 1);
@@ -221,6 +224,7 @@ export default function InquiryForm() {
 								</span>
 							</button>
 							<button
+								type="button"
 								onClick={() => {
 									setInquiryType("schedule-meeting");
 									setStep(5); // Go directly to thank you screen
@@ -268,6 +272,7 @@ export default function InquiryForm() {
 									className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
 								/>
 								<Button
+									type="submit"
 									onClick={handleQuickSignUp}
 									className='w-full solid-button  py-4 md:py-6 text-base md:text-lg font-semibold'>
 									Sign Up
