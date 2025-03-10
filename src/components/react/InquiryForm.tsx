@@ -17,12 +17,7 @@ import ImprovedSlider from "./ImprovedSlider";
 import StepCounter from "./StepCounter";
 
 const styles = `
-  .form-container {
-    background: #FFFCF7;
-    border-radius: 32px;
-		color: #232656;
-  }
-  
+
   .solid-button {
     background-color: #8C9DFF;
     border-radius: 100px;
@@ -74,20 +69,6 @@ const styles = `
     margin-bottom: 8px;
 		color: #282D55;
   }
-
-  .read-more {
-    display: inline-flex;
-    align-items: center;
-    font-weight: 600;
-    font-size: 14px;
-    color: inherit;
-    opacity: 0.8;
-    transition: all 0.2s ease;
-  }
-
-  .read-more:hover {
-    opacity: 1;
-  }
 `;
 
 type InquiryType =
@@ -97,7 +78,7 @@ type InquiryType =
 	| "schedule-meeting"
 	| "";
 
-var calendlyLink = 'https://calendly.com/with-the-ranks/team-meeting';
+var calendlyLink = "https://calendly.com/with-the-ranks/team-meeting";
 
 export default function InquiryForm() {
 	const [step, setStep] = useState(1);
@@ -186,12 +167,11 @@ export default function InquiryForm() {
 				return (
 					<div className='space-y-8 md:space-y-12'>
 						<div className='space-y-4 md:space-y-6'>
-							<h2 className='serif-heading font-bold text-5xl md:text-7xl text-[#252753] leading-tight'>
+							<h2 className='serif-heading font-bold text-3xl mb-0 md:text-5xl lg:text-7xl text-[#252753] leading-tight'>
 								Let us know how we can help.
 							</h2>
-							<p className='text-[#252753]'>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor incididunt ut labore.
+							<p className='text-lg lg:text-2xl text-[#252753]'>
+								Got a project or need support? We're here to help.
 							</p>
 						</div>
 						<div className='grid gap-4 md:gap-6 md:grid-cols-2'>
@@ -206,7 +186,8 @@ export default function InquiryForm() {
 									Start a New Project
 								</h3>
 								<span className='text-sm md:text-base opacity-80 mb-3 md:mb-4'>
-									Launch your next digital initiative with us
+									From custom websites to full-fledged web products, let us know
+									what you need.
 								</span>
 							</button>
 							<button
@@ -257,8 +238,8 @@ export default function InquiryForm() {
 							</button>
 						</div>
 						<div className='card text-center p-6 md:p-8 space-y-4 md:space-y-6 py-6 md:py-16'>
-							<div className="max-w-xl mx-auto">
-								<h4 className='text-5xl md:text-2xl mb-0 font-bold'>
+							<div className='max-w-xl mx-auto'>
+								<h4 className='text-2xl md:text-4xl mb-3 font-bold'>
 									Just want to stay in the loop?
 								</h4>
 								<span className='text-sm md:text-base'>
@@ -268,7 +249,7 @@ export default function InquiryForm() {
 									you an email on occasion.
 								</span>
 							</div>
-							<div className='space-x-4 flex max-w-xl mx-auto'>
+							<div className='flex flex-col md:flex-row items-baseline gap-3 max-w-xl mx-auto'>
 								<Input
 									type='text'
 									name='name'
@@ -299,7 +280,7 @@ export default function InquiryForm() {
 				return (
 					<div className='space-y-6 md:space-y-8'>
 						<div className='space-y-2'>
-							<h3 className='text-xl md:text-5xl font-bold '>
+							<h3 className='text-xl md:text-5xl font-bold mb-0 md:mb-3'>
 								{inquiryType === "new-project" && "Tell us about your project"}
 								{inquiryType === "spoke-services" &&
 									"Sign up for Spoke Services"}
@@ -329,7 +310,6 @@ export default function InquiryForm() {
 								placeholder='Email Address'
 								value={formData.email}
 								onChange={handleChange}
-								required
 								className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
 							/>
 							<Input
@@ -380,7 +360,7 @@ export default function InquiryForm() {
 					return (
 						<div className='space-y-6 md:space-y-8'>
 							<div className='space-y-2'>
-								<h3 className='text-xl md:text-5xl font-bold '>
+								<h3 className='text-xl md:text-5xl font-bold  mb-0 md:mb-3'>
 									Project Details
 								</h3>
 								<p className='text-lg md:text-base'>
@@ -425,7 +405,7 @@ export default function InquiryForm() {
 					return (
 						<div className='space-y-6 md:space-y-8'>
 							<div className='space-y-2'>
-								<h3 className='text-xl md:text-5xl font-bold '>
+								<h3 className='text-xl md:text-5xl font-bold mb-0 md:mb-3'>
 									Spoke Services Details
 								</h3>
 								<p className='text-lg md:text-bas'>
@@ -465,7 +445,7 @@ export default function InquiryForm() {
 				return (
 					<div className='space-y-6 md:space-y-8'>
 						<div className='space-y-2'>
-							<h3 className='text-xl md:text-5xl font-bold '>
+							<h3 className='text-xl md:text-5xl font-bold mb-0 md:mb-3'>
 								Additional Information
 							</h3>
 							<p className='text-lg md:text-base'>
@@ -531,19 +511,20 @@ export default function InquiryForm() {
 						<h2 className='serif-heading font-bold text-2xl md:text-5xl  leading-tight'>
 							Thank You for Your Inquiry!
 						</h2>
-						{ inquiryType != "schedule-meeting" && (
+						{inquiryType != "schedule-meeting" && (
 							<p className='text-lg md:text-2xl'>
-							We appreciate you taking the time to reach out to us. Our team
-							will review your information and get back to you shortly.
-						</p>) }
+								We appreciate you taking the time to reach out to us. Our team
+								will review your information and get back to you shortly.
+							</p>
+						)}
 						{inquiryType === "schedule-meeting" && (
 							<div>
 								<p className='text-base md:text-2xl'>
 									Navigate to our scheduling page here:
 								</p>
 								<Button
-									className="button font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg"
-									variant="default"
+									className='button font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg'
+									variant='default'
 									onClick={() => window.open(calendlyLink)}>
 									Schedule a call with us!
 								</Button>
@@ -579,52 +560,53 @@ export default function InquiryForm() {
 				return null;
 		}
 	};
-
 	return (
-		<div className='form-container container w-full mx-auto p-4 md:p-12 mt-20'>
+		<div className='container w-full mx-auto'>
 			<style>{styles}</style>
-			<form
-				onSubmit={handleSubmit}
-				className='space-y-6 md:space-y-8 max-w-[800px] mx-auto mt-16'>
-				{renderStep()}
-				{step > 1 && step <= getMaxSteps() && (
-					<div>
-						<StepCounter
-							currentStep={step}
-							maxSteps={getMaxSteps()}
-							onStepClick={(clickedStep) => {
-								if (clickedStep < step) {
-									setStep(clickedStep);
-								}
-							}}
-						/>
-						<div className='flex flex-col md:flex-row justify-between items-center pt-6 md:pt-8 space-y-4 md:space-y-0'>
-							<Button
-								type='button'
-								variant='outline'
-								onClick={() => setStep(step - 1)}
-								className='w-full md:w-auto border-white/20 text-black hover: hover:bg-white/10 rounded-full px-4 md:px-6 py-2 md:py-3 text-base md:text-lg'>
-								Back
-							</Button>
-							<Button
-								type='submit'
-								className='w-full md:w-auto solid-button  font-semibold py-2 md:py-3 px-4 md:px-6 text-base md:text-lg'>
-								{step < getMaxSteps() ? (
-									<>
-										<span>Next</span>
-										<ChevronRight className='w-4 h-4 md:w-5 md:h-5 ml-2' />
-									</>
-								) : (
-									<>
-										<span>Submit</span>
-										<Send className='w-4 h-4 md:w-5 md:h-5 ml-2' />
-									</>
-								)}
-							</Button>
+			<div className='bg-[#FFFCF7] w-full p-8 md:p-12 rounded-[32px]'>
+				<form
+					onSubmit={handleSubmit}
+					className='space-y-6 max-w-[800px] md:space-y-8 mx-auto lg:mt-6 text-[#232656]'>
+					{renderStep()}
+					{step > 1 && step <= getMaxSteps() && (
+						<div>
+							<StepCounter
+								currentStep={step}
+								maxSteps={getMaxSteps()}
+								onStepClick={(clickedStep) => {
+									if (clickedStep < step) {
+										setStep(clickedStep);
+									}
+								}}
+							/>
+							<div className='flex gap-4 align-middle center flex-row justify-between items-baseline md:pt-3 space-y-4 md:space-y-0'>
+								<Button
+									type='button'
+									variant='outline'
+									onClick={() => setStep(step - 1)}
+									className='w-full md:w-auto border-black text-black hover: hover:bg-slate-200 rounded-full px-4 md:px-6 py-2 md:py-3 text-base md:text-lg'>
+									Back
+								</Button>
+								<Button
+									type='submit'
+									className='w-full md:w-auto solid-button  font-semibold py-2 md:py-3 px-4 md:px-6 text-base md:text-lg'>
+									{step < getMaxSteps() ? (
+										<>
+											<span>Next</span>
+											<ChevronRight className='w-4 h-4 md:w-5 md:h-5 ml-2' />
+										</>
+									) : (
+										<>
+											<span>Submit</span>
+											<Send className='w-4 h-4 md:w-5 md:h-5 ml-2' />
+										</>
+									)}
+								</Button>
+							</div>
 						</div>
-					</div>
-				)}
-			</form>
+					)}
+				</form>
+			</div>
 		</div>
 	);
 }
