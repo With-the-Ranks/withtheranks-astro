@@ -35,7 +35,7 @@ import Layout from "../layouts/Layout.astro";
         {Astro.slots.toc ? (
           <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-20 mt-5 lg:mt-16 items-start">
             <!-- Table of Contents Slot -->
-            <aside class="bg-[#959AF6] w-fit mx-auto bg-opacity-20 rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 lg:p-6 xl:p-6 lg:sticky lg:top-10 overflow-hidden lg:col-span-1 on-this-page">
+            <aside class="bg-[#959AF6] w-full mx-auto bg-opacity-20 rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 lg:p-6 xl:p-6 lg:sticky lg:top-10 overflow-hidden lg:col-span-1 on-this-page">
               <slot name="toc" />
             </aside>
             <!-- Markdown / Page Content -->
