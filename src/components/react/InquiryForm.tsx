@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
@@ -113,10 +113,9 @@ export default function InquiryForm() {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		if (step < getMaxSteps()) {
-			setStep(step + 1);
+			handleStepChange(step + 1);
 		} else {
-			console.log({ inquiryType, ...formData });
-			setStep(5); // Move to thank you screen
+			handleStepChange(5); // Move to thank you screen
 		}
 	};
 
@@ -179,7 +178,7 @@ export default function InquiryForm() {
 								type="button"
 								onClick={() => {
 									setInquiryType("new-project");
-									setStep(2);
+									handleStepChange(2);
 								}}
 								className='highlight-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
 								<span className='tag'>Custom Websites</span>
@@ -195,7 +194,7 @@ export default function InquiryForm() {
 								type="button"
 								onClick={() => {
 									setInquiryType("spoke-services");
-									setStep(2);
+									handleStepChange(2);
 								}}
 								className='secondary-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
 								<span className='tag'>P2P Texting</span>
@@ -211,12 +210,12 @@ export default function InquiryForm() {
 								type="button"
 								onClick={() => {
 									setInquiryType("general-contact");
-									setStep(getMaxSteps() + 1);
+									handleStepChange(getMaxSteps() + 1);
 								}}
 								className='tertiary-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
 								<span className='tag'>Support</span>
 								<h3 className='text-xl md:text-2xl font-bold mb-2 md:mb-3'>
-									General Contact
+									Just say hello
 								</h3>
 								<span className='text-sm md:text-base opacity-80 mb-3 md:mb-4'>
 									Not sure what to choose? Just drop us a message and we’ll get
@@ -227,7 +226,7 @@ export default function InquiryForm() {
 								type="button"
 								onClick={() => {
 									setInquiryType("schedule-meeting");
-									setStep(5); // Go directly to thank you screen
+									handleStepChange(5); // Go directly to thank you screen
 									window.open(calendlyLink);
 								}}
 								className='purple-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
@@ -368,7 +367,7 @@ export default function InquiryForm() {
 								<h3 className='text-xl md:text-5xl font-bold  mb-0 md:mb-3'>
 									Project Details
 								</h3>
-								<p className='text-lg md:text-base'>
+								<p className='text-lg md:text-2xl'>
 									Help us understand your project timeline and budget.
 								</p>
 							</div>
@@ -413,7 +412,7 @@ export default function InquiryForm() {
 								<h3 className='text-xl md:text-5xl font-bold mb-0 md:mb-3'>
 									Spoke Services Details
 								</h3>
-								<p className='text-lg md:text-bas'>
+								<p className='text-lg md:text-2xl'>
 									Let's get some specifics about your Spoke needs.
 								</p>
 							</div>
@@ -453,7 +452,7 @@ export default function InquiryForm() {
 							<h3 className='text-xl md:text-5xl font-bold mb-0 md:mb-3'>
 								Additional Information
 							</h3>
-							<p className='text-lg md:text-base'>
+							<p className='text-lg md:text-2xl'>
 								{inquiryType === "new-project"
 									? "Help us understand your project better."
 									: "Help us understand your texting needs better."}
@@ -537,7 +536,7 @@ export default function InquiryForm() {
 						)}
 						<Button
 							onClick={() => {
-								setStep(1);
+								handleStepChange(1);
 								setInquiryType("");
 								setFormData({
 									name: "",
@@ -565,8 +564,14 @@ export default function InquiryForm() {
 				return null;
 		}
 	};
+	const formRef = useRef<HTMLDivElement>(null);
+	const handleStepChange = (newStep: number) => {
+		setStep(newStep);
+		formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+	};
+	
 	return (
-		<div className='container w-full mx-auto'>
+		<div ref={formRef} className='container w-full mx-auto'>
 			<style>{styles}</style>
 			<div className='bg-[#FFFCF7] w-full p-8 md:p-12 rounded-[32px]'>
 				<form
@@ -580,7 +585,7 @@ export default function InquiryForm() {
 								maxSteps={getMaxSteps()}
 								onStepClick={(clickedStep) => {
 									if (clickedStep < step) {
-										setStep(clickedStep);
+										handleStepChange(clickedStep);
 									}
 								}}
 							/>
@@ -588,7 +593,7 @@ export default function InquiryForm() {
 								<Button
 									type='button'
 									variant='outline'
-									onClick={() => setStep(step - 1)}
+									onClick={() => handleStepChange(step - 1)}
 									className='w-full md:w-auto border-black text-black hover: hover:bg-slate-200 rounded-full px-4 md:px-6 py-2 md:py-3 text-base md:text-lg'>
 									Back
 								</Button>
