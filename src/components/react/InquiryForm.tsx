@@ -110,14 +110,65 @@ export default function InquiryForm() {
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (step < getMaxSteps()) {
 			handleStepChange(step + 1);
-		} else {
-			handleStepChange(5); // Move to thank you screen
+			return;
 		}
-	};
+	
+		// Prepare email data
+		const emailData = new URLSearchParams({
+			name: formData.name,
+			email: formData.email,
+			inquiryType,
+			organization: formData.organization,
+			needs: formData.needs,
+			timeline: formData.timeline,
+			secondaryContact: formData.secondaryContact,
+			orgDescription: formData.orgDescription,
+			primaryLocation: formData.primaryLocation,
+			subdomain: formData.subdomain,
+			billingAddress: formData.billingAddress,
+			hearAboutUs: formData.hearAboutUs,
+			audienceSize: formData.audienceSize,
+			budget: formData.budget,
+		}).toString();
+	
+		try {
+			const response = await fetch("/api/send-email", {
+				method: "POST",
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				body: emailData,
+			});
+	
+			const result = await response.json();
+	
+			if (result.success) {
+				handleStepChange(5); // Move to Thank You screen
+				setFormData({
+					name: "",
+					email: "",
+					organization: "",
+					needs: "",
+					timeline: "",
+					secondaryContact: "",
+					orgDescription: "",
+					primaryLocation: "",
+					subdomain: "",
+					billingAddress: "",
+					hearAboutUs: "",
+					audienceSize: "",
+					budget: "",
+				});
+			} else {
+				throw new Error(result.error);
+			}
+		} catch (error) {
+			console.error("Email submission failed:", error);
+			alert("There was an error submitting your inquiry. Please try again.");
+		}
+	};	
 
 	const getMaxSteps = () => {
 		switch (inquiryType) {
@@ -267,7 +318,6 @@ export default function InquiryForm() {
 									placeholder='Email Address'
 									value={formData.email}
 									onChange={handleChange}
-									required
 									className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
 								/>
 								<Button
@@ -306,6 +356,7 @@ export default function InquiryForm() {
 								placeholder='Your Name'
 								value={formData.name}
 								onChange={handleChange}
+								required
 								className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
 							/>
 							<Input
@@ -314,6 +365,7 @@ export default function InquiryForm() {
 								placeholder='Email Address'
 								value={formData.email}
 								onChange={handleChange}
+								required
 								className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
 							/>
 							<Input
@@ -343,19 +395,15 @@ export default function InquiryForm() {
 									/>
 								</>
 							)}
-							<Textarea
-								name='needs'
-								placeholder={
-									inquiryType === "new-project"
-										? "Tell us about your project ideas"
-										: inquiryType === "general-contact"
-											? "How can we help you?"
-											: "Tell us about your texting needs"
-								}
-								value={formData.needs}
-								onChange={handleChange}
-								className='bg-white/10 border-white/20  placeholder:text-white min-h-[100px] md:min-h-[120px] rounded-xl'
-							/>
+							{inquiryType === "general-contact" ? (
+								<Textarea
+									name='needs'
+									placeholder={"How can we help you?"}
+									value={formData.needs}
+									onChange={handleChange}
+									className='bg-white/10 border-white/20  placeholder:text-white min-h-[100px] md:min-h-[120px] rounded-xl'
+								/>
+							) : null}
 						</div>
 					</div>
 				);
