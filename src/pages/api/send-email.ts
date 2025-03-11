@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { google } from "googleapis";
 import { getInquiryHtml } from "@/lib/emails/inquiryTemplate";
 import { getNewsletterHtml } from "@/lib/emails/newsletterTemplate";
 
@@ -10,6 +11,10 @@ export const POST = async ({
 	locals: any;
 }) => {
 	try {
+		const GOOGLE_SERVICE_KEY_BASE64 =
+			locals.runtime.env.GOOGLE_SERVICE_KEY_BASE64;
+		const GOOGLE_SHEET_ID = locals.runtime.env.GOOGLE_SHEET_ID;
+		const PROJECT_ID = locals.runtime.env.PROJECT_ID;
 		const resend = new Resend(locals.runtime.env.RESEND_API_KEY);
 		const formData = await request.formData();
 
@@ -44,7 +49,7 @@ export const POST = async ({
 			: `New ${inquiryType.replace("-", " ")} Inquiry Received`;
 
 		const htmlContent = isQuickSignUp
-			? getNewsletterHtml( name )
+			? getNewsletterHtml(name)
 			: getInquiryHtml({
 					name,
 					email,
@@ -60,7 +65,7 @@ export const POST = async ({
 					orgDescription,
 					hearAboutUs,
 					audienceSize,
-			  });
+				});
 
 		// Send email
 		const response = await resend.emails.send({
@@ -81,10 +86,63 @@ export const POST = async ({
 			);
 		}
 
+		// Record sign-up in Google Sheets
+		if (GOOGLE_SERVICE_KEY_BASE64 && GOOGLE_SHEET_ID && PROJECT_ID) {
+			const credential = JSON.parse(
+				Buffer.from(GOOGLE_SERVICE_KEY_BASE64, "base64").toString()
+			);
+
+			const auth = new google.auth.GoogleAuth({
+				credentials: {
+					client_email: credential.client_email,
+					private_key: credential.private_key.replace(/\\n/g, "\n"),
+				},
+				projectId: PROJECT_ID,
+				scopes: [
+					"https://www.googleapis.com/auth/drive",
+					"https://www.googleapis.com/auth/drive.file",
+					"https://www.googleapis.com/auth/spreadsheets",
+				],
+			});
+
+			const sheets = google.sheets({ auth, version: "v4" });
+
+			// Format the date
+			const dateSubmitted = new Date().toISOString().split("T")[0];
+
+			// Determine what to store
+			const rowData = isQuickSignUp
+				? [name, email, "newsletter-signup", dateSubmitted]
+				: [
+						name,
+						email,
+						inquiryType,
+						dateSubmitted,
+						organization,
+						primaryLocation,
+						subdomain,
+						billingAddress,
+						needs,
+						timeline,
+						budget,
+						secondaryContact,
+						orgDescription,
+						hearAboutUs,
+						audienceSize,
+					];
+			// Append data to Google Sheet
+			await sheets.spreadsheets.values.append({
+				spreadsheetId: GOOGLE_SHEET_ID,
+				range: "Sheet1",
+				valueInputOption: "USER_ENTERED",
+				requestBody: { values: [rowData] },
+			});
+		}
+
 		return new Response(
 			JSON.stringify({
 				success: true,
-				message: "Email sent successfully!",
+				message: "Email sent and recorded successfully!",
 				data: response,
 			}),
 			{ status: 200 }
