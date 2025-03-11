@@ -1,33 +1,34 @@
 ---
 import Icon from "../components/Icon.astro";
 ---
+
 <!-- Header -->
 <header
 	class='container mx-auto px-6 sm:px-8 lg:px-12 py-6 sm:py-8 flex items-center justify-between'
 >
 	<div>
-		<a href ='/'>
+		<a href='/'>
 			<img
-				src='https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Logo-vJF5V6kpkDP2BKaHvY50ICONGodLFm.png'
+				src='/assets/logo-white.png'
 				alt='With the Ranks'
 				width='160'
 				height='60'
-				class='w-32 sm:w-40 lg:w-[160px] light-logo'
+				class='w-32 sm:w-40 lg:w-[160px] light-logo hover:scale-110 transition-transform duration-500'
 			/>
 		</a>
-		<a href ='/'>
+		<a href='/'>
 			<img
-				src='https://16f7z77xpz.ufs.sh/f/jIPuATEnymTtuY7ZfJ10yUCBQh6fS1NG3dsYTxXrcHz8k759'
+				src='/assets/logo.png'
 				alt='With the Ranks'
 				width='160'
 				height='60'
-				class='w-32 sm:w-40 lg:w-[160px] dark-logo'
+				class='w-32 sm:w-40 lg:w-[160px] dark-logo hover:scale-110 transition-transform duration-500'
 			/>
 		</a>
 	</div>
 
 	<!-- Mobile Menu Button -->
-	<button class='md:hidden p-2'>
+	<button id='mobile-menu-btn' class='lg:hidden p-2 dark:text-white'>
 		<svg
 			class='w-6 h-6'
 			fill='none'
@@ -43,49 +44,151 @@ import Icon from "../components/Icon.astro";
 		</svg>
 	</button>
 
-	<nav class='hidden md:flex items-center space-x-3'>
-		<a
-			href="/texting"
-			class="flex items-center gap-2 lg:gap-3 text-sm lg:text-base"
-		>
-			<!-- TODO: pick an icon -->
-			<Icon name="texting" />
-			Texting
-		</a>
+	<!-- Desktop Navigation -->
+	<nav class='hidden lg:flex items-center space-x-8'>
 		<a
 			href='/about'
-			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
-			>
-			<Icon name="users" />
+			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500'
+		>
+			<Icon name='users' class='transition-transform duration-500' />
 			About Us
 		</a>
 		<a
 			href='/our-work'
-			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
+			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500'
 		>
-			<Icon name="work" />
+			<Icon name='work' class='transition-transform duration-500' />
 			Our Work
 		</a>
 		<a
 			href='/careers'
-			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
+			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500'
 		>
-			<Icon name="careers" />
+			<Icon name='careers' class='transition-transform duration-500' />
 			Careers
 		</a>
-		<a
-			href='#'
-			class='flex items-center gap-2 lg:gap-3 text-sm lg:text-base'
-		>
-			<Icon name="support" />
-			Support
-		</a>
+		<!-- Dropdown: Spoke -->
+		<div class='relative group'>
+			<a
+				class='cursor-default flex items-center gap-2 lg:gap-3 text-sm lg:text-base hover:scale-105 transition-transform duration-500 relative z-20'
+				href='/texting' 
+			>
+				<Icon name='support' class='transition-transform duration-500' />
+				Texting
+			</a>
+			<div
+				class='absolute -left-5 text-center top-0 h-32 mt-2 w-40 bg-white dark:bg-[#252753] border border-gray-200 dark:border-gray-700 shadow-md rounded-3xl opacity-0 transform translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 z-10'
+			>
+				<a
+					href='/texting'
+					class='block mt-10 px-4 py-2 text-sm text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#3f438e] transition-colors'
+				>
+					Spoke
+				</a>
+				<a
+					href='https://wtr-docs.pages.dev/'
+					target='_blank'
+					class='block px-4 py-2 text-sm text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-[#3f438e] transition-colors'
+				>
+					Support
+				</a>
+			</div>
+		</div>
 	</nav>
 
 	<a
-		href='#contact'
-		class='hidden md:block bg-[#747aff] hover:bg-[#646add] no-underline px-6 lg:px-8 py-2.5 lg:py-3 rounded-full text-sm lg:text-base font-bold transition-colors'
+		href='/#contact'
+		class='hidden lg:inline-flex no-underline hover:scale-105 duration-500 justify-center items-center gap-4 bg-[#747AFF] hover:bg-[#646ADD] !text-[#FFFCF7] text-center font-bold text-base uppercase leading-normal tracking-[1.28px] px-6 py-4 rounded-[32px] transition-colors'
 	>
 		CONTACT US
 	</a>
 </header>
+
+<!-- Fullscreen Mobile Navigation Menu -->
+<div
+	id='mobile-menu'
+	class='fixed inset-0 z-50 hidden opacity-0 bg-white dark:bg-gray-800 transition-opacity duration-1000 ease-in-out'
+>
+	<div class='fixed right-3 top-3 p-4'>
+		<button id='mobile-menu-close' class='p-2'>
+			<svg
+				class='w-6 h-6 text-gray-800 dark:text-gray-300'
+				fill='none'
+				stroke='currentColor'
+				stroke-width='2'
+				viewBox='0 0 24 24'
+				xmlns='http://www.w3.org/2000/svg'
+			>
+				<path
+					stroke-linecap='round'
+					stroke-linejoin='round'
+					d='M6 18L18 6M6 6l12 12'></path>
+			</svg>
+		</button>
+	</div>
+	<nav class='flex flex-col items-center justify-center space-y-2 h-full'>
+		<a
+			href='/about'
+			class='text-2xl font-semibold text-gray-800 dark:text-gray-300 hover:underline transition-colors'
+		>
+			About Us
+		</a>
+		<a
+			href='/our-work'
+			class='text-2xl font-semibold text-gray-800 dark:text-gray-300 hover:underline transition-colors'
+		>
+			Our Work
+		</a>
+		<a
+			href='/careers'
+			class='text-2xl font-semibold text-gray-800 dark:text-gray-300 hover:underline transition-colors'
+		>
+			Careers
+		</a>
+		<a
+			href='/texting'
+			class='text-2xl font-semibold text-gray-800 dark:text-gray-300 hover:underline transition-colors'
+		>
+			Spoke Texting
+		</a>
+		<a
+			href='https://wtr-docs.pages.dev/'
+			target='_blank'
+			class='text-2xl font-semibold text-gray-800 dark:text-gray-300 hover:underline transition-colors'
+		>
+			Spoke Support
+		</a>
+		<!-- Mobile Contact Button -->
+		<a
+			href='/#contact'
+			class='block text-center mt-4 bg-[#747AFF] hover:bg-[#646ADD] text-[#FFFCF7] font-bold text-xl uppercase leading-normal tracking-[1.28px] px-6 py-4 rounded-[32px] transition-colors'
+		>
+			CONTACT US
+		</a>
+	</nav>
+</div>
+
+<script lang='ts'>
+	document.addEventListener("DOMContentLoaded", () => {
+		const menuBtn = document.getElementById("mobile-menu-btn");
+		const closeBtn = document.getElementById("mobile-menu-close");
+		const mobileMenu = document.getElementById("mobile-menu");
+		function toggleMobileNav() {
+			if (mobileMenu) {
+				// Toggle hidden state
+				mobileMenu.classList.toggle("hidden");
+				// Toggle opacity classes for fade effect
+				mobileMenu.classList.toggle("opacity-0");
+				mobileMenu.classList.toggle("opacity-100");
+				// Disable/enable scroll on body
+				if (!mobileMenu.classList.contains("hidden")) {
+					document.body.classList.add("overflow-hidden");
+				} else {
+					document.body.classList.remove("overflow-hidden");
+				}
+			}
+		}
+		menuBtn?.addEventListener("click", toggleMobileNav);
+		closeBtn?.addEventListener("click", toggleMobileNav);
+	});
+</script>

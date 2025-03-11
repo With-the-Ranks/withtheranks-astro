@@ -639,7 +639,7 @@ export default function InquiryForm() {
 	};
 	
 	return (
-		<div ref={formRef} className='container w-full mx-auto'>
+		<div id="contact" ref={formRef} className='container w-full mx-auto'>
 			<style>{styles}</style>
 			<div className='bg-[#FFFCF7] w-full p-8 md:p-12 rounded-[32px]'>
 				<form
