@@ -41,6 +41,15 @@ export const POST = async ({
 				{ status: 400 }
 			);
 		}
+		const timelineMapping = ["ASAP", "1-2 months", "3-6 months", "Flexible"];
+		const budgetMapping = ["$2k-$5k", "$5k-$10k", "$10k+$", "Unsure"];
+
+		const timelineLabel = timeline
+			? timelineMapping[Number.parseInt(timeline) - 1]
+			: "";
+		const budgetLabel = budget
+			? budgetMapping[Number.parseInt(budget) - 1]
+			: "";
 
 		// Determine subject & HTML template
 		const subject = isQuickSignUp
@@ -58,8 +67,8 @@ export const POST = async ({
 					subdomain,
 					billingAddress,
 					needs,
-					timeline,
-					budget,
+					timeline: timelineLabel, // using the label here
+					budget: budgetLabel,  
 					secondaryContact,
 					orgDescription,
 					hearAboutUs,
@@ -102,8 +111,8 @@ export const POST = async ({
 					subdomain,
 					billingAddress,
 					needs,
-					timeline,
-					budget,
+					timelineLabel,
+					budgetLabel, 
 					secondaryContact,
 					orgDescription,
 					hearAboutUs,

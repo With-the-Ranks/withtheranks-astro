@@ -90,7 +90,7 @@ export default function InquiryForm() {
 		email: "",
 		organization: "",
 		needs: "",
-		timeline: "",
+		timeline: "1",
 		secondaryContact: "",
 		orgDescription: "",
 		primaryLocation: "",
@@ -98,7 +98,7 @@ export default function InquiryForm() {
 		billingAddress: "",
 		hearAboutUs: "",
 		audienceSize: "",
-		budget: "",
+		budget: "1",
 	});
 
 	const handleChange = (
@@ -155,7 +155,7 @@ export default function InquiryForm() {
 					email: "",
 					organization: "",
 					needs: "",
-					timeline: "",
+					timeline: "1",
 					secondaryContact: "",
 					orgDescription: "",
 					primaryLocation: "",
@@ -163,7 +163,7 @@ export default function InquiryForm() {
 					billingAddress: "",
 					hearAboutUs: "",
 					audienceSize: "",
-					budget: "",
+					budget: "1",
 				});
 			} else {
 				throw new Error(result.error);
@@ -611,7 +611,7 @@ export default function InquiryForm() {
 									email: "",
 									organization: "",
 									needs: "",
-									timeline: "",
+									timeline: "1",
 									secondaryContact: "",
 									orgDescription: "",
 									primaryLocation: "",
@@ -619,7 +619,7 @@ export default function InquiryForm() {
 									billingAddress: "",
 									hearAboutUs: "",
 									audienceSize: "",
-									budget: "",
+									budget: "1",
 								});
 							}}
 							className='solid-button  font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg'>
