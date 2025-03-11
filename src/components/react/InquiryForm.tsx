@@ -5,7 +5,7 @@ import { useRef, useState } from "react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
-import { ChevronRight, Send, RefreshCw } from "lucide-react";
+import { ChevronRight, Send, RefreshCw, Loader2 } from "lucide-react";
 import {
 	Select,
 	SelectContent,
@@ -83,6 +83,8 @@ var calendlyLink = "https://calendly.com/with-the-ranks/team-meeting";
 export default function InquiryForm() {
 	const [step, setStep] = useState(1);
 	const [inquiryType, setInquiryType] = useState<InquiryType>("");
+	const [isLoading, setIsLoading] = useState(false);
+	const [quickSignUpError, setQuickSignUpError] = useState<string | null>(null);
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -134,7 +136,9 @@ export default function InquiryForm() {
 			audienceSize: formData.audienceSize,
 			budget: formData.budget,
 		}).toString();
-	
+
+		setIsLoading(true);
+
 		try {
 			const response = await fetch("/api/send-email", {
 				method: "POST",
@@ -166,7 +170,8 @@ export default function InquiryForm() {
 			}
 		} catch (error) {
 			console.error("Email submission failed:", error);
-			alert("There was an error submitting your inquiry. Please try again.");
+		} finally {
+			setIsLoading(false);
 		}
 	};	
 
@@ -186,7 +191,16 @@ export default function InquiryForm() {
 
 	const handleQuickSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-
+	
+		// Validate inputs
+		if (!formData.name.trim() || !formData.email.trim()) {
+			setQuickSignUpError("Please enter your name and email.");
+			return;
+		}
+	
+		setIsLoading(true);
+		setQuickSignUpError(null);
+	
 		try {
 			const response = await fetch("/api/send-email", {
 				method: "POST",
@@ -196,18 +210,20 @@ export default function InquiryForm() {
 					email: formData.email,
 				}).toString(),
 			});
-
+	
 			const result = await response.json();
-
+	
 			if (result.success) {
 				setStep(5);
 				setFormData((prev) => ({ ...prev, name: "", email: "" }));
 			} else {
-				throw new Error(result.error);
+				throw new Error(result.error || "An unexpected error occurred.");
 			}
 		} catch (error) {
 			console.error("Signup failed:", error);
-			alert("There was an error signing up. Please try again.");
+			setQuickSignUpError("There was an error signing up. Please try again.");
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -321,11 +337,15 @@ export default function InquiryForm() {
 									className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
 								/>
 								<Button
+									disabled={isLoading}
 									type="submit"
 									onClick={handleQuickSignUp}
 									className='w-full solid-button  py-4 md:py-6 text-base md:text-lg font-semibold'>
 									Sign Up
 								</Button>
+							</div>
+							<div>
+								{quickSignUpError && <p className="text-red-500 text-sm">{quickSignUpError}</p>}
 							</div>
 						</div>
 					</div>
@@ -639,6 +659,7 @@ export default function InquiryForm() {
 							/>
 							<div className='flex gap-4 align-middle center flex-row justify-between items-baseline md:pt-3 space-y-4 md:space-y-0'>
 								<Button
+									disabled={isLoading}
 									type='button'
 									variant='outline'
 									onClick={() => handleStepChange(step - 1)}
@@ -646,9 +667,15 @@ export default function InquiryForm() {
 									Back
 								</Button>
 								<Button
+									disabled={isLoading}
 									type='submit'
 									className='w-full md:w-auto solid-button  font-semibold py-2 md:py-3 px-4 md:px-6 text-base md:text-lg'>
-									{step < getMaxSteps() ? (
+									{isLoading ? (
+										<>
+											<Loader2 className='w-4 h-4 md:w-5 md:h-5 animate-spin mr-2' />{" "}
+											Sending...
+										</>
+									) : step < getMaxSteps() ? (
 										<>
 											<span>Next</span>
 											<ChevronRight className='w-4 h-4 md:w-5 md:h-5 ml-2' />

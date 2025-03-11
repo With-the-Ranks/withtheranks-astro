@@ -1,5 +1,6 @@
 import { Resend } from "resend";
 import { getInquiryHtml } from "@/lib/emails/inquiryTemplate";
+import { getNewsletterHtml } from "@/lib/emails/newsletterTemplate";
 
 export const POST = async ({
 	request,
@@ -28,38 +29,48 @@ export const POST = async ({
 		const hearAboutUs = formData.get("hearAboutUs") as string | null;
 		const audienceSize = formData.get("audienceSize") as string | null;
 
-		if (!email || !name || !inquiryType) {
+		const isQuickSignUp = !inquiryType;
+
+		if (!email || !name) {
 			return new Response(
 				JSON.stringify({ success: false, error: "Missing required fields" }),
 				{ status: 400 }
 			);
 		}
 
-		// Generate the HTML email content
-		const htmlContent = getInquiryHtml({
-			name,
-			email,
-			inquiryType,
-			organization,
-			primaryLocation,
-			subdomain,
-			billingAddress,
-			needs,
-			timeline,
-			budget,
-			secondaryContact,
-			orgDescription,
-			hearAboutUs,
-			audienceSize,
-		});
+		// Determine subject & HTML template
+		const subject = isQuickSignUp
+			? "Welcome to Our Newsletter!"
+			: `New ${inquiryType.replace("-", " ")} Inquiry Received`;
 
+		const htmlContent = isQuickSignUp
+			? getNewsletterHtml( name )
+			: getInquiryHtml({
+					name,
+					email,
+					inquiryType,
+					organization,
+					primaryLocation,
+					subdomain,
+					billingAddress,
+					needs,
+					timeline,
+					budget,
+					secondaryContact,
+					orgDescription,
+					hearAboutUs,
+					audienceSize,
+			  });
+
+		// Send email
 		const response = await resend.emails.send({
 			from: "With The Ranks <no-reply@email.withtheranks.coop>",
 			to: [email],
 			cc: ["bob@withtheranks.com"],
-			subject: `New ${inquiryType.replace("-", " ")} Inquiry Received`,
+			subject,
 			html: htmlContent,
 		});
+
 		if (response.error) {
 			return new Response(
 				JSON.stringify({
