@@ -354,8 +354,18 @@ article li {
 
 @media (max-width: 768px) {
     article h2 {
-        font-size: 2.5rem;
-        line-height: 2.5rem;
+        font-size: 1.8rem;
+        line-height: 2.0rem;
+    }
+
+    article h3 {
+        font-size: 1.5em;
+        line-height: 1.8rem;
+    }
+
+    article p {
+        font-size: 1rem;
+        line-height: 1.5rem;
     }
 }
 
