@@ -1,7 +1,7 @@
 import { Resend } from "resend";
-import { google } from "googleapis";
 import { getInquiryHtml } from "@/lib/emails/inquiryTemplate";
 import { getNewsletterHtml } from "@/lib/emails/newsletterTemplate";
+import { getGoogleAccessToken } from "@/lib/auth";
 
 export const POST = async ({
 	request,
@@ -14,7 +14,6 @@ export const POST = async ({
 		const GOOGLE_SERVICE_KEY_BASE64 =
 			locals.runtime.env.GOOGLE_SERVICE_KEY_BASE64;
 		const GOOGLE_SHEET_ID = locals.runtime.env.GOOGLE_SHEET_ID;
-		const PROJECT_ID = locals.runtime.env.PROJECT_ID;
 		const resend = new Resend(locals.runtime.env.RESEND_API_KEY);
 		const formData = await request.formData();
 
@@ -68,7 +67,7 @@ export const POST = async ({
 				});
 
 		// Send email
-		const response = await resend.emails.send({
+		const emailResponse = await resend.emails.send({
 			from: "With The Ranks <no-reply@email.withtheranks.coop>",
 			to: [email],
 			cc: ["bob@withtheranks.com"],
@@ -76,74 +75,63 @@ export const POST = async ({
 			html: htmlContent,
 		});
 
-		if (response.error) {
+		if (emailResponse.error) {
 			return new Response(
 				JSON.stringify({
 					success: false,
-					error: response.error.message ?? "Unknown error",
+					error: emailResponse.error.message ?? "Unknown error",
 				}),
 				{ status: 500 }
 			);
 		}
 
-		// Record sign-up in Google Sheets
-		if (GOOGLE_SERVICE_KEY_BASE64 && GOOGLE_SHEET_ID && PROJECT_ID) {
-			const credential = JSON.parse(
-				Buffer.from(GOOGLE_SERVICE_KEY_BASE64, "base64").toString()
-			);
+		const access_token = await getGoogleAccessToken(GOOGLE_SERVICE_KEY_BASE64);
+		if (!access_token) throw new Error("Failed to retrieve access token");
 
-			const auth = new google.auth.GoogleAuth({
-				credentials: {
-					client_email: credential.client_email,
-					private_key: credential.private_key.replace(/\\n/g, "\n"),
+		// Append Data to Google Sheets
+		const dateSubmitted = new Date().toISOString().split("T")[0];
+		const rowData = isQuickSignUp
+			? [name, email, "newsletter-signup", dateSubmitted]
+			: [
+					name,
+					email,
+					inquiryType,
+					dateSubmitted,
+					organization,
+					primaryLocation,
+					subdomain,
+					billingAddress,
+					needs,
+					timeline,
+					budget,
+					secondaryContact,
+					orgDescription,
+					hearAboutUs,
+					audienceSize,
+				];
+
+		const sheetsResponse = await fetch(
+			`https://sheets.googleapis.com/v4/spreadsheets/${GOOGLE_SHEET_ID}/values/Sheet1!A1:append?valueInputOption=USER_ENTERED`,
+			{
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${access_token}`,
+					"Content-Type": "application/json",
 				},
-				projectId: PROJECT_ID,
-				scopes: [
-					"https://www.googleapis.com/auth/drive",
-					"https://www.googleapis.com/auth/drive.file",
-					"https://www.googleapis.com/auth/spreadsheets",
-				],
-			});
+				body: JSON.stringify({ values: [rowData] }),
+			}
+		);
 
-			const sheets = google.sheets({ auth, version: "v4" });
-
-			// Format the date
-			const dateSubmitted = new Date().toISOString().split("T")[0];
-
-			// Determine what to store
-			const rowData = isQuickSignUp
-				? [name, email, "newsletter-signup", dateSubmitted]
-				: [
-						name,
-						email,
-						inquiryType,
-						dateSubmitted,
-						organization,
-						primaryLocation,
-						subdomain,
-						billingAddress,
-						needs,
-						timeline,
-						budget,
-						secondaryContact,
-						orgDescription,
-						hearAboutUs,
-						audienceSize,
-					];
-			// Append data to Google Sheet
-			await sheets.spreadsheets.values.append({
-				spreadsheetId: GOOGLE_SHEET_ID,
-				range: "Sheet1",
-				valueInputOption: "USER_ENTERED",
-				requestBody: { values: [rowData] },
-			});
+		if (!sheetsResponse.ok) {
+			throw new Error(
+				`Google Sheets API error: ${await sheetsResponse.text()}`
+			);
 		}
 
 		return new Response(
 			JSON.stringify({
 				success: true,
 				message: "Email sent and recorded successfully!",
-				data: response,
 			}),
 			{ status: 200 }
 		);
