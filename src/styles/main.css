@@ -96,6 +96,10 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     color: #470cec;
 }
 
+[data-theme="dark"] header a:hover {
+    color: #FFE872;
+}
+
 
 /* Fonts */
 /* Crimson Text */
