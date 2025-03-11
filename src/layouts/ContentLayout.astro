@@ -1,0 +1,61 @@
+---
+export interface Props {
+  title: string;
+  bannerCategory?: string;
+  bannerTitle?: string;
+  bannerSubtitle?: string;
+  theme?: string;
+  bannerColor?: string;
+  toc?: { id: string; label: string }[];
+}
+const { title, bannerCategory, bannerTitle, bannerSubtitle, theme, bannerColor, toc } = Astro.props;
+import Layout from "../layouts/Layout.astro";
+---
+<Layout title={title} theme={theme}>
+  <div class="m-2">
+    <!-- Banner Section -->
+    <section class={`container mx-auto rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 sm:p-8 lg:p-12 xl:p-16 relative overflow-hidden ${bannerColor ? bannerColor : 'bg-[#ffe872]'}`}>
+      {bannerCategory && (
+        <div class="bg-[#252753] bg-opacity-20 text-[#252753] font-bold text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-1.5 rounded-full inline-block mb-3 max-w-4xl">
+          {bannerCategory}
+        </div>
+      )}
+      {bannerTitle && (
+        <h2 class="text-[#252753] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6" set:html={bannerTitle}></h2>
+      )}
+      {bannerSubtitle && (
+        <p class="text-[#252753] text-3xl mb-8 max-w-4xl">
+          {bannerSubtitle}
+        </p>
+      )}
+    </section>
+
+    <!-- Main Content Section -->
+    <main class="mx-auto pb-8 sm:pb-12 lg:pb-16">
+      <div class="container mx-auto relative z-[2] px-4">
+        {toc?.length ? (
+          <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-20 mt-5 lg:mt-16 items-start">
+            <!-- Table of Contents -->
+            <aside class="bg-[#959AF6] w-full mx-auto bg-opacity-20 rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 lg:p-6 xl:p-6 lg:sticky lg:top-10 overflow-hidden lg:col-span-1 on-this-page">
+              <h3 class="text-lg font-semibold mb-2">On this page</h3>
+              {toc.map(({ id, label }) => (
+                <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
+                <a class="no-underline hover:bg-[#959AF6]" href={`#${id}`} >
+                  <h3 class="font-normal mb-0">{label}</h3>
+                </a>
+              ))}
+            </aside>
+            <!-- Content -->
+            <article class="relative lg:col-span-3 text-[#252753]">
+              <slot />
+            </article>
+          </div>
+        ) : (
+          <article class="md:w-2/3 mx-auto mt-16 text-[#252753]">
+            <slot />
+          </article>
+        )}
+      </div>
+    </main>
+  </div>
+</Layout>
