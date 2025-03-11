@@ -79,7 +79,7 @@ export const POST = async ({
 		const emailResponse = await resend.emails.send({
 			from: "With The Ranks <no-reply@email.withtheranks.coop>",
 			to: [email],
-			cc: ["bob@withtheranks.com"],
+			cc: ["support@withtheranks.com"],
 			subject,
 			html: htmlContent,
 		});
