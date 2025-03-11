@@ -232,7 +232,7 @@ export default function InquiryForm() {
 			case 1:
 				return (
 					<div className='space-y-8 md:space-y-12'>
-						<div className='space-y-4 md:space-y-6'>
+						<div className='space-y-4 md:space-y-6 pt-8 px-4'>
 							<h2 className='serif-heading font-bold text-3xl mb-0 md:text-5xl lg:text-7xl text-[#252753] leading-tight'>
 								Let us know how we can help.
 							</h2>
@@ -353,7 +353,7 @@ export default function InquiryForm() {
 			case 2:
 				return (
 					<div className='space-y-6 md:space-y-8'>
-						<div className='space-y-2'>
+						<div className='space-y-2 pt-8 px-4'>
 							<h3 className='text-xl md:text-5xl font-bold mb-0 md:mb-3'>
 								{inquiryType === "new-project" && "Tell us about your project"}
 								{inquiryType === "spoke-services" &&
@@ -431,7 +431,7 @@ export default function InquiryForm() {
 				if (inquiryType === "new-project") {
 					return (
 						<div className='space-y-6 md:space-y-8'>
-							<div className='space-y-2'>
+							<div className='space-y-2 pt-8 px-4'>
 								<h3 className='text-xl md:text-5xl font-bold  mb-0 md:mb-3'>
 									Project Details
 								</h3>
@@ -516,7 +516,7 @@ export default function InquiryForm() {
 			case 4:
 				return (
 					<div className='space-y-6 md:space-y-8'>
-						<div className='space-y-2'>
+						<div className='space-y-2 pt-8 px-4'>
 							<h3 className='text-xl md:text-5xl font-bold mb-0 md:mb-3'>
 								Additional Information
 							</h3>
@@ -579,8 +579,8 @@ export default function InquiryForm() {
 				);
 			case 5: // Thank you screen
 				return (
-					<div className='space-y-6 md:space-y-8 text-center'>
-						<h2 className='serif-heading font-bold text-2xl md:text-5xl  leading-tight'>
+					<div className='space-y-6 md:space-y-8 text-center pb-8'>
+						<h2 className='serif-heading font-bold text-2xl md:text-5xl pt-8 px-4 leading-tight'>
 							Thank You for Your Inquiry!
 						</h2>
 						{inquiryType != "schedule-meeting" && (
@@ -641,7 +641,7 @@ export default function InquiryForm() {
 	return (
 		<div id="contact" ref={formRef} className='container w-full mx-auto'>
 			<style>{styles}</style>
-			<div className='bg-[#FFFCF7] w-full p-8 md:p-12 rounded-[32px]'>
+			<div className='bg-[#FFFCF7] w-full p-2 sm:p-8 md:p-12 rounded-[32px]'>
 				<form
 					onSubmit={handleSubmit}
 					className='space-y-6 max-w-[800px] md:space-y-8 mx-auto lg:mt-6 text-[#232656]'>
@@ -663,13 +663,13 @@ export default function InquiryForm() {
 									type='button'
 									variant='outline'
 									onClick={() => handleStepChange(step - 1)}
-									className='w-full md:w-auto border-black text-black hover: hover:bg-slate-200 rounded-full px-4 md:px-6 py-2 md:py-3 text-base md:text-lg'>
+									className='w-full md:w-auto dark:border-black/5 dark:bg-white text-black hover:bg-slate-200 rounded-full px-4 md:px-6 py-2 md:py-3 text-base md:text-lg'>
 									Back
 								</Button>
 								<Button
 									disabled={isLoading}
 									type='submit'
-									className='w-full md:w-auto solid-button  font-semibold py-2 md:py-3 px-4 md:px-6 text-base md:text-lg'>
+									className='w-full md:w-auto solid-button font-semibold py-2 md:py-3 px-4 md:px-6 text-base md:text-lg'>
 									{isLoading ? (
 										<>
 											<Loader2 className='w-4 h-4 md:w-5 md:h-5 animate-spin mr-2' />{" "}
