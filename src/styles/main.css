@@ -350,6 +350,8 @@ article ul {
 
 article li {
     font-family: 'Crimson Text', serif;
+    font-size: 1.5rem;
+    line-height: 1.8rem;
 }
 
 @media (max-width: 768px) {
@@ -363,7 +365,7 @@ article li {
         line-height: 1.8rem;
     }
 
-    article p {
+    article p, article li {
         font-size: 1rem;
         line-height: 1.5rem;
     }
