@@ -6,8 +6,9 @@ export interface Props {
   bannerSubtitle?: string;
   theme?: string;
   bannerColor?: string;
+  toc?: { id: string; label: string }[];
 }
-const { title, bannerCategory, bannerTitle, bannerSubtitle, theme, bannerColor } = Astro.props;
+const { title, bannerCategory, bannerTitle, bannerSubtitle, theme, bannerColor, toc } = Astro.props;
 import Layout from "../layouts/Layout.astro";
 ---
 <Layout title={title} theme={theme}>
@@ -32,13 +33,19 @@ import Layout from "../layouts/Layout.astro";
     <!-- Main Content Section -->
     <main class="mx-auto pb-8 sm:pb-12 lg:pb-16">
       <div class="container mx-auto relative z-[2] px-4">
-        {Astro.slots.toc ? (
+        {toc?.length ? (
           <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-20 mt-5 lg:mt-16 items-start">
-            <!-- Table of Contents Slot -->
+            <!-- Table of Contents -->
             <aside class="bg-[#959AF6] w-full mx-auto bg-opacity-20 rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 lg:p-6 xl:p-6 lg:sticky lg:top-10 overflow-hidden lg:col-span-1 on-this-page">
-              <slot name="toc" />
+              <h3 class="text-lg font-semibold mb-2">On this page</h3>
+              {toc.map(({ id, label }) => (
+                <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
+                <a class="no-underline hover:bg-[#959AF6]" href={`#${id}`} >
+                  <h3 class="font-normal mb-0">{label}</h3>
+                </a>
+              ))}
             </aside>
-            <!-- Markdown / Page Content -->
+            <!-- Content -->
             <article class="relative lg:col-span-3 text-[#252753]">
               <slot />
             </article>
