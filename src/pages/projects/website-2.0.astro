@@ -8,43 +8,16 @@ import ContentLayout from "../../layouts/ContentLayout.astro";
   bannerSubtitle="Building Website 2.0 for our tech workers' cooperative."
   theme="light"
   bannerColor="bg-[#EAEAFD]"
+  toc={[
+    { id: "introduction", label: "Introduction" },
+		{ id: "our-cooperative-environment", label: "Our Cooperative Environment" },
+    { id: "adopting-the-basecamp-shape-up-method", label: "Adopting the Basecamp Shape Up Method" },
+    { id: "design-and-development-process", label: "Design and Development Process" },
+    { id: "balancing-multiple-projects", label: "Balancing Multiple Projects" },
+		{ id: "lessons-learned", label: "Lessons Learned" },
+    { id: "Conclusion", label: "Conclusion" },
+  ]}
 >
-  <!-- Table of Contents Slot -->
-  <div slot="toc">
-    <h3 class="font-bold mb-3">On this page</h3>
-    <a class="no-underline hover:bg-[#959AF6]" href="#introduction">
-      <h3 class="font-normal mb-0">Introduction</h3>
-    </a>
-    <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
-    <a class="no-underline hover:bg-[#959AF6]" href="#our-cooperative-environment">
-      <h3 class="font-normal mb-0">Our Cooperative Environment</h3>
-    </a>
-    <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
-    <a class="no-underline hover:bg-[#959AF6]" href="#adopting-the-basecamp-shape-up-method">
-      <h3 class="font-normal mb-0">Adopting the Basecamp Shape Up Method</h3>
-    </a>
-    <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
-    <a class="no-underline hover:bg-[#959AF6]" href="#design-and-development-process">
-      <h3 class="font-normal mb-0">Design and Development Process</h3>
-    </a>
-    <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
-    <a class="no-underline hover:bg-[#959AF6]" href="#balancing-multiple-projects">
-      <h3 class="font-normal mb-0">Balancing Multiple Projects</h3>
-    </a>
-    <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
-    <a class="no-underline hover:bg-[#959AF6]" href="#tech-stack-considerations">
-      <h3 class="font-normal mb-0">Tech Stack Considerations</h3>
-    </a>
-    <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
-    <a class="no-underline hover:bg-[#959AF6]" href="#lessons-learned">
-      <h3 class="font-normal mb-0">Lessons Learned</h3>
-    </a>
-    <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
-    <a class="no-underline hover:bg-[#959AF6]" href="#conclusion">
-      <h3 class="font-normal mb-0">Conclusion</h3>
-    </a>
-  </div>
-
   <!-- Main Article Content -->
   <article class="relative text-[#252753]">
     <h2 id="introduction" class="text-3xl font-bold mb-4">Introduction</h2>
