@@ -8,34 +8,56 @@ const { title = "With the Ranks", theme = "dark" } = Astro.props;
 
 <!doctype html>
 <html lang="en" data-theme={theme}>
-	<head>
-		<meta charset="UTF-8" />
-		<!-- Primary Meta Tags -->
-		<title>{title}</title>
-		<meta name="title" content={title} />
-		<meta name="description" content="With the Ranks is a worker-owned cooperative focused on helping campaigns, non-profits and unions figure out tech." />
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta
+      name="description"
+      content="With the Ranks is a worker-owned cooperative focused on helping campaigns, non-profits and unions figure out tech."
+    />
 
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content="https://withtheranks.com" />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content="With the Ranks is a worker-owned cooperative focused on helping campaigns, non-profits and unions figure out tech." />
-		<meta property="og:image" content="/assets/meta.png" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://withtheranks.com" />
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content="With the Ranks is a worker-owned cooperative focused on helping campaigns, non-profits and unions figure out tech."
+    />
+    <meta property="og:image" content="/assets/meta.png" />
 
-		<!-- Twitter -->
-		<meta property="twitter:card" content="summary_large_image" />
-		<meta property="twitter:url" content="https://withtheranks.com" />
-		<meta property="twitter:title" content={title} />
-		<meta property="twitter:description" content="With the Ranks is a worker-owned cooperative focused on helping campaigns, non-profits and unions figure out tech." />
-		<meta property="twitter:image" content="/assets/meta.png" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://withtheranks.com" />
+    <meta property="twitter:title" content={title} />
+    <meta
+      property="twitter:description"
+      content="With the Ranks is a worker-owned cooperative focused on helping campaigns, non-profits and unions figure out tech."
+    />
+    <meta property="twitter:image" content="/assets/meta.png" />
 
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-	</head>
-	<body>
-		<Nav />
-		<slot />
-		<Footer/>
-	</body>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <script
+      defer
+      data-domain="withtheranks.com"
+      src="https://plausible.io/js/script.outbound-links.tagged-events.js"
+    ></script>
+    <script lang="js">
+      window.plausible =
+        window.plausible ||
+        function () {
+          (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+    </script>
+  </head>
+  <body>
+    <Nav />
+    <slot />
+    <Footer />
+  </body>
 </html>
