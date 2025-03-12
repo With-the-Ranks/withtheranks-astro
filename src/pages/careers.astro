@@ -5,43 +5,47 @@ import "animate.css";
 ---
 
 <ContentLayout
-	title='Careers at With the Ranks'
-	bannerCategory='Careers'
-	bannerTitle='Come work with us.'
-	bannerSubtitle='With the Ranks is looking to hire consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem.'
-	theme='light'
-	bannerColor='bg-[#8C9DFF]'
+  title="Careers at With the Ranks"
+  bannerCategory="Careers"
+  bannerTitle="Come work with us."
+  bannerSubtitle="If you're passionate about building tech for good causes, we want to talk to you!"
+  theme="light"
+  bannerColor="bg-[#8C9DFF]"
+  toc={[
+	{ id: "about-our-work", label: "About our work" },
+	{ id: "contact", label: "Connect with us" },
+  ]}
 >
-	<div class='w-full mx-auto'>
-		<InquiryForm 
-			showAllOptions={false}
-			title="Connect with us!"
-			subtitle="We're always looking for talented individuals to join our team."
-			helloText="Let us know what you're working on."
-			client:load
-		/>
-	</div>
-	<div
-		class='bg-[#FFE872] text-center sm:text-left rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-4 lg:p-6 xl:p-8 relative overflow-hidden grid grid-cols-1 md:grid-cols-10 mx-auto'
-	>
-		<div class='md:col-span-1 mx-auto'>
-			<img
-				src='https://16f7z77xpz.ufs.sh/f/jIPuATEnymTt5uIaTlPqEjVfunN0aMdJbkewOQl2ZRBvoDTx'
-				alt='Career image'
-				class="w-10 sm:w-full"
-			/>
-		</div>
-		<div class='md:col-span-9 mx-auto sm:text-left'>
-			<h3 class='text-[#232656] font-bold text-xl mb-0 sm:text-3xl xl:text-4xl'>
-				Don’t see a position you’d fit in?
-			</h3>
-			<p class='text-[#232656]'>
-				We’re always open to talking with good people, regardless of what you
-				do.
-			</p>
-			<a href='mailto:hello@withtheranks.com'>
-				<p class='text-[#232656] mb-0 text-xs sm:text-xl'>Let us know what you’re working on ⤳</p>
-			</a>
-		</div>
-	</div>
+  <div class="w-full mx-auto" id="about-our-work">
+    <p>
+      Whether you're a designer, developer, project manager, or just interested
+      in helping good causes figure out tech, we're always looking to connect
+      with good people.
+    </p>
+    <p>
+      Our work spans the gamut from the tiniest city council campaigns to large
+      global nonprofits and national political campaigns, and we're also
+      building some exciting internal products and services, too.
+    </p>
+
+    <p>
+      We love to build and host high-performing websites and apps, develop
+      cohesive tech strategies to organize at scale, run A/B tests to optimize
+      websites, improve accessibility and page speed on existing websites, run
+      peer-to-peer texting campaigns through our self hosted fork of Spoke,
+      build and maintain open source tech tools, and a whole lot more.
+    </p>
+
+    <p>
+      If that sounds like something you're interested in and you think you can contribute to our cooperative, let us know via the
+      form below and we'll be in touch!
+    </p>
+    <InquiryForm
+      showAllOptions={false}
+      title="Connect with us!"
+      subtitle="We're always looking for talented individuals to join our team."
+      helloText="Let us know what you're working on."
+      client:load
+    />
+  </div>
 </ContentLayout>
