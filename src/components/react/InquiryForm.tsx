@@ -277,7 +277,7 @@ export default function InquiryForm() {
 								type="button"
 								onClick={() => {
 									setInquiryType("general-contact");
-									handleStepChange(getMaxSteps() + 1);
+									handleStepChange(2);
 								}}
 								className='tertiary-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
 								<span className='tag'>Support</span>
