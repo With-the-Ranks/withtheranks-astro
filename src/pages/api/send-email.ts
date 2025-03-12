@@ -76,22 +76,14 @@ export const POST = async ({
 				});
 
 		// Send email
-		const emailResponse = isQuickSignUp ? { error: null } : await resend.emails.send({
-			from: "With The Ranks <no-reply@email.withtheranks.com>",
-			to: [email],
-			cc: ["support@withtheranks.com"],
-			subject,
-			html: htmlContent,
-		});
-
-		if (emailResponse.error) {
-			return new Response(
-				JSON.stringify({
-					success: false,
-					error: emailResponse.error.message ?? "Unknown error",
-				}),
-				{ status: 500 }
-			);
+		if (!isQuickSignUp) {
+			resend.emails.send({
+				from: "With The Ranks <no-reply@email.withtheranks.coop>",
+				to: [email],
+				cc: ["support@withtheranks.com"],
+				subject,
+				html: htmlContent,
+			}).catch(() => {});
 		}
 
 		const access_token = await getGoogleAccessToken(GOOGLE_SERVICE_KEY_BASE64);
