@@ -99,9 +99,18 @@ type InquiryType =
 
 var calendlyLink = 'https://calendly.com/with-the-ranks/team-meeting';
 
-export default function InquiryForm() {
-	const [step, setStep] = useState(1);
-	const [inquiryType, setInquiryType] = useState<InquiryType>("");
+export interface InquiryFormProps {
+	inquiryType?: InquiryType
+	removeTopMargin?: boolean
+}
+
+const InquiryForm: React.FC<InquiryFormProps> = (props) => {
+	const topMarginClass = props.removeTopMargin ? "" : "mt-16";
+
+	const startingStep = props.inquiryType ? 2 : 1;
+	const [step, setStep] = useState(startingStep);
+	const [inquiryType, setInquiryType] = useState<InquiryType>(props.inquiryType ?? "");
+
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -569,7 +578,7 @@ export default function InquiryForm() {
 									budget: "",
 								});
 							}}
-							className='solid-button  font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg'>
+							className='solid-button font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg'>
 							<RefreshCw className='w-4 h-4 md:w-5 md:h-5 mr-2' />
 							Start Over
 						</Button>
@@ -581,11 +590,11 @@ export default function InquiryForm() {
 	};
 
 	return (
-		<div id="contact" className='form-container container w-full mx-auto p-4 md:p-12 mt-20'>
+		<div id="contact" className={`form-container container w-full mx-auto p-4 md:p-12 ${topMarginClass}`}>
 			<style>{styles}</style>
 			<form
 				onSubmit={handleSubmit}
-				className='space-y-6 md:space-y-8 max-w-[800px] mx-auto mt-16'>
+				className={`space-y-6 md:space-y-8 max-w-[800px] mx-auto ${topMarginClass}`}>
 				{renderStep()}
 				{step > 1 && step <= getMaxSteps() && (
 					<div>
@@ -628,3 +637,5 @@ export default function InquiryForm() {
 		</div>
 	);
 }
+
+export default InquiryForm
