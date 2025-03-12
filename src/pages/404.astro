@@ -69,3 +69,6 @@ import Button from "../components/Button.astro";
 		}
 	});
 </script>
+
+<!-- Track 404s in Plausible -->
+<script is:inline>document.addEventListener('DOMContentLoaded', function () { plausible('404', { props: { path: document.location.pathname } }); });</script>
