@@ -47,7 +47,7 @@ const { title = "With the Ranks", theme = "dark" } = Astro.props;
       data-domain="withtheranks.com"
       src="https://plausible.io/js/script.outbound-links.tagged-events.js"
     ></script>
-    <script lang="js">
+    <script is:inline>
       window.plausible =
         window.plausible ||
         function () {
