@@ -1,0 +1,51 @@
+---
+import InquiryForm from "@/components/react/InquiryForm";
+import ContentLayout from "../layouts/ContentLayout.astro";
+import "animate.css";
+---
+
+<ContentLayout
+  title="Careers at With the Ranks"
+  bannerCategory="Careers"
+  bannerTitle="Come work with us."
+  bannerSubtitle="If you're passionate about building tech for good causes, we want to talk to you!"
+  theme="light"
+  bannerColor="bg-[#8C9DFF]"
+  toc={[
+	{ id: "about-our-work", label: "About our work" },
+	{ id: "contact", label: "Connect with us" },
+  ]}
+>
+  <div class="w-full mx-auto" id="about-our-work">
+    <p>
+      Whether you're a designer, developer, project manager, or just interested
+      in helping good causes figure out tech, we're always looking to connect
+      with good people.
+    </p>
+    <p>
+      Our work spans the gamut from the tiniest city council campaigns to large
+      global nonprofits and national political campaigns, and we're also
+      building some exciting internal products and services, too.
+    </p>
+
+    <p>
+      We love to build and host high-performing websites and apps, develop
+      cohesive tech strategies to organize at scale, run A/B tests to optimize
+      websites, improve accessibility and page speed on existing websites, run
+      peer-to-peer texting campaigns through our self hosted fork of Spoke,
+      build and maintain open source tech tools, and a whole lot more.
+    </p>
+
+    <p>
+      If that sounds like something you're interested in and you think you can contribute to our cooperative, let us know via the
+      form below and we'll be in touch!
+    </p>
+    <InquiryForm
+      showAllOptions={false}
+      title="Connect with us!"
+      subtitle="We're always looking for talented individuals to join our team."
+      helloText="Let us know what you're working on."
+      client:load
+    />
+  </div>
+</ContentLayout>

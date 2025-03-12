@@ -1,0 +1,72 @@
+<footer class="relative container rounded-2xl sm:rounded-3xl lg:rounded-[32px] mx-auto mb-1 bg-[#252753] text-white py-12 sm:py-16 px-6 sm:px-24 overflow-hidden">
+  <!-- Logo overlay - behind everything -->
+  <div class="absolute inset-0 z-0 flex items-center justify-center">
+    <img 
+      src="/assets/footer-logo.png" 
+      alt="With the Ranks Logo" 
+      class="max-w-[80%] md:max-w-[60%] lg:max-w-[50%] object-contain"
+    />
+  </div>
+
+  <!-- Gradient overlay -->
+  <div class="absolute inset-0 z-[1] opacity-30">
+    <div class="w-full h-full bg-[radial-gradient(33.22%_84.51%_at_50.03%_100%,#2AFFCC_0%,#252753_100%)]"></div>
+  </div>
+
+  <div class="container mx-auto max-w-6xl relative z-[2]">
+    <div class="grid grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+      <!-- Connect Column -->
+      <div>
+        <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-6">Connect</h2>
+        <ul class="space-y-3">
+          <li><a href="mailto:hello@withtheranks.com" class="footer-link">hello@withtheranks.com</a></li>
+        </ul>
+      </div>
+
+      <!-- Our Work Column -->
+      <div>
+        <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-6">Our Work</h2>
+        <ul class="space-y-3">
+          <li><a href="/our-work" class="footer-link">Case Studies</a></li>
+          <li><a href="/about" class="footer-link">About Us</a></li>
+          <li><a href="/texting" class="footer-link">Spoke Texting</a></li>
+        </ul>
+      </div>
+
+      <!-- Support Column -->
+      <div>
+        <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-6">Support</h2>
+        <ul class="space-y-3">
+          <li><a href="/docs" target="_blank" class="footer-link">Spoke</a></li>
+          <li><a href="/contact" class="footer-link">Get in touch</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Footer text -->
+    <div class="mt-16 text-center">
+      <p class="text-[#fffcf7] text-lg opacity-80">
+        With the Ranks is 100% worker-owned, and we don't use cookies.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-link {
+    color: #FFFCF766;
+    font-size: 1.25rem;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.3s ease-in-out;
+  }
+  .footer-link:hover {
+    color: #FFFCF7;
+  }
+  @media (max-width: 768px) {
+    .footer-link {
+      font-size: 1rem;
+    }
+    
+  }
+</style>

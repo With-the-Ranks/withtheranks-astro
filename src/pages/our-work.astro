@@ -1,0 +1,271 @@
+---
+import ContentLayout from "../layouts/ContentLayout.astro";
+import "animate.css";
+import Timeline from "../components/Timeline.astro";
+---
+
+<ContentLayout
+	title='Our Work - With the Ranks'
+	bannerCategory='Our Work'
+	bannerTitle="Here's what we've <br/> been up to lately."
+	theme='light'
+	bannerColor='bg-[#8EFFD0]'
+>
+	<div class='w-full mx-auto'>
+		<Timeline
+			entries={[
+				{
+					year: "2025",
+					items: [
+						{
+							highlight: true,
+							title: "We're open for work!",
+							description:
+								"Working on mobilizing people for good? We're currently booking work for 2025.",
+							link: {
+								text: "Let us know what you're working on",
+								href: "/contact",
+							},
+						},
+					],
+				},
+				{
+					year: "2024",
+					items: [
+						{
+							title: "Launching our peer-to-peer texting program.",
+							description:
+								"With the Ranks launched our low-cost texting program through Spoke, the open source texting platform built for organizers.",
+							link: { text: "Learn more about Spoke", href: "/texting" },
+						},
+						{
+							title:
+								"Rebranding a mass movement of workers with Organized Power in Numbers.",
+							description:
+								"In 2024 Unemployed Workers United became Organized Power in Numbers, and we were there to quickly bring their rebrand to the web, rapidly redesigning their website and ensuring existing content and ongoing organizing efforts were supported.",
+							link: {
+								text: "Visit the site",
+								href: "https://powerinnumbers.us/",
+							},
+						},
+						{
+							title:
+								"Expanding our voter guides in Georgia, Oregon and Virginia.",
+							description:
+								"Working alongside Winning Mark, our battle-tested voter guide iterations continued to get bigger and better, with new features and updated information all aimed at empowering voters to make informed decisions.",
+						},
+						{
+							title: "Winning reproductive rights in Colorado.",
+							description:
+								"We built a site for Coloradans for Reproductive Freedom, a reproductive rights group focused on expanding access to abortion in Colorado. In November of 2024, Amendment 79 passed, and reproductive rights were enshrined in Colorado's constitution.",
+							link: {
+								text: "Visit the site",
+								href: "https://coloradansforreproductivefreedom.com/",
+							},
+						},
+						{
+							title:
+								"Fostering productive conversations with Dialogue Collaborative.",
+							description:
+								"We believe that major improvements are needed across the media landscape and that today's most popular sources of news and information are woefully inadequate in presenting the important topics of our era. Dialogue Collaborative seeks to bridge the participation gap in civic engagement through fact-based education and research. We worked with Winning Mark to build their inaugural website and are excited to support their mission",
+							link: { text: "Visit the site", href: "https://dialoguecollab.org/" },
+						},
+						{
+							title:
+								"Highlighting stories for underrepresented Georgians with The Peach Pit.",
+							description:
+								"The Peach Pit is an insightful storytelling hub dedicated to amplifying underrepresented voices and delivering fact-based reporting on the issues that matter most to Georgians. In partnership with Winning Mark, we built a home for these stories.",
+							link: { text: "Visit the site", href: "https://gapeachpit.com/" },
+						},
+						{
+							title:
+								"Launching a digital presence for Oregon Rebate's ballot measure.",
+							description:
+								"We worked with the team at Oregon Rebate to design branding and a custom website for Yes on Measure 118, an effort to make Oregon corporations pay their fair share, complete with an interactive rebate calculator.",
+							link: {
+								text: "Visit the site",
+								href: "https://www.yesonmeasure118.com/",
+							},
+						},
+					],
+				},
+				{
+					year: "2023",
+					items: [
+						{
+							title:
+								"Illustrating what the country is thinking with Bernie Sanders.",
+							description:
+								"In December of 2023, Bernie Sanders sent out an email asking a simple question: Do you think life in America is better today than it was 50 years ago? We worked with the Sanders team to build an interactive web page to highlight those responses and demonstrate how the country is thinking about the future.",
+							link: {
+								text: "Visit the site",
+								href: "https://berniesanders.com/better-or-worse/",
+							},
+						},
+						{
+							title: "Supporting pro-education voters in Virginia.",
+							description:
+								"We developed The Virginia Voter Guide, an essential election resource empowering Virginia Education Association members and the public to support pro-education candidates and policies that shape the future of public schools.",
+							link: { text: "Learn more", href: "https://www.thevirginiavoterguide.com/" },
+						},
+						{
+							title: "Refreshing 350.org's global online presence.",
+							description:
+								"We helped the 350 team process and implement the results of an organization-wide internal website audit, refining their global online presence and making clearer the priorities of their movement.",
+							link: { text: "Visit 350.org", href: "https://350.org" },
+						},
+						{
+							title: "Helping to fix healthcare in Arizona.",
+							description:
+								"Representing the interests of Arizonans who believe that the healthcare system should help regular people, Healthcare Rising Arizona advocates for action through the ballot box, direct action, and legislation. We worked with Winning Mark to build and maintain a website that showcased their mission and provided resources to get involved.",
+							link: {
+								text: "Visit the site",
+								href: "https://www.healthcarerisingaz.org/",
+							},
+						},
+						{
+							title: "Celebrating 10 years of Global Power Shift with 350.org.",
+							description:
+								"In 2013, 350.org helped launch Global Power Shift, a movement that sparked climate action across the globe. We worked with the 350 team to build an interactive web page to celebrate the 10 year anniversary of the project, highlighting the movement's history and sharing a vision for the future.",
+							link: {
+								text: "Visit the web page",
+								href: "https://350.org/gps-10-years/",
+							},
+						},
+					],
+				},
+				{
+					year: "2022",
+					items: [
+						{
+							title:
+								"Delivering personalized voting information during a monumental special election in Georgia.",
+							description:
+								"With the Ranks partnered with Winning Mark for The 2022 Georgia Voter Guide, a comprehensive resource for Georgia general election and runoff election voters. The guide provided users with up-to-date ballot and voting information tailored to their specific location, spanning local, state, and federal races. The results of the Georgia runoff elections were vitally important in tipping the US Senate majority to the Democrats.",
+							link: {
+								text: "Check it out",
+								href: "https://thegeorgiavoterguide.com/",
+							},
+						},
+						{
+							title:
+								"Launching our Websites for All pilot, an effort to provide low-cost, high-quality websites to downballot candidates.",
+							description:
+								"Partnering with incredible local candidates like Ambria Taylor and Anthony Quezada, we launched a series of highly optimized websites for candidates running in hyper-local races around the country.",
+						},
+					],
+				},
+				{
+					year: "2021",
+					items: [
+						{
+							title: "Supporting Zephyr Teachout's run for Attorney General.",
+							description:
+								"Zephyr Teachout is a respected leader in exposing corporate monopolies, fighting political corruption, and championing policies that empower working people. We were proud to support her campaign for NY Attorney General.",
+							link: {
+								text: "Visit the archive",
+								href: "https://web.archive.org/web/20211212221558/https://zephyrforag.com/",
+							},
+						},
+						{
+							title:
+								"Working to end homelessness in New York City with RxHome.",
+							description:
+								"We helped RxHome NYC, a nonprofit organization bringing New Yorkers together to end homelessness, launch a new online website that illustrated how to solve homelessness in New York City.",
+							link: {
+								text: "Visit the archive",
+								href: "https://web.archive.org/web/20210620040517/https://rxhome.nyc/",
+							},
+						},
+						{
+							title: "Standing with Nina Turner in her run for Congress.",
+							description:
+								"We were honored to work with the Nina Turner for Us team to build a best-in-class website optimized for grassroots organizing and small-dollar fundraising during Ohio's 11th district special election. Featuring a dynamic Get Involved page designed to funnel volunteers to the highest priority ask to election day countdowns and a robust voting information page, we were proud to equip Nina Turner's run for Congress with a powerful online organizing tool.",
+							link: {
+								text: "Visit the archive",
+								href: "https://web.archive.org/web/20210803202759/https://ninaturner.com/",
+							},
+						},
+						{
+							title:
+								"Advocating for fair economic policies with Access to Markets, an initiative of the American Economic Liberties Project.",
+							description:
+								"Monopolistic tactics by giant corporations stifle competitive markets and harm workers. We are proud to support Access to Markets in their important mission of advocating for accessible markets that foster innovation and create fair conditions for commerce.",
+							link: {
+								text: "Visit the site",
+								href: "https://accesstomarkets.org/",
+							},
+						},
+						{
+							title:
+								"Building power for the working class with More Perfect Union.",
+							description:
+								"As a worker-owned cooperative ourselves, we deeply support the mission of empowering workers. So of course we were thrilled to build the inaugural website for More Perfect Union, showcasing their vital efforts to build power for the working class.",
+							link: {
+								text: "Visit the archive",
+								href: "https://web.archive.org/web/20210926031708/https://perfectunion.us/",
+							},
+						},
+						{
+							title:
+								"Partnering with another great cooperative, Wholehearted Bookkeeping.",
+							description:
+								"We love co-ops. We hate bookkeeping. So when we were introduced to the fine folks at Wholehearted Bookkeeping, we jumped at the chance to work with them.",
+							link: {
+								text: "Work with Wholehearted",
+								href: "https://wholeheartedbookkeeping.com/",
+							},
+						},
+					],
+				},
+				{
+					year: "2020",
+					items: [
+						{
+							title:
+								"Fighting alongside Bernie Sanders to defeat Donald Trump.",
+							description:
+								"Channeling the overwhelming grassroots energy of Bernie Sanders' presidential campaign, With the Ranks helped mobilize hundreds of volunteers to action with endorsed candidates and organizations, as well as assisted on dozens of livestreams meant to maximize the reach of Bernie's message and defeat Donald Trump in 2020.",
+						},
+						{
+							title:
+								"Organizing a mass movement of workers with Unemployed Workers United (now Organized Power in Numbers).",
+							description:
+								"We worked with Unemployed Workers United to launch their inaugural website designed to organize a mass movement of unemployed workers.",
+								link: {
+								text: "Visit the archive",
+								href: "https://web.archive.org/web/20240324001050/http://uwunited.org/",
+							},
+						},
+						{
+							title:
+								"Taking on corporate power with Fight Corporate Monopolies.",
+							description:
+								"Assisting with branding, website design and development, we helped Fight Corporate Monopolies channel their energy for fighting corporate power into an online presence that showcased their efforts.",
+							link: {
+								text: "Visit the site",
+								href: "https://fightcorporatemonopolies.org/",
+							},
+						},
+						{
+							title: "With the Ranks is born 🌱🐣✨",
+							description:
+								"Built by members of the Bernie 2020 technology team and the movements and organizations surrounding it, we founded With the Ranks to provide presidential quality tech to good causes, regardless of their size, all while building a fair and honest workplace for our workers.",
+							link: { text: "Learn more", href: "/about" },
+						},
+						{
+							highlight: true,
+							title: "Will your cause be next?",
+							description:
+								"We're built to help good causes prevail. Working on something interesting?",
+							link: {
+								text: "Let us know what how we can help.",
+								href: "/contact",
+							},
+						},
+					],
+				},
+			]}
+		/>
+	</div>
+</ContentLayout>

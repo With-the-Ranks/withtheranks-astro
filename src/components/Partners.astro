@@ -1,0 +1,213 @@
+---
+import "animate.css";
+---
+
+<section
+	class='container mx-auto px-6 sm:px-8 lg:px-12 text-center py-16 md:py-32 text-white'
+>
+	<h1
+		class='text-2xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-8 lg:mb-16 max-w-4xl mx-auto leading-tight'
+	>
+		No client too small.<br />
+		No cause too big.
+	</h1>
+
+	<p class='text-lg sm:text-3xl mb-12 max-w-3xl mx-auto leading-relaxed'>
+		With the Ranks works with organizations of all sizes, from the smallest city
+		council races to the largest global non-profits.
+	</p>
+
+	<p class='text-lg sm:text-3xl mb-16 max-w-3xl mx-auto leading-relaxed'>
+		We love building beautiful websites, developing custom organizing tools,
+		running A/B testing programs, hosting Spoke peer-to-peer texting, and doing
+		whatever we can to help good causes prevail.
+	</p>
+
+	<p class='text-lg sm:text-3xl mb-12'>We work with folks like...</p>
+
+	<!-- Scrolling Partner Logos -->
+	<div class='relative overflow-hidden w-full max-w-5xl mx-auto mb-12'>
+		<div class='logo-carousel flex gap-8'>
+			<div class='flex items-center justify-center gap-8 animate-scroll'>
+				<!-- Only show 3 images at a time -->
+				<img
+					src='/assets/350.svg'
+					alt='350 logo'
+					class='h-15'
+				/>
+				<img
+					src='/assets/indivisible.svg'
+					alt='Indivisible logo'
+					class='w-46'
+				/>
+				<img
+					src='/assets/bernie.svg'
+					alt='Bernie logo'
+					class='w-46'
+				/>
+				<img
+					src='/assets/opin.svg'
+					alt='Power in Numbers logo'
+					class='h-32'
+				/>
+				<img
+					src='/assets/AELP.svg'
+					alt='American Economic Liberties Project logo'
+					class='h-32'
+				/>
+				<img
+					src='/assets/FCM.png'
+					alt='Fight Corporate Monopolies logo'
+					class='h-32'
+				/>
+
+				<!-- Duplicate for infinite scroll -->
+				<img
+					src='/assets/350.svg'
+					alt='350 logo'
+					class='h-15'
+				/>
+				<img
+					src='/assets/indivisible.svg'
+					alt='Indivisible logo'
+					class='w-46'
+				/>
+				<img
+					src='/assets/bernie.svg'
+					alt='Bernie logo'
+					class='w-46'
+				/>
+				<img
+					src='/assets/opin.svg'
+					alt='Power in Numbers logo'
+					class='h-32'
+				/>
+				<img
+					src='/assets/AELP.svg'
+					alt='American Economic Liberties Project logo'
+					class='h-32'
+				/>
+				<img
+					src='/assets/FCM.png'
+					alt='Fight Corporate Monopolies logo'
+					class='h-32'
+				/>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Full Width Image Section with Dynamic Background Attachment -->
+<section
+	id='bgSection'
+	class='relative w-full h-[850px] md:h-[980px] pb-10 bg-scroll bg-cover bg-center md:bg-right-top'
+	style="background-image: url('/assets/bernie-bg.png');"
+>
+	<div
+		class='absolute inset-0 z-1 pointer-events-none'
+		style='background: linear-gradient(180deg, rgba(0, 2, 39, 0) 36%, #252753 74.27%);'
+	>
+	</div>
+
+	<div
+		class='container mx-auto px-6 h-full flex flex-col justify-end pb-20 relative z-10'
+	>
+		<div
+			class='max-w-full md:max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-start'
+		>
+			<div>
+				<h2
+					class='text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 text-white text-end'
+				>
+					Good tech<br />
+					for <span class='italic'>all.</span>
+				</h2>
+			</div>
+
+			<div class='text-lg sm:text-3xl text-white'>
+				<p class='mb-8 leading-relaxed text-lg sm:text-3xl'>
+					With the Ranks was built by members of the Bernie 2020 technology
+					team, and the movements and organizations surrounding it. Our mission
+					is to provide good causes - regardless of their size - with
+					presidential quality technology.
+				</p>
+				<a
+					href='/about'
+					class='inline-flex items-center text-white hover:text-[#8c9dff] transition-colors group no-underline'
+				>
+					<span class='text-base md:text-2xl xl:text-3xl underline'
+						>Learn more about our cooperative</span
+					>
+					<div class='relative ml-2'>
+						<span
+							class='absolute -right-1 top-2 w-3 h-3 bg-[#8C9DFF] rounded-full group-hover:scale-110'
+						>
+						</span>
+						<span
+							class='text-white text-xl sm:text-3xl leading-none transition-transform flex items-center group-hover:scale-110 font-normal no-underline italic relative'
+						>
+							↝
+						</span>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.animate-scroll {
+		display: flex;
+		animation: scroll 25s linear infinite;
+	}
+
+	@keyframes scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+
+	.logo-carousel img {
+		display: flex;
+		padding: 32px 48px;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		align-self: stretch;
+		border-radius: 16px;
+		background: #2E3164;
+	}
+</style>
+
+<script lang='ts'>
+	document.addEventListener("DOMContentLoaded", () => {
+		const bgSection = document.getElementById("bgSection");
+		if (!bgSection) return;
+
+		const checkParallax = () => {
+			const rect = bgSection.getBoundingClientRect();
+			const isMobile = window.innerWidth < 768; // Disable on screens <768px
+
+			if (isMobile) {
+				bgSection.classList.remove("bg-fixed");
+				bgSection.classList.add("bg-scroll");
+				return;
+			}
+
+			if (rect.top <= 0 && rect.bottom >= 0) {
+				bgSection.classList.remove("bg-scroll");
+				bgSection.classList.add("bg-fixed");
+			} else {
+				bgSection.classList.remove("bg-fixed");
+				bgSection.classList.add("bg-scroll");
+			}
+		};
+
+		window.addEventListener("scroll", checkParallax);
+		window.addEventListener("resize", checkParallax);
+		checkParallax();
+	});
+</script>
