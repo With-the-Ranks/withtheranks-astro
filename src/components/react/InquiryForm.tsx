@@ -1,11 +1,11 @@
 "use client";
 
 import type React from "react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
-import { ChevronRight, Send, RefreshCw } from "lucide-react";
+import { ChevronRight, Send, RefreshCw, Loader2 } from "lucide-react";
 import {
 	Select,
 	SelectContent,
@@ -17,12 +17,7 @@ import ImprovedSlider from "./ImprovedSlider";
 import StepCounter from "./StepCounter";
 
 const styles = `
-  .form-container {
-    background: #FFFCF7;
-    border-radius: 32px;
-		color: #232656;
-  }
-  
+
   .solid-button {
     background-color: #8C9DFF;
     border-radius: 100px;
@@ -74,20 +69,6 @@ const styles = `
     margin-bottom: 8px;
 		color: #282D55;
   }
-
-  .read-more {
-    display: inline-flex;
-    align-items: center;
-    font-weight: 600;
-    font-size: 14px;
-    color: inherit;
-    opacity: 0.8;
-    transition: all 0.2s ease;
-  }
-
-  .read-more:hover {
-    opacity: 1;
-  }
 `;
 
 type InquiryType =
@@ -97,7 +78,7 @@ type InquiryType =
 	| "schedule-meeting"
 	| "";
 
-var calendlyLink = 'https://calendly.com/with-the-ranks/team-meeting';
+var calendlyLink = "https://calendly.com/with-the-ranks/team-meeting";
 
 export interface InquiryFormProps {
 	inquiryType?: InquiryType
@@ -110,13 +91,15 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 	const startingStep = props.inquiryType ? 2 : 1;
 	const [step, setStep] = useState(startingStep);
 	const [inquiryType, setInquiryType] = useState<InquiryType>(props.inquiryType ?? "");
+	const [isLoading, setIsLoading] = useState(false);
+	const [quickSignUpError, setQuickSignUpError] = useState<string | null>(null);
 
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
 		organization: "",
 		needs: "",
-		timeline: "",
+		timeline: "1",
 		secondaryContact: "",
 		orgDescription: "",
 		primaryLocation: "",
@@ -124,7 +107,7 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 		billingAddress: "",
 		hearAboutUs: "",
 		audienceSize: "",
-		budget: "",
+		budget: "1",
 	});
 
 	const handleChange = (
@@ -138,15 +121,68 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 		setFormData((prev) => ({ ...prev, [name]: value }));
 	};
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		if (step < getMaxSteps()) {
-			setStep(step + 1);
-		} else {
-			console.log({ inquiryType, ...formData });
-			setStep(5); // Move to thank you screen
+			handleStepChange(step + 1);
+			return;
 		}
-	};
+	
+		// Prepare email data
+		const emailData = new URLSearchParams({
+			name: formData.name,
+			email: formData.email,
+			inquiryType,
+			organization: formData.organization,
+			needs: formData.needs,
+			timeline: formData.timeline,
+			secondaryContact: formData.secondaryContact,
+			orgDescription: formData.orgDescription,
+			primaryLocation: formData.primaryLocation,
+			subdomain: formData.subdomain,
+			billingAddress: formData.billingAddress,
+			hearAboutUs: formData.hearAboutUs,
+			audienceSize: formData.audienceSize,
+			budget: formData.budget,
+		}).toString();
+
+		setIsLoading(true);
+
+		try {
+			const response = await fetch("/api/send-email", {
+				method: "POST",
+				headers: { "Content-Type": "application/x-www-form-urlencoded" },
+				body: emailData,
+			});
+	
+			const result = await response.json();
+	
+			if (result.success) {
+				handleStepChange(5); // Move to Thank You screen
+				setFormData({
+					name: "",
+					email: "",
+					organization: "",
+					needs: "",
+					timeline: "1",
+					secondaryContact: "",
+					orgDescription: "",
+					primaryLocation: "",
+					subdomain: "",
+					billingAddress: "",
+					hearAboutUs: "",
+					audienceSize: "",
+					budget: "1",
+				});
+			} else {
+				throw new Error(result.error);
+			}
+		} catch (error) {
+			console.error("Email submission failed:", error);
+		} finally {
+			setIsLoading(false);
+		}
+	};	
 
 	const getMaxSteps = () => {
 		switch (inquiryType) {
@@ -164,7 +200,16 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 
 	const handleQuickSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.preventDefault();
-
+	
+		// Validate inputs
+		if (!formData.name.trim() || !formData.email.trim()) {
+			setQuickSignUpError("Please enter your name and email.");
+			return;
+		}
+	
+		setIsLoading(true);
+		setQuickSignUpError(null);
+	
 		try {
 			const response = await fetch("/api/send-email", {
 				method: "POST",
@@ -174,18 +219,20 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 					email: formData.email,
 				}).toString(),
 			});
-
+	
 			const result = await response.json();
-
+	
 			if (result.success) {
 				setStep(5);
 				setFormData((prev) => ({ ...prev, name: "", email: "" }));
 			} else {
-				throw new Error(result.error);
+				throw new Error(result.error || "An unexpected error occurred.");
 			}
 		} catch (error) {
 			console.error("Signup failed:", error);
-			alert("There was an error signing up. Please try again.");
+			setQuickSignUpError("There was an error signing up. Please try again.");
+		} finally {
+			setIsLoading(false);
 		}
 	};
 
@@ -194,20 +241,20 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 			case 1:
 				return (
 					<div className='space-y-8 md:space-y-12'>
-						<div className='space-y-4 md:space-y-6'>
-							<h2 className='serif-heading font-bold text-5xl md:text-7xl text-[#252753] leading-tight'>
+						<div className='space-y-4 md:space-y-6 pt-8 px-4'>
+							<h2 className='serif-heading font-bold text-3xl mb-0 md:text-5xl lg:text-7xl text-[#252753] leading-tight'>
 								Let us know how we can help.
 							</h2>
-							<p className='text-[#252753]'>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-								eiusmod tempor incididunt ut labore.
+							<p className='text-lg lg:text-2xl text-[#252753]'>
+								Got a project or need support? We're here to help.
 							</p>
 						</div>
 						<div className='grid gap-4 md:gap-6 md:grid-cols-2'>
 							<button
+								type="button"
 								onClick={() => {
 									setInquiryType("new-project");
-									setStep(2);
+									handleStepChange(2);
 								}}
 								className='highlight-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
 								<span className='tag'>Custom Websites</span>
@@ -215,13 +262,15 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 									Start a New Project
 								</h3>
 								<span className='text-sm md:text-base opacity-80 mb-3 md:mb-4'>
-									Launch your next digital initiative with us
+									From custom websites to full-fledged web products, let us know
+									what you need.
 								</span>
 							</button>
 							<button
+								type="button"
 								onClick={() => {
 									setInquiryType("spoke-services");
-									setStep(2);
+									handleStepChange(2);
 								}}
 								className='secondary-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
 								<span className='tag'>P2P Texting</span>
@@ -234,14 +283,15 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 								</span>
 							</button>
 							<button
+								type="button"
 								onClick={() => {
 									setInquiryType("general-contact");
-									setStep(getMaxSteps() + 1);
+									handleStepChange(getMaxSteps() + 1);
 								}}
 								className='tertiary-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
 								<span className='tag'>Support</span>
 								<h3 className='text-xl md:text-2xl font-bold mb-2 md:mb-3'>
-									General Contact
+									Just say hello
 								</h3>
 								<span className='text-sm md:text-base opacity-80 mb-3 md:mb-4'>
 									Not sure what to choose? Just drop us a message and we’ll get
@@ -249,9 +299,10 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 								</span>
 							</button>
 							<button
+								type="button"
 								onClick={() => {
 									setInquiryType("schedule-meeting");
-									setStep(5); // Go directly to thank you screen
+									handleStepChange(5); // Go directly to thank you screen
 									window.open(calendlyLink);
 								}}
 								className='purple-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
@@ -266,8 +317,8 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 							</button>
 						</div>
 						<div className='card text-center p-6 md:p-8 space-y-4 md:space-y-6 py-6 md:py-16'>
-							<div className="max-w-xl mx-auto">
-								<h4 className='text-5xl md:text-2xl mb-0 font-bold'>
+							<div className='max-w-xl mx-auto'>
+								<h4 className='text-2xl md:text-4xl mb-3 font-bold'>
 									Just want to stay in the loop?
 								</h4>
 								<span className='text-sm md:text-base'>
@@ -277,7 +328,7 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 									you an email on occasion.
 								</span>
 							</div>
-							<div className='space-x-4 flex max-w-xl mx-auto'>
+							<div className='flex flex-col md:flex-row items-baseline gap-3 max-w-xl mx-auto'>
 								<Input
 									type='text'
 									name='name'
@@ -292,14 +343,18 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 									placeholder='Email Address'
 									value={formData.email}
 									onChange={handleChange}
-									required
 									className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
 								/>
 								<Button
+									disabled={isLoading}
+									type="submit"
 									onClick={handleQuickSignUp}
 									className='w-full solid-button  py-4 md:py-6 text-base md:text-lg font-semibold'>
 									Sign Up
 								</Button>
+							</div>
+							<div>
+								{quickSignUpError && <p className="text-red-500 text-sm">{quickSignUpError}</p>}
 							</div>
 						</div>
 					</div>
@@ -307,8 +362,8 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 			case 2:
 				return (
 					<div className='space-y-6 md:space-y-8'>
-						<div className='space-y-2'>
-							<h3 className='text-xl md:text-5xl font-bold '>
+						<div className='space-y-2 pt-8 px-4'>
+							<h3 className='text-xl md:text-5xl font-bold mb-0 md:mb-3'>
 								{inquiryType === "new-project" && "Tell us about your project"}
 								{inquiryType === "spoke-services" &&
 									"Sign up for Spoke Services"}
@@ -330,6 +385,7 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 								placeholder='Your Name'
 								value={formData.name}
 								onChange={handleChange}
+								required
 								className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
 							/>
 							<Input
@@ -368,19 +424,15 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 									/>
 								</>
 							)}
-							<Textarea
-								name='needs'
-								placeholder={
-									inquiryType === "new-project"
-										? "Tell us about your project ideas"
-										: inquiryType === "general-contact"
-											? "How can we help you?"
-											: "Tell us about your texting needs"
-								}
-								value={formData.needs}
-								onChange={handleChange}
-								className='bg-white/10 border-white/20  placeholder:text-white min-h-[100px] md:min-h-[120px] rounded-xl'
-							/>
+							{inquiryType === "general-contact" ? (
+								<Textarea
+									name='needs'
+									placeholder={"How can we help you?"}
+									value={formData.needs}
+									onChange={handleChange}
+									className='bg-white/10 border-white/20  placeholder:text-white min-h-[100px] md:min-h-[120px] rounded-xl'
+								/>
+							) : null}
 						</div>
 					</div>
 				);
@@ -388,11 +440,11 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 				if (inquiryType === "new-project") {
 					return (
 						<div className='space-y-6 md:space-y-8'>
-							<div className='space-y-2'>
-								<h3 className='text-xl md:text-5xl font-bold '>
+							<div className='space-y-2 pt-8 px-4'>
+								<h3 className='text-xl md:text-5xl font-bold  mb-0 md:mb-3'>
 									Project Details
 								</h3>
-								<p className='text-lg md:text-base'>
+								<p className='text-lg md:text-2xl'>
 									Help us understand your project timeline and budget.
 								</p>
 							</div>
@@ -434,10 +486,10 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 					return (
 						<div className='space-y-6 md:space-y-8'>
 							<div className='space-y-2'>
-								<h3 className='text-xl md:text-5xl font-bold '>
+								<h3 className='text-xl md:text-5xl font-bold mb-0 md:mb-3'>
 									Spoke Services Details
 								</h3>
-								<p className='text-lg md:text-bas'>
+								<p className='text-lg md:text-2xl'>
 									Let's get some specifics about your Spoke needs.
 								</p>
 							</div>
@@ -473,11 +525,11 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 			case 4:
 				return (
 					<div className='space-y-6 md:space-y-8'>
-						<div className='space-y-2'>
-							<h3 className='text-xl md:text-5xl font-bold '>
+						<div className='space-y-2 pt-8 px-4'>
+							<h3 className='text-xl md:text-5xl font-bold mb-0 md:mb-3'>
 								Additional Information
 							</h3>
-							<p className='text-lg md:text-base'>
+							<p className='text-lg md:text-2xl'>
 								{inquiryType === "new-project"
 									? "Help us understand your project better."
 									: "Help us understand your texting needs better."}
@@ -536,23 +588,24 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 				);
 			case 5: // Thank you screen
 				return (
-					<div className='space-y-6 md:space-y-8 text-center'>
-						<h2 className='serif-heading font-bold text-2xl md:text-5xl  leading-tight'>
+					<div className='space-y-6 md:space-y-8 text-center pb-8'>
+						<h2 className='serif-heading font-bold text-2xl md:text-5xl pt-8 px-4 leading-tight'>
 							Thank You for Your Inquiry!
 						</h2>
-						{ inquiryType != "schedule-meeting" && (
+						{inquiryType != "schedule-meeting" && (
 							<p className='text-lg md:text-2xl'>
-							We appreciate you taking the time to reach out to us. Our team
-							will review your information and get back to you shortly.
-						</p>) }
+								We appreciate you taking the time to reach out to us. Our team
+								will review your information and get back to you shortly.
+							</p>
+						)}
 						{inquiryType === "schedule-meeting" && (
 							<div>
 								<p className='text-base md:text-2xl'>
 									Navigate to our scheduling page here:
 								</p>
 								<Button
-									className="button font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg"
-									variant="default"
+									className='button font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg'
+									variant='default'
 									onClick={() => window.open(calendlyLink)}>
 									Schedule a call with us!
 								</Button>
@@ -560,14 +613,14 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 						)}
 						<Button
 							onClick={() => {
-								setStep(1);
+								handleStepChange(1);
 								setInquiryType("");
 								setFormData({
 									name: "",
 									email: "",
 									organization: "",
 									needs: "",
-									timeline: "",
+									timeline: "1",
 									secondaryContact: "",
 									orgDescription: "",
 									primaryLocation: "",
@@ -575,7 +628,7 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 									billingAddress: "",
 									hearAboutUs: "",
 									audienceSize: "",
-									budget: "",
+									budget: "1",
 								});
 							}}
 							className='solid-button font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg'>
@@ -588,52 +641,66 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 				return null;
 		}
 	};
-
+	const formRef = useRef<HTMLDivElement>(null);
+	const handleStepChange = (newStep: number) => {
+		setStep(newStep);
+		formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+	};
+	
 	return (
-		<div id="contact" className={`form-container container w-full mx-auto p-4 md:p-12 ${topMarginClass}`}>
+		<div id="contact" ref={formRef} className='container w-full mx-auto'>
 			<style>{styles}</style>
-			<form
-				onSubmit={handleSubmit}
-				className={`space-y-6 md:space-y-8 max-w-[800px] mx-auto ${topMarginClass}`}>
-				{renderStep()}
-				{step > 1 && step <= getMaxSteps() && (
-					<div>
-						<StepCounter
-							currentStep={step}
-							maxSteps={getMaxSteps()}
-							onStepClick={(clickedStep) => {
-								if (clickedStep < step) {
-									setStep(clickedStep);
-								}
-							}}
-						/>
-						<div className='flex flex-col md:flex-row justify-between items-center pt-6 md:pt-8 space-y-4 md:space-y-0'>
-							<Button
-								type='button'
-								variant='outline'
-								onClick={() => setStep(step - 1)}
-								className='w-full md:w-auto border-white/20 text-black hover: hover:bg-white/10 rounded-full px-4 md:px-6 py-2 md:py-3 text-base md:text-lg'>
-								Back
-							</Button>
-							<Button
-								type='submit'
-								className='w-full md:w-auto solid-button  font-semibold py-2 md:py-3 px-4 md:px-6 text-base md:text-lg'>
-								{step < getMaxSteps() ? (
-									<>
-										<span>Next</span>
-										<ChevronRight className='w-4 h-4 md:w-5 md:h-5 ml-2' />
-									</>
-								) : (
-									<>
-										<span>Submit</span>
-										<Send className='w-4 h-4 md:w-5 md:h-5 ml-2' />
-									</>
-								)}
-							</Button>
+			<div className='bg-[#FFFCF7] w-full p-2 sm:p-8 md:p-12 rounded-[32px]'>
+				<form
+					onSubmit={handleSubmit}
+					className={`space-y-6 max-w-[800px] md:space-y-8 mx-auto lg:mt-6 text-[#232656] ${topMarginClass}`}>
+					{renderStep()}
+					{step > 1 && step <= getMaxSteps() && (
+						<div>
+							<StepCounter
+								currentStep={step}
+								maxSteps={getMaxSteps()}
+								onStepClick={(clickedStep) => {
+									if (clickedStep < step) {
+										handleStepChange(clickedStep);
+									}
+								}}
+							/>
+							<div className='flex gap-4 align-middle center flex-row justify-between items-baseline md:pt-3 space-y-4 md:space-y-0'>
+								<Button
+									disabled={isLoading}
+									type='button'
+									variant='outline'
+									onClick={() => handleStepChange(step - 1)}
+									className='w-full md:w-auto dark:border-black/5 dark:bg-white text-black hover:bg-slate-200 rounded-full px-4 md:px-6 py-2 md:py-3 text-base md:text-lg'>
+									Back
+								</Button>
+								<Button
+									disabled={isLoading}
+									type='submit'
+									className='w-full md:w-auto solid-button font-semibold py-2 md:py-3 px-4 md:px-6 text-base md:text-lg'>
+									{isLoading ? (
+										<>
+											<Loader2 className='w-4 h-4 md:w-5 md:h-5 animate-spin mr-2' />{" "}
+											Sending...
+										</>
+									) : step < getMaxSteps() ? (
+										<>
+											<span>Next</span>
+											<ChevronRight className='w-4 h-4 md:w-5 md:h-5 ml-2' />
+										</>
+									) : (
+										<>
+											<span>Submit</span>
+											<Send className='w-4 h-4 md:w-5 md:h-5 ml-2' />
+										</>
+									)}
+								</Button>
+							</div>
 						</div>
-					</div>
-				)}
-			</form>
+					)}
+				</form>
+			</div>
 		</div>
 	);
 }

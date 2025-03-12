@@ -21,10 +21,10 @@ import Layout from "../layouts/Layout.astro";
         </div>
       )}
       {bannerTitle && (
-        <h2 class="text-[#252753] text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6" set:html={bannerTitle}></h2>
+        <h2 class="text-[#252753] text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6" set:html={bannerTitle}></h2>
       )}
       {bannerSubtitle && (
-        <p class="text-[#252753] text-3xl mb-8 max-w-4xl">
+        <p class="text-[#252753] text-lg sm:text-3xl mb-8 max-w-4xl">
           {bannerSubtitle}
         </p>
       )}
@@ -37,11 +37,11 @@ import Layout from "../layouts/Layout.astro";
           <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-20 mt-5 lg:mt-16 items-start">
             <!-- Table of Contents -->
             <aside class="bg-[#959AF6] w-full mx-auto bg-opacity-20 rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 lg:p-6 xl:p-6 lg:sticky lg:top-10 overflow-hidden lg:col-span-1 on-this-page">
-              <h3 class="text-lg font-semibold mb-2">On this page</h3>
+              <h3 class="text-base sm:text-lg font-semibold mb-2">On this page</h3>
               {toc.map(({ id, label }) => (
                 <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
                 <a class="no-underline hover:bg-[#959AF6]" href={`#${id}`} >
-                  <h3 class="font-normal mb-0">{label}</h3>
+                  <h3 class="text-xs sm:text-lg font-normal mb-0">{label}</h3>
                 </a>
               ))}
             </aside>
@@ -51,7 +51,7 @@ import Layout from "../layouts/Layout.astro";
             </article>
           </div>
         ) : (
-          <article class="md:w-2/3 mx-auto mt-16 text-[#252753]">
+          <article class="w-full lg:w-2/3 mx-auto mt-16 text-[#252753]">
             <slot />
           </article>
         )}
