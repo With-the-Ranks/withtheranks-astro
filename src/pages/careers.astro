@@ -1,4 +1,5 @@
 ---
+import InquiryForm from "@/components/react/InquiryForm";
 import ContentLayout from "../layouts/ContentLayout.astro";
 import "animate.css";
 ---
@@ -12,14 +13,13 @@ import "animate.css";
 	bannerColor='bg-[#8C9DFF]'
 >
 	<div class='w-full mx-auto'>
-		<h2 class='text-[#232656] font-bold mb-0'>Product Designer</h2>
-		<p class='text-[#232656] mb-16 mt-0'>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-			tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem.
-			Ut enim aeque doleamus animo, cum corpore dolemus, fieri tamen permagna
-			accessio potest, si aliquod aeternum et infinitum impendere malum nobis
-			opinemur. Quod idem licet transferre.
-		</p>
+		<InquiryForm 
+			showAllOptions={false}
+			title="Connect with us!"
+			subtitle="We're always looking for talented individuals to join our team."
+			helloText="Let us know what you're working on."
+			client:load
+		/>
 	</div>
 	<div
 		class='bg-[#FFE872] text-center sm:text-left rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-4 lg:p-6 xl:p-8 relative overflow-hidden grid grid-cols-1 md:grid-cols-10 mx-auto'
