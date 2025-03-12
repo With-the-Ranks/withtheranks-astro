@@ -648,7 +648,7 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 	};
 	
 	return (
-		<div id="contact" ref={formRef} className='container w-full mx-auto'>
+		<div id="contact" className={`form-container container w-full mx-auto p-4 md:p-12 ${topMarginClass}`}>
 			<style>{styles}</style>
 			<div className='bg-[#FFFCF7] w-full p-2 sm:p-8 md:p-12 rounded-[32px]'>
 				<form
