@@ -448,7 +448,12 @@ nav {
 }
 
 .on-this-page a, h3 {
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
+}
+
+.hero-tag {
+    font-family: 'Poppins', sans-serif;
+    font-weight: normal;
 }
 
 
