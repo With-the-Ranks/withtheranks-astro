@@ -260,7 +260,7 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 								{ subtitle }
 							</p>
 						</div>
-						<div className='grid gap-4 md:gap-6 md:grid-cols-2'>
+						<div className={`grid gap-4 ${showAllOptions ? 'md:gap-6 md:grid-cols-2' : 'md:gap-6 md:grid-cols-1'}`}>
 						{showAllOptions && (
 							<>
 							<button
