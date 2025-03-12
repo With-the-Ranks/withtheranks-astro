@@ -81,16 +81,27 @@ type InquiryType =
 var calendlyLink = "https://calendly.com/with-the-ranks/team-meeting";
 
 export interface InquiryFormProps {
-	inquiryType?: InquiryType
+	initialInquiryType?: InquiryType
 	removeTopMargin?: boolean
+	showAllOptions?: boolean
+	title?: string
+	subtitle?: string
+	helloText?: string
 }
 
-const InquiryForm: React.FC<InquiryFormProps> = (props) => {
-	const topMarginClass = props.removeTopMargin ? "" : "mt-16";
+const InquiryForm: React.FC<InquiryFormProps> = ({
+	showAllOptions = true,
+	title="Let us know how we can help.",
+	subtitle="Got a project or need support? We're here to help.",
+	helloText="Not sure what to choose? Just drop us a message and we'll get you pointed in the right direction",
+	initialInquiryType,
+	removeTopMargin,
+}) => {
+	const topMarginClass = removeTopMargin ? "" : "mt-16";
 
-	const startingStep = props.inquiryType ? 2 : 1;
+	const startingStep = initialInquiryType ? 2 : 1;
 	const [step, setStep] = useState(startingStep);
-	const [inquiryType, setInquiryType] = useState<InquiryType>(props.inquiryType ?? "");
+	const [inquiryType, setInquiryType] = useState<InquiryType>(initialInquiryType ?? "");
 	const [isLoading, setIsLoading] = useState(false);
 	const [quickSignUpError, setQuickSignUpError] = useState<string | null>(null);
 
@@ -243,13 +254,15 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 					<div className='space-y-8 md:space-y-12'>
 						<div className='space-y-4 md:space-y-6 pt-8 px-4'>
 							<h2 className='serif-heading font-bold text-3xl mb-0 md:text-5xl lg:text-7xl text-[#252753] leading-tight'>
-								Let us know how we can help.
+								{ title }
 							</h2>
 							<p className='text-lg lg:text-2xl text-[#252753]'>
-								Got a project or need support? We're here to help.
+								{ subtitle }
 							</p>
 						</div>
-						<div className='grid gap-4 md:gap-6 md:grid-cols-2'>
+						<div className={`grid gap-4 ${showAllOptions ? 'md:gap-6 md:grid-cols-2' : 'md:gap-6 md:grid-cols-1'}`}>
+						{showAllOptions && (
+							<>
 							<button
 								type="button"
 								onClick={() => {
@@ -282,6 +295,8 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 									texting at scale.
 								</span>
 							</button>
+							</>
+						)}
 							<button
 								type="button"
 								onClick={() => {
@@ -294,27 +309,30 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 									Just say hello
 								</h3>
 								<span className='text-sm md:text-base opacity-80 mb-3 md:mb-4'>
-									Not sure what to choose? Just drop us a message and we’ll get
-									you pointed in the right direction!
+									{ helloText }
 								</span>
 							</button>
-							<button
-								type="button"
-								onClick={() => {
-									setInquiryType("schedule-meeting");
-									handleStepChange(5); // Go directly to thank you screen
-									window.open(calendlyLink);
-								}}
-								className='purple-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
-								<span className='tag'>Quick Chat</span>
-								<h3 className='text-xl md:text-2xl font-bold mb-2 md:mb-3'>
-									Schedule a Meeting
-								</h3>
-								<span className='text-sm md:text-base mb-3 md:mb-4'>
-									Prefer to meet virtually? Book a time with a team member and
-									we’ll help point you in the right direction.
-								</span>
-							</button>
+							{showAllOptions && (
+								<>
+								<button
+									type="button"
+									onClick={() => {
+										setInquiryType("schedule-meeting");
+										handleStepChange(5); // Go directly to thank you screen
+										window.open(calendlyLink);
+									}}
+									className='purple-card p-6 md:p-8 text-left hover:transform hover:scale-[1.02] transition-all'>
+									<span className='tag'>Quick Chat</span>
+									<h3 className='text-xl md:text-2xl font-bold mb-2 md:mb-3'>
+										Schedule a Meeting
+									</h3>
+									<span className='text-sm md:text-base mb-3 md:mb-4'>
+										Prefer to meet virtually? Book a time with a team member and
+										we’ll help point you in the right direction.
+									</span>
+								</button>
+							</>
+							)}
 						</div>
 						<div className='card text-center p-6 md:p-8 space-y-4 md:space-y-6 py-6 md:py-16'>
 							<div className='max-w-xl mx-auto'>
@@ -335,7 +353,7 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 									placeholder='Your Name'
 									value={formData.name}
 									onChange={handleChange}
-									className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
+									className='bg-white/10 border-white/20 placeholder-gray-400 rounded-xl h-10 md:h-12'
 								/>
 								<Input
 									type='email'
@@ -343,13 +361,13 @@ const InquiryForm: React.FC<InquiryFormProps> = (props) => {
 									placeholder='Email Address'
 									value={formData.email}
 									onChange={handleChange}
-									className='bg-white/10 border-white/20  placeholder-gray-400 rounded-xl h-10 md:h-12'
+									className='bg-white/10 border-white/20 placeholder-gray-400 rounded-xl h-10 md:h-12'
 								/>
 								<Button
 									disabled={isLoading}
 									type="submit"
 									onClick={handleQuickSignUp}
-									className='w-full solid-button  py-4 md:py-6 text-base md:text-lg font-semibold'>
+									className='w-full solid-button py-4 md:py-6 text-base md:text-lg font-semibold'>
 									Sign Up
 								</Button>
 							</div>
