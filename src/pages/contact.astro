@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+import InquiryForm from '../components/react/InquiryForm';
+
+import "animate.css";
+---
+
+<Layout title="Contact Us – With the Ranks">
+  <div>
+    <!-- Main Content -->
+    <main class="mx-auto pb-8 sm:pb-12 lg:pb-16">
+      <InquiryForm client:load />
+    </main>
+  </div>
+</Layout>
