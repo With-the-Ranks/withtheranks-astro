@@ -76,7 +76,7 @@ export const POST = async ({
 				});
 
 		// Send email
-		const emailResponse = await resend.emails.send({
+		const emailResponse = isQuickSignUp ? { error: null } : await resend.emails.send({
 			from: "With The Ranks <no-reply@email.withtheranks.com>",
 			to: [email],
 			cc: ["support@withtheranks.com"],
