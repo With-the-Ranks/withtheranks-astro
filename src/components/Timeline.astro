@@ -147,6 +147,7 @@ const entries = Astro.props.entries as TimelineEntry[];
 										{item.link && (
 											<a
 												href={item.link.href}
+												target="_blank"
 												class='text-[#252753] text-sm sm:text-base font-serif italic no-underline font-semibold inline-flex items-center'>
 												<span class='underline'>{item.link.text}</span>
 												<span class='relative ml-2'>
