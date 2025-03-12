@@ -80,11 +80,20 @@ type InquiryType =
 
 var calendlyLink = "https://calendly.com/with-the-ranks/team-meeting";
 
-export default function InquiryForm() {
-	const [step, setStep] = useState(1);
-	const [inquiryType, setInquiryType] = useState<InquiryType>("");
+export interface InquiryFormProps {
+	inquiryType?: InquiryType
+	removeTopMargin?: boolean
+}
+
+const InquiryForm: React.FC<InquiryFormProps> = (props) => {
+	const topMarginClass = props.removeTopMargin ? "" : "mt-16";
+
+	const startingStep = props.inquiryType ? 2 : 1;
+	const [step, setStep] = useState(startingStep);
+	const [inquiryType, setInquiryType] = useState<InquiryType>(props.inquiryType ?? "");
 	const [isLoading, setIsLoading] = useState(false);
 	const [quickSignUpError, setQuickSignUpError] = useState<string | null>(null);
+
 	const [formData, setFormData] = useState({
 		name: "",
 		email: "",
@@ -622,7 +631,7 @@ export default function InquiryForm() {
 									budget: "1",
 								});
 							}}
-							className='solid-button  font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg'>
+							className='solid-button font-semibold py-4 md:py-6 px-6 md:px-8 text-base md:text-lg'>
 							<RefreshCw className='w-4 h-4 md:w-5 md:h-5 mr-2' />
 							Start Over
 						</Button>
@@ -644,7 +653,7 @@ export default function InquiryForm() {
 			<div className='bg-[#FFFCF7] w-full p-2 sm:p-8 md:p-12 rounded-[32px]'>
 				<form
 					onSubmit={handleSubmit}
-					className='space-y-6 max-w-[800px] md:space-y-8 mx-auto lg:mt-6 text-[#232656]'>
+					className={`space-y-6 max-w-[800px] md:space-y-8 mx-auto lg:mt-6 text-[#232656] ${topMarginClass}`}>
 					{renderStep()}
 					{step > 1 && step <= getMaxSteps() && (
 						<div>
@@ -695,3 +704,5 @@ export default function InquiryForm() {
 		</div>
 	);
 }
+
+export default InquiryForm

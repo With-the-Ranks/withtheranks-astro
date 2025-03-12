@@ -1,4 +1,5 @@
 ---
+import InquiryForm from "../components/react/InquiryForm.tsx";
 import ContentLayout from "../layouts/ContentLayout.astro";
 import "animate.css";
 ---
@@ -128,6 +129,8 @@ import "animate.css";
 				clients can opt in or out of them at any time.
 			</p>
 		</div>
-		<!-- TODO: sign up link -->
+		<div id="signup">
+			<InquiryForm inquiryType="spoke-services" removeTopMargin client:load />
+		</div>
 	</div>
 </ContentLayout>
