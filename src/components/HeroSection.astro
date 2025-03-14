@@ -1,17 +1,13 @@
+---
+import Globe3D from "../components/react/Globe3d";
+---
+
 <div
-	class='bg-white container mx-auto rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 sm:p-8 lg:p-12 xl:p-16 relative overflow-hidden'
+	class='bg-white z-0 container mx-auto rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 sm:p-8 lg:p-12 xl:p-16 relative overflow-hidden'
 >
 	<!-- Background Globe -->
-	<div
-		class='absolute right-0 top-40 w-full h-full pointer-events-none opacity-25 md:opacity-100 animate-spin-slow'
-	>
-		<img
-			src='https://xs17wgd2wu.ufs.sh/f/nX6SBdwGAudf5s0PXcnCxoZcJNHymi4P8qAYLWuhfOgTSQwX'
-			alt='World map background'
-			width='800'
-			height='800'
-			class='object-contain absolute right-0 top-0 w-full md:w-2/3 lg:w-auto'
-		/>
+	<div class='hidden lg:block bg-white absolute left-40 top-30 w-full h-full pointer-events-none opacity-25 md:opacity-100 -z-40 scale-125'>
+		<Globe3D client:idle />
 	</div>
 
 	<div class='grid lg:grid-cols-2 gap-8 lg:gap-12 relative z-10'>
@@ -143,20 +139,3 @@
 		</div>
 	</div>
 </div>
-
-<style>
-@keyframes globeRotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(90deg);
-  }
-}
-
-.animate-spin-slow {
-  animation: globeRotation 100s linear infinite;
-  transform-origin: center;
-}
-
-</style>
