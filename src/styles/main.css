@@ -456,6 +456,14 @@ nav {
     font-weight: normal;
 }
 
+.map-bg {
+    background-image: url('/assets/map.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 800px;
+    width: 800px
+}
+
 
 /* Theme Toggle */
 .sun {
