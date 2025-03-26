@@ -38,6 +38,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --icon-stroke-color: #FFF;
 
     scroll-behavior: smooth;
+    font-display: swap; /* Fallback to system fonts while custom fonts are loading */
     /* Soft blue */
 
     /* Various color combos */
