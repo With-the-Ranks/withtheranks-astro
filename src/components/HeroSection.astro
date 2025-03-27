@@ -1,3 +1,7 @@
+---
+import { Image } from 'astro:assets';
+import map from '/public/assets/map.webp';
+---
 <link rel="preload" as="image" href="/assets/map.webp" type="image/webp">
 
 <div
@@ -7,12 +11,13 @@
 	<div
 		class='absolute right-0 top-40 w-full h-full pointer-events-none opacity-25 md:opacity-100 animate-spin-slow'
 	>
-		<img
-			src='/assets/map.webp'
+		<Image
+			src={map}
 			alt='World map background'
 			width='800'
 			height='800'
 			class='object-contain absolute right-0 top-0 w-full md:w-2/3 lg:w-auto'
+			loading="eager"
 		/>
 	</div>
 
