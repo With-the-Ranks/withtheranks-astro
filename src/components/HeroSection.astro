@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
-import map from '/public/assets/worldmap.webp';
+import map from '/public/assets/optimized-map.avif';
 ---
-<link rel="preload" as="image" href="/assets/worldmap.webp" type="image/webp">
+<link rel="preload" as="image" href="/assets/optimized-map.avif" type="image/webp">
 
 <div
 	class='bg-white container mx-auto rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 sm:p-8 lg:p-12 xl:p-16 relative overflow-hidden'
@@ -14,8 +14,6 @@ import map from '/public/assets/worldmap.webp';
 		<Image
 			src={map}
 			alt='World map background'
-			width='800'
-			height='800'
 			class='object-contain absolute right-0 top-0 w-full md:w-2/3 lg:w-auto'
 			loading="eager"
 		/>
