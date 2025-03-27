@@ -86,10 +86,14 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 [data-theme="dark"] .dark-logo {
     display: none;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 [data-theme="light"] .light-logo {
     display: none;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 [data-theme="light"] a:hover {
