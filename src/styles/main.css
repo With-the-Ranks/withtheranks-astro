@@ -86,10 +86,14 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 [data-theme="dark"] .dark-logo {
     display: none;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 [data-theme="light"] .light-logo {
     display: none;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 [data-theme="light"] a:hover {
@@ -323,6 +327,7 @@ h6 {
     font-weight: 700;
     margin-bottom: 2rem;
     font-weight: 800;
+    font-display: swap;
 }
 
 h1 {
@@ -455,7 +460,6 @@ nav {
     font-family: 'Poppins', sans-serif;
     font-weight: normal;
 }
-
 
 /* Theme Toggle */
 .sun {

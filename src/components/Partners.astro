@@ -1,5 +1,11 @@
 ---
-import "animate.css";
+import { Image } from 'astro:assets';
+import threefifty from '/public/assets/350.svg';
+import indivisible from '/public/assets/indivisible.svg';
+import bernie from '/public/assets/bernie.svg';
+import opin from '/public/assets/opin.svg';
+import AELP from '/public/assets/AELP.svg';
+import FCM from '/public/assets/FCM.webp';
 ---
 
 <section
@@ -30,67 +36,79 @@ import "animate.css";
 		<div class='logo-carousel flex gap-8'>
 			<div class='flex items-center justify-center gap-8 animate-scroll'>
 				<!-- Only show 3 images at a time -->
-				<img
-					src='/assets/350.svg'
+				<Image
+					src={threefifty}
 					alt='350 logo'
-					class='h-15'
+					class='h-15 w-auto'
+					loading="lazy"
 				/>
-				<img
-					src='/assets/indivisible.svg'
+				<Image
+					src={indivisible}
 					alt='Indivisible logo'
 					class='w-46'
+					loading="lazy"
 				/>
-				<img
-					src='/assets/bernie.svg'
+				<Image
+					src={bernie}
 					alt='Bernie logo'
 					class='w-46'
+					loading="lazy"
 				/>
-				<img
-					src='/assets/opin.svg'
+				<Image
+					src={opin}
 					alt='Power in Numbers logo'
 					class='h-32'
+					loading="lazy"
 				/>
-				<img
-					src='/assets/AELP.svg'
+				<Image
+					src={AELP}
 					alt='American Economic Liberties Project logo'
 					class='h-32'
+					loading="lazy"
 				/>
-				<img
-					src='/assets/FCM.png'
+				<Image
+					src={FCM}
 					alt='Fight Corporate Monopolies logo'
-					class='h-32'
+					class='h-32 w-auto'
+					loading="lazy"
 				/>
 
 				<!-- Duplicate for infinite scroll -->
-				<img
-					src='/assets/350.svg'
+				<Image
+					src={threefifty}
 					alt='350 logo'
-					class='h-15'
+					class='h-15 w-auto'
+					loading="lazy"
 				/>
-				<img
-					src='/assets/indivisible.svg'
+				<Image
+					src={indivisible}
 					alt='Indivisible logo'
 					class='w-46'
+					loading="lazy"
 				/>
-				<img
-					src='/assets/bernie.svg'
+				<Image
+					src={bernie}
 					alt='Bernie logo'
 					class='w-46'
+					loading="lazy"
 				/>
-				<img
-					src='/assets/opin.svg'
+				<Image
+					src={opin}
 					alt='Power in Numbers logo'
 					class='h-32'
+					loading="lazy"
 				/>
-				<img
-					src='/assets/AELP.svg'
+				<Image
+					src={AELP}
 					alt='American Economic Liberties Project logo'
 					class='h-32'
+					loading="lazy"
 				/>
-				<img
-					src='/assets/FCM.png'
+				<Image
+					src={FCM}
 					alt='Fight Corporate Monopolies logo'
-					class='h-32'
+					class='h-32 w-auto'
+					loading="lazy"
 				/>
 			</div>
 		</div>
@@ -101,7 +119,7 @@ import "animate.css";
 <section
 	id='bgSection'
 	class='relative w-full h-[850px] md:h-[980px] pb-10 bg-scroll bg-cover bg-center md:bg-right-top'
-	style="background-image: url('/assets/bernie-bg.png');"
+	style="background-image: url('/assets/bernie-bg.webp');"
 >
 	<div
 		class='absolute inset-0 z-1 pointer-events-none'

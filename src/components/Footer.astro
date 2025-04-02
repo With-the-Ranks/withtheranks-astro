@@ -1,10 +1,16 @@
+---
+import { Image } from 'astro:assets';
+import wtrlogo from '/public/assets/footer-logo.webp';
+---
+
 <footer class="relative container rounded-2xl sm:rounded-3xl lg:rounded-[32px] mx-auto mb-1 bg-[#252753] text-white py-12 sm:py-16 px-6 sm:px-24 overflow-hidden">
   <!-- Logo overlay - behind everything -->
   <div class="absolute inset-0 z-0 flex items-center justify-center">
-    <img 
-      src="/assets/footer-logo.png" 
+    <Image
+      src={wtrlogo}
       alt="With the Ranks Logo" 
       class="max-w-[80%] md:max-w-[60%] lg:max-w-[50%] object-contain"
+      loading="lazy"
     />
   </div>
 
