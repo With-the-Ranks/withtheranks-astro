@@ -28,7 +28,7 @@ import "animate.css";
 	<!-- Scrolling Partner Logos -->
 	<div class='relative overflow-hidden w-full max-w-5xl mx-auto mb-12'>
 		<div class='logo-carousel flex gap-8'>
-			<div class='flex items-center justify-center gap-8 animate-scroll'>
+			<div class='flex items-center justify-center gap-8 animate-scroll logo-carousel-wrapper'>
 				<!-- Only show 3 images at a time -->
 				<img
 					src='/assets/350.svg'
@@ -179,6 +179,10 @@ import "animate.css";
 		align-self: stretch;
 		border-radius: 16px;
 		background: #2E3164;
+	}
+
+	.logo-carousel-wrapper {
+		max-height: 128px;
 	}
 </style>
 
