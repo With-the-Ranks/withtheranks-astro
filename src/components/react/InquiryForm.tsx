@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
@@ -87,6 +87,7 @@ export interface InquiryFormProps {
 	title?: string
 	subtitle?: string
 	helloText?: string
+	turnstileSiteKey?: string
 }
 
 const InquiryForm: React.FC<InquiryFormProps> = ({
@@ -96,14 +97,108 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 	helloText="Not sure what to choose? Just drop us a message and we'll get you pointed in the right direction",
 	initialInquiryType,
 	removeTopMargin,
+	turnstileSiteKey,
 }) => {
+	const siteKey = turnstileSiteKey;
 	const topMarginClass = removeTopMargin ? "" : "mt-16";
+	const turnstileStep1Ref = useRef<HTMLDivElement>(null);
+	const turnstileFinalRef = useRef<HTMLDivElement>(null);
+	const widgetIdStep1 = useRef<string | null>(null);
+	const widgetIdFinal = useRef<string | null>(null);
 
 	const startingStep = initialInquiryType ? 2 : 1;
 	const [step, setStep] = useState(startingStep);
 	const [inquiryType, setInquiryType] = useState<InquiryType>(initialInquiryType ?? "");
 	const [isLoading, setIsLoading] = useState(false);
 	const [quickSignUpError, setQuickSignUpError] = useState<string | null>(null);
+
+	const maxSteps = inquiryType === "new-project" || inquiryType === "spoke-services" ? 4 : inquiryType === "general-contact" ? 2 : 1;
+
+	useEffect(() => {
+		if (step !== 1 || !siteKey) return;
+		
+		if (widgetIdStep1.current !== null) {
+			try {
+				if (typeof window !== 'undefined' && (window as any).turnstile) {
+					(window as any).turnstile.remove(widgetIdStep1.current);
+				}
+			} catch (e) {
+				// Ignore
+			}
+			widgetIdStep1.current = null;
+		}
+		
+		const timer = setTimeout(() => {
+			if (typeof window !== 'undefined' && (window as any).turnstile && turnstileStep1Ref.current && widgetIdStep1.current === null) {
+				try {
+					widgetIdStep1.current = (window as any).turnstile.render(turnstileStep1Ref.current, {
+						sitekey: siteKey,
+						theme: 'dark',
+						size: 'normal',
+					});
+				} catch (e) {
+					// Ignore render errors
+				}
+			}
+		}, 150);
+		
+		return () => {
+			clearTimeout(timer);
+			if (widgetIdStep1.current !== null) {
+				try {
+					if (typeof window !== 'undefined' && (window as any).turnstile) {
+						(window as any).turnstile.remove(widgetIdStep1.current);
+					}
+				} catch (e) {
+					// Ignore
+				}
+				widgetIdStep1.current = null;
+			}
+		};
+	}, [siteKey, step]);
+
+	useEffect(() => {
+		if (step !== maxSteps || !siteKey) return;
+		
+		if (widgetIdFinal.current !== null) {
+			try {
+				if (typeof window !== 'undefined' && (window as any).turnstile) {
+					(window as any).turnstile.remove(widgetIdFinal.current);
+				}
+			} catch (e) {
+				// Ignore
+			}
+			widgetIdFinal.current = null;
+		}
+		
+		const timer = setTimeout(() => {
+			if (typeof window !== 'undefined' && (window as any).turnstile && turnstileFinalRef.current && widgetIdFinal.current === null) {
+				try {
+					widgetIdFinal.current = (window as any).turnstile.render(turnstileFinalRef.current, {
+						sitekey: siteKey,
+						theme: 'light',
+						size: 'normal',
+					});
+				} catch (e) {
+					// Ignore render errors
+				}
+			}
+		}, 150);
+		
+		return () => {
+			clearTimeout(timer);
+			if (widgetIdFinal.current !== null) {
+				try {
+					if (typeof window !== 'undefined' && (window as any).turnstile) {
+						(window as any).turnstile.remove(widgetIdFinal.current);
+					}
+				} catch (e) {
+					// Ignore
+				}
+				widgetIdFinal.current = null;
+			}
+		};
+	}, [siteKey, step, maxSteps]);
 
 	const [formData, setFormData] = useState({
 		name: "",
@@ -120,6 +215,7 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 		audienceSize: "",
 		budget: "1",
 	});
+	const [submitError, setSubmitError] = useState<string | null>(null);
 
 	const handleChange = (
 		e:
@@ -139,60 +235,67 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 			return;
 		}
 	
-		// Prepare email data
-		const emailData = new URLSearchParams({
-			name: formData.name,
-			email: formData.email,
-			inquiryType,
-			organization: formData.organization,
-			needs: formData.needs,
-			timeline: formData.timeline,
-			secondaryContact: formData.secondaryContact,
-			orgDescription: formData.orgDescription,
-			primaryLocation: formData.primaryLocation,
-			subdomain: formData.subdomain,
-			billingAddress: formData.billingAddress,
-			hearAboutUs: formData.hearAboutUs,
-			audienceSize: formData.audienceSize,
-			budget: formData.budget,
-		}).toString();
-
+		setSubmitError(null);
 		setIsLoading(true);
+	
+		// Get Turnstile response
+		const turnstileInput = document.querySelector('input[name="cf-turnstile-response"]') as HTMLInputElement;
+		const turnstileResponse = turnstileInput?.value || '';
+	
+		// Prepare email data
+			const emailData = new URLSearchParams({
+				name: formData.name,
+				email: formData.email,
+				inquiryType,
+				organization: formData.organization,
+				needs: formData.needs,
+				timeline: formData.timeline,
+				secondaryContact: formData.secondaryContact,
+				orgDescription: formData.orgDescription,
+				primaryLocation: formData.primaryLocation,
+				subdomain: formData.subdomain,
+				billingAddress: formData.billingAddress,
+				hearAboutUs: formData.hearAboutUs,
+				audienceSize: formData.audienceSize,
+				budget: formData.budget,
+				'cf-turnstile-response': turnstileResponse,
+			}).toString();
 
-		try {
-			const response = await fetch("/api/send-email", {
-				method: "POST",
-				headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				body: emailData,
-			});
-	
-			const result = await response.json();
-	
-			if (result.success) {
-				handleStepChange(5); // Move to Thank You screen
-				setFormData({
-					name: "",
-					email: "",
-					organization: "",
-					needs: "",
-					timeline: "1",
-					secondaryContact: "",
-					orgDescription: "",
-					primaryLocation: "",
-					subdomain: "",
-					billingAddress: "",
-					hearAboutUs: "",
-					audienceSize: "",
-					budget: "1",
+			try {
+				const response = await fetch("/api/send-email", {
+					method: "POST",
+					headers: { "Content-Type": "application/x-www-form-urlencoded" },
+					body: emailData,
 				});
-			} else {
-				throw new Error(result.error);
+		
+				const result = await response.json();
+		
+				if (result.success) {
+					handleStepChange(5); // Move to Thank You screen
+					setFormData({
+						name: "",
+						email: "",
+						organization: "",
+						needs: "",
+						timeline: "1",
+						secondaryContact: "",
+						orgDescription: "",
+						primaryLocation: "",
+						subdomain: "",
+						billingAddress: "",
+						hearAboutUs: "",
+						audienceSize: "",
+						budget: "1",
+					});
+					setSubmitError(null);
+				} else {
+					throw new Error(result.error);
+				}
+			} catch (error) {
+				setSubmitError(error instanceof Error ? error.message : "An unexpected error occurred");
+			} finally {
+				setIsLoading(false);
 			}
-		} catch (error) {
-			console.error("Email submission failed:", error);
-		} finally {
-			setIsLoading(false);
-		}
 	};	
 
 	const getMaxSteps = () => {
@@ -221,30 +324,38 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 		setIsLoading(true);
 		setQuickSignUpError(null);
 	
+		// Get Turnstile response
+		const turnstileInput = document.querySelector('input[name="cf-turnstile-response"]') as HTMLInputElement;
+		const turnstileResponse = turnstileInput?.value || '';
+	
 		try {
-			const response = await fetch("/api/send-email", {
-				method: "POST",
-				headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				body: new URLSearchParams({
+				const params = new URLSearchParams({
 					name: formData.name,
 					email: formData.email,
-				}).toString(),
-			});
-	
-			const result = await response.json();
-	
-			if (result.success) {
-				setStep(5);
-				setFormData((prev) => ({ ...prev, name: "", email: "" }));
-			} else {
-				throw new Error(result.error || "An unexpected error occurred.");
+					'cf-turnstile-response': turnstileResponse,
+				});
+				
+				const response = await fetch("/api/send-email", {
+					method: "POST",
+					headers: { "Content-Type": "application/x-www-form-urlencoded" },
+					body: params.toString(),
+				});
+		
+				const result = await response.json();
+		
+				if (result.success) {
+					setStep(5);
+					setFormData((prev) => ({ ...prev, name: "", email: "" }));
+					setQuickSignUpError(null);
+				} else {
+					throw new Error(result.error || "An unexpected error occurred.");
+				}
+			} catch (error) {
+				const errorMessage = error instanceof Error ? error.message : "There was an error signing up. Please try again.";
+				setQuickSignUpError(errorMessage);
+			} finally {
+				setIsLoading(false);
 			}
-		} catch (error) {
-			console.error("Signup failed:", error);
-			setQuickSignUpError("There was an error signing up. Please try again.");
-		} finally {
-			setIsLoading(false);
-		}
 	};
 
 	const renderStep = () => {
@@ -371,6 +482,11 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 									Sign Up
 								</Button>
 							</div>
+							{siteKey && (
+								<div className="flex justify-center my-4">
+									<div ref={turnstileStep1Ref}></div>
+								</div>
+							)}
 							<div>
 								{quickSignUpError && <p className="text-red-500 text-sm">{quickSignUpError}</p>}
 							</div>
@@ -673,6 +789,7 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 					onSubmit={handleSubmit}
 					className={`space-y-6 max-w-[800px] md:space-y-8 mx-auto lg:mt-6 text-[#232656] ${topMarginClass}`}>
 					{renderStep()}
+					
 					{step > 1 && step <= getMaxSteps() && (
 						<div>
 							<StepCounter
@@ -684,6 +801,14 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 									}
 								}}
 							/>
+							{siteKey && step === getMaxSteps() && (
+								<div className="flex justify-center my-4">
+									<div ref={turnstileFinalRef}></div>
+								</div>
+							)}
+							{submitError && (
+								<div className="text-red-500 text-sm pb-2">{submitError}</div>
+							)}
 							<div className='flex gap-4 align-middle center flex-row justify-between items-baseline md:pt-3 space-y-4 md:space-y-0'>
 								<Button
 									disabled={isLoading}
