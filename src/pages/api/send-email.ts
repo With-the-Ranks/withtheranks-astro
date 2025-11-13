@@ -12,10 +12,39 @@ export const POST = async ({
 }) => {
 	try {
 		const GOOGLE_SERVICE_KEY_BASE64 =
-			locals.runtime.env.GOOGLE_SERVICE_KEY_BASE64;
-		const GOOGLE_SHEET_ID = locals.runtime.env.GOOGLE_SHEET_ID;
-		const resend = new Resend(locals.runtime.env.RESEND_API_KEY);
+			locals.runtime?.env?.GOOGLE_SERVICE_KEY_BASE64 || import.meta.env.GOOGLE_SERVICE_KEY_BASE64;
+		const GOOGLE_SHEET_ID = locals.runtime?.env?.GOOGLE_SHEET_ID || import.meta.env.GOOGLE_SHEET_ID;
+		const RESEND_API_KEY = locals.runtime?.env?.RESEND_API_KEY || import.meta.env.RESEND_API_KEY;
+		const TURNSTILE_SECRET_KEY = locals.runtime?.env?.TURNSTILE_SECRET_KEY || import.meta.env.TURNSTILE_SECRET_KEY;
+		
+		if (!RESEND_API_KEY) {
+			return new Response(
+				JSON.stringify({ success: false, error: "Server configuration error" }),
+				{ status: 500 }
+			);
+		}
+		
+		const resend = new Resend(RESEND_API_KEY);
 		const formData = await request.formData();
+
+		const turnstileResponse = formData.get("cf-turnstile-response") as string;
+		if (!turnstileResponse) {
+			return new Response(JSON.stringify({ success: false, error: "Please complete the CAPTCHA." }), { status: 400 });
+		}
+		
+		const tsVerify = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+			method: "POST",
+			headers: { "Content-Type": "application/x-www-form-urlencoded" },
+			body: new URLSearchParams({
+				secret: TURNSTILE_SECRET_KEY,
+				response: turnstileResponse
+			})
+		});
+		
+		const tsData = await tsVerify.json();
+		if (!tsData.success) {
+			return new Response(JSON.stringify({ success: false, error: "CAPTCHA verification failed" }), { status: 400 });
+		}
 
 		// Extracting form fields
 		const email = formData.get("email") as string | null;
@@ -67,7 +96,7 @@ export const POST = async ({
 					subdomain,
 					billingAddress,
 					needs,
-					timeline: timelineLabel, // using the label here
+					timeline: timelineLabel,
 					budget: budgetLabel,  
 					secondaryContact,
 					orgDescription,

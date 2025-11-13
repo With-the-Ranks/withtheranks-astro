@@ -13,7 +13,7 @@ import Partners from "../components/Partners.astro";
     <main class="mx-auto pb-8 sm:pb-12 lg:pb-16">
 			<HeroSection/>
       <Partners/>
-      <InquiryForm client:load />
+      <InquiryForm turnstileSiteKey={import.meta.env.PUBLIC_TURNSTILE_SITE_KEY} client:load />
     </main>
   </div>
 </Layout>
