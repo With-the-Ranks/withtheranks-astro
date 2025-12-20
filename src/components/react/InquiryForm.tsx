@@ -214,13 +214,13 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 	useEffect(() => {
 		if (step !== 1 || !embeddedFormRef.current) return;
 
-		const FORM_SLUG = "signup-form-cmiymrgs30001haxp0mxv2601";
-		const FORM_ORIGIN = "https://intrepid-email-git-embed-form-with-the-ranks.vercel.app";
+		const FORM_SLUG = "website-form";
+		const FORM_ORIGIN = "https://app.withtheranks.coop";
 		const FORM_URL = `${FORM_ORIGIN}/app/signup-forms/${FORM_SLUG}?embed=true&bg=252753&buttonBg=ffffff&buttonText=252753&hideTitle=true&inputTextColor=ffffff`;
 
 		// Determine initial height based on screen size
 		const isDesktop = window.innerWidth >= 768;
-		const initialHeight = isDesktop ? 356 : 500;
+		const initialHeight = isDesktop ? 188 : 500;
 
 		// Create iframe
 		const iframe = document.createElement("iframe");
@@ -232,7 +232,7 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 		iframe.style.maxWidth = "600px";
 		iframe.style.margin = "0 auto";
 		iframe.style.display = "block";
-		iframe.style.borderRadius = "16px";
+		iframe.style.borderRadius = "0";
 		iframe.style.background = "transparent";
 		iframe.title = "With The Ranks Signup Form";
 
