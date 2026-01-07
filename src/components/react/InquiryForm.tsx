@@ -1,7 +1,7 @@
 "use client";
 
 import type React from "react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
@@ -103,7 +103,8 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 	const [step, setStep] = useState(startingStep);
 	const [inquiryType, setInquiryType] = useState<InquiryType>(initialInquiryType ?? "");
 	const [isLoading, setIsLoading] = useState(false);
-	const [quickSignUpError, setQuickSignUpError] = useState<string | null>(null);
+	const embeddedFormRef = useRef<HTMLDivElement>(null);
+	const [iframeHeight, setIframeHeight] = useState(416);
 
 	const [formData, setFormData] = useState({
 		name: "",
@@ -209,43 +210,60 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 		}
 	};
 
-	const handleQuickSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-	
-		// Validate inputs
-		if (!formData.name.trim() || !formData.email.trim()) {
-			setQuickSignUpError("Please enter your name and email.");
-			return;
-		}
-	
-		setIsLoading(true);
-		setQuickSignUpError(null);
-	
-		try {
-			const response = await fetch("/api/send-email", {
-				method: "POST",
-				headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				body: new URLSearchParams({
-					name: formData.name,
-					email: formData.email,
-				}).toString(),
-			});
-	
-			const result = await response.json();
-	
-			if (result.success) {
-				setStep(5);
-				setFormData((prev) => ({ ...prev, name: "", email: "" }));
-			} else {
-				throw new Error(result.error || "An unexpected error occurred.");
+	// Setup embedded signup form
+	useEffect(() => {
+		if (step !== 1 || !embeddedFormRef.current) return;
+
+		const FORM_SLUG = "website-form";
+		const FORM_ORIGIN = "https://app.withtheranks.coop";
+		const FORM_URL = `${FORM_ORIGIN}/app/signup-forms/${FORM_SLUG}?embed=true&bg=252753&buttonBg=ffffff&buttonText=252753&hideTitle=true&inputTextColor=ffffff`;
+
+		// Determine initial height based on screen size
+		const isDesktop = window.innerWidth >= 768;
+		const initialHeight = isDesktop ? 188 : 500;
+
+		// Create iframe
+		const iframe = document.createElement("iframe");
+		iframe.src = FORM_URL;
+		iframe.width = "100%";
+		iframe.height = initialHeight.toString();
+		iframe.frameBorder = "0";
+		iframe.style.border = "none";
+		iframe.style.maxWidth = "600px";
+		iframe.style.margin = "0 auto";
+		iframe.style.display = "block";
+		iframe.style.borderRadius = "0";
+		iframe.style.background = "transparent";
+		iframe.title = "With The Ranks Signup Form";
+
+		// Clear container and append iframe
+		embeddedFormRef.current.innerHTML = "";
+		embeddedFormRef.current.appendChild(iframe);
+
+		// Auto-resize iframe based on content
+		const handleMessage = (event: MessageEvent) => {
+			if (
+				event.origin === FORM_ORIGIN &&
+				event.data.formSlug === FORM_SLUG &&
+				event.data.height
+			) {
+				const newHeight = event.data.height;
+				setIframeHeight(newHeight);
+				iframe.height = newHeight + "px";
+				iframe.style.height = newHeight + "px";
 			}
-		} catch (error) {
-			console.error("Signup failed:", error);
-			setQuickSignUpError("There was an error signing up. Please try again.");
-		} finally {
-			setIsLoading(false);
-		}
-	};
+		};
+
+		window.addEventListener("message", handleMessage);
+
+		return () => {
+			window.removeEventListener("message", handleMessage);
+			// Clean up iframe when step changes
+			if (embeddedFormRef.current) {
+				embeddedFormRef.current.innerHTML = "";
+			}
+		};
+	}, [step]);
 
 	const renderStep = () => {
 		switch (step) {
@@ -334,46 +352,26 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 							</>
 							)}
 						</div>
-						<div className='card text-center p-6 md:p-8 space-y-4 md:space-y-6 py-6 md:py-16'>
-							<div className='max-w-xl mx-auto'>
+						<div className='card text-center space-y-4 md:space-y-6'>
+							<div className='max-w-xl mx-auto mb-6 px-4 pt-6 md:pt-8'>
 								<h4 className='text-2xl md:text-4xl mb-3 font-bold'>
 									Just want to stay in the loop?
 								</h4>
 								<span className='text-sm md:text-base'>
-									If you’re just interested in following along with what we’re
+									If you're just interested in following along with what we're
 									building - from scaling a tech cooperative to optimizing for
-									organizing at scale - leave your name and email and we’ll send
+									organizing at scale - leave your name and email and we'll send
 									you an email on occasion.
 								</span>
 							</div>
-							<div className='flex flex-col md:flex-row items-baseline gap-3 max-w-xl mx-auto'>
-								<Input
-									type='text'
-									name='name'
-									placeholder='Your Name'
-									value={formData.name}
-									onChange={handleChange}
-									className='bg-white/10 border-white/20 placeholder-gray-400 rounded-xl h-10 md:h-12'
-								/>
-								<Input
-									type='email'
-									name='email'
-									placeholder='Email Address'
-									value={formData.email}
-									onChange={handleChange}
-									className='bg-white/10 border-white/20 placeholder-gray-400 rounded-xl h-10 md:h-12'
-								/>
-								<Button
-									disabled={isLoading}
-									type="submit"
-									onClick={handleQuickSignUp}
-									className='w-full solid-button py-4 md:py-6 text-base md:text-lg font-semibold'>
-									Sign Up
-								</Button>
-							</div>
-							<div>
-								{quickSignUpError && <p className="text-red-500 text-sm">{quickSignUpError}</p>}
-							</div>
+							<div 
+								ref={embeddedFormRef}
+								className='w-full flex justify-center pb-6 md:pb-8'
+								style={{ 
+									minHeight: `${iframeHeight}px`,
+									backgroundColor: 'transparent'
+								}}
+							/>
 						</div>
 					</div>
 				);
