@@ -436,6 +436,7 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 										placeholder="Short description of your organization's work"
 										value={formData.orgDescription}
 										onChange={handleChange}
+										required
 										className='bg-white/10 border-white/20  placeholder:text-white min-h-[100px] md:min-h-[120px] rounded-xl'
 									/>
 								</>
@@ -513,7 +514,7 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 								<Input
 									type='text'
 									name='primaryLocation'
-									placeholder='Primary Location (for phone number)'
+									placeholder='Preferred Area Code / Zip Code (for phone number)'
 									value={formData.primaryLocation}
 									onChange={handleChange}
 									className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
@@ -521,9 +522,10 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 								<Input
 									type='text'
 									name='subdomain'
-									placeholder='Preferred Subdomain'
+									placeholder='Preferred Subdomain (ex. "myorg" will become myorg.spokewtr.com)'
 									value={formData.subdomain}
 									onChange={handleChange}
+									required
 									className='bg-white/10 border-white/20  placeholder:text-white rounded-xl h-10 md:h-12'
 								/>
 								<Textarea
@@ -531,6 +533,7 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 									placeholder='Billing Address'
 									value={formData.billingAddress}
 									onChange={handleChange}
+									required
 									className='bg-white/10 border-white/20  placeholder:text-white min-h-[100px] md:min-h-[120px] rounded-xl'
 								/>
 							</div>
@@ -578,7 +581,7 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 										})
 									}>
 									<SelectTrigger className='bg-white/10 border-white/20  rounded-xl'>
-										<SelectValue placeholder="What's your expected audience size?" />
+										<SelectValue placeholder="What's your expected monthly audience size?" />
 									</SelectTrigger>
 									<SelectContent>
 										<SelectItem value='small'>Less than 1,000</SelectItem>

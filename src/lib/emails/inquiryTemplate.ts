@@ -141,7 +141,7 @@ export const getInquiryHtml = ({
           ${renderField("Billing Address", billingAddress)}
           ${renderField("How Did You Hear About Us?", hearAboutUs)}
           ${renderField("Audience Size", audienceSize)}
-          ${renderField("Budget", budget)}
+          ${inquiryType !== "spoke-services" && renderField("Budget", budget)}
         </div>
 
         <p class="text">
