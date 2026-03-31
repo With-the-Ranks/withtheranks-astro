@@ -1,72 +1,36 @@
-<footer class="relative container rounded-2xl sm:rounded-3xl lg:rounded-[32px] mx-auto mb-1 bg-[#252753] text-white py-12 sm:py-16 px-6 sm:px-24 overflow-hidden">
-  <!-- Logo overlay - behind everything -->
-  <div class="absolute inset-0 z-0 flex items-center justify-center">
-    <img 
-      src="/assets/footer-logo.png" 
-      alt="With the Ranks Logo" 
-      class="max-w-[80%] md:max-w-[60%] lg:max-w-[50%] object-contain"
-    />
-  </div>
+---
+const supportLinks = [{ href: "/docs", label: "Spoke" }, { href: "/contact", label: "Get in touch" }];
+const connectLinks = ["Newsletter", "RSS", "Mastodon", "BlueSky"];
+const workLinks = [{ href: "/our-work", label: "Case Studies" }, { href: "/about", label: "About Us" }, { href: "/texting", label: "Spoke Texting" }];
+---
 
-  <!-- Gradient overlay -->
-  <div class="absolute inset-0 z-[1] opacity-30">
-    <div class="w-full h-full bg-[radial-gradient(33.22%_84.51%_at_50.03%_100%,#2AFFCC_0%,#252753_100%)]"></div>
-  </div>
+<footer class="border-black/20 bg-brand-blue-deep text-brand-cream">
+  <div class="mx-auto max-w-home-shell px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
+    <div class="grid justify-items-center gap-12 text-center sm:justify-items-start sm:text-left md:grid-cols-3 md:gap-10 lg:gap-16">
+      <section class="space-y-4">
+        <h2 class="mb-0 font-display text-5xl font-normal leading-none sm:text-home-footer">Support</h2>
+        <div class="space-y-3">
+          {supportLinks.map((link) => <a class="block text-xl font-normal text-brand-cream/40 underline underline-offset-5 transition-colors hover:text-brand-cream sm:text-2xl" href={link.href}>{link.label}</a>)}
+        </div>
+      </section>
 
-  <div class="container mx-auto max-w-6xl relative z-[2]">
-    <div class="grid grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
-      <!-- Connect Column -->
-      <div>
-        <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-6">Connect</h2>
-        <ul class="space-y-3">
-          <li><a href="mailto:hello@withtheranks.com" class="footer-link">Say Hello!</a></li>
-        </ul>
-      </div>
+      <section class="space-y-4">
+        <h2 class="mb-0 font-display text-5xl font-normal leading-none sm:text-home-footer">Connect</h2>
+        <div class="space-y-3">
+          {connectLinks.map((label) => <span aria-disabled="true" class="block cursor-default text-xl font-normal text-brand-cream/40 underline underline-offset-5 sm:text-2xl">{label}</span>)}
+        </div>
+      </section>
 
-      <!-- Our Work Column -->
-      <div>
-        <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-6">Our Work</h2>
-        <ul class="space-y-3">
-          <li><a href="/our-work" class="footer-link">Case Studies</a></li>
-          <li><a href="/about" class="footer-link">About Us</a></li>
-          <li><a href="/texting" class="footer-link">Spoke Texting</a></li>
-        </ul>
-      </div>
-
-      <!-- Support Column -->
-      <div>
-        <h2 class="text-2xl sm:text-4xl md:text-5xl font-bold mb-6">Support</h2>
-        <ul class="space-y-3">
-          <li><a href="/docs" target="_blank" class="footer-link">Spoke</a></li>
-          <li><a href="/contact" class="footer-link">Get in touch</a></li>
-        </ul>
-      </div>
+      <section class="space-y-4">
+        <h2 class="mb-0 font-display text-5xl font-normal leading-none sm:text-home-footer">Our Work</h2>
+        <div class="space-y-3">
+          {workLinks.map((link) => <a class="block text-xl font-normal text-brand-cream/40 underline underline-offset-5 transition-colors hover:text-brand-cream sm:text-2xl" href={link.href}>{link.label}</a>)}
+        </div>
+      </section>
     </div>
 
-    <!-- Footer text -->
-    <div class="mt-16 text-center">
-      <p class="text-[#fffcf7] text-lg opacity-80">
-        With the Ranks is 100% worker-owned, and we don't use cookies.
-      </p>
+    <div class="mt-20 sm:mt-24 lg:mt-32">
+      <img alt="With the Ranks Worker Cooperative" class="mx-auto h-auto w-full max-w-sm sm:max-w-2xl lg:max-w-footer-wordmark" src="/assets/home/footer-wordmark.svg" />
     </div>
   </div>
 </footer>
-
-<style>
-  .footer-link {
-    color: #FFFCF766;
-    font-size: 1.25rem;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    transition: color 0.3s ease-in-out;
-  }
-  .footer-link:hover {
-    color: #FFFCF7;
-  }
-  @media (max-width: 768px) {
-    .footer-link {
-      font-size: 1rem;
-    }
-    
-  }
-</style>
