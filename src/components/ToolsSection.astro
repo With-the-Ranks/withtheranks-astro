@@ -1,0 +1,66 @@
+---
+import Button from "./Button.astro";
+import InfoCard from "./InfoCard.astro";
+
+interface Tool {
+  name: string;
+  version: string;
+  icon: string;
+  href: string;
+  lead: string;
+  bodyHtml: string;
+}
+
+interface Props {
+  tools: Tool[];
+}
+
+const { tools } = Astro.props as Props;
+---
+
+<section class="scroll-mt-24 border-t-8 border-brand-blue bg-brand-cream" id="tools">
+  <div class="mx-auto grid max-w-home-shell gap-12 px-4 py-16 sm:px-6 lg:grid-cols-home-tools lg:items-center lg:px-8 lg:py-32">
+    <div class="mx-auto max-w-tools-intro text-center">
+      <h2 class="mb-4 font-display text-home-tools font-normal leading-none text-black">
+        Our Tools
+      </h2>
+      <p class="mx-auto mb-8 max-w-tools-body text-home-section-body text-black">
+        We build best-in-class, open source organizing software, so that social movements have access to high quality tools for decades to come.
+      </p>
+      <Button class="px-8 py-6 text-home-cta" href="/#tools" variant="cta">
+        <span>Browse our tools</span>
+      </Button>
+    </div>
+
+    <div class="flex flex-col gap-8">
+      {
+        tools.map((tool) => (
+          <a
+            class="block text-inherit no-underline"
+            href={tool.href}
+            rel="noreferrer"
+            target="_blank"
+          >
+            <InfoCard class="rounded-md border-4 border-black bg-white p-8 text-black">
+              <div class="mb-8 flex items-start justify-between gap-4">
+                <div class="flex items-center gap-4">
+                  <img alt="" aria-hidden="true" class="h-14 w-14 shrink-0" src={tool.icon} />
+                  <h3 class="mb-0 font-display text-home-tool-title font-normal leading-none text-black">
+                    {tool.name}
+                  </h3>
+                </div>
+
+                <span class="rounded-lg border border-zinc-300 bg-zinc-200/40 px-3 py-2 text-base font-bold leading-none">
+                  {tool.version}
+                </span>
+              </div>
+
+              <p class="mb-4 text-home-tool-lead font-bold text-black">{tool.lead}</p>
+              <p class="mb-0 text-home-tool-body text-black" set:html={tool.bodyHtml} />
+            </InfoCard>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+---
+import Button from "./Button.astro";
+---
+
+<section class="scroll-mt-24 bg-brand-cream" id="about">
+  <div class="relative">
+    <div class="relative min-h-home-about-media overflow-hidden lg:absolute lg:inset-y-0 lg:left-0 lg:w-1/2">
+      <img
+        alt="Supporters at a Bernie Sanders event"
+        class="absolute inset-0 h-full w-full object-cover"
+        src="/assets/home/about-bernie.png"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-brand-cream via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-brand-cream"></div>
+    </div>
+
+    <div class="mx-auto max-w-home-shell lg:grid lg:min-h-home-about lg:grid-cols-2">
+      <div class="hidden lg:block"></div>
+
+      <div class="bg-brand-cream px-4 py-16 sm:px-6 lg:py-32 lg:pl-16 lg:pr-0">
+        <div class="mx-auto max-w-tools-intro text-left text-black lg:ml-auto lg:max-w-about-copy lg:text-right">
+          <h2 class="mb-4 font-display text-home-section font-normal leading-none text-black">
+            Good tech for all.
+          </h2>
+          <p class="mb-8 text-home-section-body text-black">
+            With the Ranks was built by members of the Bernie 2020 technology team, and the movements and organizations surrounding it.
+            <br /><br />
+            Our mission is to provide good causes - regardless of their size - with presidential quality technology.
+          </p>
+          <Button class="px-8 py-6 text-home-cta" href="/about" variant="cta">
+            <span>Learn more about our cooperative</span>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
