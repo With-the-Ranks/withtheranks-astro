@@ -42,7 +42,7 @@ If those files are missing, the browser uses the system sans fallback.
 
 ## Color (theme)
 
-These map to CSS variables in `src/styles/main.css` and Tailwind under `theme.extend.colors`.
+These map to CSS variables in `src/styles/main.css` and Tailwind via the CSS-first `@theme inline` config.
 
 | Tailwind | CSS variable | Use |
 |----------|--------------|-----|
