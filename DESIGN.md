@@ -1,6 +1,6 @@
 # With the Ranks design system
 
-This file is the UI source of truth for the site. If Figma and code disagree, update this doc and the tokens in `tailwind.config.mjs` and `src/styles/main.css` together.
+This file is the UI source of truth for the site. If Figma and code disagree, update this doc and the tokens in `src/styles/main.css` together.
 
 ---
 
@@ -42,7 +42,7 @@ If those files are missing, the browser uses the system sans fallback.
 
 ## Color (theme)
 
-These map to CSS variables in `src/styles/main.css` and Tailwind under `theme.extend.colors`.
+These map to CSS variables in `src/styles/main.css` and Tailwind via the CSS-first `@theme inline` config.
 
 | Tailwind | CSS variable | Use |
 |----------|--------------|-----|

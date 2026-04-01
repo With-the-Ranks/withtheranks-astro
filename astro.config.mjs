@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import mdx from "@astrojs/mdx";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 import react from "@astrojs/react";
 
@@ -11,12 +11,10 @@ export default defineConfig({
   site: 'https://withtheranks.com',
   base: '/',
 
-  integrations: [mdx(), tailwind({
-    nesting: true,
-    applyBaseStyles: false
-  }), react()],
+  integrations: [mdx(), react()],
 
   vite: {
+    plugins: [tailwindcss()],
     assetsInclude: ['**/*.glb']
   },
 
