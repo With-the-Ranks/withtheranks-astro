@@ -2,29 +2,29 @@
 import Button from "./Button.astro";
 ---
 
-<section class="-mt-16 bg-brand-blue pb-16 sm:pb-20 lg:-mt-24 lg:pb-24">
-  <div class="mx-auto max-w-home-shell px-4 sm:px-6 lg:px-8">
+<section class="bg-brand-blue pb-10 sm:pb-12 lg:pb-16">
+  <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
     <section class="scroll-mt-24" id="mailer">
-      <div class="grid overflow-hidden rounded-2xl border-8 border-black/20 bg-brand-cream lg:grid-cols-home-mailer">
-        <div class="flex flex-col justify-center px-6 py-8 text-black sm:px-10 lg:px-16 lg:py-12">
-          <div class="mx-auto max-w-tools-intro text-center lg:mx-0 lg:max-w-mailer-copy lg:text-left">
-            <h2 class="mb-4 font-display text-home-mailer font-normal leading-none text-black">
+      <div class="grid overflow-hidden rounded-2xl border-8 border-black/20 bg-brand-cream lg:grid-cols-[492px_minmax(0,1fr)]">
+        <div class="flex flex-col justify-center px-6 py-8 text-black sm:px-10 lg:pl-16 lg:pr-0 lg:py-8">
+          <div class="mx-auto max-w-lg text-center lg:mx-0 lg:max-w-lg lg:text-left">
+            <h2 class="heading-feature mb-4 font-display font-normal text-black sm:mb-5">
               Mailer is the easiest way to send organizing emails.
             </h2>
-            <p class="mb-6 text-home-cta-body text-black">
+            <p class="body-lg mb-6 text-black">
               Built from the ground up for campaigns, non-profits and unions, Mailer combines an intuitive email editor with smart scheduling features to get anyone up to speed running an effective email program in record time.
             </p>
-            <p class="mb-8 text-home-cta-body font-bold text-black">
+            <p class="body-lg mb-8 font-bold text-black">
               Oh, and it’s 100% open source.
             </p>
-            <Button class="px-8 py-6 text-home-cta" href="/#mailer" variant="cta">
+            <Button class="label-button px-8 py-6" href="/#mailer" variant="cta">
               <span>Check it out</span>
             </Button>
           </div>
         </div>
 
         <div class="p-6 sm:p-10 lg:p-16">
-          <div class="h-80 overflow-hidden rounded-xl border-2 border-zinc-300 bg-white lg:h-mailer-panel">
+          <div class="h-80 overflow-hidden rounded-xl border-2 border-zinc-300 bg-white lg:h-[517px]">
             <video
               aria-label="Mailer email creation flow"
               autoplay

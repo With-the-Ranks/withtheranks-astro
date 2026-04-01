@@ -4,56 +4,49 @@ import Button from "./Button.astro";
 const { theme = "dark" } = Astro.props;
 
 const navLinks = [
-  { href: "/#tools", label: "Tools", icon: "/assets/home/nav-tools.svg" },
-  { href: "/about#what-we-do", label: "Services", icon: "/assets/home/nav-services.svg" },
   { href: "/our-work", label: "Our Work", icon: "/assets/home/nav-our-work.svg" },
-  { href: "/about#who-we-are", label: "Company", icon: "/assets/home/nav-company.svg" },
+  { href: "/texting", label: "Spoke", icon: "/assets/home/nav-tools.svg" },
+  { href: "/about", label: "Our Co-op", icon: "/assets/home/nav-company.svg" },
+  { href: "https://spoke.withtheranks.com/", label: "Support", icon: "/assets/home/nav-support.svg" },
 ];
 const isLight = theme === "light";
 const lightFilter =
   "brightness(0) saturate(100%) invert(9%) sepia(28%) saturate(1940%) hue-rotate(210deg) brightness(94%) contrast(96%)";
 ---
 
-<div class={isLight ? "bg-brand-cream" : "bg-brand-blue"}>
-  <header class="mx-auto max-w-home-shell px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-    <div class="flex items-center justify-between gap-4 xl:gap-8">
-      <div class="flex items-center justify-between gap-4 xl:shrink-0">
+<div class={isLight ? "bg-white" : "bg-brand-blue"}>
+  <header class="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+    <div class="flex items-center justify-between gap-4 xl:grid xl:grid-cols-[auto_1fr_auto] xl:items-center xl:gap-10">
+      <div class="flex items-center justify-between gap-4">
         <a class="block shrink-0 text-inherit no-underline" href="/">
           <img alt="With the Ranks" class="h-auto w-32 sm:w-40 lg:w-48 xl:w-56" src="/assets/home/logo.svg" style={isLight ? `filter: ${lightFilter};` : undefined} />
         </a>
       </div>
-      <button aria-label="Open menu" class={`inline-flex size-12 items-center justify-center rounded-lg transition-colors xl:hidden ${isLight ? "text-brand-navy hover:bg-brand-blue/10" : "text-white hover:bg-white/10"}`} id="mobile-menu-btn" type="button">
+      <button aria-label="Open menu" class={`inline-flex size-12 appearance-none items-center justify-center rounded-lg border-0 bg-transparent p-0 shadow-none transition-colors xl:hidden ${isLight ? "text-brand-navy hover:bg-brand-blue/10" : "text-white hover:bg-white/10"}`} id="mobile-menu-btn" type="button">
         <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M4 12h16m-7 6h7" stroke-linecap="round" stroke-linejoin="round"></path></svg>
       </button>
 
-      <nav aria-label="Primary" class="hidden xl:flex xl:flex-1 xl:items-center xl:justify-center xl:gap-2">
+      <nav aria-label="Primary" class="hidden xl:flex xl:items-center xl:justify-center xl:gap-6">
         {
           navLinks.map((link) => (
-            <a class={`inline-flex shrink-0 items-center gap-1 rounded-lg px-3 py-2 text-sm no-underline transition-colors sm:px-4 sm:text-base ${isLight ? "!text-brand-navy hover:bg-brand-blue/10 hover:!text-brand-navy" : "!text-white hover:bg-white/10 hover:!text-white"}`} href={link.href}>
+            <a class={`inline-flex shrink-0 items-center gap-2 rounded-lg px-5 py-2 text-base no-underline transition-colors ${isLight ? "!text-brand-navy hover:bg-brand-blue/10 hover:!text-brand-navy" : "!text-white hover:bg-white/10 hover:!text-white"}`} href={link.href}>
               <img alt="" aria-hidden="true" class="size-6 shrink-0" src={link.icon} style={isLight ? `filter: ${lightFilter};` : undefined} />
-              <span>{link.label}</span>
+              <span class="whitespace-nowrap">{link.label}</span>
             </a>
           ))
         }
-        <div class="group relative hidden xl:block xl:shrink-0">
-          <a class={`inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm no-underline transition-colors sm:px-4 sm:text-base ${isLight ? "!text-brand-navy hover:bg-brand-blue/10 hover:!text-brand-navy" : "!text-white hover:bg-white/10 hover:!text-white"}`} href="/texting"><img alt="" aria-hidden="true" class="size-6 shrink-0" src="/assets/home/nav-support.svg" style={isLight ? `filter: ${lightFilter};` : undefined} /><span>Texting</span></a>
-          <div class="invisible absolute left-1/2 top-full min-w-40 -translate-x-1/2 translate-y-2 pt-2 opacity-0 transition duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-            <div class={`overflow-hidden rounded-2xl border ${isLight ? "border-brand-navy/10 bg-brand-cream" : "border-white/10 bg-brand-blue-deep"}`}>
-              <a class={`block px-4 py-3 text-sm no-underline transition-colors ${isLight ? "!text-brand-navy hover:bg-brand-blue/10" : "!text-white hover:bg-white/10"}`} href="/texting">Spoke</a>
-              <a class={`block px-4 py-3 text-sm no-underline transition-colors ${isLight ? "!text-brand-navy hover:bg-brand-blue/10" : "!text-white hover:bg-white/10"}`} href="/docs">Support</a>
-            </div>
-          </div>
-        </div>
       </nav>
 
-      <Button class="hidden !gap-1 px-8 py-4 text-home-cta !text-black xl:inline-flex" href="/contact" icon="/assets/home/contact-icon.svg" iconClass="size-9 shrink-0" soft variant="cta"><span>Contact us</span></Button>
+      <div class="hidden xl:flex xl:justify-end">
+        <Button class="label-button !inline-flex !gap-1 px-8 py-4 !text-black" href="/contact" icon="/assets/home/contact-icon.svg" iconClass="size-9 shrink-0" soft variant="cta"><span>Contact us</span></Button>
+      </div>
     </div>
   </header>
 
   <div class={`fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 xl:hidden ${isLight ? "bg-brand-cream" : "bg-brand-blue"}`} id="mobile-menu">
     <div class="flex h-full flex-col">
       <div class="flex items-start justify-end px-4 py-6 sm:px-6 sm:py-8">
-        <button aria-label="Close menu" class={`inline-flex size-12 items-center justify-center rounded-lg transition-colors ${isLight ? "text-brand-navy hover:bg-brand-blue/10" : "text-white hover:bg-white/10"}`} id="mobile-menu-close" type="button">
+        <button aria-label="Close menu" class={`inline-flex size-12 appearance-none items-center justify-center rounded-lg border-0 bg-transparent p-0 shadow-none transition-colors ${isLight ? "text-brand-navy hover:bg-brand-blue/10" : "text-white hover:bg-white/10"}`} id="mobile-menu-close" type="button">
           <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </button>
       </div>
@@ -65,28 +58,49 @@ const lightFilter =
             </a>
           ))
         }
-        <a class={`text-2xl font-bold no-underline transition-colors ${isLight ? "!text-brand-navy hover:text-brand-blue" : "!text-white hover:text-white/80"}`} href="/texting">Texting</a>
-        <a class={`text-2xl font-bold no-underline transition-colors ${isLight ? "!text-brand-navy hover:text-brand-blue" : "!text-white hover:text-white/80"}`} href="/docs">Support</a>
-        <Button class="mt-4 !gap-1 px-8 py-4 text-home-cta !text-black" href="/contact" icon="/assets/home/contact-icon.svg" iconClass="size-9 shrink-0" soft variant="cta"><span>Contact us</span></Button>
+        <Button class="label-button mt-4 !gap-1 px-8 py-4 !text-black" href="/contact" icon="/assets/home/contact-icon.svg" iconClass="size-9 shrink-0" soft variant="cta"><span>Contact us</span></Button>
       </nav>
     </div>
   </div>
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  const setupMobileMenu = () => {
     const menuBtn = document.getElementById("mobile-menu-btn");
     const closeBtn = document.getElementById("mobile-menu-close");
     const mobileMenu = document.getElementById("mobile-menu");
-    function toggleMobileNav() {
-      if (!mobileMenu) return;
-      mobileMenu.classList.toggle("hidden");
-      mobileMenu.classList.toggle("opacity-0");
-      mobileMenu.classList.toggle("opacity-100");
-      document.body.classList.toggle("overflow-hidden", !mobileMenu.classList.contains("hidden"));
-    }
-    menuBtn?.addEventListener("click", toggleMobileNav);
-    closeBtn?.addEventListener("click", toggleMobileNav);
-    mobileMenu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", toggleMobileNav));
-  });
+    if (!menuBtn || !closeBtn || !mobileMenu || menuBtn.dataset.menuBound === "true") return;
+
+    const closeMobileNav = () => {
+      mobileMenu.classList.add("hidden", "opacity-0");
+      mobileMenu.classList.remove("opacity-100");
+      document.body.classList.remove("overflow-hidden");
+    };
+
+    const openMobileNav = () => {
+      mobileMenu.classList.remove("hidden", "opacity-0");
+      mobileMenu.classList.add("opacity-100");
+      document.body.classList.add("overflow-hidden");
+    };
+
+    const toggleMobileNav = () => {
+      if (mobileMenu.classList.contains("hidden")) {
+        openMobileNav();
+      } else {
+        closeMobileNav();
+      }
+    };
+
+    menuBtn.dataset.menuBound = "true";
+    closeBtn.dataset.menuBound = "true";
+    menuBtn.addEventListener("click", toggleMobileNav);
+    closeBtn.addEventListener("click", closeMobileNav);
+    mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMobileNav));
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1280) closeMobileNav();
+    });
+  };
+
+  document.addEventListener("DOMContentLoaded", setupMobileMenu);
+  document.addEventListener("astro:page-load", setupMobileMenu);
 </script>
