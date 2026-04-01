@@ -44,23 +44,6 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 }
 
 @layer components {
-    .heading-xl {
-        font-size: clamp(3rem, 8vw, 6rem);
-        line-height: 0.95;
-        letter-spacing: -0.02em;
-    }
-
-    .heading-lg {
-        font-size: clamp(2rem, 5vw, 4rem);
-        line-height: 1;
-        letter-spacing: -0.02em;
-    }
-
-    .body-base {
-        font-size: 1rem;
-        line-height: 1.5;
-    }
-
     .body-lg {
         font-size: 20px;
         line-height: 1.35;
@@ -106,16 +89,6 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
         line-height: 1.06;
     }
 
-    .heading-tool {
-        font-size: 52px;
-        line-height: 0.92;
-    }
-
-    .heading-contact {
-        font-size: 40px;
-        line-height: 1;
-    }
-
     .heading-footer {
         font-size: 60px;
         line-height: 1;
@@ -124,26 +97,6 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     .label-button {
         font-size: 20px;
         line-height: 1;
-    }
-
-    .label-button-sm {
-        font-size: 15px;
-        line-height: 1;
-    }
-
-    .label-button-sm-lg {
-        font-size: 17px;
-        line-height: 1.25;
-    }
-
-    .body-card-lead {
-        font-size: 24px;
-        line-height: 1.12;
-    }
-
-    .body-card {
-        font-size: 16px;
-        line-height: 1.4;
     }
 
     @media (min-width: 1024px) {
