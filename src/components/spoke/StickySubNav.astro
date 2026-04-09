@@ -1,4 +1,6 @@
 ---
+import Button from "../Button.astro";
+
 export interface StickySubNavItem {
   label: string;
   href: string;
@@ -47,19 +49,22 @@ const spyOrder = ["overview", "features", "pricing", "backed", "open-source", "f
         ))
       }
       <a
-        class="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border-2 border-[#1c1c1c] bg-white px-4 py-2 font-sans text-sm font-bold text-[#1c1c1c] no-underline sm:min-w-[182px]"
+        class="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border-2 border-[#1c1c1c] bg-white px-4 py-2 font-sans text-sm font-bold text-[#1c1c1c] no-underline shadow-none transition duration-300 hover:-translate-y-px hover:brightness-105 hover:shadow-md focus-visible:-translate-y-px focus-visible:brightness-105 focus-visible:shadow-md sm:min-w-[182px]"
         href={scheduleDemoHref}
       >
         <img alt="" aria-hidden="true" class="size-6 shrink-0" src="/assets/home/contact-schedule.svg" width="24" height="24" />
         Schedule a Demo
       </a>
-      <a
-        class="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border-2 border-[#1c1c1c] bg-[linear-gradient(-61deg,#ffefc0_0.36%,#fac328_99.64%)] px-4 py-2 font-sans text-sm font-bold text-[#1c1c1c] no-underline"
+      <Button
+        class="!inline-flex shrink-0 !gap-1 !px-4 !py-2 !text-sm !leading-none !text-black sm:min-w-[182px]"
         href={signUpHref}
+        icon="/assets/home/contact-icon.svg"
+        iconClass="size-6 shrink-0"
+        soft
+        variant="cta"
       >
-        <img alt="" aria-hidden="true" class="size-6 shrink-0" src="/assets/home/contact-icon.svg" width="38" height="38" />
-        Sign Up
-      </a>
+        <span>Sign Up</span>
+      </Button>
     </nav>
   </div>
 </div>

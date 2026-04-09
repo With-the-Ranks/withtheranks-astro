@@ -1,5 +1,6 @@
 ---
 import { CALENDLY_TEAM_MEETING } from "../../constants/spoke";
+import Button from "../Button.astro";
 ---
 
 <section
@@ -18,15 +19,18 @@ import { CALENDLY_TEAM_MEETING } from "../../constants/spoke";
         </p>
       </div>
       <div class="flex flex-wrap gap-6">
-        <a
-          class="inline-flex items-center justify-center gap-1 rounded-lg border-4 border-[#1c1c1c]/20 bg-[linear-gradient(-64deg,#ffefc0_0.36%,#fac328_99.64%)] px-6 py-4 font-sans text-base font-bold text-[#1c1c1c] no-underline"
+        <Button
+          class="label-button !inline-flex !gap-1 px-8 py-4 !text-black"
           href="#signup"
+          icon="/assets/home/contact-icon.svg"
+          iconClass="size-9 shrink-0"
+          soft
+          variant="cta"
         >
-          <img alt="" aria-hidden="true" class="size-9 shrink-0" src="/assets/home/contact-icon.svg" width="38" height="38" />
-          Sign Up
-        </a>
+          <span>Sign Up</span>
+        </Button>
         <a
-          class="inline-flex items-center justify-center gap-2 rounded-lg border-4 border-[#1c1c1c]/20 px-6 py-4 font-sans text-base font-bold text-white no-underline"
+          class="inline-flex items-center justify-center gap-2 rounded-lg border-4 border-[#1c1c1c]/20 px-6 py-4 font-sans text-base font-bold text-white no-underline transition duration-300 hover:-translate-y-px hover:bg-white/10 hover:brightness-110 focus-visible:-translate-y-px focus-visible:bg-white/10 focus-visible:brightness-110"
           href={CALENDLY_TEAM_MEETING}
           rel="noopener noreferrer"
           target="_blank"
