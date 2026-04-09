@@ -8,8 +8,10 @@ interface Props {
 const { text, boldText = "", href } = Astro.props as Props;
 ---
 
-<div class="inline-flex items-center gap-2 rounded-lg border-4 border-black/20 bg-gradient-to-l from-cta-start to-cta-end px-4 py-3 text-sm text-black sm:text-base">
-  <span>{text}</span>
+<div class="flex w-[calc(100%-2rem)] max-w-[980px] items-center rounded-lg border-4 border-black/20 bg-linear-to-l from-cta-start to-cta-end px-4 py-2 text-center text-black md:w-full sm:px-5 sm:py-3">
+  <p class="m-0 w-full font-sans text-[17px] leading-[1.2] sm:text-[18px]">
+    {text}
+    {" "}
   {
     boldText ? (
       href ? (
@@ -22,4 +24,5 @@ const { text, boldText = "", href } = Astro.props as Props;
       )
     ) : null
   }
+  </p>
 </div>
