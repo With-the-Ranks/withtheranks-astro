@@ -1,0 +1,51 @@
+---
+const faqs = [
+  "What is peer-to-peer texting?",
+  "Do you offer trials?",
+  "What CRMs do you integrate with?",
+  "Can you build my organization custom features for Spoke?",
+  "Can I host Spoke myself?",
+  "What does open source mean?",
+  "Is Spoke secure?",
+  "What is With the Ranks? How long have you been around?",
+] as const;
+---
+
+<section class="bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32" id="faq">
+  <div class="mx-auto flex max-w-screen-2xl flex-col gap-8">
+    <div class="max-w-[960px] text-[#1c1c1c]">
+      <h2 class="font-display text-5xl leading-none sm:text-7xl lg:text-[90px]">Questions?</h2>
+      <p class="mt-4 max-w-[915px] font-sans text-xl leading-normal sm:text-2xl">
+        Send us an email at{" "}
+        <a class="font-bold text-[#1f2aff] underline" href="mailto:hello@withtheranks.com">hello@withtheranks.com</a>
+        , or browse some of our frequently asked questions below.
+      </p>
+    </div>
+    <div class="flex flex-col gap-4">
+      {
+        faqs.map((q) => (
+          <details class="group rounded border-2 border-[#1c1c1c] bg-white p-8">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-2xl leading-none text-[#1c1c1c] sm:text-4xl [&::-webkit-details-marker]:hidden">
+              <span>{q}</span>
+              <img
+                alt=""
+                aria-hidden="true"
+                class="size-6 shrink-0 transition-transform group-open:rotate-180"
+                height="24"
+                src="/assets/spoke/icon-chevron-down.svg"
+                width="24"
+              />
+            </summary>
+            <p class="mt-4 font-sans text-base leading-normal text-[#1c1c1c]">
+              Please reach out to{" "}
+              <a class="font-bold text-[#1f2aff] no-underline" href="mailto:hello@withtheranks.com">
+                hello@withtheranks.com
+              </a>{" "}
+              — we’re happy to help with this and anything else about Spoke.
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

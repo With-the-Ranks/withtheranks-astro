@@ -1,0 +1,59 @@
+---
+const cards = [
+  {
+    icon: "/assets/spoke/icon-delegate.svg",
+    title: "Delegate Conversations",
+    intro: "Spoke automates tedious tasks so that organizers can focus on organizing:",
+    bullets: ["Bulk Send Initial Messages", "Auto Assign Replies", "Opt Out Keywords"],
+  },
+  {
+    icon: "/assets/spoke/icon-workflow.svg",
+    title: "Workflow Management",
+    intro: "Spoke allows you to perform common admin workflows in just a few clicks:",
+    bullets: ["Second Pass Marking", "Contact Overlap Management", "Bulk Script Editor"],
+  },
+  {
+    icon: "/assets/spoke/icon-organize.svg",
+    title: "Organize Your Way",
+    intro: "Spoke features to help you configure your instance for your team's specific needs:",
+    bullets: ["VAN Data Integration", "A/B Script Versions", "Team Level Assignments"],
+  },
+] as const;
+---
+
+<section
+  class="border-b-4 border-t-4 border-[#0c15b1] bg-[#1f2aff] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32"
+  id="features"
+>
+  <div class="mx-auto flex max-w-screen-2xl flex-col items-center gap-16">
+    <div class="max-w-[960px] text-white">
+      <h2 class="font-display text-5xl leading-none sm:text-7xl lg:text-[90px]">Built for Organizers.</h2>
+      <p class="mt-4 max-w-[945px] font-sans text-xl leading-normal sm:text-2xl">
+        Spoke is built to handle the boring stuff, so that you can spend your time on meaningful conversations with
+        supporters. Here are some of the features that make it the best tool for the job:
+      </p>
+    </div>
+    <div class="grid w-full grid-cols-1 gap-8 lg:grid-cols-3">
+      {
+        cards.map((card) => (
+          <div class="rounded-sm border-2 border-[#1c1c1c] bg-white p-8">
+            <div class="flex flex-col gap-4">
+              <div class="flex items-center gap-2">
+                <img alt="" class="size-6 shrink-0" height="24" src={card.icon} width="24" />
+                <h3 class="font-display text-3xl leading-none text-[#1c1c1c] sm:text-4xl">{card.title}</h3>
+              </div>
+              <div class="font-sans text-base leading-normal text-[#1c1c1c]">
+                <p>{card.intro}</p>
+                <ul class="mt-2 list-disc pl-6">
+                  {card.bullets.map((b) => (
+                    <li>{b}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

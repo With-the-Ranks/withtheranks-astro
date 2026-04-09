@@ -1,0 +1,43 @@
+---
+const GITHUB = "https://github.com/politicsrewired/spoke";
+const ROADMAP = "https://github.com/politicsrewired/spoke/projects";
+const WIKI = "https://github.com/politicsrewired/spoke/wiki";
+const PULLS = "https://github.com/politicsrewired/spoke/pulls";
+---
+
+<section class="bg-[#f0f0f0] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32" id="open-source">
+  <div class="mx-auto flex max-w-[960px] flex-col gap-8">
+    <div class="text-[#1c1c1c]">
+      <h2 class="font-display text-5xl leading-none sm:text-7xl lg:text-[90px]">Spoke is 100% open source.</h2>
+      <div class="mt-8 space-y-4 font-sans text-xl leading-normal sm:text-2xl">
+        <p>
+          Building on the work of <span class="font-bold">MoveOn</span> and <span class="font-bold">Politics Rewired</span>, we’re committed to maintaining and improving Spoke, keeping it open source and accessible to all. Take a look at our{" "}
+          <a class="font-bold text-[#1f2aff] underline" href={ROADMAP} rel="noopener noreferrer" target="_blank">
+            roadmap
+          </a>{" "}
+          to collaborate on the future direction of Spoke.
+        </p>
+        <p>
+          If you’d like to self-host yourself, take a look at our{" "}
+          <a class="font-bold text-[#1f2aff] underline" href={WIKI} rel="noopener noreferrer" target="_blank">
+            hosting docs
+          </a>
+          . Or, submit a{" "}
+          <a class="font-bold text-[#1f2aff] underline" href={PULLS} rel="noopener noreferrer" target="_blank">
+            pull request
+          </a>{" "}
+          to contribute to the code base and improve Spoke for everyone.
+        </p>
+      </div>
+    </div>
+    <a
+      class="inline-flex w-fit items-center justify-center gap-4 rounded-lg border-2 border-[#1c1c1c]/20 bg-white px-8 py-6 font-sans text-2xl font-bold text-[#1c1c1c] no-underline"
+      href={GITHUB}
+      rel="noopener noreferrer"
+      target="_blank"
+    >
+      View on Github
+      <img alt="" aria-hidden="true" class="h-6 w-[25px] shrink-0" height="24" src="/assets/spoke/icon-github.svg" width="25" />
+    </a>
+  </div>
+</section>
