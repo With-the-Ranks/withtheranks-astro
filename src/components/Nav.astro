@@ -1,7 +1,12 @@
 ---
 import Button from "./Button.astro";
 
-const { theme = "dark" } = Astro.props;
+interface Props {
+  theme?: string;
+  surfaceClass?: string;
+}
+
+const { theme = "dark", surfaceClass } = Astro.props;
 
 const navLinks = [
   { href: "/our-work", label: "Our Work", icon: "/assets/home/nav-our-work.svg" },
@@ -10,11 +15,13 @@ const navLinks = [
   { href: "https://spoke.withtheranks.com/", label: "Support", icon: "/assets/home/nav-support.svg" },
 ];
 const isLight = theme === "light";
+const wrapperBg =
+  surfaceClass ?? (isLight ? "bg-white" : "bg-brand-blue");
 const lightFilter =
   "brightness(0) saturate(100%) invert(9%) sepia(28%) saturate(1940%) hue-rotate(210deg) brightness(94%) contrast(96%)";
 ---
 
-<div class={isLight ? "bg-white" : "bg-brand-blue"}>
+<div class={wrapperBg} id="site-nav">
   <header class="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
     <div class="flex items-center justify-between gap-4 xl:grid xl:grid-cols-[auto_1fr_auto] xl:items-center xl:gap-10">
       <div class="flex items-center justify-between gap-4">
