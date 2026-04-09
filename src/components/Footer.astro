@@ -1,36 +1,62 @@
 ---
-const supportLinks = [{ href: "/docs", label: "Spoke" }, { href: "/contact", label: "Get in touch" }];
-const connectLinks = ["Newsletter", "RSS", "Mastodon", "BlueSky"];
-const workLinks = [{ href: "/our-work", label: "Case Studies" }, { href: "/about", label: "About Us" }, { href: "/texting", label: "Spoke Texting" }];
+const toolsLinks = [{ href: "/texting", label: "Spoke" }, { href: undefined, label: "Mailer" }];
+const connectLinks = [{ href: "/contact", label: "Say Hello" }, { href: undefined, label: "Newsletter" }, { href: undefined, label: "RSS" }, { href: undefined, label: "Mastodon" }, { href: undefined, label: "BlueSky" }];
+const workLinks = [{ href: "/our-work", label: "Case Studies" }, { href: "/about", label: "About Our Co-Op" }];
+const supportLinks = [{ href: "https://spoke.withtheranks.com/", label: "Spoke Support" }, { href: "/contact", label: "Contact Us" }];
 ---
 
 <footer class="border-black/20 bg-brand-blue-deep text-brand-cream">
   <div class="mx-auto max-w-screen-2xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28">
-    <div class="grid gap-12 text-center md:grid-cols-3 md:items-start md:justify-between md:gap-10 lg:gap-16">
+    <div class="mt-20 mb-16 sm:mt-24 lg:mt-0 lg:mb-20">
+      <img alt="With the Ranks Worker Cooperative" class="mx-auto h-auto w-full max-w-full" src="/assets/home/footer-wordmark.svg" />
+    </div>
+
+    <div class="grid gap-12 text-center md:grid-cols-2 md:items-start md:justify-between md:gap-10 lg:grid-cols-4 lg:gap-16 lg:text-left">
+      <section class="footer-column space-y-4 md:text-left">
+        <h2 class="heading-footer mb-0 font-display font-normal leading-none">Tools</h2>
+        <div class="space-y-3">
+          {toolsLinks.map((link) => link.href ? <a class="block text-xl font-normal text-brand-cream underline underline-offset-5 transition-colors hover:text-brand-cream/80 sm:text-2xl" href={link.href}>{link.label}</a> : <span aria-disabled="true" class="block cursor-default text-xl font-normal text-brand-cream underline underline-offset-5 sm:text-2xl">{link.label}</span>)}
+        </div>
+      </section>
+
+      <section class="footer-column space-y-4 md:text-left">
+        <h2 class="heading-footer mb-0 font-display font-normal leading-none">Connect</h2>
+        <div class="space-y-3">
+          {connectLinks.map((link) => link.href ? <a class="block text-xl font-normal text-brand-cream underline underline-offset-5 transition-colors hover:text-brand-cream/80 sm:text-2xl" href={link.href}>{link.label}</a> : <span aria-disabled="true" class="block cursor-default text-xl font-normal text-brand-cream underline underline-offset-5 sm:text-2xl">{link.label}</span>)}
+        </div>
+      </section>
+
+      <section class="footer-column space-y-4 md:text-left">
+        <h2 class="heading-footer mb-0 font-display font-normal leading-none">Our Work</h2>
+        <div class="space-y-3">
+          {workLinks.map((link) => <a class="block text-xl font-normal text-brand-cream underline underline-offset-5 transition-colors hover:text-brand-cream/80 sm:text-2xl" href={link.href}>{link.label}</a>)}
+        </div>
+      </section>
+
       <section class="footer-column space-y-4 md:justify-self-start md:text-left">
         <h2 class="heading-footer mb-0 font-display font-normal leading-none">Support</h2>
         <div class="space-y-3">
-          {supportLinks.map((link) => <a class="block text-xl font-normal text-brand-cream/40 underline underline-offset-5 transition-colors hover:text-brand-cream sm:text-2xl" href={link.href}>{link.label}</a>)}
-        </div>
-      </section>
-
-      <section class="footer-column space-y-4 md:justify-self-center md:text-left">
-        <h2 class="heading-footer mb-0 font-display font-normal leading-none">Connect</h2>
-        <div class="space-y-3">
-          {connectLinks.map((label) => <span aria-disabled="true" class="block cursor-default text-xl font-normal text-brand-cream/40 underline underline-offset-5 sm:text-2xl">{label}</span>)}
-        </div>
-      </section>
-
-      <section class="footer-column space-y-4 md:justify-self-end md:text-left">
-        <h2 class="heading-footer mb-0 font-display font-normal leading-none">Our Work</h2>
-        <div class="space-y-3">
-          {workLinks.map((link) => <a class="block text-xl font-normal text-brand-cream/40 underline underline-offset-5 transition-colors hover:text-brand-cream sm:text-2xl" href={link.href}>{link.label}</a>)}
+          {supportLinks.map((link) => <a class="block text-xl font-normal text-brand-cream underline underline-offset-5 transition-colors hover:text-brand-cream/80 sm:text-2xl" href={link.href}>{link.label}</a>)}
         </div>
       </section>
     </div>
 
-    <div class="mt-20 sm:mt-24 lg:mt-32">
-      <img alt="With the Ranks Worker Cooperative" class="mx-auto h-auto w-full max-w-full" src="/assets/home/footer-wordmark.svg" />
+    <div class="mt-10 flex items-center justify-center gap-4 sm:mt-12">
+      <img alt="Instagram" class="h-[27px] w-6 object-contain" src="/assets/home/social-instagram.svg" />
+      <img alt="TikTok" class="h-6 w-[21px] object-contain" src="/assets/home/social-tiktok.svg" />
+      <img alt="Twitter" class="h-6 w-6 object-contain" src="/assets/home/social-twitter.svg" />
+      <div class="relative h-6 w-[27px]">
+        <img alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-contain" src="/assets/home/social-x-part1.svg" />
+        <img alt="X" class="absolute inset-0 h-full w-full object-contain" src="/assets/home/social-x-part2.svg" />
+      </div>
+      <img alt="Discord" class="h-6 w-[27px] object-contain" src="/assets/home/social-discord.svg" />
     </div>
+
+    <p class="mx-auto mt-16 max-w-[618px] text-center text-base text-brand-cream sm:text-[20px]">
+      This site and its content are <span class="font-bold underline underline-offset-4">open-source</span> under the [license], except where third-party assets, client references, or partner content carry their own licenses.
+      <br />
+      <br />
+      We don’t use cookies.
+    </p>
   </div>
 </footer>
