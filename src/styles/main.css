@@ -147,6 +147,11 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
         font-family: var(--font-body);
     }
 
+    /* Spoke marketing (/texting): spacing comes from Tailwind utilities, not base margins */
+    main.spoke-page :where(h1, h2, h3, h4, h5, h6, p) {
+        margin: 0;
+    }
+
     article ul {
         list-style: disc;
         margin-left: 2rem;
