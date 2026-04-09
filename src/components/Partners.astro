@@ -3,6 +3,7 @@ const logos = [
   { src: "/assets/350.svg", alt: "350 logo", class: "max-h-16 max-w-[170px]" },
   { src: "/assets/indivisible.svg", alt: "Indivisible logo", class: "max-h-9 max-w-[210px]" },
   { src: "/assets/bernie.svg", alt: "Bernie logo", class: "max-h-16 max-w-[190px]" },
+  { src: "/assets/home/partner-more-perfect-union.png", alt: "More Perfect Union logo", class: "max-h-16 max-w-[200px]" },
   { src: "/assets/opin.svg", alt: "Power in Numbers logo", class: "max-h-16 max-w-[180px]" },
   { src: "/assets/AELP.svg", alt: "American Economic Liberties Project logo", class: "max-h-20 max-w-[180px]" },
   { src: "/assets/FCM.png", alt: "Fight Corporate Monopolies logo", class: "max-h-20 max-w-[180px]" },
@@ -21,8 +22,16 @@ const marqueeLogos = [...logos, ...logos];
     <div class="logo-carousel animate-scroll flex w-max items-center gap-8 px-4 sm:px-6 lg:px-8">
       {
         marqueeLogos.map((logo) => (
-          <div class="logo-tile flex h-32 w-[248px] shrink-0 items-center justify-center rounded-2xl bg-[#000568] px-10 py-8 sm:w-[280px]">
-            <img alt={logo.alt} class:list={["h-auto w-auto object-contain", logo.class]} src={logo.src} />
+          <div class="logo-tile flex h-32 w-[248px] shrink-0 items-center justify-center rounded-2xl bg-black/20 px-10 py-8 sm:w-[280px]">
+            <img
+              alt={logo.alt}
+              class:list={[
+                "h-auto w-auto object-contain opacity-80",
+                logo.alt === "More Perfect Union logo" && "h-[52px] w-[200px] max-h-none max-w-none opacity-100",
+                logo.class,
+              ]}
+              src={logo.src}
+            />
           </div>
         ))
       }

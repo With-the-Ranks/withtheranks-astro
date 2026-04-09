@@ -1,0 +1,60 @@
+<section class="bg-brand-blue-deep py-12 sm:py-16 lg:py-20">
+  <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-5xl rounded-[32px] border-8 border-black/20 bg-brand-ink px-6 py-10 text-center text-white sm:px-10 sm:py-12 lg:px-16 lg:py-16">
+      <h2 class="mx-auto mb-5 max-w-4xl font-display text-[72px] leading-[1.02] font-normal text-white sm:text-[88px] lg:text-[112px]">
+        Keep up with the latest.
+      </h2>
+      <p class="mx-auto mb-10 max-w-[560px] text-[22px] leading-tight text-white">
+        Sign up for our newsletter and we’ll keep you up to date on open source product launches, free educational resources, and
+        more. <span class="font-bold">We promise not to spam.</span>
+      </p>
+
+      <div class="mx-auto w-full max-w-[560px] overflow-hidden rounded-[14px]" id="newsletter-form-container"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const setupNewsletterEmbed = () => {
+    const container = document.getElementById("newsletter-form-container");
+    if (!container || container.dataset.embedBound === "true") return;
+
+    container.dataset.embedBound = "true";
+
+    const FORM_SLUG = "website-form";
+    const FORM_ORIGIN = "https://app.withtheranks.coop";
+    const FORM_URL =
+      `${FORM_ORIGIN}/app/signup-forms/${FORM_SLUG}?embed=true&bg=00033d&buttonBg=fac328&buttonText=000000&hideTitle=true&inputTextColor=ffffff`;
+
+    const iframe = document.createElement("iframe");
+    iframe.src = FORM_URL;
+    iframe.width = "100%";
+    iframe.height = "188";
+    iframe.style.border = "none";
+    iframe.style.maxWidth = "560px";
+    iframe.style.margin = "0 auto";
+    iframe.style.display = "block";
+    iframe.style.background = "transparent";
+    iframe.style.overflow = "hidden";
+    iframe.style.borderRadius = "14px";
+    iframe.scrolling = "no";
+    iframe.title = "Newsletter Signup Form";
+
+    container.innerHTML = "";
+    container.appendChild(iframe);
+
+    const handleMessage = (event: MessageEvent) => {
+      if (event.origin !== FORM_ORIGIN) return;
+      if (event.data?.formSlug !== FORM_SLUG) return;
+      if (!event.data?.height) return;
+      const nextHeight = Math.max(170, Math.min(Number(event.data.height), 260));
+      iframe.height = `${nextHeight}px`;
+      iframe.style.height = `${nextHeight}px`;
+    };
+
+    window.addEventListener("message", handleMessage);
+  };
+
+  document.addEventListener("DOMContentLoaded", setupNewsletterEmbed);
+  document.addEventListener("astro:page-load", setupNewsletterEmbed);
+</script>
