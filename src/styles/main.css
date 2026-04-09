@@ -129,7 +129,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
         font-family: var(--font-display-stack);
         line-height: 1.05;
         font-weight: 400;
-        margin-bottom: 2rem;
+        margin: 0 0 2rem;
     }
 
     h1 {
@@ -143,7 +143,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     p {
         font-size: 1.5rem;
         line-height: 1.4;
-        margin-bottom: 2rem;
+        margin: 0 0 2rem;
         font-family: var(--font-body);
     }
 
