@@ -60,96 +60,45 @@ import Button from "../Button.astro";
         </div>
         <div
           aria-hidden="true"
-          class="spoke-hero-chat-card relative z-10 col-start-1 row-start-1 mt-16 ml-auto flex w-[min(182px,42vw)] flex-col justify-end gap-2.5 rounded-2xl border-2 border-[#cfcfcf] bg-white p-4 shadow-[0_4px_8px_rgba(0,0,0,0.25)] sm:mt-20 sm:mr-4 lg:mt-20 lg:mr-8"
+          class="spoke-hero-chat-card relative z-10 col-start-1 row-start-1 mt-16 ml-auto flex aspect-9/16 w-[min(168px,38vw)] max-w-[200px] shrink-0 flex-col overflow-hidden rounded-[2.25rem] border-[3px] border-[#d4d4d9] bg-[#e8e8ed] p-[5px] shadow-[0_8px_22px_rgba(0,0,0,0.18)] ring-1 ring-black/10 sm:mt-20 sm:mr-4 lg:mt-20 lg:mr-8"
         >
-          <div class="spoke-hero-chat-bubble spoke-hero-chat-bubble--in w-full rounded-lg bg-[#e9eaff] p-2">
-            <p class="font-sans text-[9px] leading-normal text-[#1c1c1c]">
-              Hi Sarah, it’s Chris with Friends of Bernie Sanders. Lorem ipsum dolor sit amet, consectetur adipiscing
-              elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem?
-            </p>
-          </div>
-          <div class="spoke-hero-chat-bubble spoke-hero-chat-bubble--out flex w-full justify-end">
-            <div class="rounded-lg bg-[#1f2aff] p-2 shadow-[0_2px_8px_rgba(31,42,255,0.35)]">
-              <p class="font-sans text-[11px] leading-normal text-white">Yes! Where at?</p>
+          <div
+            class="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-[1.85rem] bg-[#f2f2f7]"
+          >
+            <div class="flex shrink-0 justify-center pt-2.5 pb-1">
+              <div class="h-[7px] w-[32%] max-w-[68px] rounded-full bg-[#1c1c1c]" />
             </div>
-          </div>
-          <div class="spoke-hero-chat-bubble spoke-hero-chat-bubble--typing flex w-full justify-start">
-            <div class="flex items-center rounded-lg bg-[#e9eaff] p-2">
-              <span class="spoke-hero-chat-typing inline-flex">
-                <img alt="" class="h-1 w-5" height="4" src="/assets/spoke/typing-dots.svg" width="20" />
-              </span>
+            <div
+              class="spoke-hero-chat-screen flex min-h-0 min-w-0 flex-1 flex-col justify-end gap-2 overflow-hidden px-2 pb-2.5 pt-0.5"
+            >
+              <div
+                class="spoke-hero-chat-bubble spoke-hero-chat-bubble--in min-w-0 rounded-[14px] rounded-bl-md bg-[#e9eaff] px-2 py-1.5"
+              >
+                <p
+                  class="font-sans text-[9px] leading-snug text-[#1c1c1c] [overflow-wrap:anywhere] line-clamp-5"
+                >
+                  Hi Sarah — it’s Chris with Friends of Bernie Sanders. Can you make it to the canvass this Saturday?
+                </p>
+              </div>
+              <div class="spoke-hero-chat-bubble spoke-hero-chat-bubble--out flex min-w-0 w-full justify-end">
+                <div
+                  class="max-w-full rounded-[14px] rounded-br-md bg-[#1f2aff] px-2 py-1.5 shadow-[0_2px_8px_rgba(31,42,255,0.35)]"
+                >
+                  <p class="font-sans text-[11px] leading-snug text-white">Yes! Where at?</p>
+                </div>
+              </div>
+              <div class="spoke-hero-chat-bubble spoke-hero-chat-bubble--typing flex w-full min-w-0 justify-start">
+                <div class="flex items-center rounded-[14px] rounded-bl-md bg-[#e9eaff] px-2 py-1.5">
+                  <span class="spoke-hero-chat-typing inline-flex">
+                    <img alt="" class="h-1 w-5" height="4" src="/assets/spoke/typing-dots.svg" width="20" />
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- <div class="mx-auto mt-10 flex w-full max-w-screen-2xl min-w-0 flex-col items-stretch gap-4 px-4 sm:px-6 lg:px-8">
-    <p class="text-center font-sans text-base leading-[1.05] text-white/80">Trusted by organizers from:</p>
-    <div class="flex w-full min-w-0 justify-center">
-      <div
-        class="flex w-full min-w-0 max-w-full flex-wrap content-center items-stretch justify-center gap-4 sm:gap-[31px] xl:flex-nowrap xl:justify-center"
-      >
-        <div
-          class="flex min-h-[96px] w-[calc(50%-8px)] max-w-[220px] shrink-0 flex-col items-center justify-center rounded-lg border-4 border-transparent bg-[rgba(28,28,28,0.2)] px-4 py-5 sm:h-[114px] xl:w-[220px] xl:max-w-none xl:px-12 xl:py-8"
-        >
-          <div class="relative aspect-[158/50] w-full max-w-[158px] xl:w-[158px]">
-            <img
-              alt="Bernie 2020"
-              class="pointer-events-none absolute inset-0 block size-full object-contain object-center"
-              decoding="async"
-              height="50"
-              loading="lazy"
-              src="/assets/spoke/trust-bernie-figma.svg"
-              width="158"
-            />
-          </div>
-        </div>
-        <div
-          class="flex min-h-[96px] w-[calc(50%-8px)] max-w-[220px] shrink-0 flex-col items-center justify-center rounded-lg border-4 border-transparent bg-[rgba(28,28,28,0.2)] px-4 py-5 sm:h-[114px] xl:w-[220px] xl:max-w-none xl:px-12 xl:py-8"
-        >
-          <div class="pointer-events-none relative aspect-[125/50] w-full max-w-[125px] overflow-hidden xl:w-[125px]">
-            <img
-              alt="Organized Power in Numbers"
-              class="absolute -left-[8.72%] -top-[16.88%] h-[133.76%] w-[117.45%] max-w-none object-cover"
-              decoding="async"
-              loading="lazy"
-              src="/assets/spoke/trust-opin.png"
-            />
-          </div>
-        </div>
-        <div
-          class="flex min-h-[96px] w-[calc(50%-8px)] max-w-[220px] shrink-0 flex-col items-center justify-center rounded-lg border-4 border-transparent bg-[rgba(28,28,28,0.2)] px-4 py-5 sm:h-[114px] xl:w-[220px] xl:max-w-none xl:px-12 xl:py-8"
-        >
-          <div class="relative aspect-[166/50] w-full max-w-[166px] min-w-0 xl:w-[166px]">
-            <img
-              alt="Reproductive Freedom for All"
-              class="pointer-events-none absolute inset-0 block size-full object-contain object-center"
-              decoding="async"
-              height="50"
-              loading="lazy"
-              src="/assets/spoke/trust-rffa.svg"
-              width="166"
-            />
-          </div>
-        </div>
-        <div
-          class="flex min-h-[96px] w-[calc(50%-8px)] max-w-[220px] shrink-0 flex-col items-center justify-center rounded-lg border-4 border-transparent bg-[rgba(28,28,28,0.2)] px-4 py-5 sm:h-[114px] xl:w-[220px] xl:max-w-none xl:px-12 xl:py-8"
-        >
-          <div class="relative aspect-[78/50] w-full max-w-[78px] xl:w-[78px]">
-            <img
-              alt="Siembra NC"
-              class="pointer-events-none absolute inset-0 block size-full object-cover"
-              decoding="async"
-              height="50"
-              loading="lazy"
-              src="/assets/spoke/trust-siembra.png"
-              width="78"
-            />
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </section>
 

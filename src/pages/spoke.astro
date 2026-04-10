@@ -1,14 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import StickySubNav from "../components/spoke/StickySubNav.astro";
-import SpokeBackedSection from "../components/spoke/SpokeBackedSection.astro";
-import SpokeBuiltSection from "../components/spoke/SpokeBuiltSection.astro";
-import SpokeFaqSection from "../components/spoke/SpokeFaqSection.astro";
-import SpokeHero from "../components/spoke/SpokeHero.astro";
-import SpokeOpenSourceSection from "../components/spoke/SpokeOpenSourceSection.astro";
-import SpokePricingSection from "../components/spoke/SpokePricingSection.astro";
-import SpokeSignupSection from "../components/spoke/SpokeSignupSection.astro";
-import SpokeStepsSection from "../components/spoke/SpokeStepsSection.astro";
+import SpokePageSections from "../components/spoke/SpokePageSections.astro";
 import type { StickySubNavItem } from "../components/spoke/StickySubNav.astro";
 import { CALENDLY_TEAM_MEETING } from "../constants/spoke";
 
@@ -30,13 +23,6 @@ const stickyNavItems: StickySubNavItem[] = [
     slot="sticky-subnav"
   />
   <main class="spoke-page">
-    <SpokeHero />
-    <SpokeStepsSection />
-    <SpokeBuiltSection />
-    <SpokePricingSection />
-    <SpokeBackedSection />
-    <SpokeOpenSourceSection />
-    <SpokeFaqSection />
-    <SpokeSignupSection />
+    <SpokePageSections />
   </main>
 </Layout>
