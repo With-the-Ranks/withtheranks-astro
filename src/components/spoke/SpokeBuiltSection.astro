@@ -1,19 +1,19 @@
 ---
 const cards = [
   {
-    icon: "/assets/spoke/icon-delegate.svg",
+    iconClass: "iconoir-forward-message",
     title: "Delegate Conversations",
     intro: "Spoke automates tedious tasks so that organizers can focus on organizing:",
     bullets: ["Bulk Send Initial Messages", "Auto Assign Replies", "Opt Out Keywords"],
   },
   {
-    icon: "/assets/spoke/icon-workflow.svg",
+    iconClass: "iconoir-task-list",
     title: "Workflow Management",
     intro: "Spoke allows you to perform common admin workflows in just a few clicks:",
     bullets: ["Second Pass Marking", "Contact Overlap Management", "Bulk Script Editor"],
   },
   {
-    icon: "/assets/spoke/icon-organize.svg",
+    iconClass: "iconoir-group",
     title: "Organize Your Way",
     intro: "Spoke features to help you configure your instance for your team's specific needs:",
     bullets: ["VAN Data Integration", "A/B Script Versions", "Team Level Assignments"],
@@ -39,7 +39,7 @@ const cards = [
           <div class="rounded-sm border-2 border-[#1c1c1c] bg-white p-8">
             <div class="flex flex-col gap-4">
               <div class="flex items-center gap-2">
-                <img alt="" class="size-6 shrink-0" height="24" src={card.icon} width="24" />
+                <i class:list={[card.iconClass, "shrink-0 text-2xl leading-none text-[#1c1c1c]"]} aria-hidden="true" />
                 <h3 class="font-display text-3xl leading-none text-[#1c1c1c] sm:text-4xl">{card.title}</h3>
               </div>
               <div class="font-sans text-base leading-normal text-[#1c1c1c]">

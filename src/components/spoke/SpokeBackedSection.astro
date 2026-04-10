@@ -3,17 +3,17 @@ const cards = [
   {
     title: "Improved User Experience",
     body: "Streamlined workflows—from scripting to assignment—help your team move faster without losing the depth of real conversations.",
-    icon: "/assets/spoke/icon-workflow.svg",
+    iconClass: "iconoir-task-list",
   },
   {
     title: "Upgraded Security and Stability",
     body: "Hosted infrastructure with monitoring and hardening practices designed for campaigns and organizations handling sensitive supporter data.",
-    icon: "/assets/spoke/icon-organize.svg",
+    iconClass: "iconoir-group",
   },
   {
     title: "Supported by With the Ranks",
     body: "Our team has been building and using Spoke since 2016, and when you have a problem you’ll be supported directly by our internal team of real humans building stuff.",
-    icon: "/assets/spoke/icon-delegate.svg",
+    iconClass: "iconoir-forward-message",
     href: "/about#who-we-are",
     linkLabel: "Meet the team",
   },
@@ -41,14 +41,17 @@ const cards = [
           <div class="rounded border-4 border-[#1c1c1c] bg-white p-8">
             <div class="flex flex-col gap-4">
               <div class="flex items-center gap-2">
-                <img alt="" class="size-6 shrink-0" height="24" src={card.icon} width="24" />
+                <i class:list={[card.iconClass, "shrink-0 text-2xl leading-none text-[#1c1c1c]"]} aria-hidden="true" />
                 <h3 class="font-display text-3xl leading-none text-[#1c1c1c] sm:text-4xl">{card.title}</h3>
               </div>
               <p class="font-sans text-base leading-normal text-[#1c1c1c]">{card.body}</p>
               {"href" in card && card.href ? (
                 <a class="inline-flex items-center gap-2 font-sans text-base font-bold text-[#1c1c1c] no-underline" href={card.href}>
                   {card.linkLabel}
-                  <img alt="" aria-hidden="true" class="size-6 shrink-0" height="24" src="/assets/spoke/icon-arrow.svg" width="24" />
+                  <i
+                    class="iconoir-arrow-up-right-square-solid shrink-0 text-2xl leading-none text-cta-end"
+                    aria-hidden="true"
+                  />
                 </a>
               ) : null}
             </div>
