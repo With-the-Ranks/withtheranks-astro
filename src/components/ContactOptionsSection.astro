@@ -5,7 +5,7 @@ interface ContactCard {
   href: string;
   title: string;
   description: string;
-  icon: string;
+  iconoir: string;
   external?: boolean;
 }
 
@@ -43,12 +43,20 @@ const { contactCards } = Astro.props as Props;
             <InfoCard class="rounded bg-white p-8 text-black outline-4 outline-black outline-offset-inward max-sm:p-6">
               <div class="flex items-start justify-between gap-4">
                 <div class="flex min-w-0 flex-1 items-center gap-4">
-                  <img alt="" aria-hidden="true" class="block size-6 shrink-0" src={card.icon} />
+                  <i
+                    class:list={[card.iconoir, "not-italic block size-6 shrink-0 text-2xl leading-none text-black"]}
+                    aria-hidden="true"
+                  />
                   <h3 class="my-0 font-display text-[32px] leading-none font-normal text-black sm:text-[40px] sm:whitespace-nowrap">
                     {card.title}
                   </h3>
                 </div>
-                <i class="iconoir-arrow-right not-italic mt-0.5 inline-block shrink-0 text-2xl leading-none text-black" aria-hidden="true" />
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  class="mt-0.5 block size-6 shrink-0"
+                  src="/assets/home/contact-card-arrow.svg"
+                />
               </div>
 
               <p class="mt-4 mb-0 font-sans text-lg leading-normal text-black sm:text-[20px]">
