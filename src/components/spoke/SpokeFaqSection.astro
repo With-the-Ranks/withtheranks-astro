@@ -1,0 +1,43 @@
+---
+const faqAnswerPlaceholder =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
+const faqs = [
+  { question: "What is peer-to-peer texting?", answer: faqAnswerPlaceholder },
+  { question: "Do you offer trials?", answer: faqAnswerPlaceholder },
+  { question: "What CRMs do you integrate with?", answer: faqAnswerPlaceholder },
+  { question: "Can you build my organization custom features for Spoke?", answer: faqAnswerPlaceholder },
+  { question: "Can I host Spoke myself?", answer: faqAnswerPlaceholder },
+  { question: "What does open source mean?", answer: faqAnswerPlaceholder },
+  { question: "Is Spoke secure?", answer: faqAnswerPlaceholder },
+  { question: "What is With the Ranks? How long have you been around?", answer: faqAnswerPlaceholder },
+] as const;
+---
+
+<section class="bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32" id="faq">
+  <div class="mx-auto flex max-w-screen-2xl flex-col gap-8">
+    <div class="max-w-[960px] text-[#1c1c1c]">
+      <h2 class="font-display text-5xl leading-none sm:text-7xl lg:text-[90px]">Questions?</h2>
+      <p class="mt-4 max-w-[915px] font-sans text-xl leading-normal sm:text-2xl">
+        Send us an email at{" "}
+        <a class="font-bold text-[#1f2aff] underline" href="mailto:hello@withtheranks.com">hello@withtheranks.com</a>
+        , or browse some of our frequently asked questions below.
+      </p>
+    </div>
+    <div class="flex flex-col gap-4">
+      {
+        faqs.map((faq) => (
+          <details class="group rounded border-2 border-[#1c1c1c] bg-white p-8">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-2xl leading-none text-[#1c1c1c] sm:text-4xl [&::-webkit-details-marker]:hidden">
+              <span>{faq.question}</span>
+              <span class="inline-flex shrink-0 transition-transform group-open:rotate-180">
+                <i class="iconoir-nav-arrow-down text-2xl leading-none text-[#1c1c1c]" aria-hidden="true" />
+              </span>
+            </summary>
+            <p class="mt-4 font-sans text-base leading-normal text-[#1c1c1c]">{faq.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
