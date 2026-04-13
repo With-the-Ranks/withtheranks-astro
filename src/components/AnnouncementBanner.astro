@@ -8,21 +8,30 @@ interface Props {
 const { text, boldText = "", href } = Astro.props as Props;
 ---
 
-<div class="flex w-[calc(100%-2rem)] max-w-[980px] items-center rounded-lg border-4 border-black/20 bg-linear-to-l from-cta-start to-cta-end px-4 py-2 text-center text-black md:w-full sm:px-5 sm:py-3">
-  <p class="m-0 w-full font-sans text-[17px] leading-[1.2] sm:text-[18px]">
-    {text}
-    {" "}
+<div class="relative flex w-[calc(100%-2rem)] max-w-[980px] items-center rounded-lg border-4 border-black/20 bg-linear-to-l from-cta-start to-cta-end px-4 py-2 text-center text-black md:w-full sm:px-5 sm:py-3">
   {
-    boldText ? (
-      href ? (
-        <a class="inline-flex items-center gap-2 font-bold text-black no-underline hover:underline" href={href}>
-          <span>{boldText}</span>
-          <img alt="" aria-hidden="true" class="size-4 shrink-0" src="/assets/home/button-arrow.svg" />
-        </a>
-      ) : (
-        <span class="font-bold">{boldText}</span>
-      )
+    href ? (
+      <a
+        class="absolute inset-0 z-10 rounded-lg focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2"
+        href={href}
+        aria-label={`${text}${boldText ? ` ${boldText}` : ""}`}
+      />
     ) : null
   }
+  <p class="relative m-0 w-full font-sans text-[17px] leading-[1.2] sm:text-[18px]" aria-hidden={href ? true : undefined}>
+    {text}
+    {" "}
+    {
+      boldText ? (
+        href ? (
+          <span class="inline-flex items-center gap-2 font-bold text-black">
+            <span>{boldText}</span>
+            <img alt="" aria-hidden="true" class="size-4 shrink-0" src="/assets/home/button-arrow.svg" />
+          </span>
+        ) : (
+          <span class="font-bold">{boldText}</span>
+        )
+      ) : null
+    }
   </p>
 </div>
