@@ -1,8 +1,16 @@
 ---
-const toolsLinks = [{ href: "/spoke", label: "Spoke" }, { href: undefined, label: "Mailer" }];
-const connectLinks = [{ href: "/contact", label: "Say Hello" }, { href: undefined, label: "Newsletter" }, { href: undefined, label: "RSS" }, { href: undefined, label: "Mastodon" }, { href: undefined, label: "BlueSky" }];
+const toolsLinks = [{ href: "/spoke", label: "Spoke" }];
+const connectLinks = [{ href: "/contact", label: "Say Hello" }];
 const workLinks = [{ href: "/our-work", label: "Case Studies" }, { href: "/about", label: "About Our Co-Op" }];
 const supportLinks = [{ href: "https://spoke.withtheranks.com/", label: "Spoke Support" }, { href: "/contact", label: "Contact Us" }];
+
+const socialIcons = [
+  { class: "iconoir-instagram", label: "Instagram" },
+  { class: "iconoir-tiktok", label: "TikTok" },
+  { class: "iconoir-twitter", label: "Twitter" },
+  { class: "iconoir-x", label: "X" },
+  { class: "iconoir-discord", label: "Discord" },
+] as const;
 ---
 
 <footer class="border-black/20 bg-brand-blue-deep text-brand-cream">
@@ -15,14 +23,22 @@ const supportLinks = [{ href: "https://spoke.withtheranks.com/", label: "Spoke S
       <section class="footer-column space-y-4 md:text-left">
         <h2 class="heading-footer mb-0 font-display font-normal leading-none">Tools</h2>
         <div class="space-y-3">
-          {toolsLinks.map((link) => link.href ? <a class="block text-xl font-normal text-brand-cream underline underline-offset-5 transition-colors hover:text-brand-cream/80 sm:text-2xl" href={link.href}>{link.label}</a> : <span aria-disabled="true" class="block cursor-default text-xl font-normal text-brand-cream underline underline-offset-5 sm:text-2xl">{link.label}</span>)}
+          {toolsLinks.map((link) => (
+            <a class="block text-xl font-normal text-brand-cream underline underline-offset-5 transition-colors hover:text-brand-cream/80 sm:text-2xl" href={link.href}>
+              {link.label}
+            </a>
+          ))}
         </div>
       </section>
 
       <section class="footer-column space-y-4 md:text-left">
         <h2 class="heading-footer mb-0 font-display font-normal leading-none">Connect</h2>
         <div class="space-y-3">
-          {connectLinks.map((link) => link.href ? <a class="block text-xl font-normal text-brand-cream underline underline-offset-5 transition-colors hover:text-brand-cream/80 sm:text-2xl" href={link.href}>{link.label}</a> : <span aria-disabled="true" class="block cursor-default text-xl font-normal text-brand-cream underline underline-offset-5 sm:text-2xl">{link.label}</span>)}
+          {connectLinks.map((link) => (
+            <a class="block text-xl font-normal text-brand-cream underline underline-offset-5 transition-colors hover:text-brand-cream/80 sm:text-2xl" href={link.href}>
+              {link.label}
+            </a>
+          ))}
         </div>
       </section>
 
@@ -41,15 +57,12 @@ const supportLinks = [{ href: "https://spoke.withtheranks.com/", label: "Spoke S
       </section>
     </div>
 
-    <div class="mt-10 flex items-center justify-center gap-4 sm:mt-12">
-      <img alt="Instagram" class="h-[27px] w-6 object-contain" src="/assets/home/social-instagram.svg" />
-      <img alt="TikTok" class="h-6 w-[21px] object-contain" src="/assets/home/social-tiktok.svg" />
-      <img alt="Twitter" class="h-6 w-6 object-contain" src="/assets/home/social-twitter.svg" />
-      <div class="relative h-6 w-[27px]">
-        <img alt="" aria-hidden="true" class="absolute inset-0 h-full w-full object-contain" src="/assets/home/social-x-part1.svg" />
-        <img alt="X" class="absolute inset-0 h-full w-full object-contain" src="/assets/home/social-x-part2.svg" />
-      </div>
-      <img alt="Discord" class="h-6 w-[27px] object-contain" src="/assets/home/social-discord.svg" />
+    <div class="mt-10 flex items-center justify-center gap-5 text-brand-cream sm:mt-12 sm:gap-6">
+      {socialIcons.map((item) => (
+        <span class="inline-flex size-7 items-center justify-center sm:size-8" role="img" aria-label={item.label}>
+          <i class:list={[item.class, "text-[26px] leading-none sm:text-[28px]"]} aria-hidden="true" />
+        </span>
+      ))}
     </div>
 
     <p class="mx-auto mt-16 max-w-[618px] text-center text-base text-brand-cream sm:text-[20px]">
