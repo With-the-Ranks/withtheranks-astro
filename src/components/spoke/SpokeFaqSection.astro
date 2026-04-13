@@ -1,13 +1,16 @@
 ---
+const faqAnswerPlaceholder =
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+
 const faqs = [
-  "What is peer-to-peer texting?",
-  "Do you offer trials?",
-  "What CRMs do you integrate with?",
-  "Can you build my organization custom features for Spoke?",
-  "Can I host Spoke myself?",
-  "What does open source mean?",
-  "Is Spoke secure?",
-  "What is With the Ranks? How long have you been around?",
+  { question: "What is peer-to-peer texting?", answer: faqAnswerPlaceholder },
+  { question: "Do you offer trials?", answer: faqAnswerPlaceholder },
+  { question: "What CRMs do you integrate with?", answer: faqAnswerPlaceholder },
+  { question: "Can you build my organization custom features for Spoke?", answer: faqAnswerPlaceholder },
+  { question: "Can I host Spoke myself?", answer: faqAnswerPlaceholder },
+  { question: "What does open source mean?", answer: faqAnswerPlaceholder },
+  { question: "Is Spoke secure?", answer: faqAnswerPlaceholder },
+  { question: "What is With the Ranks? How long have you been around?", answer: faqAnswerPlaceholder },
 ] as const;
 ---
 
@@ -23,21 +26,15 @@ const faqs = [
     </div>
     <div class="flex flex-col gap-4">
       {
-        faqs.map((q) => (
+        faqs.map((faq) => (
           <details class="group rounded border-2 border-[#1c1c1c] bg-white p-8">
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-2xl leading-none text-[#1c1c1c] sm:text-4xl [&::-webkit-details-marker]:hidden">
-              <span>{q}</span>
+              <span>{faq.question}</span>
               <span class="inline-flex shrink-0 transition-transform group-open:rotate-180">
                 <i class="iconoir-nav-arrow-down text-2xl leading-none text-[#1c1c1c]" aria-hidden="true" />
               </span>
             </summary>
-            <p class="mt-4 font-sans text-base leading-normal text-[#1c1c1c]">
-              Please reach out to{" "}
-              <a class="font-bold text-[#1f2aff] no-underline" href="mailto:hello@withtheranks.com">
-                hello@withtheranks.com
-              </a>{" "}
-              — we’re happy to help with this and anything else about Spoke.
-            </p>
+            <p class="mt-4 font-sans text-base leading-normal text-[#1c1c1c]">{faq.answer}</p>
           </details>
         ))
       }
