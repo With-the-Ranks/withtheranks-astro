@@ -1,0 +1,37 @@
+---
+interface Props {
+  text: string;
+  boldText?: string;
+  href?: string;
+}
+
+const { text, boldText = "", href } = Astro.props as Props;
+---
+
+<div class="relative flex w-[calc(100%-2rem)] max-w-[980px] items-center rounded-lg border-4 border-black/20 bg-linear-to-l from-cta-start to-cta-end px-4 py-2 text-center text-black md:w-full sm:px-5 sm:py-3">
+  {
+    href ? (
+      <a
+        class="absolute inset-0 z-10 rounded-lg focus-visible:outline-2 focus-visible:outline-black focus-visible:outline-offset-2"
+        href={href}
+        aria-label={`${text}${boldText ? ` ${boldText}` : ""}`}
+      />
+    ) : null
+  }
+  <p class="relative m-0 w-full font-sans text-[17px] leading-[1.2] sm:text-[18px]" aria-hidden={href ? true : undefined}>
+    {text}
+    {" "}
+    {
+      boldText ? (
+        href ? (
+          <span class="inline-flex items-center gap-2 font-bold text-black">
+            <span>{boldText}</span>
+            <i class="iconoir-arrow-up-right-square-solid not-italic inline-block shrink-0 text-base leading-none" aria-hidden="true" />
+          </span>
+        ) : (
+          <span class="font-bold">{boldText}</span>
+        )
+      ) : null
+    }
+  </p>
+</div>

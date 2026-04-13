@@ -1,6 +1,6 @@
 # With the Ranks design system
 
-This file is the UI source of truth for the site. If Figma and code disagree, update this doc and the tokens in `tailwind.config.mjs` and `src/styles/main.css` together.
+This file is the UI source of truth for the site. If Figma and code disagree, update this doc and the tokens in `src/styles/main.css` together.
 
 ---
 

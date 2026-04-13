@@ -1,0 +1,142 @@
+---
+import { CALENDLY_TEAM_MEETING } from "../../constants/spoke";
+---
+
+<section
+  class="border-b-4 border-[#1c1c1c]/20 bg-[#212bdd] px-4 pb-10 pt-2 sm:px-6 lg:px-8"
+  id="overview"
+>
+  <div class="mx-auto flex max-w-screen-2xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
+    <div class="flex max-w-xl flex-col gap-8 lg:py-8 lg:pl-4 xl:pl-8">
+      <div class="flex flex-col gap-4 text-white">
+        <h1 class="font-display text-4xl leading-none sm:text-5xl lg:text-[48px]">
+          Spoke makes it easy for organizers to send and reply to millions of text messages.
+        </h1>
+        <p class="font-sans text-lg leading-normal sm:text-xl">
+          Start sending effective organizing messages with the proven open-source peer-to-peer texting platform, now
+          backed by With the Ranks.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-6">
+        <a
+          class="inline-flex items-center justify-center gap-1 rounded-lg border-4 border-[#1c1c1c]/20 bg-[linear-gradient(-64deg,#ffefc0_0.36%,#fac328_99.64%)] px-6 py-4 font-sans text-base font-bold text-[#1c1c1c] no-underline"
+          href="#signup"
+        >
+          <img alt="" aria-hidden="true" class="size-9 shrink-0" src="/assets/home/contact-icon.svg" width="38" height="38" />
+          Sign Up
+        </a>
+        <a
+          class="inline-flex items-center justify-center gap-2 rounded-lg border-4 border-[#1c1c1c]/20 px-6 py-4 font-sans text-base font-bold text-white no-underline"
+          href={CALENDLY_TEAM_MEETING}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <span class="inline-flex h-[1.15em] w-[1.15em] shrink-0 items-center justify-center text-white" aria-hidden="true">
+            <i class="iconoir-calendar not-italic text-[1.125rem] leading-none" />
+          </span>
+          Schedule a Demo
+        </a>
+      </div>
+    </div>
+    <div class="relative flex min-w-0 flex-1 justify-center lg:justify-end lg:p-8 xl:p-16">
+      <div class="relative inline-grid max-w-full place-items-start leading-none">
+        <div class="relative col-start-1 row-start-1 w-full max-w-[788px] rounded-2xl border-2 border-[#cfcfcf]">
+          <img
+            alt=""
+            class="block h-auto w-full rounded-2xl"
+            height="429"
+            src="/assets/spoke/hero-dashboard.png"
+            width="788"
+          />
+        </div>
+        <div
+          class="relative z-10 col-start-1 row-start-1 mt-16 ml-auto flex w-[min(182px,42vw)] flex-col justify-end gap-2.5 rounded-2xl border-2 border-[#cfcfcf] bg-white p-4 shadow-[0_4px_8px_rgba(0,0,0,0.25)] sm:mt-20 sm:mr-4 lg:mt-20 lg:mr-8"
+        >
+          <div class="w-full rounded-lg bg-[#e9eaff] p-2">
+            <p class="font-sans text-[9px] leading-normal text-[#1c1c1c]">
+              Hi Sarah, it’s Chris with Friends of Bernie Sanders. Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit, sed do eiusmod tempor incididunt ut labore et dolore magnam aliquam quaerat voluptatem?
+            </p>
+          </div>
+          <div class="flex w-full justify-end">
+            <div class="rounded-lg bg-[#1f2aff] p-2">
+              <p class="font-sans text-[11px] leading-normal text-white">Yes! Where at?</p>
+            </div>
+          </div>
+          <div class="flex w-full justify-start">
+            <div class="flex items-center rounded-lg bg-[#e9eaff] p-2">
+              <img alt="" class="h-1 w-5" height="4" src="/assets/spoke/typing-dots.svg" width="20" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="mx-auto mt-10 flex w-full max-w-screen-2xl min-w-0 flex-col items-stretch gap-4 px-4 sm:px-6 lg:px-8">
+    <p class="text-center font-sans text-base leading-[1.05] text-white/80">Trusted by organizers from:</p>
+    <div class="flex w-full min-w-0 justify-center">
+      <div
+        class="flex w-full min-w-0 max-w-full flex-wrap content-center items-stretch justify-center gap-4 sm:gap-[31px] xl:flex-nowrap xl:justify-center"
+      >
+        <div
+          class="flex min-h-[96px] w-[calc(50%-8px)] max-w-[220px] shrink-0 flex-col items-center justify-center rounded-lg border-4 border-transparent bg-[rgba(28,28,28,0.2)] px-4 py-5 sm:h-[114px] xl:w-[220px] xl:max-w-none xl:px-12 xl:py-8"
+        >
+          <div class="relative aspect-[158/50] w-full max-w-[158px] xl:w-[158px]">
+            <img
+              alt="Bernie 2020"
+              class="pointer-events-none absolute inset-0 block size-full object-contain object-center"
+              decoding="async"
+              height="50"
+              loading="lazy"
+              src="/assets/spoke/trust-bernie-figma.svg"
+              width="158"
+            />
+          </div>
+        </div>
+        <div
+          class="flex min-h-[96px] w-[calc(50%-8px)] max-w-[220px] shrink-0 flex-col items-center justify-center rounded-lg border-4 border-transparent bg-[rgba(28,28,28,0.2)] px-4 py-5 sm:h-[114px] xl:w-[220px] xl:max-w-none xl:px-12 xl:py-8"
+        >
+          <div class="pointer-events-none relative aspect-[125/50] w-full max-w-[125px] overflow-hidden xl:w-[125px]">
+            <img
+              alt="Organized Power in Numbers"
+              class="absolute -left-[8.72%] -top-[16.88%] h-[133.76%] w-[117.45%] max-w-none object-cover"
+              decoding="async"
+              loading="lazy"
+              src="/assets/spoke/trust-opin.png"
+            />
+          </div>
+        </div>
+        <div
+          class="flex min-h-[96px] w-[calc(50%-8px)] max-w-[220px] shrink-0 flex-col items-center justify-center rounded-lg border-4 border-transparent bg-[rgba(28,28,28,0.2)] px-4 py-5 sm:h-[114px] xl:w-[220px] xl:max-w-none xl:px-12 xl:py-8"
+        >
+          <div class="relative aspect-[166/50] w-full max-w-[166px] min-w-0 xl:w-[166px]">
+            <img
+              alt="Reproductive Freedom for All"
+              class="pointer-events-none absolute inset-0 block size-full object-contain object-center"
+              decoding="async"
+              height="50"
+              loading="lazy"
+              src="/assets/spoke/trust-rffa.svg"
+              width="166"
+            />
+          </div>
+        </div>
+        <div
+          class="flex min-h-[96px] w-[calc(50%-8px)] max-w-[220px] shrink-0 flex-col items-center justify-center rounded-lg border-4 border-transparent bg-[rgba(28,28,28,0.2)] px-4 py-5 sm:h-[114px] xl:w-[220px] xl:max-w-none xl:px-12 xl:py-8"
+        >
+          <div class="relative aspect-[78/50] w-full max-w-[78px] xl:w-[78px]">
+            <img
+              alt="Siembra NC"
+              class="pointer-events-none absolute inset-0 block size-full object-cover"
+              decoding="async"
+              height="50"
+              loading="lazy"
+              src="/assets/spoke/trust-siembra.png"
+              width="78"
+            />
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+</section>

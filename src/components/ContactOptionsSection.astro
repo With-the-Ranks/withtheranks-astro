@@ -1,0 +1,71 @@
+---
+import InfoCard from "./InfoCard.astro";
+
+interface ContactCard {
+  href: string;
+  title: string;
+  description: string;
+  iconoir: string;
+  external?: boolean;
+}
+
+interface Props {
+  contactCards: ContactCard[];
+}
+
+const { contactCards } = Astro.props as Props;
+---
+
+<section class="scroll-mt-24 border-t-8 border-black/20 bg-brand-blue-deep" id="contact-options">
+  <div class="mx-auto max-w-screen-2xl px-4 py-16 text-white sm:px-6 lg:px-8 lg:py-32">
+    <div class="mx-auto max-w-5xl text-center">
+      <h2 class="heading-section mb-4 font-display font-normal text-white lg:whitespace-nowrap">
+        We want to hear from you.
+      </h2>
+      <p class="body-section mx-auto mb-0 max-w-3xl text-white">
+        Whether you need help with your website, need to get a complex project off the ground, or just want to say hello, use one of
+        the options below, or send us an email to
+        <a class="font-bold text-white" href="mailto:hello@withtheranks.com">
+          hello@withtheranks.com.
+        </a>
+      </p>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-xl space-y-4 lg:mt-16">
+      {
+        contactCards.map((card) => (
+          <a
+            class="block text-inherit no-underline"
+            href={card.href}
+            rel={card.external ? "noreferrer" : undefined}
+            target={card.external ? "_blank" : undefined}
+          >
+            <InfoCard class="rounded bg-white p-8 text-black outline-4 outline-black outline-offset-inward max-sm:p-6">
+              <div class="flex items-start justify-between gap-4">
+                <div class="flex min-w-0 flex-1 items-center gap-4">
+                  <i
+                    class:list={[card.iconoir, "not-italic block size-6 shrink-0 text-2xl leading-none text-black"]}
+                    aria-hidden="true"
+                  />
+                  <h3 class="my-0 font-display text-[32px] leading-none font-normal text-black sm:text-[40px] sm:whitespace-nowrap">
+                    {card.title}
+                  </h3>
+                </div>
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  class="mt-0.5 block size-6 shrink-0"
+                  src="/assets/home/contact-card-arrow.svg"
+                />
+              </div>
+
+              <p class="mt-4 mb-0 font-sans text-lg leading-normal text-black sm:text-[20px]">
+                {card.description}
+              </p>
+            </InfoCard>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

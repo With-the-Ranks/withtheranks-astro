@@ -1,19 +1,58 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import InquiryForm from '../components/react/InquiryForm';
-
-import "animate.css";
+import AboutSection from "../components/AboutSection.astro";
+import ContactOptionsSection from "../components/ContactOptionsSection.astro";
 import HeroSection from "../components/HeroSection.astro";
+import Layout from "../layouts/Layout.astro";
+import MailerSection from "../components/MailerSection.astro";
+import NewsletterSection from "../components/NewsletterSection.astro";
 import Partners from "../components/Partners.astro";
+import WorkSection from "../components/WorkSection.astro";
+
+const calendlyLink = "https://calendly.com/with-the-ranks/team-meeting";
+
+const workCards = [
+  { href: "/our-work", tag: "Custom Development", title: "Scaling Neighbor to Neighbor with Indivisible.", image: "/assets/home/work-indivisible.png", overlay: "linear-gradient(180deg, rgba(43,61,86,0) 46%, rgba(43,61,86,0.98) 84%)", position: "center", titleColor: "text-white" },
+  { href: "/spoke", tag: "Open Source Tools", title: "Redesigning the Spoke experience for organizers of every level.", image: "/assets/home/work-spoke-redesign.png", overlay: "linear-gradient(180deg, rgba(255,255,255,0) 52%, rgba(255,255,255,0.96) 82%)", position: "center", titleColor: "text-black" },
+  { href: "/projects/website-2.0", tag: "Open Source Tools", title: "Sharing our open-source website platform built for campaigns and non-profits.", image: "/assets/home/work-website-platform-sharing.png", overlay: "linear-gradient(180deg, rgba(255,255,255,0) 42%, rgba(255,255,255,0.96) 71%)", position: "center", titleColor: "text-black" },
+  { href: "https://berniesanders.com", tag: "Websites & P2P Texting", title: "Powering Bernie Sanders’ Fighting Oligarchy Tour.", image: "/assets/home/work-bernie.jpg", overlay: "linear-gradient(180deg, rgba(0,0,0,0) 48%, rgba(0,0,0,0.95) 100%)", position: "center", titleColor: "text-white" },
+];
+const contactCards = [
+  {
+    href: "/contact",
+    title: "Start a new project",
+    description: "From custom websites to full-fledged web products, our team of designers and engineers are ready to help.",
+    iconoir: "iconoir-computer",
+  },
+  {
+    href: "/spoke",
+    title: "Sign up for Spoke",
+    description: "Power your organizing efforts with affordable peer-to-peer texting at scale.",
+    iconoir: "iconoir-smartphone-device",
+  },
+  {
+    href: calendlyLink,
+    title: "Schedule a meeting",
+    description: "Prefer to meet virtually? Book a time with a team member and we’ll help point you in the right direction.",
+    iconoir: "iconoir-calendar",
+    external: true,
+  },
+  {
+    href: "/contact",
+    title: "Say hello",
+    description: "Not sure what to choose? Send us a message and we’ll get back to you.",
+    iconoir: "iconoir-multi-bubble",
+  },
+];
 ---
 
 <Layout title="With the Ranks">
-  <div>
-    <!-- Main Content -->
-    <main class="mx-auto pb-8 sm:pb-12 lg:pb-16">
-			<HeroSection/>
-      <Partners/>
-      <InquiryForm client:load />
-    </main>
-  </div>
+  <main class="overflow-x-hidden">
+    <HeroSection />
+    <MailerSection />
+    <Partners />
+    <WorkSection workCards={workCards} />
+    <AboutSection />
+    <ContactOptionsSection contactCards={contactCards} />
+    <NewsletterSection />
+  </main>
 </Layout>

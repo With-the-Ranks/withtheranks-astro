@@ -12,11 +12,11 @@ const { title, bannerCategory, bannerTitle, bannerSubtitle, theme, bannerColor, 
 import Layout from "../layouts/Layout.astro";
 ---
 <Layout title={title} theme={theme}>
-  <div class="m-2">
+  <div class="px-2 sm:px-0">
     <!-- Banner Section -->
     <section class={`container mx-auto rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 sm:p-8 lg:p-12 xl:p-16 relative overflow-hidden ${bannerColor ? bannerColor : 'bg-[#ffe872]'}`}>
       {bannerCategory && (
-        <div class="bg-[#252753] bg-opacity-20 text-[#252753] font-bold text-xs sm:text-sm px-3 sm:px-4 py-1 sm:py-1.5 rounded-full inline-block mb-3 max-w-4xl">
+        <div class="inline-block max-w-4xl rounded-full border border-[#252753]/25 bg-[#252753]/12 px-3 py-1 text-xs font-bold text-[#0b124c] sm:px-4 sm:py-1.5 sm:text-sm">
           {bannerCategory}
         </div>
       )}
@@ -32,16 +32,16 @@ import Layout from "../layouts/Layout.astro";
 
     <!-- Main Content Section -->
     <main class="mx-auto pb-8 sm:pb-12 lg:pb-16">
-      <div class="container mx-auto relative z-[2] px-4">
+      <div class="container mx-auto relative z-2 px-4">
         {toc?.length ? (
           <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-20 mt-5 lg:mt-16 items-start">
             <!-- Table of Contents -->
-            <aside class="bg-[#959AF6] w-full mx-auto bg-opacity-20 rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 lg:p-6 xl:p-6 lg:sticky lg:top-10 overflow-hidden lg:col-span-1 on-this-page">
-              <h3 class="text-base sm:text-lg font-semibold mb-2">On this page</h3>
+            <aside class="w-full mx-auto rounded-2xl bg-[#959AF6]/20 p-6 text-[#252753] sm:rounded-3xl lg:sticky lg:top-10 lg:col-span-1 lg:rounded-[32px] on-this-page">
+              <p class="mb-2 font-sans text-base leading-tight font-semibold text-[#252753] sm:text-lg">On this page</p>
               {toc.map(({ id, label }) => (
                 <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
-                <a class="no-underline hover:bg-[#959AF6]" href={`#${id}`} >
-                  <h3 class="text-xs sm:text-lg font-normal mb-0">{label}</h3>
+                <a class="block rounded-md px-1 py-0.5 text-[#252753] no-underline hover:bg-[#959AF6]/40" href={`#${id}`} >
+                  <span class="block font-sans text-sm leading-snug font-medium text-[#252753] sm:text-base">{label}</span>
                 </a>
               ))}
             </aside>

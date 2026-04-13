@@ -1,0 +1,35 @@
+---
+import Button from "./Button.astro";
+---
+
+<section class="bg-brand-blue pb-10 sm:pb-12 lg:pb-16">
+  <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+    <section class="scroll-mt-24" id="mailer">
+      <div class="grid overflow-hidden rounded-2xl border-8 border-black/20 bg-brand-cream lg:grid-cols-[560px_minmax(0,1fr)]">
+        <div class="flex flex-col justify-center px-6 py-8 text-black sm:px-10 lg:pl-16 lg:pr-0 lg:py-8">
+          <div class="mx-auto max-w-lg text-center lg:mx-0 lg:max-w-lg lg:text-left">
+            <h2 class="heading-feature mb-4 font-display font-normal text-black sm:mb-5">
+              Now offering affordable peer-to-peer texting with Spoke.
+            </h2>
+            <p class="body-lg mb-6 text-black">
+              Start sending effective organizing messages at scale with Spoke, the open-source messaging platform - optimized for
+              cost-efficient outreach.
+            </p>
+            <p class="body-lg mb-8 text-black">
+              Sign up for our hosted Spoke services to get sending immediately, or learn how you can host Spoke yourself.
+            </p>
+            <Button class="label-button px-8 py-6" href="/spoke" variant="cta">
+              <span>Learn more and sign up</span>
+            </Button>
+          </div>
+        </div>
+
+        <div class="p-6 sm:p-10 lg:p-16">
+          <div class="aspect-[3024/1658] overflow-hidden rounded-xl border-2 border-zinc-300 bg-white">
+            <img alt="Spoke interface preview" class="block h-full w-full object-cover object-center" src="/assets/spoke/hero-dashboard.png" />
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
