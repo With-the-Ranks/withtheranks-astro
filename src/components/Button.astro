@@ -25,7 +25,7 @@ const {
 } = Astro.props;
 
 const isCta = variant === "cta";
-const ctaIcon = icon ?? "/assets/home/button-arrow.svg";
+const hasCustomCtaIcon = Boolean(icon);
 const hasSlot = Astro.slots.has("default");
 ---
 
@@ -49,7 +49,14 @@ const hasSlot = Astro.slots.has("default");
       ></span>
       <span class="relative z-10 contents">
         {hasSlot ? <slot /> : text}
-        <img alt="" aria-hidden="true" class={iconClass} src={ctaIcon} />
+        {hasCustomCtaIcon ? (
+          <img alt="" aria-hidden="true" class={iconClass} src={icon} />
+        ) : (
+          <i
+            class:list={["iconoir-arrow-up-right-square-solid not-italic inline-block shrink-0 text-2xl leading-none", iconClass]}
+            aria-hidden="true"
+          />
+        )}
       </span>
     </a>
   ) : (

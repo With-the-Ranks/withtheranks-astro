@@ -26,7 +26,7 @@ const { text, boldText = "", href } = Astro.props as Props;
         href ? (
           <span class="inline-flex items-center gap-2 font-bold text-black">
             <span>{boldText}</span>
-            <img alt="" aria-hidden="true" class="size-4 shrink-0" src="/assets/home/button-arrow.svg" />
+            <i class="iconoir-arrow-up-right-square-solid not-italic inline-block shrink-0 text-base leading-none" aria-hidden="true" />
           </span>
         ) : (
           <span class="font-bold">{boldText}</span>
