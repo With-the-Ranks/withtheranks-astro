@@ -7,7 +7,7 @@ This file is the UI source of truth for the site. If Figma and code disagree, up
 ## Guidelines
 
 1. **Typography**  
-   Headlines use **League Gothic** (open source, [The League of Movable Type](https://www.theleagueofmoveabletype.com/league-gothic)). Body and UI use **Tofino Personal** from [Lost Type](https://www.losttype.com/) (pay what you want; not open source, so keep licensing with the project).
+   Headlines use **League Gothic** (open source, [The League of Movable Type](https://www.theleagueofmoveabletype.com/league-gothic)). Body and UI use **Tofino** from [Lost Type](https://www.losttype.com/) (pay what you want; not open source, so keep licensing with the project).
 
 2. **Layout and tone**  
    Clear hierarchy, comfortable spacing, light motion. Let type and color do the work, not extra decoration.
@@ -25,14 +25,18 @@ This file is the UI source of truth for the site. If Figma and code disagree, up
 | Role | Font | In Tailwind |
 |------|------|-------------|
 | Headings, hero lines, big section titles | League Gothic | `font-display` |
-| Paragraphs, lists, forms, nav, buttons | Tofino Personal | `font-sans` (default sans stack) |
+| Paragraphs, lists, forms, nav, buttons | Tofino | `font-sans` (default sans stack) |
 
 **League Gothic** loads from Google Fonts via `@import` at the top of `src/styles/main.css`. No League font files in the repo.
 
-**Tofino Personal** is self-hosted. Add licensed **woff2** files under `public/fonts/tofino/` (see `src/styles/main.css` for paths), or change the `@font-face` URLs to match your filenames:
+**Tofino** is self-hosted. Licensed woff/woff2 files live under `public/fonts/tofino/`. Four faces are declared in `src/styles/main.css`:
 
-- `tofino-personal-text-book.woff2` for weight 400  
-- `tofino-personal-text-bold.woff2` for weight 700  
+| File (woff2) | Weight | Style |
+|---|---|---|
+| `Tofino-Regular.woff2` | 400 | normal |
+| `Tofino-BookItalic.woff2` | 400 | italic |
+| `Tofino-Bold.woff2` | 700 | normal |
+| `Tofino-BoldItalic.woff2` | 700 | italic |
 
 If those files are missing, the browser uses the system sans fallback.
 
