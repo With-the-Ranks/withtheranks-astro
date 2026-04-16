@@ -25,18 +25,19 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --radius-md: calc(var(--radius) - 2px);
     --radius-sm: calc(var(--radius) - 4px);
 
-    --color-background: var(--main-bg-color);
-    --color-foreground: var(--main-text-color);
-    --color-accent-green: var(--stop-one-color);
-    --color-accent-purple: var(--stop-two-color);
-    --color-brand-blue: #0a13b1;
-    --color-brand-blue-deep: #0a12a9;
+    --color-brand-blue: #0012D8;
+    --color-brand-blue-deep: #0A13B1;
     --color-brand-blue-tag: #0c15b1;
     --color-brand-cream: #fffcf7;
     --color-brand-ink: #00033d;
     --color-brand-navy: #0b124c;
     --color-cta-start: #ffefc0;
     --color-cta-end: #fac328;
+
+    --color-background: var(--color-brand-blue);
+    --color-foreground: var(--main-text-color);
+    --color-accent-green: var(--stop-one-color);
+    --color-accent-purple: var(--stop-two-color);
 }
 
 @utility outline-offset-inward {
@@ -302,7 +303,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 /* Variables */
 :root {
     /* to use in rgba functions later */
-    --main-bg-color: #0a12a9;
+    --main-bg-color: var(--color-brand-blue);
     --main-text-color: #bfd5ff;
 
     /* Change these to change colors throughout the site */

@@ -1,5 +1,6 @@
 ---
 import ContentLayout from "../layouts/ContentLayout.astro";
+import InquiryFormGeneralContact from "../components/inquiry/InquiryFormGeneralContact.astro";
 import "animate.css";
 ---
 
@@ -216,11 +217,14 @@ import "animate.css";
 				It is a reminder that no matter where we go, we exist to support all good causes - not just the people at the top.
 			</p>
 		</div>
-		<div id='get-in-touch' class="pb-8 sm:pb-12 lg:pb-16">
+		<div id='get-in-touch'>
 			<h2>Get in touch</h2>
 			<p class='about-lead'>
 				Whether you're working on a good cause or just want to say hi, drop us a line below!
 			</p>
+			<div id="contact" class="rounded-xl relative mt-12 min-w-0 max-w-screen-xl mx-auto bg-brand-ink px-4 py-12 mx-auto sm:px-6 sm:pt-1 sm:py-12 lg:px-8">
+				<InquiryFormGeneralContact />
+	  		</div>
 		</div>
 	</div>
 </ContentLayout>
