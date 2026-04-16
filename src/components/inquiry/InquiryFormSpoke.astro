@@ -1,0 +1,424 @@
+---
+import InquiryFormFooter from "./InquiryFormFooter.astro";
+import Button from "@/components/Button.astro";
+import TextField from "@/components/forms/TextField.astro";
+import SelectField from "@/components/forms/SelectField.astro";
+
+const signupChipRow =
+	"box-border inline-flex min-w-0 max-w-full flex-1 flex-row flex-wrap items-center justify-start gap-1 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+const signupChipRowMd1 = `${signupChipRow} md:col-span-1`;
+const signupChipRowMd2 = `${signupChipRow} md:col-span-2`;
+const signupFormGrid = "grid min-w-0 max-w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-4";
+const signupFieldLabel = "shrink-0 font-sans text-base font-bold leading-none text-zinc-900";
+const signupFieldLabelWide = `${signupFieldLabel} w-full min-w-0`;
+const signupFieldInput =
+	"min-w-0 flex-1 border-0 bg-transparent p-0 font-sans text-base leading-tight text-zinc-900 outline-none focus:ring-0";
+const signupFieldBoxTextarea =
+	"box-border flex min-w-0 max-w-full flex-col gap-1 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+const signupFieldBoxTextareaGridFull = `${signupFieldBoxTextarea} col-span-full min-w-0 max-w-full md:col-span-2`;
+const signupTextareaInput =
+	"box-border min-h-[12rem] min-w-0 max-w-full w-full resize-y border-0 bg-transparent p-0 font-sans text-base leading-snug text-zinc-900 outline-none focus:ring-0";
+
+interface Props {
+  formUid: string;
+  removeTopMargin?: boolean;
+  compact?: boolean;
+  helloIntro?: boolean;
+  signupSurface?: boolean;
+  disableStepScroll?: boolean;
+}
+
+const {
+  formUid,
+  removeTopMargin = false,
+  compact = false,
+  helloIntro = false,
+  signupSurface = false,
+  disableStepScroll = false,
+} = Astro.props;
+const top = removeTopMargin ? "" : "mt-16";
+const startStep = helloIntro ? 1 : 2;
+const isSignupSurface = signupSurface;
+
+const L = {
+  name: "Your name",
+  email: "Email",
+  org: "Organization",
+  secondary: "Secondary contact (optional)",
+  orgDesc: "Short description of your organization's work",
+};
+const signupCopy = {
+  name: "Name",
+  email: "Email Address",
+  org: "Organization",
+  secondary: "Secondary contact (optional)",
+  orgDesc: "Short description of your organization's work",
+};
+const signupStep3Copy = {
+  subdomainLabel: "Preferred subdomain",
+  subdomainTip: "Example: myorg → myorg.spokewtr.com",
+  zipLabel: "Preferred area code / ZIP",
+  zipTip: "Used when assigning your Spoke phone number.",
+  billing: "Billing address",
+};
+const signupStep4Copy = {
+  hear: "How did you hear about us?",
+  audience: "Expected monthly audience size",
+  needs: "Your texting needs and goals",
+};
+
+const hearAboutChoices = [
+  { value: "search", label: "Search Engine" },
+  { value: "referral", label: "Referral" },
+  { value: "social", label: "Social Media" },
+  { value: "other", label: "Other" },
+] as const;
+
+const audienceChoices = [
+  { value: "small", label: "Less than 1,000" },
+  { value: "medium", label: "1,000 - 10,000" },
+  { value: "large", label: "10,000 - 100,000" },
+  { value: "xlarge", label: "More than 100,000" },
+] as const;
+
+const spokeLabel = "block font-sans text-sm font-semibold leading-tight text-[#1c1c1c]";
+const spokeControl =
+  "mt-1.5 w-full min-h-[44px] rounded-xl border-2 border-[#1c1c1c]/15 bg-white px-3 py-2.5 font-sans text-base text-[#1c1c1c] placeholder:text-[#1c1c1c]/40 outline-none transition-colors focus:border-[#212bdd]";
+const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
+---
+
+<div
+  id={`inquiry-spoke-${formUid}`}
+  class:list={["w-full", top, isSignupSurface ? "min-w-0 max-w-full text-white" : "text-[#1c1c1c]"]}
+  data-inquiry-root
+  data-inquiry-single="true"
+  data-inquiry-flow="spoke-services"
+  data-inquiry-start-step={String(startStep)}
+  data-inquiry-hello-intro={helloIntro ? "true" : "false"}
+  data-inquiry-compact={compact ? "true" : "false"}
+  {...(disableStepScroll ? { "data-inquiry-disable-scroll": "true" } : {})}
+  {...(isSignupSurface ? { "data-inquiry-surface": "spoke-signup" } : { "data-inquiry-surface": "spoke" })}
+>
+  <div
+    class:list={[
+      "w-full min-w-0",
+      isSignupSurface
+        ? "max-w-full"
+        : "rounded-[32px] bg-white p-6 outline-4 outline-[#1c1c1c] outline-offset-inward max-sm:p-6 sm:p-8 md:p-10",
+    ]}
+  >
+    <form
+      class:list={[
+        isSignupSurface
+          ? "mx-auto flex w-full min-w-0 max-w-2xl flex-col gap-4 lg:mt-0"
+          : "mx-auto max-w-[800px] space-y-6 md:space-y-8 lg:mt-6",
+      ]}
+      data-inquiry-form
+      data-inquiry-scroll-target
+      novalidate
+    >
+      <input type="hidden" name="inquiryType" value="spoke-services" data-inquiry-type-field />
+
+      <div
+        data-wizard-step="2"
+        class:list={[isSignupSurface ? "min-w-0 max-w-full space-y-0" : "space-y-6 md:space-y-8", helloIntro && "hidden"]}
+      >
+        {
+          !isSignupSurface && (
+            <div class="space-y-2 px-0 pt-0 md:px-0">
+              <h3 class="mb-0 font-bold font-display text-3xl font-normal sm:text-4xl md:text-5xl md:mb-3">
+                Sign up for Spoke Services
+              </h3>
+              <p class="font-sans text-lg text-[#1c1c1c]/75 md:text-2xl">
+                Let's get you set up with Spoke, our powerful P2P texting platform.
+              </p>
+            </div>
+          )
+        }
+        {
+          isSignupSurface ? (
+            <div class={signupFormGrid}>
+              <div class={signupChipRowMd1} data-inquiry-signup-field>
+                <label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-name`}
+                  >{signupCopy.name}<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label
+                >
+                <input
+                  class={signupFieldInput}
+                  id={`inquiry-${formUid}-name`}
+                  type="text"
+                  name="name"
+                  autocomplete="name"
+                  placeholder=""
+                  required
+                />
+              </div>
+              <div class={signupChipRowMd1} data-inquiry-signup-field>
+                <label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-email`}
+                  >{signupCopy.email}<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label
+                >
+                <input
+                  class={signupFieldInput}
+                  id={`inquiry-${formUid}-email`}
+                  type="email"
+                  name="email"
+                  autocomplete="email"
+                  placeholder=""
+                  required
+                />
+              </div>
+              <div class={signupChipRowMd2} data-inquiry-signup-field>
+                <label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-org`}>{signupCopy.org}</label>
+                <input
+                  class={signupFieldInput}
+                  id={`inquiry-${formUid}-org`}
+                  type="text"
+                  name="organization"
+                  autocomplete="organization"
+                  placeholder=""
+                />
+              </div>
+              <div class={signupChipRowMd2} data-inquiry-signup-field>
+                <label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-secondary`}>{signupCopy.secondary}</label>
+                <input
+                  class={signupFieldInput}
+                  id={`inquiry-${formUid}-secondary`}
+                  type="text"
+                  name="secondaryContact"
+                  autocomplete="off"
+                  placeholder=""
+                />
+              </div>
+              <div class={signupFieldBoxTextareaGridFull}>
+                <label class={signupFieldLabelWide} for={`inquiry-${formUid}-orgdesc`}
+                  >{signupCopy.orgDesc}<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label
+                >
+                <textarea
+                  class={signupTextareaInput}
+                  id={`inquiry-${formUid}-orgdesc`}
+                  name="orgDescription"
+                  placeholder=""
+                  required
+                />
+              </div>
+            </div>
+          ) : (
+            <div class="space-y-5">
+              <label class={spokeLabel}>
+                {L.name}
+                <input class={spokeControl} type="text" name="name" placeholder="" required />
+              </label>
+              <label class={spokeLabel}>
+                {L.email}
+                <input class={spokeControl} type="email" name="email" placeholder="" required />
+              </label>
+              <label class={spokeLabel}>
+                {L.org}
+                <input class={spokeControl} type="text" name="organization" placeholder="" />
+              </label>
+              <label class={spokeLabel}>
+                {L.secondary}
+                <input class={spokeControl} type="text" name="secondaryContact" placeholder="" />
+              </label>
+              <label class={spokeLabel}>
+                {L.orgDesc}
+                <textarea class={spokeTextarea} name="orgDescription" placeholder="" required />
+              </label>
+            </div>
+          )
+        }
+      </div>
+
+      <div data-wizard-step="3" class:list={["hidden space-y-6 md:space-y-8", isSignupSurface && "min-w-0 max-w-full"]}>
+        <div class:list={["space-y-2", isSignupSurface && "text-center"]}>
+          <h3
+            class:list={[
+              "mb-0 font-bold md:mb-3",
+              isSignupSurface ? "font-display text-3xl font-normal text-white sm:text-4xl md:text-5xl" : "",
+              !isSignupSurface && "font-display text-3xl font-normal sm:text-4xl md:text-5xl",
+            ]}
+          >
+            Spoke Services Details
+          </h3>
+          <p
+            class:list={[
+              "text-lg md:text-2xl",
+              isSignupSurface && "font-sans text-white/80",
+              !isSignupSurface && "font-sans text-[#1c1c1c]/75",
+            ]}
+          >
+            Let's get some specifics about your Spoke needs.
+          </p>
+        </div>
+        {
+          isSignupSurface ? (
+            <div class={signupFormGrid}>
+              <TextField
+                formUid={formUid}
+                idSuffix="sub"
+                name="subdomain"
+                label={signupStep3Copy.subdomainLabel}
+                tip={signupStep3Copy.subdomainTip}
+                required
+                showRequiredStar
+                wrapperClass="md:col-span-2"
+              />
+              <TextField
+                formUid={formUid}
+                idSuffix="zip"
+                name="primaryLocation"
+                label={signupStep3Copy.zipLabel}
+                tip={signupStep3Copy.zipTip}
+                wrapperClass="md:col-span-2"
+              />
+              <div class={signupFieldBoxTextareaGridFull}>
+                <label class={signupFieldLabelWide} for={`inquiry-${formUid}-bill`}
+                  >{signupStep3Copy.billing}<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label
+                >
+                <textarea
+                  class={signupTextareaInput}
+                  id={`inquiry-${formUid}-bill`}
+                  name="billingAddress"
+                  placeholder=""
+                  required
+                />
+              </div>
+            </div>
+          ) : (
+            <div class="space-y-5">
+              <label class={spokeLabel}>
+                Preferred area code / ZIP (for phone number)
+                <input class={spokeControl} type="text" name="primaryLocation" placeholder="" />
+              </label>
+              <label class={spokeLabel}>
+                Preferred subdomain (e.g. myorg → myorg.spokewtr.com)
+                <input class={spokeControl} type="text" name="subdomain" placeholder="" required />
+              </label>
+              <label class={spokeLabel}>
+                Billing address
+                <textarea class={spokeTextarea} name="billingAddress" placeholder="" required />
+              </label>
+            </div>
+          )
+        }
+      </div>
+
+      <div data-wizard-step="4" class:list={["hidden space-y-6 md:space-y-8", isSignupSurface && "min-w-0 max-w-full"]}>
+        <div
+          class:list={[
+            "space-y-2",
+            isSignupSurface && "text-center",
+            !isSignupSurface && "px-0 pt-0",
+          ]}
+        >
+          <h3
+            class:list={[
+              "mb-0 font-bold md:mb-3",
+              isSignupSurface ? "font-display text-3xl font-normal text-white sm:text-4xl md:text-5xl" : "",
+              !isSignupSurface && "font-display text-3xl font-normal sm:text-4xl md:text-5xl",
+            ]}
+          >
+            Additional Information
+          </h3>
+          <p
+            class:list={[
+              "text-lg md:text-2xl",
+              isSignupSurface && "font-sans text-white/80",
+              !isSignupSurface && "font-sans text-[#1c1c1c]/75",
+            ]}
+          >
+            Help us understand your texting needs better.
+          </p>
+        </div>
+        {
+          isSignupSurface ? (
+            <div class={signupFormGrid}>
+              <SelectField formUid={formUid} idSuffix="hear" name="hearAboutUs" label={signupStep4Copy.hear} wrapperClass="md:col-span-2">
+                <option value="">Select…</option>
+                {hearAboutChoices.map((o) => (
+                  <option value={o.value}>{o.label}</option>
+                ))}
+              </SelectField>
+              <SelectField formUid={formUid} idSuffix="aud" name="audienceSize" label={signupStep4Copy.audience} wrapperClass="md:col-span-2">
+                <option value="">Select…</option>
+                {audienceChoices.map((o) => (
+                  <option value={o.value}>{o.label}</option>
+                ))}
+              </SelectField>
+              <div class={signupFieldBoxTextareaGridFull}>
+                <label class={signupFieldLabelWide} for={`inquiry-${formUid}-needs`}>{signupStep4Copy.needs}</label>
+                <textarea
+                  class={signupTextareaInput}
+                  id={`inquiry-${formUid}-needs`}
+                  name="needs"
+                  placeholder=""
+                />
+              </div>
+            </div>
+          ) : (
+            <div class="space-y-5">
+              <label class={spokeLabel}>
+                How did you hear about us?
+                <select class={spokeControl} name="hearAboutUs">
+                  <option value="">Select…</option>
+                  {hearAboutChoices.map((o) => (
+                    <option value={o.value}>{o.label}</option>
+                  ))}
+                </select>
+              </label>
+              <label class={spokeLabel}>
+                Expected monthly audience size
+                <select class={spokeControl} name="audienceSize">
+                  <option value="">Select…</option>
+                  {audienceChoices.map((o) => (
+                    <option value={o.value}>{o.label}</option>
+                  ))}
+                </select>
+              </label>
+              <label class={spokeLabel}>
+                Your texting needs and goals
+                <textarea class={spokeTextarea} name="needs" placeholder="" />
+              </label>
+            </div>
+          )
+        }
+      </div>
+
+      <div data-wizard-step="5" class="hidden space-y-6 pb-8 text-center md:space-y-8">
+        <h2
+          class:list={[
+            "px-4 pt-8 font-display leading-tight font-bold",
+            isSignupSurface ? "text-3xl text-white md:text-5xl" : "text-3xl md:text-5xl",
+          ]}
+        >
+          Thank You for Your Inquiry!
+        </h2>
+        <p
+          class:list={[
+            "text-lg md:text-2xl",
+            isSignupSurface && "font-sans text-white/85",
+            !isSignupSurface && "font-sans text-[#1c1c1c]/80",
+          ]}
+          data-thank-normal
+        >
+          We appreciate you taking the time to reach out to us. Our team will review your information and get back to you
+          shortly.
+        </p>
+        <Button
+          as="button"
+          type="button"
+          data-inquiry-start-over
+          variant="primary"
+          class="font-sans px-6 py-4 text-base md:px-8 md:py-6 md:text-lg"
+        >
+          {compact ? "Close" : "Start Over"}
+        </Button>
+      </div>
+
+      <InquiryFormFooter variant="spoke" tight={isSignupSurface} dotsMode={isSignupSurface ? "spoke-signup" : "default"} />
+    </form>
+  </div>
+</div>
+
+<script>
+  import "@/scripts/inquiry-wizard.ts";
+</script>

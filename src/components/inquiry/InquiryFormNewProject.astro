@@ -1,0 +1,213 @@
+---
+import InquiryFormFooter from "./InquiryFormFooter.astro";
+import Button from "@/components/Button.astro";
+import SelectField from "@/components/forms/SelectField.astro";
+
+const signupChipRow =
+	"box-border inline-flex min-w-0 max-w-full flex-1 flex-row flex-wrap items-center justify-start gap-1 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+const signupChipRowMd1 = `${signupChipRow} md:col-span-1`;
+const signupChipRowMd2 = `${signupChipRow} md:col-span-2`;
+const signupChipCol =
+	"box-border flex w-full min-w-0 max-w-full flex-col gap-2 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+const signupFormGrid = "grid min-w-0 max-w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-4";
+const signupFieldLabel = "shrink-0 font-sans text-base font-bold leading-none text-zinc-900";
+const signupFieldLabelWide = `${signupFieldLabel} w-full min-w-0`;
+const signupFieldInput =
+	"min-w-0 flex-1 border-0 bg-transparent p-0 font-sans text-base leading-tight text-zinc-900 outline-none focus:ring-0";
+const signupFieldBoxTextarea =
+	"box-border flex min-w-0 max-w-full flex-col gap-1 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+const signupFieldBoxTextareaGridFull = `${signupFieldBoxTextarea} col-span-full min-w-0 max-w-full md:col-span-2`;
+const signupTextareaInput =
+	"box-border min-h-[12rem] min-w-0 max-w-full w-full resize-y border-0 bg-transparent p-0 font-sans text-base leading-snug text-zinc-900 outline-none focus:ring-0";
+
+interface Props {
+	formUid: string;
+	removeTopMargin?: boolean;
+	compact?: boolean;
+	disableStepScroll?: boolean;
+}
+
+const { formUid, removeTopMargin = false, compact = false, disableStepScroll = false } = Astro.props;
+const t = `timeline-range-${formUid}`;
+const b = `budget-range-${formUid}`;
+const top = removeTopMargin ? "" : "mt-16";
+---
+
+<div
+	id={`inquiry-project-${formUid}`}
+	class:list={["w-full min-w-0 max-w-full text-white", top]}
+	data-inquiry-root
+	data-inquiry-single="true"
+	data-inquiry-flow="new-project"
+	data-inquiry-start-step="2"
+	data-inquiry-compact={compact ? "true" : "false"}
+	data-inquiry-surface="spoke-signup"
+	{...(disableStepScroll ? { "data-inquiry-disable-scroll": "true" } : {})}
+>
+	<form
+			class="mx-auto flex w-full min-w-0 max-w-2xl flex-col gap-4 lg:mt-0"
+			data-inquiry-form
+			data-inquiry-scroll-target
+			novalidate
+		>
+			<input type="hidden" name="inquiryType" value="new-project" data-inquiry-type-field />
+
+			<div data-wizard-step="2" class="min-w-0 w-full max-w-full space-y-4">
+				<div class="space-y-2 text-center">
+					<h3 class="mb-0 font-display text-3xl font-normal sm:text-4xl md:text-5xl">Tell us about your project</h3>
+					<p class="font-sans text-lg text-white/80 md:text-2xl">We're excited to learn about your project ideas.</p>
+				</div>
+				<div class={signupFormGrid}>
+					<div class={signupChipRowMd1} data-inquiry-signup-field>
+						<label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-name`}
+							>Name<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label
+						>
+						<input
+							class={signupFieldInput}
+							id={`inquiry-${formUid}-name`}
+							type="text"
+							name="name"
+							autocomplete="name"
+							placeholder=""
+							required
+						/>
+					</div>
+					<div class={signupChipRowMd1} data-inquiry-signup-field>
+						<label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-email`}
+							>Email Address<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label
+						>
+						<input
+							class={signupFieldInput}
+							id={`inquiry-${formUid}-email`}
+							type="email"
+							name="email"
+							autocomplete="email"
+							placeholder=""
+							required
+						/>
+					</div>
+					<div class={signupChipRowMd2} data-inquiry-signup-field>
+						<label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-org`}>Organization</label>
+						<input
+							class={signupFieldInput}
+							id={`inquiry-${formUid}-org`}
+							type="text"
+							name="organization"
+							autocomplete="organization"
+							placeholder=""
+						/>
+					</div>
+					<div class={signupChipRowMd2} data-inquiry-signup-field>
+						<label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-secondary`}>Secondary contact (optional)</label>
+						<input
+							class={signupFieldInput}
+							id={`inquiry-${formUid}-secondary`}
+							type="text"
+							name="secondaryContact"
+							autocomplete="off"
+							placeholder=""
+						/>
+					</div>
+					<div class={signupFieldBoxTextareaGridFull}>
+						<label class={signupFieldLabelWide} for={`inquiry-${formUid}-orgdesc`}
+							>Short description of your organization's work<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label
+						>
+						<textarea
+							class={signupTextareaInput}
+							id={`inquiry-${formUid}-orgdesc`}
+							name="orgDescription"
+							placeholder=""
+							required
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div data-wizard-step="3" class="hidden min-w-0 w-full max-w-full space-y-4">
+				<div class="space-y-2 text-center">
+					<h3 class="mb-0 font-display text-3xl font-normal sm:text-4xl md:text-5xl">Project details</h3>
+					<p class="font-sans text-lg text-white/80 md:text-2xl">Help us understand your project timeline and budget.</p>
+				</div>
+				<div class="grid min-w-0 max-w-full grid-cols-1 gap-4 md:gap-4">
+					<div class:list={[signupChipCol, "w-full min-w-0"]}>
+						<label class={signupFieldLabel} for={t}>Project timeline</label>
+						<input
+							id={t}
+							type="range"
+							name="timeline"
+							min="1"
+							max="4"
+							step="1"
+							value="1"
+							class="w-full min-w-0 max-w-full accent-[#212bdd]"
+							data-range-labels="ASAP|1-2 months|3-6 months|Flexible"
+						/>
+						<p class="m-0 font-sans text-sm font-bold text-[#212bdd]" data-range-output={t}>ASAP</p>
+					</div>
+					<div class:list={[signupChipCol, "w-full min-w-0"]}>
+						<label class={signupFieldLabel} for={b}>Budget range</label>
+						<input
+							id={b}
+							type="range"
+							name="budget"
+							min="1"
+							max="4"
+							step="1"
+							value="1"
+							class="w-full min-w-0 max-w-full accent-[#212bdd]"
+							data-range-labels="$2k-$5k|$5k-$10k|$10k+|Unsure"
+						/>
+						<p class="m-0 font-sans text-sm font-bold text-[#212bdd]" data-range-output={b}>$2k-$5k</p>
+					</div>
+				</div>
+			</div>
+
+			<div data-wizard-step="4" class="hidden min-w-0 w-full max-w-full space-y-4">
+				<div class="space-y-2 text-center">
+					<h3 class="mb-0 font-display text-3xl font-normal sm:text-4xl md:text-5xl">Additional information</h3>
+					<p class="font-sans text-lg text-white/80 md:text-2xl">Help us understand your project better.</p>
+				</div>
+				<div class={signupFormGrid}>
+					<SelectField formUid={formUid} idSuffix="hear" name="hearAboutUs" label="How did you hear about us?" wrapperClass="md:col-span-2">
+						<option value="">Select…</option>
+						<option value="search">Search Engine</option>
+						<option value="referral">Referral</option>
+						<option value="social">Social Media</option>
+						<option value="other">Other</option>
+					</SelectField>
+					<div class={signupFieldBoxTextareaGridFull}>
+						<label class={signupFieldLabelWide} for={`inquiry-${formUid}-needs`}>Anything else we should know?</label>
+						<textarea
+							class={signupTextareaInput}
+							id={`inquiry-${formUid}-needs`}
+							name="needs"
+							placeholder=""
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div data-wizard-step="5" class="hidden space-y-6 pb-8 text-center md:space-y-8">
+				<h2 class="px-4 pt-8 font-display text-3xl leading-tight font-bold text-white md:text-5xl">Thank you for your inquiry!</h2>
+				<p class="font-sans text-lg text-white/85 md:text-2xl" data-thank-normal>
+					We appreciate you taking the time to reach out to us. Our team will review your information and get back to you
+					shortly.
+				</p>
+				<Button
+					as="button"
+					type="button"
+					data-inquiry-start-over
+					variant="primary"
+					class="px-6 py-4 text-base md:px-8 md:py-6 md:text-lg"
+				>
+					{compact ? "Close" : "Start Over"}
+				</Button>
+			</div>
+
+			<InquiryFormFooter variant="spoke" tight dotsMode="spoke-signup" />
+		</form>
+</div>
+
+<script>
+	import "@/scripts/inquiry-wizard.ts";
+</script>
