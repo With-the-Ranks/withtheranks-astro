@@ -63,6 +63,22 @@ Examples: `bg-background`, `text-foreground`, `text-accent-green`, `border-accen
 
 ---
 
+## Buttons
+
+Use **`src/components/Button.astro`** for `<a>` and `<button>`. Primary/secondary **`<button>`** class strings live in that file’s frontmatter. **`Nav.astro`** (desktop + mobile “Contact us”) and **`StickySubNav.astro`** pass layout overrides at the call site; **`StickySubNav.astro`** also defines **`btnStickyNavPair`** for the sticky Schedule / Sign Up pair.
+
+| Variant | Role |
+|---------|------|
+| **`primary`** (alias **`cta`**) | Yellow gradient CTA marketing links, Spoke hero, nav “Contact us” |
+| **`secondary`** | White control Schedule a Demo, outlined nav |
+| **`default`** | Purple gradient pill — legacy hub “Start Over” |
+
+Marketing primary links: **`soft`**, **`icon` / `iconClass`**, **`iconPosition`** (`start` \| `end`), **`link`** as alias for **`href`**. **`density="compact"`** (primary `<a>` only): matches **`btnSecondary`** padding/scale. Spoke sticky bar pair: **`btnStickyNavPair`**.
+
+On dark bands, ghost secondaries need **`hover:!bg-white/…`** and **`hover:!text-white`** so the default zinc hover does not win.
+
+---
+
 ## Quick checklist for new UI
 
 - Headlines: `font-display`. Everything else readable: `font-sans`.
