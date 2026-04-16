@@ -230,7 +230,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
     /* Typography stacks (see DESIGN.md). Tailwind: font-display, font-sans */
     --font-display-stack: "League Gothic", ui-sans-serif, system-ui, sans-serif;
-    --font-body: "Tofino Personal", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Tofino", ui-sans-serif, system-ui, sans-serif;
 
     /* Various color combos */
     /* --stop-one-color: #1a0b49;
@@ -292,21 +292,39 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     color: #FFE872;
 }
 
-
-/* Tofino Personal: add licensed woff2 under public/fonts/tofino/ (see DESIGN.md) */
 @font-face {
-    font-family: 'Tofino Personal';
-    src: url('/fonts/tofino/tofino-personal-text-book.woff2') format('woff2');
+    font-family: 'Tofino';
+    src: url('/fonts/tofino/Tofino-Regular.woff2') format('woff2'),
+         url('/fonts/tofino/Tofino-Regular.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Tofino Personal';
-    src: url('/fonts/tofino/tofino-personal-text-bold.woff2') format('woff2');
+    font-family: 'Tofino';
+    src: url('/fonts/tofino/Tofino-BookItalic.woff2') format('woff2'),
+         url('/fonts/tofino/Tofino-BookItalic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tofino';
+    src: url('/fonts/tofino/Tofino-Bold.woff2') format('woff2'),
+         url('/fonts/tofino/Tofino-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tofino';
+    src: url('/fonts/tofino/Tofino-BoldItalic.woff2') format('woff2'),
+         url('/fonts/tofino/Tofino-BoldItalic.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
     font-display: swap;
 }
 
