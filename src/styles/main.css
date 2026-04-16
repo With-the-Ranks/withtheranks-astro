@@ -105,6 +105,22 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
             line-height: 104.76px;
         }
     }
+
+    [data-inquiry-signup-field] {
+        position: relative;
+    }
+
+    [data-inquiry-signup-field][data-filled] > [data-signup-field-label] {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
 }
 
 @layer base {
