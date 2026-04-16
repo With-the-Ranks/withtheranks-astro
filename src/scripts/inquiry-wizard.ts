@@ -39,6 +39,15 @@ function collectParams(form: HTMLFormElement): URLSearchParams {
 	return p;
 }
 
+function collectParamsWithAllSteps(form: HTMLFormElement, root: HTMLElement): URLSearchParams {
+	for (const el of form.querySelectorAll("input, select, textarea")) {
+		(el as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).disabled = false;
+	}
+	const p = collectParams(form);
+	updateDisabledFields(root);
+	return p;
+}
+
 function clearBodyFields(form: HTMLFormElement) {
 	for (const el of form.querySelectorAll("input, textarea, select")) {
 		if ((el as HTMLInputElement).name === "inquiryType") continue;
@@ -316,7 +325,7 @@ function initSingleRoot(root: HTMLElement) {
 			const res = await fetch("/api/send-email", {
 				method: "POST",
 				headers: { "Content-Type": "application/x-www-form-urlencoded" },
-				body: collectParams(form).toString(),
+				body: collectParamsWithAllSteps(form, root).toString(),
 			});
 			const result = (await res.json()) as { success?: boolean; error?: string };
 			if (result.success) {
