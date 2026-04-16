@@ -1,32 +1,41 @@
 ---
 const GITHUB = "https://github.com/With-the-Ranks/Spoke";
-const ROADMAP = "https://github.com/With-the-Ranks/Spoke/projects";
-const WIKI = "https://github.com/With-the-Ranks/Spoke/wiki";
 const PULLS = "https://github.com/With-the-Ranks/Spoke/pulls";
 ---
 
-<section class="bg-[#f0f0f0] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32" id="open-source">
+<section
+  class="bg-[#f0f0f0] bg-[radial-gradient(#e4e4e4_1.5px,transparent_1.5px)] bg-[length:8px_8px] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32"
+  id="open-source"
+>
   <div class="mx-auto flex max-w-[960px] flex-col gap-8">
     <div class="text-[#1c1c1c]">
-      <h2 class="font-display text-5xl leading-none sm:text-7xl lg:text-[90px]">Spoke is 100% open source.</h2>
+      <h2 class="font-display text-5xl leading-none sm:text-7xl lg:text-[90px]">
+        Spoke is 100% open source.
+      </h2>
       <div class="mt-8 space-y-4 font-sans text-xl leading-normal sm:text-2xl">
         <p>
-          Building on the work of <span class="font-bold">MoveOn</span> and <span class="font-bold">Politics Rewired</span>, we’re committed to maintaining and improving Spoke, keeping it open source and accessible to all. Take a look at our{" "}
-          <a class="font-bold text-[#1f2aff] underline" href={ROADMAP} rel="noopener noreferrer" target="_blank">
-            roadmap
-          </a>{" "}
-          to collaborate on the future direction of Spoke.
+          Spoke has been powering organizers for over a decade, including the
+          Bernie Sanders 2020 presidential campaign that sent over 260 million
+          messages.
         </p>
         <p>
-          If you’d like to self-host yourself, take a look at our{" "}
-          <a class="font-bold text-[#1f2aff] underline" href={WIKI} rel="noopener noreferrer" target="_blank">
-            hosting docs
-          </a>
-          . Or, submit a{" "}
-          <a class="font-bold text-[#1f2aff] underline" href={PULLS} rel="noopener noreferrer" target="_blank">
-            pull request
-          </a>{" "}
-          to contribute to the code base and improve Spoke for everyone.
+          Building on the work of <span class="font-bold">MoveOn</span> and <span
+            class="font-bold">Politics Rewired</span
+          >, we're committed to maintaining and improving Spoke, keeping it open
+          source and accessible to all.
+          <p>
+            If you'd like to host Spoke yourself, take a look at our FAQ on self
+            hosting. Or, submit a{" "}
+            <a
+              class="font-bold text-[#1f2aff] underline"
+              href={PULLS}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              pull request</a
+            >{" "}
+            to contribute to the code base and improve Spoke for everyone.
+          </p>
         </p>
       </div>
     </div>
