@@ -21,10 +21,6 @@ interface Props {
 	formUid: string;
 	removeTopMargin?: boolean;
 	compact?: boolean;
-	helloIntro?: boolean;
-	title?: string;
-	subtitle?: string;
-	helloText?: string;
 	disableStepScroll?: boolean;
 	embeddedLight?: boolean;
 }
@@ -33,15 +29,10 @@ const {
 	formUid,
 	removeTopMargin = false,
 	compact = false,
-	helloIntro = false,
 	disableStepScroll = false,
 	embeddedLight = false,
-	title = "Let us know how we can help.",
-	subtitle = "Got a project or need support? We're here to help.",
-	helloText = "Not sure what to choose? Just drop us a message and we'll get you pointed in the right direction",
 } = Astro.props;
 const top = removeTopMargin ? "" : "mt-16";
-const startStep = helloIntro ? 1 : 2;
 ---
 
 <div
@@ -54,8 +45,6 @@ const startStep = helloIntro ? 1 : 2;
 	data-inquiry-root
 	data-inquiry-single="true"
 	data-inquiry-flow="general-contact"
-	data-inquiry-start-step={String(startStep)}
-	data-inquiry-hello-intro={helloIntro ? "true" : "false"}
 	data-inquiry-compact={compact ? "true" : "false"}
 	data-inquiry-surface={embeddedLight ? "spoke" : "spoke-signup"}
 	{...(disableStepScroll ? { "data-inquiry-disable-scroll": "true" } : {})}
@@ -77,29 +66,7 @@ const startStep = helloIntro ? 1 : 2;
 		>
 			<input type="hidden" name="inquiryType" value="general-contact" data-inquiry-type-field />
 
-			{
-				helloIntro && (
-					<div data-wizard-step="1" class="space-y-8 md:space-y-12">
-						<div class="space-y-4 px-4 pt-8 md:space-y-6">
-							<h2 class="mb-0 font-display text-3xl leading-tight font-bold md:text-5xl lg:text-7xl">{title}</h2>
-							<p class="text-lg lg:text-2xl">{subtitle}</p>
-						</div>
-						<div class="grid gap-4 md:gap-6">
-							<button
-								type="button"
-								data-intro-next
-								class="inquiry-tertiary-card rounded-[32px] p-6 text-left transition-all hover:scale-[1.02] md:p-8"
-							>
-								<span class="inquiry-tag">Support</span>
-								<h3 class="mb-2 text-xl font-bold md:mb-3 md:text-2xl">Just say hello</h3>
-								<span class="mb-3 block text-sm opacity-80 md:mb-4 md:text-base">{helloText}</span>
-							</button>
-						</div>
-					</div>
-				)
-			}
-
-			<div data-wizard-step="2" class:list={["min-w-0 w-full max-w-full space-y-4", helloIntro && "hidden"]}>
+			<div data-wizard-step="2" class="min-w-0 w-full max-w-full space-y-4">
 				<div
 					class:list={[
 						"space-y-2 text-center",

@@ -9,13 +9,11 @@ const FLOW_MAX: Partial<Record<Flow, number>> = {
 };
 
 const THANK_YOU_STEP = 5;
+/** First wizard step with fields (intro step 1 removed site-wide). */
+const FIRST_STEP = 2;
 
 function maxSteps(flow: Flow): number {
 	return FLOW_MAX[flow] ?? 1;
-}
-
-function readStartStep(root: HTMLElement): number {
-	return Number.parseInt(String(root.getAttribute("data-inquiry-start-step") ?? "2"), 10) || 2;
 }
 
 const qs = (root: HTMLElement | Document, sel: string) => root.querySelector(sel) as HTMLElement | null;
@@ -116,11 +114,10 @@ function updateFooter(root: HTMLElement, step: number, flow: Flow) {
 }
 
 function updateBackButton(root: HTMLElement, step: number) {
-	const startStep = readStartStep(root);
 	const back = qs(root, "[data-inquiry-back]");
 	const row = qs(root, "[data-inquiry-footer-row]");
 	if (!back) return;
-	const atFirst = step <= startStep;
+	const atFirst = step <= FIRST_STEP;
 	back.classList.toggle("hidden", atFirst);
 	back.setAttribute("aria-hidden", atFirst ? "true" : "false");
 	back.style.display = atFirst ? "none" : "";
@@ -257,8 +254,7 @@ function initSingleRoot(root: HTMLElement) {
 
 	const flow = (root.dataset.inquiryFlow ?? "") as Flow;
 	const compact = root.dataset.inquiryCompact === "true";
-	const startStep = readStartStep(root);
-	let step = startStep;
+	let step = FIRST_STEP;
 	let loading = false;
 	let skipScrollOnce = true;
 
@@ -300,11 +296,9 @@ function initSingleRoot(root: HTMLElement) {
 
 	root.addEventListener("inquiry:reset", () => {
 		form.reset();
-		step = startStep;
+		step = FIRST_STEP;
 		render();
 	});
-
-	for (const btn of qsa(root, "[data-intro-next]")) btn.addEventListener("click", () => go(2));
 
 	form.addEventListener("submit", async (e) => {
 		e.preventDefault();
@@ -313,6 +307,7 @@ function initSingleRoot(root: HTMLElement) {
 			go(step + 1);
 			return;
 		}
+		if (step > maxSteps(flow)) return;
 
 		loading = true;
 		updatePrimaryLabel(root, step, flow, loading);
@@ -338,12 +333,12 @@ function initSingleRoot(root: HTMLElement) {
 	});
 
 	qs(root, "[data-inquiry-back]")?.addEventListener("click", () => {
-		if (step > startStep) go(step - 1);
+		if (step > FIRST_STEP) go(step - 1);
 	});
 
 	qs(root, "[data-inquiry-start-over]")?.addEventListener("click", () => {
 		form.reset();
-		step = startStep;
+		step = FIRST_STEP;
 		render();
 		if (compact) root.dispatchEvent(new CustomEvent("inquiry:compact-close", { bubbles: true }));
 	});

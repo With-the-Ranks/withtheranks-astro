@@ -23,7 +23,6 @@ interface Props {
   formUid: string;
   removeTopMargin?: boolean;
   compact?: boolean;
-  helloIntro?: boolean;
   signupSurface?: boolean;
   disableStepScroll?: boolean;
 }
@@ -32,12 +31,10 @@ const {
   formUid,
   removeTopMargin = false,
   compact = false,
-  helloIntro = false,
   signupSurface = false,
   disableStepScroll = false,
 } = Astro.props;
 const top = removeTopMargin ? "" : "mt-16";
-const startStep = helloIntro ? 1 : 2;
 const isSignupSurface = signupSurface;
 
 const L = {
@@ -93,8 +90,6 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
   data-inquiry-root
   data-inquiry-single="true"
   data-inquiry-flow="spoke-services"
-  data-inquiry-start-step={String(startStep)}
-  data-inquiry-hello-intro={helloIntro ? "true" : "false"}
   data-inquiry-compact={compact ? "true" : "false"}
   {...(disableStepScroll ? { "data-inquiry-disable-scroll": "true" } : {})}
   {...(isSignupSurface ? { "data-inquiry-surface": "spoke-signup" } : { "data-inquiry-surface": "spoke" })}
@@ -121,15 +116,31 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
 
       <div
         data-wizard-step="2"
-        class:list={[isSignupSurface ? "min-w-0 max-w-full space-y-0" : "space-y-6 md:space-y-8", helloIntro && "hidden"]}
+        class:list={[isSignupSurface ? "min-w-0 max-w-full space-y-0" : "space-y-6 md:space-y-8"]}
       >
         {
-          !isSignupSurface && (
-            <div class="space-y-2 px-0 pt-0 md:px-0">
-              <h3 class="mb-0 font-bold font-display text-3xl font-normal sm:text-4xl md:text-5xl md:mb-3">
+          (!isSignupSurface || compact) && (
+            <div
+              class:list={[
+                "space-y-2",
+                isSignupSurface && "mb-6 text-center md:mb-8",
+                !isSignupSurface && "px-0 pt-0 md:px-0",
+              ]}
+            >
+              <h3
+                class:list={[
+                  "mb-0 font-display text-3xl font-normal sm:text-4xl md:text-5xl md:mb-3",
+                  isSignupSurface ? "text-white" : "text-[#1c1c1c]",
+                ]}
+              >
                 Sign up for Spoke Services
               </h3>
-              <p class="font-sans text-lg text-[#1c1c1c]/75 md:text-2xl">
+              <p
+                class:list={[
+                  "font-sans text-lg md:text-2xl",
+                  isSignupSurface ? "text-white/80" : "text-[#1c1c1c]/75",
+                ]}
+              >
                 Let's get you set up with Spoke, our powerful P2P texting platform.
               </p>
             </div>
