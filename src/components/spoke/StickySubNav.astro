@@ -1,4 +1,9 @@
 ---
+import Button from "@/components/Button.astro";
+
+const btnStickyNavPair =
+  "box-border !h-10 !min-h-10 !max-h-10 !py-0 !leading-none [&_img]:!h-5 [&_img]:!w-5 [&_img]:!max-h-5 [&_img]:!max-w-5 [&_img]:object-contain";
+
 export interface StickySubNavItem {
   label: string;
   href: string;
@@ -46,22 +51,37 @@ const spyOrder = ["overview", "features", "pricing", "backed", "open-source", "f
           </a>
         ))
       }
-      <a
-        class="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border-2 border-[#1c1c1c] bg-white px-4 py-2 font-sans text-sm font-bold text-[#1c1c1c] no-underline sm:min-w-[182px]"
+      <Button
         href={scheduleDemoHref}
+        variant="secondary"
+        rel="noopener noreferrer"
+        target="_blank"
+        class:list={[
+          "no-underline hover:!-translate-y-px hover:!shadow-lg sm:min-w-[182px]",
+          btnStickyNavPair,
+        ]}
       >
-        <span class="inline-flex h-[1.15em] w-[1.15em] shrink-0 items-center justify-center text-[#1c1c1c]" aria-hidden="true">
-          <i class="iconoir-calendar not-italic text-base leading-none" />
+        <span class="inline-flex items-center justify-center gap-2">
+          <span class="inline-flex size-5 shrink-0 items-center justify-center text-[#1c1c1c]" aria-hidden="true">
+            <i class="iconoir-calendar not-italic text-[15px] leading-none" />
+          </span>
+          Schedule a Demo
         </span>
-        Schedule a Demo
-      </a>
-      <a
-        class="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg border-2 border-[#1c1c1c] bg-[linear-gradient(-61deg,#ffefc0_0.36%,#fac328_99.64%)] px-4 py-2 font-sans text-sm font-bold text-[#1c1c1c] no-underline"
+      </Button>
+      <Button
         href={signUpHref}
+        variant="primary"
+        density="compact"
+        icon="/assets/home/contact-icon.svg"
+        iconClass="size-5 shrink-0 max-h-5 max-w-5 object-contain"
+        iconPosition="start"
+        class:list={[
+          "no-underline !rounded-lg !border-2 !border-[#1c1c1c] !ring-0 sm:min-w-[182px]",
+          btnStickyNavPair,
+        ]}
       >
-        <img alt="" aria-hidden="true" class="size-6 shrink-0" src="/assets/home/contact-icon.svg" width="38" height="38" />
         Sign Up
-      </a>
+      </Button>
     </nav>
   </div>
 </div>

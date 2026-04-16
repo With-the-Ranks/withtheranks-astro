@@ -1,0 +1,49 @@
+---
+const signupChipRow =
+	"box-border inline-flex min-w-0 max-w-full flex-1 flex-row flex-wrap items-center justify-start gap-1 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+const signupChipCol =
+	"box-border flex w-full min-w-0 max-w-full flex-col gap-2 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+const signupFieldLabel = "shrink-0 font-sans text-base font-bold leading-none text-zinc-900";
+const signupFieldInput =
+	"min-w-0 flex-1 border-0 bg-transparent p-0 font-sans text-base leading-tight text-zinc-900 outline-none focus:ring-0";
+const signupSelectInput = `${signupFieldInput} min-w-0 flex-1 cursor-pointer text-zinc-900`;
+const signupFieldTip =
+	"m-0 max-w-full font-sans text-xs font-normal leading-tight text-white/70";
+
+interface Props {
+	formUid: string;
+	idSuffix: string;
+	name: string;
+	label: string;
+	tip?: string;
+	required?: boolean;
+	labelClass?: string;
+	chipLayout?: "row" | "column";
+	wrapperClass?: string;
+}
+
+const { formUid, idSuffix, name, label, tip, required = false, labelClass = "", chipLayout = "row", wrapperClass = "" } =
+	Astro.props;
+
+const fieldId = `inquiry-${formUid}-${idSuffix}`;
+const tipId = tip ? `inquiry-${formUid}-${idSuffix}-tip` : undefined;
+const selectAttrs =
+	tip && tipId ? ({ "aria-describedby": tipId } as const) : ({} as Record<string, never>);
+const chipClass = chipLayout === "row" ? signupChipRow : signupChipCol;
+---
+
+<div class:list={["box-border flex min-w-0 max-w-full w-full flex-col gap-1 overflow-x-clip", wrapperClass]}>
+	<div class:list={[chipClass, chipLayout === "row" && "w-full"]} data-inquiry-signup-field>
+		<label for={fieldId} class:list={[signupFieldLabel, labelClass]} data-signup-field-label>{label}</label>
+		<select
+			id={fieldId}
+			name={name}
+			class:list={[signupSelectInput, "min-w-0 flex-1"]}
+			required={required}
+			{...selectAttrs}
+		>
+			<slot />
+		</select>
+	</div>
+	{tip && tipId && <p class={signupFieldTip} id={tipId}>{tip}</p>}
+</div>

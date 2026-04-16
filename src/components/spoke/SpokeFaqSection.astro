@@ -1,17 +1,42 @@
 ---
-const faqAnswerPlaceholder =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+const RELEASES = `<a href="https://github.com/With-the-Ranks/Spoke/releases" rel="noopener noreferrer" target="_blank">here</a>`;
+const EMAIL = `<a href="mailto:support@withtheranks.com" rel="noopener noreferrer" target="_blank">support@withtheranks.com</a>`;
 
 const faqs = [
-  { question: "What is peer-to-peer texting?", answer: faqAnswerPlaceholder },
-  { question: "Do you offer trials?", answer: faqAnswerPlaceholder },
-  { question: "What CRMs do you integrate with?", answer: faqAnswerPlaceholder },
-  { question: "Can you build my organization custom features for Spoke?", answer: faqAnswerPlaceholder },
-  { question: "Can I host Spoke myself?", answer: faqAnswerPlaceholder },
-  { question: "What does open source mean?", answer: faqAnswerPlaceholder },
-  { question: "Is Spoke secure?", answer: faqAnswerPlaceholder },
-  { question: "What is With the Ranks? How long have you been around?", answer: faqAnswerPlaceholder },
-] as const;
+  {
+    question: "What is peer-to-peer texting?",
+    answer:
+      "Peer-to-peer texting is a method for sending text messages that allows a small team to handle conversations with a much larger number of people. With nonprofit/political texting, the message senders are often voulunteers, while the recipients are often voters, donors, or a more targeted list of people. Peer-to-peer texting is also associated with a back and forth conversation between 2 humans over text messages, rather than automated messaging with keywords and auto responses.",
+  },
+  {
+    question: "Do you offer trials?",
+    answer:
+      "We offer Spoke as a pay as you go service, so you can sign up and try out the platform without any upfront costs. We also waive invoices under $5, so you can send several hundred messages for free!",
+  },
+  {
+    question: "What CRMs do you integrate with?",
+    answer:
+      `Currently, we maintain an integration with NGP VAN. If you're interested in an integration with another platform, please email us at ${EMAIL} to tell us more about your needs.`,
+  },
+  {
+    question: "Can you build my organization custom features for Spoke?",
+    answer: `Email us at ${EMAIL} to tell us more about what you're looking for! We don't immediately accept every feature request, but we'll always share our thoughts on how we can make Spoke work better for your organization.`,
+  },
+  {
+    question: "Can I host Spoke myself?",
+    answer: `Spoke can be self-hosted! For most organizations, we recommend using an instance of Spoke hosted by With the Ranks. Doing this at scale means that we can secure lower rates for messaging and hosting than most organizations can on their own. We also offer bulk pricing lower than the rates mentioned here - you may want to get in touch with us about this at ${EMAIL} if your organization is considering self-hosting. If you'd still like to host Spoke yourself, every Spoke release is published as a Docker image, and you can find release-specific info and links to the images ${RELEASES}.`,
+  },
+  {
+    question: "What does open source mean?",
+    answer:
+      "Open source is a philosophy for building software that aims to allow users of the software to inspect how it's built. With respect to Spoke, this means that anyone can see how the application works, or make their own changes and host it themselves. Specifically, Spoke is distributed under the GPL-3.0 license, which requires anyone who wants to distribute their own version of Spoke to make their changes public as well. This ensures that Spoke will continue to be available to anyone interested in using it, without being restricted by any single organization's willingness to maintain it.",
+  },
+  {
+    question: "What is With the Ranks? How long have you been around?",
+    answer:
+      "With the Ranks is a worker-owned technology cooperative that was founded by members of the Bernie 2020 technology team shortly after the end of the campaign. Building open source tools like Spoke remains one of our biggest priorities!  ",
+  },
+];
 ---
 
 <section class="bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32" id="faq">
@@ -34,7 +59,10 @@ const faqs = [
                 <i class="iconoir-nav-arrow-down text-2xl leading-none text-[#1c1c1c]" aria-hidden="true" />
               </span>
             </summary>
-            <p class="mt-4 font-sans text-base leading-normal text-[#1c1c1c]">{faq.answer}</p>
+            <p
+              class="mt-4 font-sans text-base leading-normal text-[#1c1c1c] [&_a]:font-bold [&_a]:text-[#1f2aff] [&_a]:underline"
+              set:html={faq.answer}
+            />
           </details>
         ))
       }

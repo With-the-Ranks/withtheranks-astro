@@ -1,0 +1,80 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+const signupChipRow =
+	"box-border inline-flex min-w-0 max-w-full flex-1 flex-row flex-wrap items-center justify-start gap-1 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+const signupChipCol =
+	"box-border flex w-full min-w-0 max-w-full flex-col gap-2 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+const signupFieldLabel = "shrink-0 font-sans text-base font-bold leading-none text-zinc-900";
+const signupFieldInput =
+	"min-w-0 flex-1 border-0 bg-transparent p-0 font-sans text-base leading-tight text-zinc-900 outline-none focus:ring-0";
+const signupFieldTip =
+	"m-0 max-w-full font-sans text-xs font-normal leading-tight text-white/70";
+
+interface Props {
+	formUid: string;
+	idSuffix: string;
+	name: string;
+	label: string;
+	tip?: string;
+	required?: boolean;
+	showRequiredStar?: boolean;
+	labelClass?: string;
+	chipLayout?: "row" | "column";
+	wrapperClass?: string;
+	autocomplete?: string;
+	inputmode?: HTMLAttributes<"input">["inputmode"];
+	pattern?: string;
+	placeholder?: string;
+}
+
+const {
+	formUid,
+	idSuffix,
+	name,
+	label,
+	tip,
+	required = false,
+	showRequiredStar = false,
+	labelClass = "",
+	chipLayout = "row",
+	wrapperClass = "",
+	autocomplete,
+	inputmode,
+	pattern,
+	placeholder,
+} = Astro.props;
+
+const fieldId = `inquiry-${formUid}-${idSuffix}`;
+const tipId = tip ? `inquiry-${formUid}-${idSuffix}-tip` : undefined;
+const chipClass = chipLayout === "row" ? signupChipRow : signupChipCol;
+const inputDescribedBy = tip && tipId ? { "aria-describedby": tipId } : {};
+---
+
+<div class:list={["box-border flex w-full min-w-0 max-w-full flex-col gap-1 overflow-x-clip", wrapperClass]}>
+	<div class:list={[chipClass, chipLayout === "row" && "w-full"]} data-inquiry-signup-field>
+		<label for={fieldId} class:list={[signupFieldLabel, labelClass]} data-signup-field-label>
+			{label}
+			{
+				showRequiredStar && (
+					<span class="ml-0.5 text-red-600" aria-hidden="true">
+						*
+					</span>
+				)
+			}
+		</label>
+		<input
+			type="text"
+			id={fieldId}
+			name={name}
+			class:list={[signupFieldInput, "min-w-0 flex-1"]}
+			required={required}
+			autocomplete={autocomplete}
+			inputmode={inputmode}
+			pattern={pattern}
+			placeholder={placeholder}
+			{...inputDescribedBy}
+		/>
+	</div>
+	{tip && tipId && <p class={signupFieldTip} id={tipId}>{tip}</p>}
+</div>
