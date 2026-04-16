@@ -93,7 +93,7 @@ const InquiryForm: React.FC<InquiryFormProps> = ({
 	showAllOptions = true,
 	title="Let us know how we can help.",
 	subtitle="Got a project or need support? We're here to help.",
-	helloText="Not sure what to choose? Just drop us a message and we'll get you pointed in the right direction",
+	helloText="If you’re interested in fighting for working class power or building a sustainable future we’d love to hear from you, even if you don’t have a specific project in mind.",
 	initialInquiryType,
 	removeTopMargin,
 }) => {

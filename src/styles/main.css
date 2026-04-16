@@ -276,11 +276,11 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     color: #FFE872;
 }
 
-
-/* Tofino Personal: add licensed woff2 under public/fonts/tofino/ (see DESIGN.md) */
+/* TODO: NOTE DO NOT DEPLOY THIS. WE NEED TO BUY THE PRO LICENSE AND SWAP THOSE IN! */
 @font-face {
     font-family: 'Tofino Personal';
-    src: url('/fonts/tofino/tofino-personal-text-book.woff2') format('woff2');
+    src: url('/fonts/tofino/Tofino-RegularPersonal.woff2') format('woff2'),
+         url('/fonts/tofino/Tofino-RegularPersonal.woff') format('woff');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -288,9 +288,28 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @font-face {
     font-family: 'Tofino Personal';
-    src: url('/fonts/tofino/tofino-personal-text-bold.woff2') format('woff2');
+    src: url('/fonts/tofino/Tofino-BookItalicPersonal.woff2') format('woff2'),
+         url('/fonts/tofino/Tofino-BookItalicPersonal.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tofino Personal';
+    src: url('/fonts/tofino/Tofino-BoldPersonal.woff2') format('woff2'),
+         url('/fonts/tofino/Tofino-BoldPersonal.woff') format('woff');
     font-weight: 700;
     font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Tofino Personal';
+    src: url('/fonts/tofino/Tofino-BoldItalicPersonal.woff2') format('woff2'),
+         url('/fonts/tofino/Tofino-BoldItalicPersonal.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
     font-display: swap;
 }
 
