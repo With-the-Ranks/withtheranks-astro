@@ -38,7 +38,7 @@ const cards = [
     <div class="grid w-full grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-16">
       {
         cards.map((card) => (
-          <div class="rounded border-4 border-[#1c1c1c] bg-white p-8">
+          <div class="rounded-2xl border-4 border-[#1c1c1c] bg-white p-8">
             <div class="flex flex-col gap-4">
               <div class="flex items-center gap-2">
                 <i class:list={[card.iconClass, "shrink-0 text-2xl leading-none text-[#1c1c1c]"]} aria-hidden="true" />
@@ -46,13 +46,14 @@ const cards = [
               </div>
               <p class="font-sans text-base leading-normal text-[#1c1c1c]">{card.body}</p>
               {"href" in card && card.href ? (
-                <a class="inline-flex items-center gap-2 font-sans text-base font-bold text-[#1c1c1c] no-underline" href={card.href}>
-                  {card.linkLabel}
-                  <i
-                    class="iconoir-arrow-up-right-square-solid shrink-0 text-2xl leading-none text-cta-end"
+                <a
+                  class="link-inline-external-icon group font-sans text-base font-bold text-[#1c1c1c] no-underline"
+                  href={card.href}
+                >
+                  <span class="group-hover:underline">{card.linkLabel}</span><i
+                    class="iconoir-arrow-up-right-square-solid text-2xl leading-none text-cta-end"
                     aria-hidden="true"
-                  />
-                </a>
+                  ></i></a>
               ) : null}
             </div>
           </div>

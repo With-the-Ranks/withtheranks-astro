@@ -70,11 +70,23 @@ const top = removeTopMargin ? "" : "mt-16";
 				<div
 					class:list={[
 						"space-y-2 text-center",
-						embeddedLight && "mx-auto max-w-2xl text-[#252753]",
+						embeddedLight && "mx-auto max-w-2xl",
 					]}
 				>
-					<h3 class="mb-0 font-display text-3xl font-normal sm:text-4xl md:text-5xl">Get in touch</h3>
-					<p class:list={["font-sans text-lg md:text-2xl", embeddedLight ? "text-[#252753]/80" : "text-white/80"]}>
+					<h3
+						class:list={[
+							"mb-0 font-display text-3xl font-normal sm:text-4xl md:text-5xl",
+							embeddedLight ? "!text-[#252753]" : "!text-white",
+						]}
+					>
+						Get in touch
+					</h3>
+					<p
+						class:list={[
+							"font-sans text-lg md:text-2xl",
+							embeddedLight ? "!text-[#252753]/80" : "!text-white/80",
+						]}
+					>
 						We're here to answer any questions you may have.
 					</p>
 				</div>
@@ -148,13 +160,16 @@ const top = removeTopMargin ? "" : "mt-16";
 				<h2
 					class:list={[
 						"px-4 pt-8 font-display text-3xl leading-tight font-bold md:text-5xl",
-						embeddedLight ? "text-[#252753]" : "text-white",
+						embeddedLight ? "!text-[#252753]" : "!text-white",
 					]}
 				>
 					Thank you for your inquiry!
 				</h2>
 				<p
-					class:list={["text-lg md:text-2xl", embeddedLight ? "text-[#252753]/85" : "font-sans text-white/85"]}
+					class:list={[
+						"text-lg md:text-2xl font-sans",
+						embeddedLight ? "!text-[#252753]/85" : "!text-white/85",
+					]}
 					data-thank-normal
 				>
 					We appreciate you taking the time to reach out to us. Our team will review your information and get back to you
