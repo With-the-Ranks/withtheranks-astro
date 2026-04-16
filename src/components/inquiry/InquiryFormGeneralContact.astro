@@ -1,0 +1,185 @@
+---
+import InquiryFormFooter from "./InquiryFormFooter.astro";
+import Button from "@/components/Button.astro";
+
+const signupChipRow =
+	"box-border inline-flex min-w-0 max-w-full flex-1 flex-row flex-wrap items-center justify-start gap-1 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+const signupChipRowMd1 = `${signupChipRow} md:col-span-1`;
+const signupChipRowMd2 = `${signupChipRow} md:col-span-2`;
+const signupFormGrid = "grid min-w-0 max-w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-4";
+const signupFieldLabel = "shrink-0 font-sans text-base font-bold leading-none text-zinc-900";
+const signupFieldLabelWide = `${signupFieldLabel} w-full min-w-0`;
+const signupFieldInput =
+	"min-w-0 flex-1 border-0 bg-transparent p-0 font-sans text-base leading-tight text-zinc-900 outline-none focus:ring-0";
+const signupFieldBoxTextarea =
+	"box-border flex min-w-0 max-w-full flex-col gap-1 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+const signupFieldBoxTextareaGridFull = `${signupFieldBoxTextarea} col-span-full min-w-0 max-w-full md:col-span-2`;
+const signupTextareaInput =
+	"box-border min-h-[12rem] min-w-0 max-w-full w-full resize-y border-0 bg-transparent p-0 font-sans text-base leading-snug text-zinc-900 outline-none focus:ring-0";
+
+interface Props {
+	formUid: string;
+	removeTopMargin?: boolean;
+	compact?: boolean;
+	disableStepScroll?: boolean;
+	embeddedLight?: boolean;
+}
+
+const {
+	formUid,
+	removeTopMargin = false,
+	compact = false,
+	disableStepScroll = false,
+	embeddedLight = false,
+} = Astro.props;
+const top = removeTopMargin ? "" : "mt-16";
+---
+
+<div
+	id={`inquiry-general-${formUid}`}
+	class:list={[
+		"w-full min-w-0 max-w-full",
+		embeddedLight ? "text-[#252753]" : "text-white",
+		top,
+	]}
+	data-inquiry-root
+	data-inquiry-single="true"
+	data-inquiry-flow="general-contact"
+	data-inquiry-compact={compact ? "true" : "false"}
+	data-inquiry-surface={embeddedLight ? "spoke" : "spoke-signup"}
+	{...(disableStepScroll ? { "data-inquiry-disable-scroll": "true" } : {})}
+>
+	<div
+		class:list={[
+			"w-full min-w-0 max-w-full",
+			embeddedLight && "rounded-[32px] bg-[#FFFCF7] p-2 sm:p-8 md:p-12",
+		]}
+	>
+		<form
+			class:list={[
+				"mx-auto flex w-full min-w-0 flex-col gap-4",
+				embeddedLight ? "max-w-[800px] lg:mt-6" : "max-w-2xl lg:mt-0",
+			]}
+			data-inquiry-form
+			data-inquiry-scroll-target
+			novalidate
+		>
+			<input type="hidden" name="inquiryType" value="general-contact" data-inquiry-type-field />
+
+			<div data-wizard-step="2" class="min-w-0 w-full max-w-full space-y-4">
+				<div
+					class:list={[
+						"space-y-2 text-center",
+						embeddedLight && "mx-auto max-w-2xl text-[#252753]",
+					]}
+				>
+					<h3 class="mb-0 font-display text-3xl font-normal sm:text-4xl md:text-5xl">Get in touch</h3>
+					<p class:list={["font-sans text-lg md:text-2xl", embeddedLight ? "text-[#252753]/80" : "text-white/80"]}>
+						We're here to answer any questions you may have.
+					</p>
+				</div>
+				<div class={signupFormGrid}>
+					<div class={signupChipRowMd1} data-inquiry-signup-field>
+						<label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-name`}
+							>Name<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label
+						>
+						<input
+							class={signupFieldInput}
+							id={`inquiry-${formUid}-name`}
+							type="text"
+							name="name"
+							autocomplete="name"
+							placeholder=""
+							required
+						/>
+					</div>
+					<div class={signupChipRowMd1} data-inquiry-signup-field>
+						<label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-email`}
+							>Email Address<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label
+						>
+						<input
+							class={signupFieldInput}
+							id={`inquiry-${formUid}-email`}
+							type="email"
+							name="email"
+							autocomplete="email"
+							placeholder=""
+							required
+						/>
+					</div>
+					<div class={signupChipRowMd2} data-inquiry-signup-field>
+						<label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-org`}>Organization</label>
+						<input
+							class={signupFieldInput}
+							id={`inquiry-${formUid}-org`}
+							type="text"
+							name="organization"
+							autocomplete="organization"
+							placeholder=""
+						/>
+					</div>
+					<div class={signupChipRowMd2} data-inquiry-signup-field>
+						<label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-secondary`}>Secondary contact (optional)</label>
+						<input
+							class={signupFieldInput}
+							id={`inquiry-${formUid}-secondary`}
+							type="text"
+							name="secondaryContact"
+							autocomplete="off"
+							placeholder=""
+						/>
+					</div>
+					<div class={signupFieldBoxTextareaGridFull}>
+						<label class={signupFieldLabelWide} for={`inquiry-${formUid}-needs`}
+							>How can we help you?<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label
+						>
+						<textarea
+							class={signupTextareaInput}
+							id={`inquiry-${formUid}-needs`}
+							name="needs"
+							placeholder=""
+							required
+						/>
+					</div>
+				</div>
+			</div>
+
+			<div data-wizard-step="5" class="hidden space-y-6 pb-8 text-center md:space-y-8">
+				<h2
+					class:list={[
+						"px-4 pt-8 font-display text-3xl leading-tight font-bold md:text-5xl",
+						embeddedLight ? "text-[#252753]" : "text-white",
+					]}
+				>
+					Thank you for your inquiry!
+				</h2>
+				<p
+					class:list={["text-lg md:text-2xl", embeddedLight ? "text-[#252753]/85" : "font-sans text-white/85"]}
+					data-thank-normal
+				>
+					We appreciate you taking the time to reach out to us. Our team will review your information and get back to you
+					shortly.
+				</p>
+				<Button
+					as="button"
+					type="button"
+					data-inquiry-start-over
+					variant={embeddedLight ? "default" : "primary"}
+					class:list={[
+						"font-sans",
+						embeddedLight && "!rounded-full !text-base md:!px-8 md:!py-6 md:!text-lg",
+						!embeddedLight && "px-6 py-4 text-base md:px-8 md:py-6 md:text-lg",
+					]}
+				>
+					{compact ? "Close" : "Start Over"}
+				</Button>
+			</div>
+
+			<InquiryFormFooter variant="spoke" tight dotsMode="spoke-signup" />
+		</form>
+	</div>
+</div>
+
+<script>
+	import "@/scripts/inquiry-wizard.ts";
+</script>

@@ -1,5 +1,5 @@
 ---
-import InquiryForm from "@/components/react/InquiryForm";
+import InquiryFormGeneralContact from "@/components/inquiry/InquiryFormGeneralContact.astro";
 import ContentLayout from "../layouts/ContentLayout.astro";
 import "animate.css";
 ---
@@ -40,12 +40,12 @@ import "animate.css";
       If that sounds like something you're interested in and you think you can contribute to our cooperative, let us know via the
       form below and we'll be in touch!
     </p>
-    <InquiryForm
-      showAllOptions={false}
-      title="Connect with us!"
-      subtitle="We're always looking for talented individuals to join our team."
-      helloText="Let us know what you're working on."
-      client:load
-    />
+    <div id="contact" class="mt-12 space-y-4">
+      <h2 class="mb-0 font-display text-3xl font-normal md:text-4xl">Connect with us!</h2>
+      <p class="mb-0 max-w-2xl text-lg text-[#252753]/90">
+        We're always looking for talented individuals to join our team.
+      </p>
+      <InquiryFormGeneralContact formUid="careers" embeddedLight />
+    </div>
   </div>
 </ContentLayout>

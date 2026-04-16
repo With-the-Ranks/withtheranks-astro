@@ -1,0 +1,110 @@
+---
+import Button from "@/components/Button.astro";
+
+const btnPrimaryWizardLayout =
+	"ml-auto min-w-0 max-w-full flex-1 basis-0 md:w-auto md:flex-none";
+
+export type InquiryFooterDotsMode = "default" | "spoke-signup";
+
+interface Props {
+	variant?: "default" | "spoke";
+	tight?: boolean;
+	dotsMode?: InquiryFooterDotsMode;
+}
+
+const { variant = "default", tight = false, dotsMode = "default" } = Astro.props;
+const spokeSignupDots = dotsMode === "spoke-signup";
+---
+
+<div class="hidden w-full min-w-0 max-w-full" data-inquiry-footer>
+	{
+		!tight && (
+			<div class="my-8 flex items-center justify-center" data-step-dots>
+				<div class="inquiry-dot" data-dot-index="1" data-state="active" />
+				<div class="inquiry-seg" data-dot-seg data-state="pending" />
+				<div class="inquiry-dot" data-dot-index="2" data-state="pending" />
+				<div class="inquiry-seg" data-dot-seg data-state="pending" />
+				<div class="inquiry-dot" data-dot-index="3" data-state="pending" />
+				<div class="inquiry-seg" data-dot-seg data-state="pending" />
+				<div class="inquiry-dot" data-dot-index="4" data-state="pending" />
+			</div>
+		)
+	}
+	<div
+		class:list={[
+			variant === "spoke"
+				? "flex w-full min-w-0 max-w-full flex-row flex-nowrap items-center gap-3 md:gap-4"
+				: "flex flex-row items-baseline justify-between gap-4 space-y-4 md:space-y-0",
+			!tight && variant !== "spoke" && "md:pt-3",
+		]}
+		data-inquiry-footer-row
+		{...(variant === "spoke" ? { "data-footer-spoke": "true" } : {})}
+	>
+		<Button
+			as="button"
+			type="button"
+			data-inquiry-back
+			variant="secondary"
+			class:list={[
+				variant === "spoke" ? "shrink-0" : "w-full shrink-0 md:w-auto",
+				variant === "default" &&
+					"!rounded-full !border-2 !border-black/10 !bg-white !py-2 !text-base !font-semibold md:!px-6 md:!py-3 md:!text-lg",
+			]}
+		>
+			Back
+		</Button>
+		<Button
+			as="button"
+			type="submit"
+			data-inquiry-submit
+			variant="primary"
+			class:list={[
+				variant === "spoke" ? btnPrimaryWizardLayout : "w-full !rounded-full md:w-auto",
+			]}
+		>
+			{
+				variant === "spoke" ? (
+					<>
+						<span data-label-next class="inline-flex items-center gap-4">
+							<span>Next</span>
+							<i class="iconoir-arrow-right size-6 shrink-0 not-italic leading-none" aria-hidden="true" />
+						</span>
+						<span data-label-submit class="hidden">Submit</span>
+						<span data-label-sending class="hidden">Sending…</span>
+					</>
+				) : (
+					<>
+						<span data-label-next class="inline-flex items-center">
+							Next{" "}
+							<i class="iconoir-arrow-right ml-2 text-xl not-italic" aria-hidden="true" />
+						</span>
+						<span data-label-submit class="hidden">Submit</span>
+						<span data-label-sending class="hidden">Sending…</span>
+					</>
+				)
+			}
+		</Button>
+	</div>
+	{
+		tight &&
+			(spokeSignupDots ? (
+				<div class="mt-4 hidden flex items-center justify-center" data-step-dots data-step-dots-mode="spoke-signup">
+					<div class="inquiry-dot" data-dot-index="1" data-state="pending" />
+					<div class="inquiry-seg" data-dot-seg data-state="pending" />
+					<div class="inquiry-dot" data-dot-index="2" data-state="pending" />
+					<div class="inquiry-seg" data-dot-seg data-state="pending" />
+					<div class="inquiry-dot" data-dot-index="3" data-state="pending" />
+				</div>
+			) : (
+				<div class="mt-4 flex items-center justify-center" data-step-dots>
+					<div class="inquiry-dot" data-dot-index="1" data-state="active" />
+					<div class="inquiry-seg" data-dot-seg data-state="pending" />
+					<div class="inquiry-dot" data-dot-index="2" data-state="pending" />
+					<div class="inquiry-seg" data-dot-seg data-state="pending" />
+					<div class="inquiry-dot" data-dot-index="3" data-state="pending" />
+					<div class="inquiry-seg" data-dot-seg data-state="pending" />
+					<div class="inquiry-dot" data-dot-index="4" data-state="pending" />
+				</div>
+			))
+	}
+</div>
