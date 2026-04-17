@@ -113,7 +113,7 @@ const entries = Astro.props.entries as TimelineEntry[];
 								class:list={[
 									"fade-in box-border max-w-full min-w-0 rounded-sm",
 									item.highlight
-										? "border-4 border-[#1c1c1c] bg-white p-4 text-[#1c1c1c] sm:p-8"
+										? "border-4 border-[#0b124c] bg-white p-4 text-[#0b124c] sm:p-8"
 										: "bg-white text-foreground sm:px-8",
 								]}
 								data-key={idx}
@@ -140,7 +140,7 @@ const entries = Astro.props.entries as TimelineEntry[];
 												class:list={[
 													"mb-4 font-display text-base font-normal sm:text-3xl",
 													item.highlight
-														? "text-[#1c1c1c]"
+														? "text-[#0b124c]"
 														: "text-brand-navy",
 												]}
 											>
@@ -152,7 +152,7 @@ const entries = Astro.props.entries as TimelineEntry[];
 											<p
 												class:list={[
 													"mb-0 font-sans text-base leading-relaxed sm:text-lg",
-													item.highlight ? "text-[#1c1c1c]" : "text-brand-navy",
+													item.highlight ? "text-[#0b124c]" : "text-brand-navy",
 												]}
 											>
 												{item.description}
@@ -163,7 +163,7 @@ const entries = Astro.props.entries as TimelineEntry[];
 											<p
 												class:list={[
 													"font-sans text-lg leading-relaxed",
-													item.highlight ? "text-[#1c1c1c]" : "text-brand-navy",
+													item.highlight ? "text-[#0b124c]" : "text-brand-navy",
 												]}
 											>
 												{item.content}
@@ -178,7 +178,7 @@ const entries = Astro.props.entries as TimelineEntry[];
 												class:list={[
 													"link-inline-external-icon group max-w-full min-w-0 break-words font-sans font-normal not-italic no-underline transition-colors",
 													item.highlight
-														? "text-base text-[#1c1c1c] hover:!text-[#1c1c1c]"
+														? "text-base text-[#0b124c] hover:!text-[#0b124c]"
 														: "text-sm text-brand-navy hover:!text-brand-navy sm:text-base",
 												]}
 											>
