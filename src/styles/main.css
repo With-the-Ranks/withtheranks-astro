@@ -11,6 +11,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @layer theme, base, components, utilities;
 @import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/preflight.css" layer(base);
 @import "tailwindcss/utilities.css" layer(utilities);
 @import "tw-animate-css";
 
@@ -23,20 +24,20 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
     --radius-sm: calc(var(--radius) - 4px);
-    --radius-card: 2rem;
 
-    --color-background: var(--main-bg-color);
-    --color-foreground: var(--main-text-color);
-    --color-accent-green: var(--stop-one-color);
-    --color-accent-purple: var(--stop-two-color);
-    --color-brand-blue: #0a13b1;
-    --color-brand-blue-deep: #0a12a9;
+    --color-brand-blue: #0012D8;
+    --color-brand-blue-deep: #0A13B1;
     --color-brand-blue-tag: #0c15b1;
     --color-brand-cream: #fffcf7;
     --color-brand-ink: #00033d;
     --color-brand-navy: #0b124c;
     --color-cta-start: #ffefc0;
     --color-cta-end: #fac328;
+
+    --color-background: var(--color-brand-blue);
+    --color-foreground: var(--main-text-color);
+    --color-accent-green: var(--stop-one-color);
+    --color-accent-purple: var(--stop-two-color);
 }
 
 @utility outline-offset-inward {
@@ -106,6 +107,100 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
         }
     }
 
+    [data-content-layout] .content-layout-body {
+        overflow-wrap: anywhere;
+    }
+
+    [data-content-layout] svg {
+        max-width: 100%;
+        height: auto;
+    }
+
+    [data-content-layout] .content-layout-body :where(h2, h3) {
+        font-family: var(--font-display-stack);
+        font-weight: 400;
+        color: var(--main-text-color);
+    }
+
+    [data-content-layout] .content-layout-body :where(h2) {
+        font-size: clamp(1.85rem, 4vw, 2.75rem);
+        line-height: 1.08;
+        margin: 0 0 1.25rem;
+    }
+
+    [data-content-layout] .content-layout-body :where(h3) {
+        font-size: clamp(1.35rem, 2.5vw, 1.875rem);
+        line-height: 1.12;
+        margin: 2rem 0 1rem;
+    }
+
+    [data-content-layout] .content-layout-body .timeline-container :where(h3) {
+        margin-block-start: 0;
+    }
+
+    [data-content-layout] .content-layout-body :where(p, li) {
+        font-family: var(--font-body);
+        color: var(--main-text-color);
+        font-size: clamp(1rem, 1.2vw, 1.375rem);
+        line-height: 1.45;
+        margin: 0 0 1.5rem;
+    }
+
+    [data-content-layout] .content-layout-body :where(blockquote) {
+        font-family: var(--font-body);
+        color: var(--main-text-color);
+        border-color: color-mix(in srgb, var(--stop-two-color) 55%, transparent);
+    }
+
+    [data-content-layout] .content-layout-body :where(a) {
+        color: inherit;
+    }
+
+    /* About: lead paragraphs (replaces fixed text-2xl for responsive scaling) */
+    [data-content-layout] .about-page .about-lead {
+        font-family: var(--font-body);
+        color: var(--main-text-color);
+        font-size: clamp(1.0625rem, 2.75vw, 1.5rem);
+        line-height: 1.45;
+        margin: 0 0 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        [data-content-layout] .content-layout-body :where(h2) {
+            font-size: 1.75rem;
+            line-height: 1.1;
+        }
+
+        [data-content-layout] .content-layout-body :where(h3) {
+            font-size: 1.35rem;
+        }
+
+        [data-content-layout] .content-layout-body :where(p, li) {
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
+
+        [data-content-layout] .about-page .about-lead {
+            font-size: 1.0625rem;
+            line-height: 1.5rem;
+        }
+    }
+
+    /**
+     * Text + trailing external-link icon in inline flow
+     */
+    .link-inline-external-icon {
+        display: inline-block;
+        max-width: 100%;
+        vertical-align: baseline;
+    }
+
+    .link-inline-external-icon > i[aria-hidden="true"] {
+        display: inline-block;
+        vertical-align: -0.12em;
+        margin-inline-start: 0.3em;
+    }
+
     [data-inquiry-signup-field] {
         position: relative;
     }
@@ -124,6 +219,12 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 }
 
 @layer base {
+    html,
+    body {
+        overflow-x: clip;
+        max-width: 100%;
+    }
+
     body {
         background-color: var(--main-bg-color);
         color: var(--main-text-color);
@@ -202,7 +303,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 /* Variables */
 :root {
     /* to use in rgba functions later */
-    --main-bg-color: #0a12a9;
+    --main-bg-color: var(--color-brand-blue);
     --main-text-color: #bfd5ff;
 
     /* Change these to change colors throughout the site */
@@ -286,6 +387,20 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 [data-theme="light"] a:hover {
     color: #470cec;
+}
+
+[data-theme="light"] #content-sticky-subnav-root a:hover {
+    color: #fff;
+}
+
+@media (width >= 80rem) {
+    [data-content-layout][data-sticky-section-nav] main [id] {
+        scroll-margin-top: 6rem;
+    }
+}
+
+[data-theme="light"] [data-content-layout] .about-page .about-arrow-link:hover {
+    color: inherit;
 }
 
 [data-theme="dark"] header a:hover {

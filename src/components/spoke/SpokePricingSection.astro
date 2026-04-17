@@ -22,7 +22,7 @@ const SEGMENTS_URL =
     </div>
     <div class="flex flex-col gap-8">
       <div
-        class="rounded border-4 border-[#1c1c1c] bg-[linear-gradient(-58deg,#ffefc0_0.36%,#fac328_99.64%)] p-8 font-sans text-[#1c1c1c]"
+        class="rounded-2xl border-4 border-[#1c1c1c] bg-[linear-gradient(-58deg,#ffefc0_0.36%,#fac328_99.64%)] p-8 font-sans text-[#1c1c1c]"
       >
         <p class="mb-2 text-2xl sm:text-3xl">
           <span class="font-bold">1.3¢</span>
@@ -36,19 +36,17 @@ const SEGMENTS_URL =
         </p>
       </div>
       <a
-        class="inline-flex items-center gap-2 font-sans text-2xl font-bold text-[#1c1c1c] no-underline"
+        class="link-inline-external-icon group font-sans text-2xl font-bold text-[#1c1c1c] no-underline"
         href={SEGMENTS_URL}
         rel="noopener noreferrer"
         target="_blank"
       >
-        Learn more about message segments
-        <i
-          class="iconoir-arrow-up-right-square-solid shrink-0 text-2xl leading-none text-cta-end"
+        <span class="group-hover:underline">Learn more about message segments</span><i
+          class="iconoir-arrow-up-right-square-solid text-2xl leading-none text-cta-end"
           aria-hidden="true"
-        />
-      </a>
+        ></i></a>
     </div>
-    <div class="rounded bg-[#00033d] px-6 py-12 text-white sm:px-8 sm:py-16">
+    <div class="rounded bg-brand-ink px-6 py-12 text-white sm:px-8 sm:py-16">
       <h3 class="font-display text-5xl leading-none sm:text-6xl lg:text-[64px]">Bulk Discounts</h3>
       <div class="mt-4 max-w-[960px] font-sans text-xl leading-normal sm:text-2xl">
         <p>Planning on sending a lot of texts? We offer bulk discounts, and your commitments will help lower prices for everyone.</p>

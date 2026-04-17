@@ -6,55 +6,101 @@ export interface Props {
   bannerSubtitle?: string;
   theme?: string;
   bannerColor?: string;
+  bannerTone?: "blue" | "yellow";
   toc?: { id: string; label: string }[];
+  /** Omit default main bottom padding (e.g. full-bleed band flush with footer). */
+  flushMainBottom?: boolean;
+  stickyNav?: boolean;
 }
-const { title, bannerCategory, bannerTitle, bannerSubtitle, theme, bannerColor, toc } = Astro.props;
+const {
+  title,
+  bannerCategory,
+  bannerTitle,
+  bannerSubtitle,
+  theme,
+  bannerColor,
+  bannerTone = "blue",
+  toc,
+  flushMainBottom = false,
+  stickyNav = false,
+} = Astro.props;
 import Layout from "../layouts/Layout.astro";
+import ContentStickyNav from "../components/ContentStickyNav.astro";
+
+const hasToc = Boolean(toc?.length);
+const showStickyNav = Boolean(stickyNav && hasToc);
+const bannerIsYellow = bannerTone === "yellow";
+const bannerBg =
+  bannerColor ??
+  (bannerIsYellow
+    ? "bg-gradient-to-br from-cta-start to-cta-end"
+    : "bg-gradient-to-br from-[#05052d] via-[#121a8f] to-brand-blue");
 ---
+
 <Layout title={title} theme={theme}>
-  <div class="px-2 sm:px-0">
-    <!-- Banner Section -->
-    <section class={`container mx-auto rounded-2xl sm:rounded-3xl lg:rounded-[32px] p-6 sm:p-8 lg:p-12 xl:p-16 relative overflow-hidden ${bannerColor ? bannerColor : 'bg-[#ffe872]'}`}>
-      {bannerCategory && (
-        <div class="inline-block max-w-4xl rounded-full border border-[#252753]/25 bg-[#252753]/12 px-3 py-1 text-xs font-bold text-[#0b124c] sm:px-4 sm:py-1.5 sm:text-sm">
-          {bannerCategory}
-        </div>
-      )}
-      {bannerTitle && (
-        <h2 class="text-[#252753] text-2xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1] mb-6" set:html={bannerTitle}></h2>
-      )}
-      {bannerSubtitle && (
-        <p class="text-[#252753] text-lg sm:text-3xl mb-8 max-w-4xl">
-          {bannerSubtitle}
-        </p>
-      )}
+  {showStickyNav && toc ? <ContentStickyNav items={toc} slot="sticky-subnav" /> : null}
+  <div
+    class="w-full min-w-0 max-w-full overflow-x-clip"
+    data-content-layout
+    data-sticky-section-nav={showStickyNav ? "" : undefined}
+  >
+    <!-- Mobile: gradient edge-to-edge. sm+: gutters + rounded card (max width aligned with Nav). -->
+    <section class="w-full min-w-0 max-w-full sm:px-4 md:px-6 lg:px-8">
+      <div
+        class:list={[
+          "relative mx-auto box-border w-full min-w-0 max-w-full overflow-hidden rounded-none px-4 py-6 sm:max-w-screen-2xl sm:rounded-xl sm:px-8 sm:py-8 lg:px-12 lg:py-12 xl:px-16 xl:py-16",
+          bannerBg,
+        ]}
+      >
+        {bannerCategory && (
+          <div
+            class:list={[
+              "inline-block max-w-full rounded-full border px-3 py-1 font-sans text-xs font-bold sm:px-4 sm:py-1.5 sm:text-sm",
+              bannerIsYellow
+                ? "border-brand-navy/25 bg-brand-navy/10 text-brand-navy"
+                : "border-white/30 bg-white/10 text-white",
+            ]}
+          >
+            {bannerCategory}
+          </div>
+        )}
+        {bannerTitle && (
+          <h2
+            class:list={[
+              "mb-6 max-w-full break-words font-display text-3xl font-normal leading-[1.1] sm:text-5xl lg:text-6xl xl:text-7xl",
+              bannerIsYellow ? "text-brand-navy" : "text-white",
+            ]}
+            set:html={bannerTitle}
+          />
+        )}
+        {bannerSubtitle && (
+          <p
+            class:list={[
+              "mb-0 max-w-full break-words font-sans text-lg sm:max-w-4xl sm:text-3xl",
+              bannerIsYellow ? "text-brand-navy" : "text-white",
+            ]}
+          >
+            {bannerSubtitle}
+          </p>
+        )}
+      </div>
     </section>
 
-    <!-- Main Content Section -->
-    <main class="mx-auto pb-8 sm:pb-12 lg:pb-16">
-      <div class="container mx-auto relative z-2 px-4">
-        {toc?.length ? (
-          <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 lg:gap-20 mt-5 lg:mt-16 items-start">
-            <!-- Table of Contents -->
-            <aside class="w-full mx-auto rounded-2xl bg-[#959AF6]/20 p-6 text-[#252753] sm:rounded-3xl lg:sticky lg:top-10 lg:col-span-1 lg:rounded-[32px] on-this-page">
-              <p class="mb-2 font-sans text-base leading-tight font-semibold text-[#252753] sm:text-lg">On this page</p>
-              {toc.map(({ id, label }) => (
-                <hr class="border-[#959AF6] border-t-2 opacity-20 my-3">
-                <a class="block rounded-md px-1 py-0.5 text-[#252753] no-underline hover:bg-[#959AF6]/40" href={`#${id}`} >
-                  <span class="block font-sans text-sm leading-snug font-medium text-[#252753] sm:text-base">{label}</span>
-                </a>
-              ))}
-            </aside>
-            <!-- Content -->
-            <article class="relative lg:col-span-3 text-[#252753]">
-              <slot />
-            </article>
-          </div>
-        ) : (
-          <article class="w-full lg:w-2/3 mx-auto mt-16 text-[#252753]">
-            <slot />
-          </article>
-        )}
+    <main
+      class:list={[
+        "mx-auto w-full min-w-0 max-w-full",
+        flushMainBottom ? "pb-0 sm:pb-0 lg:pb-0" : "pb-8 sm:pb-12 lg:pb-16",
+      ]}
+    >
+      <div class="relative z-2 mx-auto w-full min-w-0 max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+        <article
+          class:list={[
+            "content-layout-body relative mx-auto min-w-0 w-full max-w-full break-words text-foreground lg:w-2/3",
+            showStickyNav ? "mt-5 lg:mt-16" : "mt-8 sm:mt-12 lg:mt-16",
+          ]}
+        >
+          <slot />
+        </article>
       </div>
     </main>
   </div>

@@ -52,9 +52,9 @@ const { workCards } = Astro.props as Props;
                 {card.tag}
               </span>
               <div class="flex items-end justify-between gap-4">
-                <h3 class={`heading-card mb-0 max-w-md font-bold ${card.titleColor}`}>
+                <p class={`mb-0 font-bold ${card.titleColor}`}>
                   {card.title}
-                </h3>
+                </p>
                 <i class={`iconoir-arrow-right not-italic shrink-0 text-3xl leading-none ${card.titleColor}`} aria-hidden="true" />
               </div>
             </InfoCard>

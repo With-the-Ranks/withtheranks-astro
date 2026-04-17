@@ -24,9 +24,8 @@ const { text, boldText = "", href } = Astro.props as Props;
     {
       boldText ? (
         href ? (
-          <span class="inline-flex items-center gap-2 font-bold text-black">
-            <span>{boldText}</span>
-            <i class="iconoir-arrow-up-right-square-solid not-italic inline-block shrink-0 text-base leading-none" aria-hidden="true" />
+          <span class="link-inline-external-icon font-bold text-black">
+            {boldText}<i class="iconoir-arrow-up-right-square-solid not-italic text-base leading-none" aria-hidden="true"></i>
           </span>
         ) : (
           <span class="font-bold">{boldText}</span>
