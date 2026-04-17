@@ -1,0 +1,84 @@
+---
+interface Props {
+  alt?: string;
+}
+
+const { alt = "" } = Astro.props as Props;
+---
+
+<div class="relative inline-grid max-w-full place-items-start leading-none">
+  <div class="relative col-start-1 row-start-1 w-full max-w-[788px] rounded-2xl border-2 border-[#cfcfcf]">
+    <img
+      alt={alt}
+      class="block h-auto w-full rounded-2xl"
+      height="429"
+      src="/assets/spoke/hero-dashboard.png"
+      width="788"
+    />
+  </div>
+  <div
+    aria-hidden="true"
+    class="spoke-hero-chat-card relative z-10 col-start-1 row-start-1 mt-16 ml-auto flex aspect-9/16 w-[min(168px,38vw)] max-w-[200px] shrink-0 flex-col overflow-hidden rounded-[2.25rem] border-[3px] border-[#d4d4d9] bg-[#e8e8ed] p-[5px] shadow-[0_8px_22px_rgba(0,0,0,0.18)] ring-1 ring-black/10 sm:mt-20 sm:mr-4 lg:mt-20 lg:mr-8"
+  >
+    <div class="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden rounded-[1.85rem] bg-[#f2f2f7]">
+      <div class="flex shrink-0 justify-center pt-2.5 pb-1">
+        <div class="h-[7px] w-[32%] max-w-[68px] rounded-full bg-[#1c1c1c]" />
+      </div>
+      <div
+        class="spoke-hero-chat-screen flex min-h-0 min-w-0 flex-1 flex-col justify-end gap-2 overflow-hidden px-2 pb-2.5 pt-0.5"
+      >
+        <div
+          class="spoke-hero-chat-bubble spoke-hero-chat-bubble--in min-w-0 rounded-[14px] rounded-bl-md bg-[#e9eaff] px-2 py-1.5"
+          style="animation-delay: 0.5s;"
+        >
+          <p
+            class="font-sans text-[9px] leading-snug text-[#1c1c1c] [overflow-wrap:anywhere] line-clamp-5 mb-0"
+          >
+            Hi Sarah — it’s Chris from With the Ranks. Can you make it to
+            our community event this Saturday?
+          </p>
+        </div>
+        <div
+          class="spoke-hero-chat-bubble spoke-hero-chat-bubble--out flex min-w-0 w-full justify-end"
+          style="animation-delay: 1.5s;"
+        >
+          <div
+            class="max-w-full rounded-[14px] rounded-br-md bg-[#1f2aff] px-2 py-1.5 shadow-[0_2px_8px_rgba(31,42,255,0.35)]"
+          >
+            <p class="font-sans text-[11px] leading-snug text-white mb-0">Maybe! Where at?</p>
+          </div>
+        </div>
+        <div
+          class="spoke-hero-chat-bubble spoke-hero-chat-bubble--in min-w-0 rounded-[14px] rounded-bl-md bg-[#e9eaff] px-2 py-1.5"
+          style="animation-delay: 2.5s;"
+        >
+          <p
+            class="font-sans text-[9px] leading-snug text-[#1c1c1c] [overflow-wrap:anywhere] line-clamp-5 mb-0"
+          >
+            At the rec center, 10am!
+          </p>
+        </div>
+        <div
+          class="spoke-hero-chat-bubble spoke-hero-chat-bubble--out flex min-w-0 w-full justify-end"
+          style="animation-delay: 3.5s;"
+        >
+          <div
+            class="max-w-full rounded-[14px] rounded-br-md bg-[#1f2aff] px-2 py-1.5 shadow-[0_2px_8px_rgba(31,42,255,0.35)]"
+          >
+            <p class="font-sans text-[11px] leading-snug text-white mb-0">Count me in 🙌</p>
+          </div>
+        </div>
+        <div
+          class="spoke-hero-chat-bubble spoke-hero-chat-bubble--typing flex w-full min-w-0 justify-start"
+          style="animation-delay: 4.5s;"
+        >
+          <div class="flex items-center rounded-[14px] rounded-bl-md bg-[#e9eaff] px-2 py-1.5">
+            <span class="spoke-hero-chat-typing inline-flex items-center text-[#1f2aff]" style="animation-delay: 4.8s;">
+              <i class="iconoir-more-horiz text-base leading-none" aria-hidden="true" />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
