@@ -1,0 +1,195 @@
+---
+import InfoCard from "./InfoCard.astro";
+import InquiryFormGeneralContact from "./inquiry/InquiryFormGeneralContact.astro";
+import InquiryFormNewProject from "./inquiry/InquiryFormNewProject.astro";
+import InquiryFormSpoke from "./inquiry/InquiryFormSpoke.astro";
+
+interface Props {
+  /** Thick top border (homepage); omit or false on /contact where the band is flush. */
+  topBorder?: boolean;
+}
+
+const { topBorder = true } = Astro.props;
+
+const calendlyLink = "https://calendly.com/with-the-ranks/team-meeting";
+
+const contactCards = [
+  {
+    title: "Start a new project",
+    description: "From custom websites to full-fledged web products, our team of designers and engineers are ready to help.",
+    iconoir: "iconoir-computer",
+    inquiryFlow: "new-project" as const,
+  },
+  {
+    title: "Sign up for Spoke",
+    description: "Power your organizing efforts with affordable peer-to-peer texting at scale.",
+    iconoir: "iconoir-smartphone-device",
+    inquiryFlow: "spoke-services" as const,
+  },
+  {
+    href: calendlyLink,
+    title: "Schedule a meeting",
+    description: "Prefer to meet virtually? Book a time with a team member and we’ll help point you in the right direction.",
+    iconoir: "iconoir-calendar",
+    external: true,
+  },
+  {
+    title: "Say hello",
+    description: "Not sure what to choose? Send us a message and we’ll get back to you.",
+    iconoir: "iconoir-multi-bubble",
+    inquiryFlow: "general-contact" as const,
+  },
+];
+
+---
+
+<section
+  class:list={["scroll-mt-24 bg-brand-blue", topBorder && "border-t-8 border-black/20"]}
+  id="contact-options"
+>
+  <div class="mx-auto max-w-screen-2xl px-4 py-16 text-white sm:px-6 lg:px-8 lg:py-32">
+    <div class="mx-auto max-w-5xl text-center">
+      <h2 class="heading-section mb-4 font-display font-normal text-white lg:whitespace-nowrap">
+        We want to hear from you.
+      </h2>
+      <p class="body-section mx-auto mb-0 max-w-3xl text-white">
+        Whether you need help with your website, need to get a complex project off the ground, or just want to say hello, use one of
+        the options below, or send us an email to
+        <a class="font-bold text-white" href="mailto:hello@withtheranks.com">
+          hello@withtheranks.com.
+        </a>
+      </p>
+    </div>
+
+    <div id="contact-options-cards" class="mx-auto mt-12 max-w-xl space-y-4 lg:mt-16">
+      {
+        contactCards.map((card) => {
+          const inner = (
+            <InfoCard class="w-full rounded bg-white p-8 text-left text-black outline-4 outline-black outline-offset-inward max-sm:p-6">
+              <div class="flex items-start justify-between gap-4">
+                <div class="flex min-w-0 flex-1 items-center gap-4">
+                  <i
+                    class:list={[card.iconoir, "not-italic block size-6 shrink-0 text-2xl leading-none text-black"]}
+                    aria-hidden="true"
+                  />
+                  <h3 class="my-0 font-display text-[32px] leading-none font-normal text-black sm:text-[40px] sm:whitespace-nowrap">
+                    {card.title}
+                  </h3>
+                </div>
+                <i
+                  class="iconoir-arrow-right not-italic mt-0.5 block size-6 shrink-0 text-2xl leading-none text-black"
+                  aria-hidden="true"
+                />
+              </div>
+
+              <p class="mt-4 mb-0 font-sans text-lg leading-normal text-black sm:text-[20px] font-normal">
+                {card.description}
+              </p>
+            </InfoCard>
+          );
+
+          if (card.external && card.href) {
+            return (
+              <a
+                class="block text-inherit no-underline"
+                href={card.href}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {inner}
+              </a>
+            );
+          }
+
+          if (card.inquiryFlow) {
+            return (
+              <button
+                type="button"
+                class="block w-full cursor-pointer border-0 bg-transparent p-0 text-inherit"
+                data-open-inquiry={card.inquiryFlow}
+              >
+                {inner}
+              </button>
+            );
+          }
+
+          return (
+            <a class="block text-inherit no-underline" href={card.href}>
+              {inner}
+            </a>
+          );
+        })
+      }
+    </div>
+
+    <div id="contact-options-form-view" class="mx-auto mt-10 hidden w-full min-w-0 max-w-3xl px-0 sm:px-2">
+      <div class="mx-auto w-full min-w-0 max-w-2xl">
+        <button
+          type="button"
+          id="contact-options-back"
+          class="mb-6 cursor-pointer rounded-full border-2 border-white/40 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20"
+        >
+          ← Back to options
+        </button>
+
+        <div class="hidden" data-inline-form="new-project">
+          <InquiryFormNewProject formUid="contact-np" removeTopMargin disableStepScroll />
+        </div>
+        <div class="hidden" data-inline-form="spoke-services">
+          <InquiryFormSpoke formUid="home-spoke" signupSurface compact removeTopMargin disableStepScroll />
+        </div>
+        <div class="hidden" data-inline-form="general-contact">
+          <InquiryFormGeneralContact formUid="home-gc" compact removeTopMargin disableStepScroll />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const bind = () => {
+    const section = document.getElementById("contact-options");
+    const cards = document.getElementById("contact-options-cards");
+    const formView = document.getElementById("contact-options-form-view");
+    const back = document.getElementById("contact-options-back");
+    if (!section || !cards || !formView || !back || section.dataset.contactToggleBound === "true") return;
+    section.dataset.contactToggleBound = "true";
+
+    const resetWizards = () => {
+      for (const root of formView.querySelectorAll<HTMLElement>("[data-inquiry-root][data-inquiry-single]")) {
+        root.dispatchEvent(new CustomEvent("inquiry:reset"));
+      }
+    };
+
+    const showCards = () => {
+      resetWizards();
+      formView.classList.add("hidden");
+      cards.classList.remove("hidden");
+      for (const wrap of formView.querySelectorAll("[data-inline-form]")) {
+        wrap.classList.add("hidden");
+      }
+    };
+
+    const showForm = (flow: string) => {
+      cards.classList.add("hidden");
+      formView.classList.remove("hidden");
+      for (const wrap of formView.querySelectorAll("[data-inline-form]")) {
+        wrap.classList.toggle("hidden", wrap.getAttribute("data-inline-form") !== flow);
+      }
+    };
+
+    section.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("[data-open-inquiry]");
+      if (btn?.dataset.openInquiry) {
+        showForm(btn.dataset.openInquiry);
+      }
+    });
+
+    back.addEventListener("click", showCards);
+
+    section.addEventListener("inquiry:compact-close", showCards);
+  };
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);
+  else bind();
+</script>

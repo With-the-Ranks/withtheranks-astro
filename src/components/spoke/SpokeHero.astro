@@ -1,0 +1,52 @@
+---
+import { CALENDLY_TEAM_MEETING } from "../../constants/spoke";
+import Button from "../Button.astro";
+import SpokePreview from "../SpokePreview.astro";
+---
+
+<section
+  class="border-b-4 border-[#1c1c1c]/20 bg-brand-blue px-4 pb-10 pt-2 sm:px-6 lg:px-8"
+  id="overview"
+>
+  <div class="mx-auto flex max-w-screen-2xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
+    <div class="flex max-w-xl flex-col gap-8 lg:py-8 lg:pl-4 xl:pl-8">
+      <div class="flex flex-col gap-4 text-white">
+        <h1 class="font-display text-4xl leading-none sm:text-5xl lg:text-[48px]">
+          Spoke makes it easy for organizers to send and reply to millions of text messages.
+        </h1>
+        <p class="font-sans text-lg leading-normal sm:text-xl">
+          Start sending effective organizing messages with the proven open-source peer-to-peer texting platform, now
+          backed by With the Ranks.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-6">
+        <Button
+          class="label-button !inline-flex !gap-1 px-8 py-4 !text-black"
+          href="#signup"
+          icon="/assets/home/contact-icon.svg"
+          iconClass="size-9 shrink-0"
+          iconPosition="start"
+          soft
+          variant="cta"
+        >
+          Sign Up
+        </Button>
+        <Button
+          class="label-button no-underline !rounded-lg !border-4 !border-[#1c1c1c]/20 !border-solid !bg-transparent !px-8 !py-4 !text-xl !font-bold !text-white !shadow-none transition duration-300 hover:!-translate-y-px hover:!bg-white/10 hover:!brightness-110 hover:!shadow-none focus-visible:!-translate-y-px focus-visible:!bg-white/10 focus-visible:!brightness-110 sm:!text-[20px] [&>span]:!gap-1"
+          href={CALENDLY_TEAM_MEETING}
+          icon="iconoir-calendar"
+          iconClass="size-9 shrink-0 text-[2.25rem] leading-none text-white"
+          iconPosition="start"
+          rel="noopener noreferrer"
+          target="_blank"
+          variant="secondary"
+        >
+          Schedule a Demo
+        </Button>
+      </div>
+    </div>
+    <div class="relative flex min-w-0 flex-1 justify-center lg:justify-end lg:p-8 xl:p-16">
+      <SpokePreview />
+    </div>
+  </div>
+</section>

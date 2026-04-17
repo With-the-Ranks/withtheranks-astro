@@ -1,34 +1,173 @@
 ---
+const btnPrimary =
+  "inline-flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-xl border-0 bg-gradient-to-l from-cta-start to-cta-end px-4 py-3 font-sans text-lg font-bold leading-none text-zinc-900 ring-4 ring-inset ring-white/20 transition duration-300 hover:-translate-y-px hover:brightness-105 hover:saturate-105 focus-visible:-translate-y-px focus-visible:brightness-105 focus-visible:saturate-105 disabled:cursor-not-allowed disabled:opacity-50 sm:gap-4 sm:px-6 sm:py-4 sm:text-xl md:px-8";
+
+const btnSecondary =
+  "inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-lg border-2 border-[#1c1c1c] bg-white px-4 py-2 font-sans text-sm font-bold text-[#1c1c1c] shadow-sm transition duration-200 hover:bg-zinc-200 hover:shadow-md active:translate-y-px md:text-base";
+
+export type ButtonElement = "a" | "button";
+
+/** `cta` is an alias for `primary` (yellow gradient); kept for existing pages. */
+export type ButtonVariant = "default" | "primary" | "secondary" | "cta";
 
 export interface Props {
-    id: string;
-    text: string;
-    link?: string;
-    class?: string;
+  as?: ButtonElement;
+  variant?: ButtonVariant;
+  href?: string;
+  /** Alias for `href` (docs collection, 404). */
+  link?: string;
+  text?: string;
+  class?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  id?: string;
+  /** Softer ring/outline for primary marketing links (nav “Contact us”). */
+  soft?: boolean;
+  icon?: string;
+  iconClass?: string;
+  /** When `icon` is set, render it before the label (e.g. sticky “Sign Up”). */
+  iconPosition?: "start" | "end";
+  /**
+   * `compact`: primary **link** only — same vertical rhythm as `btnSecondary` (`py-2`, `text-sm` / `md:text-base`),
+   * for pairs like sticky “Schedule” + “Sign Up”.
+   */
+  density?: "default" | "compact";
 }
 
-const { text, link, id, class: customClass } = Astro.props;
+const {
+  as: asProp,
+  variant: variantProp = "default",
+  href: hrefProp,
+  link,
+  text,
+  class: className = "",
+  type = "button",
+  disabled = false,
+  id,
+  soft = false,
+  icon,
+  iconClass = "size-6 shrink-0",
+  iconPosition = "end",
+  density = "default",
+  ...rest
+} = Astro.props as Props;
+
+const variant = variantProp === "cta" ? "primary" : variantProp;
+const href = hrefProp ?? link;
+const hasSlot = Astro.slots.has("default");
+const hasIcon = Boolean(icon);
+const iconIsImage =
+  hasIcon &&
+  (icon!.startsWith("/") ||
+    icon!.startsWith("http://") ||
+    icon!.startsWith("https://") ||
+    icon!.startsWith("."));
+
+const as: ButtonElement = asProp ?? (href ? "a" : "button");
+
+const defaultPurpleClasses =
+  "w-auto cursor-pointer rounded-2xl bg-gradient-to-br from-accent-purple to-accent-purple px-8 py-4 text-center text-2xl font-bold text-[#232656] no-underline transition duration-300 hover:from-accent-green hover:to-accent-purple disabled:cursor-not-allowed disabled:opacity-50";
+
+const primaryLinkBase =
+  "group/cta relative inline-flex cursor-pointer items-center justify-center overflow-hidden bg-gradient-to-l from-cta-start to-cta-end font-bold text-black no-underline transition duration-300 hover:-translate-y-px hover:brightness-105 hover:saturate-105 hover:text-black focus-visible:-translate-y-px focus-visible:brightness-105 focus-visible:saturate-105 focus-visible:text-black";
+
+const primaryLinkChrome =
+  density === "compact"
+    ? soft
+      ? "gap-1.5 rounded-xl px-4 py-2 font-sans text-sm font-bold leading-tight ring-4 ring-inset ring-black/20 md:text-base"
+      : "gap-2 rounded-lg px-4 py-2 font-sans text-sm font-bold leading-tight ring-2 ring-inset ring-black md:text-base"
+    : soft
+      ? "gap-1 rounded-xl leading-none ring-4 ring-inset ring-black/20"
+      : "gap-4 rounded-lg leading-none ring-2 ring-inset ring-black";
+
+const primaryLinkClasses = [primaryLinkBase, primaryLinkChrome].join(" ");
+
+const mergedClass = (() => {
+  if (variant === "secondary") {
+    return [btnSecondary, className].filter(Boolean).join(" ");
+  }
+  if (variant === "primary") {
+    if (as === "button") {
+      return [btnPrimary, className].filter(Boolean).join(" ");
+    }
+    return [primaryLinkClasses, className].filter(Boolean).join(" ");
+  }
+  /* default */
+  if (as === "button") {
+    return [defaultPurpleClasses, className].filter(Boolean).join(" ");
+  }
+  return [defaultPurpleClasses, className].filter(Boolean).join(" ");
+})();
 ---
 
-<a class={`button rounded-2xl ${customClass}`} href={link} id={id}>{text}</a>
-
-<style>
-    .button {
-        text-decoration: none;
-        background: linear-gradient(
-            to bottom right,
-            var(--stop-two-color),
-            var(--stop-two-color)
-        );
-        font-weight: bold;
-        padding: 1rem 2rem;
-        font-size: 1.5rem;
-        text-align: center;
-        transition: 0.25s;
-        width: auto;        
-        &:hover {
-            background: linear-gradient(to bottom right, var(--stop-one-color), var(--stop-two-color));
-            cursor: pointer;
+{
+  as === "button" ? (
+    <button type={type} class={mergedClass} disabled={disabled} id={id} {...rest}>
+      <slot>{text}</slot>
+    </button>
+  ) : variant === "primary" ? (
+    <a href={href} class={mergedClass} id={id} {...rest}>
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-0 -translate-x-full -skew-x-12 bg-gradient-to-r from-transparent via-white/35 to-transparent transition-transform duration-500 group-hover/cta:translate-x-full group-focus-visible/cta:translate-x-full"
+      />
+      <span class="relative z-10 contents">
+        {
+          hasIcon && iconPosition === "start" ? (
+            iconIsImage ? (
+              <img alt="" aria-hidden="true" class={iconClass} src={icon} />
+            ) : (
+              <i
+                class:list={[icon, "not-italic inline-block shrink-0 leading-none", iconClass]}
+                aria-hidden="true"
+              />
+            )
+          ) : null
         }
-    }
-</style>
+        {hasSlot ? <slot /> : text}
+        {
+          hasIcon && iconPosition === "end" ? (
+            iconIsImage ? (
+              <img alt="" aria-hidden="true" class={iconClass} src={icon} />
+            ) : (
+              <i
+                class:list={[icon, "not-italic inline-block shrink-0 leading-none", iconClass]}
+                aria-hidden="true"
+              />
+            )
+          ) : !hasIcon ? (
+            <i
+              class:list={[
+                "iconoir-arrow-up-right-square-solid not-italic inline-block shrink-0 text-2xl leading-none",
+                iconClass,
+              ]}
+              aria-hidden="true"
+            />
+          ) : null
+        }
+      </span>
+    </a>
+  ) : hasIcon ? (
+    <a href={href} class={mergedClass} id={id} {...rest}>
+      <span class="inline-flex min-w-0 max-w-full items-center gap-2 leading-none"
+        >{iconPosition === "start" ? (
+          iconIsImage ? (
+            <img alt="" aria-hidden="true" class={iconClass} src={icon} />
+          ) : (
+            <i class:list={[icon, "not-italic inline-block shrink-0 leading-none", iconClass]} aria-hidden="true" />
+          )
+        ) : null}<span class="min-w-0 leading-none">{hasSlot ? <slot /> : text}</span
+        >{iconPosition === "end" ? (
+          iconIsImage ? (
+            <img alt="" aria-hidden="true" class={iconClass} src={icon} />
+          ) : (
+            <i class:list={[icon, "not-italic inline-block shrink-0 leading-none", iconClass]} aria-hidden="true" />
+          )
+        ) : null}</span>
+    </a>
+  ) : (
+    <a href={href} class={mergedClass} id={id} {...rest}>
+      {hasSlot ? <slot /> : text}
+    </a>
+  )
+}

@@ -1,0 +1,138 @@
+---
+import Button from "@/components/Button.astro";
+
+const btnStickyNavPair =
+  "box-border !h-10 !min-h-10 !max-h-10 !py-0 !leading-none [&_img]:!h-5 [&_img]:!w-5 [&_img]:!max-h-5 [&_img]:!max-w-5 [&_img]:object-contain";
+
+export interface StickySubNavItem {
+  label: string;
+  href: string;
+  spyId?: "overview" | "features" | "pricing" | "backed" | "open-source" | "faq";
+}
+
+interface Props {
+  items: StickySubNavItem[];
+  scheduleDemoHref: string;
+  signUpHref: string;
+}
+
+const {
+  items,
+  scheduleDemoHref,
+  signUpHref,
+} = Astro.props;
+
+const spyOrder = ["overview", "features", "pricing", "backed", "open-source", "faq"] as const;
+---
+
+<div
+  aria-hidden="true"
+  class="pointer-events-none fixed left-0 right-0 top-0 z-40 hidden -translate-y-full opacity-0 transition-all duration-300 ease-out xl:block"
+  data-spoke-sticky-root
+  id="sticky-subnav-root"
+>
+  <div class="mx-auto max-w-screen-2xl px-4 pt-3 sm:px-6 lg:px-8">
+    <nav
+      aria-label="Spoke page"
+      class="flex flex-wrap items-center justify-center gap-2 rounded-2xl bg-[#00022d] px-4 py-4 sm:gap-2"
+    >
+      <a aria-label="Spoke — back to top" class="inline-flex shrink-0 items-center gap-0 no-underline" href="#">
+        <i class="iconoir-smartphone-device not-italic shrink-0 text-2xl leading-none text-white" aria-hidden="true" />
+        <span class="font-sans text-base font-bold text-white">Spoke</span>
+      </a>
+      {
+        items.map((item) => (
+          <a
+            class="font-sans whitespace-nowrap rounded-md px-3 py-2 text-base text-white no-underline transition-colors hover:bg-white/10"
+            {...(item.spyId ? { "data-spoke-spy": item.spyId } : {})}
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <Button
+        href={scheduleDemoHref}
+        variant="secondary"
+        rel="noopener noreferrer"
+        target="_blank"
+        class:list={[
+          "no-underline hover:!-translate-y-px hover:!shadow-lg sm:min-w-[182px]",
+          btnStickyNavPair,
+        ]}
+      >
+        <span class="inline-flex items-center justify-center gap-2">
+          <span class="inline-flex size-5 shrink-0 items-center justify-center text-[#1c1c1c]" aria-hidden="true">
+            <i class="iconoir-calendar not-italic text-[15px] leading-none" />
+          </span>
+          Schedule a Demo
+        </span>
+      </Button>
+      <Button
+        href={signUpHref}
+        variant="primary"
+        density="compact"
+        icon="/assets/home/contact-icon.svg"
+        iconClass="size-5 shrink-0 max-h-5 max-w-5 object-contain"
+        iconPosition="start"
+        class:list={[
+          "no-underline !rounded-lg !border-2 !border-[#1c1c1c] !ring-0 sm:min-w-[182px]",
+          btnStickyNavPair,
+        ]}
+      >
+        Sign Up
+      </Button>
+    </nav>
+  </div>
+</div>
+
+<script is:inline define:vars={{ spyOrder }}>
+  const setupStickySubnav = () => {
+    const root = document.getElementById("sticky-subnav-root");
+    const siteNav = document.getElementById("site-nav");
+    if (!root || !siteNav || root.dataset.bound === "true") return;
+    root.dataset.bound = "true";
+
+    const show = () => {
+      root.classList.remove("opacity-0", "-translate-y-full", "pointer-events-none");
+      root.classList.add("opacity-100", "translate-y-0", "pointer-events-auto");
+      root.removeAttribute("aria-hidden");
+    };
+    const hide = () => {
+      root.classList.add("opacity-0", "-translate-y-full", "pointer-events-none");
+      root.classList.remove("opacity-100", "translate-y-0", "pointer-events-auto");
+      root.setAttribute("aria-hidden", "true");
+    };
+
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) hide();
+        else show();
+      },
+      { threshold: 0, rootMargin: "0px" },
+    );
+    io.observe(siteNav);
+
+    const links = root.querySelectorAll("a[data-spoke-spy]");
+    const onScroll = () => {
+      const y = 120;
+      let current = "overview";
+      for (const id of spyOrder) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= y) current = id;
+      }
+      links.forEach((a) => {
+        const target = a.getAttribute("data-spoke-spy");
+        if (!target) return;
+        if (target === current) a.classList.add("bg-white/20");
+        else a.classList.remove("bg-white/20");
+      });
+    };
+    window.addEventListener("scroll", () => requestAnimationFrame(onScroll), { passive: true });
+    onScroll();
+  };
+
+  document.addEventListener("DOMContentLoaded", setupStickySubnav);
+  document.addEventListener("astro:page-load", setupStickySubnav);
+</script>

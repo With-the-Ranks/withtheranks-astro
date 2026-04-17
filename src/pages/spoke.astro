@@ -1,0 +1,28 @@
+---
+import Layout from "../layouts/Layout.astro";
+import StickySubNav from "../components/spoke/StickySubNav.astro";
+import SpokePageSections from "../components/spoke/SpokePageSections.astro";
+import type { StickySubNavItem } from "../components/spoke/StickySubNav.astro";
+import { CALENDLY_TEAM_MEETING } from "../constants/spoke";
+
+const stickyNavItems: StickySubNavItem[] = [
+  { label: "About", href: "#overview", spyId: "overview" },
+  { label: "Features", href: "#features", spyId: "features" },
+  { label: "Pricing", href: "#pricing", spyId: "pricing" },
+  { label: "Support", href: "#backed", spyId: "backed" },
+  { label: "Open Source", href: "#open-source", spyId: "open-source" },
+  { label: "FAQ", href: "#faq", spyId: "faq" },
+];
+---
+
+<Layout navSurfaceClass="bg-brand-blue" theme="dark" title="Spoke Texting - With the Ranks">
+  <StickySubNav
+    items={stickyNavItems}
+    scheduleDemoHref={CALENDLY_TEAM_MEETING}
+    signUpHref="#signup"
+    slot="sticky-subnav"
+  />
+  <main class="spoke-page">
+    <SpokePageSections />
+  </main>
+</Layout>

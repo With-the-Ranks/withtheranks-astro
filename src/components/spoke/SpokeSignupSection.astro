@@ -1,0 +1,32 @@
+---
+import InquiryFormSpoke from "../inquiry/InquiryFormSpoke.astro";
+const noiseTile =
+  "data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E";
+---
+
+<section class="relative isolate overflow-x-hidden" id="signup">
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 z-0 bg-linear-to-b from-[#05052d] via-[#121a8f] to-brand-blue"
+  >
+  </div>
+  <div
+    aria-hidden="true"
+    class="pointer-events-none absolute inset-0 z-0 opacity-20 mix-blend-soft-light"
+    style={`background-image: url("${noiseTile}"); background-size: 256px 256px;`}
+  >
+  </div>
+  <div
+    class="relative z-10 mx-auto flex w-full max-w-[1512px] flex-col items-center gap-16 px-8 py-16 text-white sm:px-12 sm:py-24 lg:px-16 lg:py-32"
+  >
+    <h2 class="font-display text-6xl leading-[1.05] sm:text-8xl lg:text-[112px] lg:leading-[1.05]">
+      Ready to start texting?
+    </h2>
+    <p class="max-w-2xl text-center font-sans text-lg sm:text-[22px]">
+      Use the form below to get started and our team will follow up.
+    </p>
+    <div class="w-full min-w-0 max-w-2xl">
+      <InquiryFormSpoke formUid="spoke-signup" removeTopMargin signupSurface />
+    </div>
+  </div>
+</section>

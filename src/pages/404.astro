@@ -1,70 +1,62 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Nav from "../components/Nav.astro";
 import MineCraft from "../components/minecraft/index.jsx";
 import Button from "../components/Button.astro";
 ---
 
-<style>
-	#minecraftGame {
-		display: none;
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 1000;
-	}
-</style>
 
-<Layout title="404 - Page Not Found">
+<Layout title="Page not found — With the Ranks" theme="dark">
 	<main
-		class="animate__animated animate__fadeIn animate__slow py-20 md:py-24"
+		class="animate__animated animate__fadeIn animate__slow bg-brand-blue"
 	>
 		<div
-			class="max-w-screen-xl w-11/12 lg:w-7/12 mx-auto md:-translate-y-20 pt-10"
+			class="mx-auto flex min-h-[min(100vh,36rem)] max-w-screen-2xl flex-col items-center justify-center px-4 py-4 text-center sm:px-6 sm:py-5 lg:px-8 lg:py-6"
 		>
-			<h1 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl">
-				Oops! Page Not Found.
-			</h1>
-			<p>
-				The page you're looking for might have been removed, had its
-				name changed, or is temporarily unavailable.
-			</p>
-			<p>
-				But don't worry, you can play this game while you're here or
-				return to our homepage.
-			</p>
-			<div
-				class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
-			>
-				<Button
-					id="playMinecraftButton"
-					text="Play Minecraft"
-					class=""
-				/>
-				<Button id="returnHome" link="/" text="Return Home" class="" />
+			<div class="w-full max-w-2xl">
+				<h1 class="mb-4 font-display text-4xl font-normal leading-[0.95] text-white sm:text-5xl md:text-6xl lg:text-7xl">
+					Oops! Page Not Found.
+				</h1>
+				<p class="mx-auto mb-4 max-w-xl font-sans text-lg leading-relaxed text-white/90 md:text-xl">
+					The page you're looking for might have been removed, had its
+					name changed, or is temporarily unavailable. Try heading home, or stay and play a small game while you’re here.
+				</p>
+				<div
+					class="mt-5 flex flex-col items-stretch justify-center gap-3 sm:mt-6 sm:flex-row sm:items-stretch"
+				>
+					<Button
+						link="/"
+						soft
+						variant="cta"
+						class="label-button inline-flex! h-14! min-h-14! w-full shrink-0 items-center! justify-center gap-1! px-8! py-0! text-base! text-black! sm:w-auto md:text-lg!"
+					>
+						<span>Back to home</span>
+					</Button>
+					<Button
+						as="button"
+						id="playMinecraftButton"
+						type="button"
+						variant="secondary"
+						text="Play a mini-game"
+						class="h-14! min-h-14! w-full shrink-0 items-center! justify-center px-6! py-0! text-base! font-bold! sm:w-auto md:px-8! md:text-lg!"
+					/>
+				</div>
 			</div>
 		</div>
 	</main>
 
-	<div id="minecraftGame" style="display: none;">
+	<div id="minecraftGame" class="hidden fixed inset-0 z-[1000] h-full w-full">
 		<MineCraft client:only="react" />
 	</div>
 </Layout>
 
 <script>
-	document.addEventListener("DOMContentLoaded", (event) => {
+	document.addEventListener("DOMContentLoaded", () => {
 		const playButton = document.getElementById("playMinecraftButton");
 		const minecraft = document.getElementById("minecraftGame");
 
 		if (playButton && minecraft) {
-			playButton.addEventListener("click", function () {
-				if (minecraft.style.display === "none") {
-					minecraft.style.display = "block";
-				} else {
-					minecraft.style.display = "none";
-				}
+			playButton.addEventListener("click", () => {
+				minecraft.classList.toggle("hidden");
 			});
 		}
 	});
