@@ -1,5 +1,6 @@
 ---
 import Button from "./Button.astro";
+import SpokePreview from "./SpokePreview.astro";
 ---
 
 <section class="bg-brand-blue pb-10 sm:pb-12 lg:pb-16">
@@ -21,9 +22,7 @@ import Button from "./Button.astro";
         </div>
 
         <div class="p-6 sm:p-10 lg:p-16">
-          <div class="aspect-[3024/1658] overflow-hidden rounded-xl border-2 border-zinc-300 bg-white">
-            <img alt="Spoke interface preview" class="block h-full w-full object-cover object-center" src="/assets/spoke/hero-dashboard.png" />
-          </div>
+          <SpokePreview alt="Spoke interface preview" />
         </div>
       </div>
     </section>
