@@ -67,10 +67,6 @@ const marqueeLogos = [...logos, ...logos];
     }
     requestAnimationFrame(tick);
 
-    // Pause on hover
-    el.addEventListener("mouseenter", () => { paused = true; });
-    el.addEventListener("mouseleave", () => { if (!isDragging) paused = false; });
-
     // Mouse drag-to-scroll
     el.addEventListener("mousedown", (e) => {
       isDragging = true;
