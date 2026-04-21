@@ -19,15 +19,19 @@ const marqueeLogos = [...logos, ...logos];
     </p>
   </div>
 
-  <div class="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden py-2">
-    <div class="logo-carousel animate-scroll flex w-max items-center gap-8 px-4 sm:px-6 lg:px-8">
+  <div
+    id="partners-scroll"
+    class="relative left-1/2 w-screen -translate-x-1/2 cursor-grab overflow-x-auto py-2 select-none [scrollbar-width:none] active:cursor-grabbing [&::-webkit-scrollbar]:hidden"
+  >
+    <div class="flex w-max items-center gap-8 px-4 sm:px-6 lg:px-8">
       {
         marqueeLogos.map((logo) => (
           <div class="logo-tile flex h-32 w-[248px] shrink-0 items-center justify-center rounded-2xl bg-black/20 px-10 py-8 sm:w-[280px]">
             <img
               alt={logo.alt}
+              draggable="false"
               class:list={[
-                "h-auto w-auto object-contain",
+                "h-auto w-auto object-contain pointer-events-none",
                 logo.alt === "More Perfect Union logo" && "h-[52px] w-[200px] max-h-none max-w-none opacity-100",
                 logo.class,
               ]}
@@ -40,17 +44,65 @@ const marqueeLogos = [...logos, ...logos];
   </div>
 </section>
 
-<style>
-  .animate-scroll {
-    animation: scroll 42s linear infinite;
-  }
+<script>
+  const el = document.getElementById("partners-scroll") as HTMLElement | null;
+  if (el) {
+    const speed = .6;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let paused = prefersReducedMotion;
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragScrollStart = 0;
 
-  @keyframes scroll {
-    from {
-      transform: translateX(0);
+    // Auto-scroll loop — resets seamlessly at the halfway point (doubled logos)
+    function tick() {
+      if (!paused && !isDragging && el) {
+        el.scrollLeft += speed;
+        const half = el.scrollWidth / 2;
+        if (el.scrollLeft >= half) {
+          el.scrollLeft -= half;
+        }
+      }
+      requestAnimationFrame(tick);
     }
-    to {
-      transform: translateX(-50%);
-    }
+    requestAnimationFrame(tick);
+
+    // Pause on hover
+    el.addEventListener("mouseenter", () => { paused = true; });
+    el.addEventListener("mouseleave", () => { if (!isDragging) paused = false; });
+
+    // Mouse drag-to-scroll
+    el.addEventListener("mousedown", (e) => {
+      isDragging = true;
+      paused = true;
+      dragStartX = e.pageX;
+      dragScrollStart = el.scrollLeft;
+    });
+    window.addEventListener("mouseup", () => {
+      if (isDragging) {
+        isDragging = false;
+        paused = false;
+      }
+    });
+    el.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      e.preventDefault();
+      el.scrollLeft = dragScrollStart - (e.pageX - dragStartX);
+    });
+
+    // Touch drag-to-scroll
+    let touchStartX = 0;
+    let touchScrollStart = 0;
+    el.addEventListener("touchstart", (e) => {
+      paused = true;
+      touchStartX = e.touches[0].pageX;
+      touchScrollStart = el.scrollLeft;
+    }, { passive: true });
+    el.addEventListener("touchmove", (e) => {
+      el.scrollLeft = touchScrollStart - (e.touches[0].pageX - touchStartX);
+    }, { passive: true });
+    el.addEventListener("touchend", () => {
+      if (!prefersReducedMotion) paused = false;
+    }, { passive: true });
   }
-</style>
+</script>
