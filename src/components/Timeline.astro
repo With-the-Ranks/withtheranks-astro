@@ -138,7 +138,7 @@ const entries = Astro.props.entries as TimelineEntry[];
 										{item.title && (
 											<h3
 												class:list={[
-													"mb-4 font-display text-base font-normal sm:text-3xl",
+													"mb-4 font-display lg:text-base font-normal sm:text-3xl",
 													item.highlight
 														? "text-[#0b124c]"
 														: "text-brand-navy",
@@ -151,7 +151,7 @@ const entries = Astro.props.entries as TimelineEntry[];
 										{item.description && (
 											<p
 												class:list={[
-													"mb-0 font-sans text-base leading-relaxed sm:text-lg",
+													"mb-0 font-sans lg:text-base leading-relaxed sm:text-lg",
 													item.highlight ? "text-[#0b124c]" : "text-brand-navy",
 												]}
 											>
@@ -178,8 +178,8 @@ const entries = Astro.props.entries as TimelineEntry[];
 												class:list={[
 													"link-inline-external-icon group max-w-full min-w-0 break-words font-sans font-normal not-italic no-underline transition-colors",
 													item.highlight
-														? "text-base text-[#0b124c] hover:!text-[#0b124c]"
-														: "text-sm text-brand-navy hover:!text-brand-navy sm:text-base",
+														? "lg:text-base text-[#0b124c] hover:!text-[#0b124c]"
+														: "lg:text-sm text-brand-navy hover:!text-brand-navy sm:text-base",
 												]}
 											>
 												<span class="min-w-0 break-words group-hover:underline">{item.link.text}</span><i
