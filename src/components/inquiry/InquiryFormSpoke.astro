@@ -78,15 +78,15 @@ const audienceChoices = [
   { value: "xlarge", label: "More than 100,000" },
 ] as const;
 
-const spokeLabel = "block font-sans text-sm font-semibold leading-tight text-[#1c1c1c]";
+const spokeLabel = "block font-sans text-sm font-semibold leading-tight text-[#0a0908]";
 const spokeControl =
-  "mt-1.5 w-full min-h-[44px] rounded-xl border-2 border-[#1c1c1c]/15 bg-white px-3 py-2.5 font-sans text-base text-[#1c1c1c] placeholder:text-[#1c1c1c]/40 outline-none transition-colors focus:border-brand-blue";
+  "mt-1.5 w-full min-h-[44px] rounded-xl border-2 border-[#0a0908]/15 bg-white px-3 py-2.5 font-sans text-base text-[#0a0908] placeholder:text-[#0a0908]/40 outline-none transition-colors focus:border-brand-blue";
 const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
 ---
 
 <div
   id={`inquiry-spoke-${formUid}`}
-  class:list={["w-full", top, isSignupSurface ? "min-w-0 max-w-full text-white" : "text-[#1c1c1c]"]}
+  class:list={["w-full", top, isSignupSurface ? "min-w-0 max-w-full text-white" : "text-[#0a0908]"]}
   data-inquiry-root
   data-inquiry-single="true"
   data-inquiry-flow="spoke-services"
@@ -99,7 +99,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
       "w-full min-w-0",
       isSignupSurface
         ? "max-w-full"
-        : "rounded-[32px] bg-white p-6 outline-4 outline-[#1c1c1c] outline-offset-inward max-sm:p-6 sm:p-8 md:p-10",
+        : "rounded-[32px] bg-white p-6 outline-4 outline-[#0a0908] outline-offset-inward max-sm:p-6 sm:p-8 md:p-10",
     ]}
   >
     <form
@@ -130,7 +130,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
               <h3
                 class:list={[
                   "mb-0 font-display text-3xl font-normal sm:text-4xl md:text-5xl md:mb-3",
-                  isSignupSurface ? "text-white" : "text-[#1c1c1c]",
+                  isSignupSurface ? "text-white" : "text-[#0a0908]",
                 ]}
               >
                 Sign up for Spoke Services
@@ -138,7 +138,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
               <p
                 class:list={[
                   "font-sans text-lg md:text-2xl",
-                  isSignupSurface ? "text-white/80" : "text-[#1c1c1c]/75",
+                  isSignupSurface ? "text-white/80" : "text-[#0a0908]/75",
                 ]}
               >
                 Let's get you set up with Spoke, our powerful P2P texting platform.
@@ -254,7 +254,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
             class:list={[
               "text-lg md:text-2xl",
               isSignupSurface && "font-sans text-white/80",
-              !isSignupSurface && "font-sans text-[#1c1c1c]/75",
+              !isSignupSurface && "font-sans text-[#0a0908]/75",
             ]}
           >
             Let's get some specifics about your Spoke needs.
@@ -334,7 +334,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
             class:list={[
               "text-lg md:text-2xl",
               isSignupSurface && "font-sans text-white/80",
-              !isSignupSurface && "font-sans text-[#1c1c1c]/75",
+              !isSignupSurface && "font-sans text-[#0a0908]/75",
             ]}
           >
             Help us understand your texting needs better.
@@ -407,7 +407,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
           class:list={[
             "text-lg md:text-2xl",
             isSignupSurface && "font-sans text-white/85",
-            !isSignupSurface && "font-sans text-[#1c1c1c]/80",
+            !isSignupSurface && "font-sans text-[#0a0908]/80",
           ]}
           data-thank-normal
         >

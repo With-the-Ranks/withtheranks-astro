@@ -26,7 +26,7 @@ const cards = [
   id="features"
 >
   <div class="mx-auto flex max-w-screen-2xl flex-col items-center gap-16">
-    <div class="max-w-[960px] text-[#1c1c1c]">
+    <div class="max-w-[960px] text-[#0a0908]">
       <h2 class="font-display text-5xl leading-none sm:text-7xl lg:text-[90px]">Built for Organizers.</h2>
       <p class="mt-4 max-w-[945px] font-sans text-xl leading-normal sm:text-2xl">
         Spoke is built to handle the boring stuff, so that you can spend your time on meaningful conversations with
@@ -36,13 +36,13 @@ const cards = [
     <div class="grid w-full grid-cols-1 gap-8 lg:grid-cols-3">
       {
         cards.map((card) => (
-          <div class="rounded-sm border-2 border-[#1c1c1c] bg-white p-8">
+          <div class="rounded-sm border-2 border-[#0a0908] bg-white p-8">
             <div class="flex flex-col gap-4">
               <div class="flex items-center gap-2">
-                <i class:list={[card.iconClass, "shrink-0 text-2xl leading-none text-[#1c1c1c]"]} aria-hidden="true" />
-                <h3 class="font-display text-3xl leading-none text-[#1c1c1c] sm:text-4xl">{card.title}</h3>
+                <i class:list={[card.iconClass, "shrink-0 text-2xl leading-none text-[#0a0908]"]} aria-hidden="true" />
+                <h3 class="font-display text-3xl leading-none text-[#0a0908] sm:text-4xl">{card.title}</h3>
               </div>
-              <div class="font-sans text-base leading-normal text-[#1c1c1c]">
+              <div class="font-sans text-base leading-normal text-[#0a0908]">
                 <p>{card.intro}</p>
                 <ul class="mt-2 list-disc pl-6">
                   {card.bullets.map((b) => (
