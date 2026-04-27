@@ -7,7 +7,7 @@ const btnStickyNavPair =
 export interface StickySubNavItem {
   label: string;
   href: string;
-  spyId?: "overview" | "features" | "pricing" | "backed" | "open-source" | "faq";
+  spyId?: "overview" | "features" | "pricing" | "open-source" | "faq";
 }
 
 interface Props {
@@ -22,7 +22,7 @@ const {
   signUpHref,
 } = Astro.props;
 
-const spyOrder = ["overview",  "pricing", "features", "backed", "open-source", "faq"] as const;
+const spyOrder = ["overview",  "pricing", "features", "open-source", "faq"] as const;
 ---
 
 <div
