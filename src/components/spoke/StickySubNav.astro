@@ -7,7 +7,7 @@ const btnStickyNavPair =
 export interface StickySubNavItem {
   label: string;
   href: string;
-  spyId?: "overview" | "features" | "pricing" | "backed" | "open-source" | "faq";
+  spyId?: "overview" | "features" | "pricing" | "open-source" | "faq";
 }
 
 interface Props {
@@ -22,7 +22,7 @@ const {
   signUpHref,
 } = Astro.props;
 
-const spyOrder = ["overview", "features", "pricing", "backed", "open-source", "faq"] as const;
+const spyOrder = ["overview",  "pricing", "features", "open-source", "faq"] as const;
 ---
 
 <div
@@ -62,7 +62,7 @@ const spyOrder = ["overview", "features", "pricing", "backed", "open-source", "f
         ]}
       >
         <span class="inline-flex items-center justify-center gap-2">
-          <span class="inline-flex size-5 shrink-0 items-center justify-center text-[#1c1c1c]" aria-hidden="true">
+          <span class="inline-flex size-5 shrink-0 items-center justify-center text-[#0a0908]" aria-hidden="true">
             <i class="iconoir-calendar not-italic text-[15px] leading-none" />
           </span>
           Schedule a Demo
@@ -76,7 +76,7 @@ const spyOrder = ["overview", "features", "pricing", "backed", "open-source", "f
         iconClass="size-5 shrink-0 max-h-5 max-w-5 object-contain"
         iconPosition="start"
         class:list={[
-          "no-underline !rounded-lg !border-2 !border-[#1c1c1c] !ring-0 sm:min-w-[182px]",
+          "no-underline !rounded-lg !border-2 !border-[#0a0908] !ring-0 sm:min-w-[182px]",
           btnStickyNavPair,
         ]}
       >

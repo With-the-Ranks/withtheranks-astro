@@ -304,7 +304,7 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 :root {
     /* to use in rgba functions later */
     --main-bg-color: var(--color-brand-blue);
-    --main-text-color: #bfd5ff;
+    --main-text-color: #0a0908;
 
     /* Change these to change colors throughout the site */
     --stop-one-color: #00d75a;

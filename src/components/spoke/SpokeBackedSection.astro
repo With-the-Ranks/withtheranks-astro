@@ -38,16 +38,16 @@ const cards = [
     <div class="grid w-full grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-16">
       {
         cards.map((card) => (
-          <div class="rounded-2xl border-4 border-[#1c1c1c] bg-white p-8">
+          <div class="rounded-2xl border-4 border-[#0a0908] bg-white p-8">
             <div class="flex flex-col gap-4">
               <div class="flex items-center gap-2">
-                <i class:list={[card.iconClass, "shrink-0 text-2xl leading-none text-[#1c1c1c]"]} aria-hidden="true" />
-                <h3 class="font-display text-3xl leading-none text-[#1c1c1c] sm:text-4xl">{card.title}</h3>
+                <i class:list={[card.iconClass, "shrink-0 text-2xl leading-none text-[#0a0908]"]} aria-hidden="true" />
+                <h3 class="font-display text-3xl leading-none text-[#0a0908] sm:text-4xl">{card.title}</h3>
               </div>
-              <p class="font-sans text-base leading-normal text-[#1c1c1c]">{card.body}</p>
+              <p class="font-sans text-base leading-normal text-[#0a0908]">{card.body}</p>
               {"href" in card && card.href ? (
                 <a
-                  class="link-inline-external-icon group font-sans text-base font-bold text-[#1c1c1c] no-underline"
+                  class="link-inline-external-icon group font-sans text-base font-bold text-[#0a0908] no-underline"
                   href={card.href}
                 >
                   <span class="group-hover:underline">{card.linkLabel}</span><i
