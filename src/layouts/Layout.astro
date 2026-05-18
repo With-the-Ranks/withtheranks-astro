@@ -11,6 +11,11 @@ interface Props {
 
 const { title = "With the Ranks", theme = "dark", navSurfaceClass } = Astro.props;
 const description = "With the Ranks is a worker-owned technology cooperative supporting the organizers and candidates fighting for working class power and a sustainable future.";
+
+const metaEnv = (import.meta as ImportMeta & { env: Record<string, string | undefined> }).env;
+const chatwootWebsiteToken = metaEnv.PUBLIC_CHATWOOT_WEBSITE_TOKEN?.trim();
+const rawChatwootBaseUrl = metaEnv.PUBLIC_CHATWOOT_BASE_URL?.trim();
+const chatwootBaseUrl = (rawChatwootBaseUrl || "https://app.chatwoot.com").replace(/\/$/, "");
 ---
 
 <!doctype html>
@@ -58,5 +63,29 @@ const description = "With the Ranks is a worker-owned technology cooperative sup
     <slot name="sticky-subnav" />
     <slot />
     <Footer />
+    {
+      chatwootWebsiteToken ? (
+        <script
+          is:inline
+          define:vars={{ chatwootWebsiteToken, chatwootBaseUrl }}
+        >
+          (function (d, t) {
+            var BASE_URL = chatwootBaseUrl;
+            var g = d.createElement(t),
+              s = d.getElementsByTagName(t)[0];
+            g.src = BASE_URL + "/packs/js/sdk.js";
+            g.defer = true;
+            g.async = true;
+            s.parentNode.insertBefore(g, s);
+            g.onload = function () {
+              window.chatwootSDK.run({
+                websiteToken: chatwootWebsiteToken,
+                baseUrl: BASE_URL,
+              });
+            };
+          })(document, "script");
+        </script>
+      ) : null
+    }
   </body>
 </html>
