@@ -1,4 +1,4 @@
-export type InquiryType = "new-project" | "spoke-services" | "general-contact" | "schedule-meeting" | ""
+export type InquiryType = "new-project" | "spoke" | "general-contact" | "schedule-meeting" | ""
 
 export interface FormData {
   name: string

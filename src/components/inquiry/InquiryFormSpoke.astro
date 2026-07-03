@@ -89,7 +89,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
   class:list={["w-full", top, isSignupSurface ? "min-w-0 max-w-full text-white" : "text-[#0a0908]"]}
   data-inquiry-root
   data-inquiry-single="true"
-  data-inquiry-flow="spoke-services"
+  data-inquiry-flow="spoke"
   data-inquiry-compact={compact ? "true" : "false"}
   {...(disableStepScroll ? { "data-inquiry-disable-scroll": "true" } : {})}
   {...(isSignupSurface ? { "data-inquiry-surface": "spoke-signup" } : { "data-inquiry-surface": "spoke" })}
@@ -112,7 +112,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
       data-inquiry-scroll-target
       novalidate
     >
-      <input type="hidden" name="inquiryType" value="spoke-services" data-inquiry-type-field />
+      <input type="hidden" name="inquiryType" value="spoke" data-inquiry-type-field />
 
       <div
         data-wizard-step="2"
@@ -133,7 +133,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
                   isSignupSurface ? "text-white" : "text-[#0a0908]",
                 ]}
               >
-                Sign up for Spoke Services
+                Sign up for Spoke
               </h3>
               <p
                 class:list={[

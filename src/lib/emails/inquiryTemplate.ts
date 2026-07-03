@@ -32,7 +32,7 @@ export const getInquiryHtml = ({
 	// Define Inquiry Titles based on type
 	const inquiryTitles: Record<string, string> = {
 		"new-project": "New Project Inquiry",
-		"spoke-services": "Spoke Services Inquiry",
+		"spoke": "Spoke Inquiry",
 		"general-contact": "General Contact Request",
 	};
 
@@ -141,7 +141,7 @@ export const getInquiryHtml = ({
           ${renderField("Billing Address", billingAddress)}
           ${renderField("How Did You Hear About Us?", hearAboutUs)}
           ${renderField("Audience Size", audienceSize)}
-          ${inquiryType === "spoke-services" ? "" : renderField("Budget", budget)}
+          ${inquiryType === "spoke" ? "" : renderField("Budget", budget)}
         </div>
 
         <p class="text">
