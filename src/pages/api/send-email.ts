@@ -88,6 +88,22 @@ export const POST = async ({
 			}).catch(() => {});
 		}
 
+		// Notify the Spoke hub of new signups
+		if (inquiryType === "spoke") {
+			const SPOKE_HUB_URL = locals.runtime.env.SPOKE_HUB_URL;
+			const SPOKE_HUB_API_KEY = locals.runtime.env.SPOKE_HUB_API_KEY;
+			fetch(SPOKE_HUB_URL, {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${SPOKE_HUB_API_KEY}`,
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ name, email, organization }),
+			}).catch((err) => {
+				console.error("Spoke hub notification failed:", err);
+			});
+		}
+
 		const access_token = await getGoogleAccessToken(GOOGLE_SERVICE_KEY_BASE64);
 		if (!access_token) throw new Error("Failed to retrieve access token");
 
