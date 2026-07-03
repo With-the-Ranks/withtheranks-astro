@@ -8,11 +8,7 @@ export interface FormData {
   timeline: string
   secondaryContact: string
   orgDescription: string
-  primaryLocation: string
-  subdomain: string
-  billingAddress: string
   hearAboutUs: string
-  audienceSize: string
   budget: string
 }
 

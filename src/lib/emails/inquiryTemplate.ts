@@ -8,11 +8,7 @@ export const getInquiryHtml = ({
 	secondaryContact,
 	website,
 	orgDescription,
-	primaryLocation,
-	subdomain,
-	billingAddress,
 	hearAboutUs,
-	audienceSize,
 	budget,
 }: {
 	name: string;
@@ -24,11 +20,7 @@ export const getInquiryHtml = ({
 	secondaryContact?: string | null;
 	website?: string | null;
 	orgDescription?: string | null;
-	primaryLocation?: string | null;
-	subdomain?: string | null;
-	billingAddress?: string | null;
 	hearAboutUs?: string | null;
-	audienceSize?: string | null;
 	budget?: string | null;
 }) => {
 	// Define Inquiry Titles based on type
@@ -139,11 +131,7 @@ export const getInquiryHtml = ({
           ${renderField("Secondary Contact", secondaryContact)}
           ${renderField("Website", website)}
           ${renderField("Organization Description", orgDescription)}
-          ${renderField("Primary Location", primaryLocation)}
-          ${renderField("Subdomain Requested", subdomain)}
-          ${renderField("Billing Address", billingAddress)}
           ${renderField("How Did You Hear About Us?", hearAboutUs)}
-          ${renderField("Audience Size", audienceSize)}
           ${inquiryType === "spoke" ? "" : renderField("Budget", budget)}
         </div>
 
