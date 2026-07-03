@@ -4,7 +4,7 @@ type Flow = "new-project" | "spoke" | "general-contact" | "schedule-meeting";
 
 const FLOW_MAX: Partial<Record<Flow, number>> = {
 	"new-project": 4,
-	"spoke": 4,
+	"spoke": 2,
 	"general-contact": 2,
 };
 

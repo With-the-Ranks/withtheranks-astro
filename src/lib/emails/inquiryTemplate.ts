@@ -6,6 +6,7 @@ export const getInquiryHtml = ({
 	needs,
 	timeline,
 	secondaryContact,
+	website,
 	orgDescription,
 	primaryLocation,
 	subdomain,
@@ -21,6 +22,7 @@ export const getInquiryHtml = ({
 	needs?: string | null;
 	timeline?: string | null;
 	secondaryContact?: string | null;
+	website?: string | null;
 	orgDescription?: string | null;
 	primaryLocation?: string | null;
 	subdomain?: string | null;
@@ -135,6 +137,7 @@ export const getInquiryHtml = ({
           ${renderField("Needs", needs)}
           ${renderField("Timeline", timeline)}
           ${renderField("Secondary Contact", secondaryContact)}
+          ${renderField("Website", website)}
           ${renderField("Organization Description", orgDescription)}
           ${renderField("Primary Location", primaryLocation)}
           ${renderField("Subdomain Requested", subdomain)}
