@@ -22,16 +22,13 @@ export const POST = async ({
 		const name = formData.get("name") as string | null;
 		const inquiryType = formData.get("inquiryType") as string | null;
 		const organization = formData.get("organization") as string | null;
-		const primaryLocation = formData.get("primaryLocation") as string | null;
-		const subdomain = formData.get("subdomain") as string | null;
-		const billingAddress = formData.get("billingAddress") as string | null;
 		const needs = formData.get("needs") as string | null;
 		const timeline = formData.get("timeline") as string | null;
 		const budget = formData.get("budget") as string | null;
 		const secondaryContact = formData.get("secondaryContact") as string | null;
+		const website = formData.get("website") as string | null;
 		const orgDescription = formData.get("orgDescription") as string | null;
 		const hearAboutUs = formData.get("hearAboutUs") as string | null;
-		const audienceSize = formData.get("audienceSize") as string | null;
 
 		const isQuickSignUp = !inquiryType;
 
@@ -63,16 +60,13 @@ export const POST = async ({
 					email,
 					inquiryType,
 					organization,
-					primaryLocation,
-					subdomain,
-					billingAddress,
 					needs,
 					timeline: timelineLabel, // using the label here
-					budget: budgetLabel,  
+					budget: budgetLabel,
 					secondaryContact,
+					website,
 					orgDescription,
 					hearAboutUs,
-					audienceSize,
 				});
 
 		// Send email
@@ -84,6 +78,22 @@ export const POST = async ({
 				subject,
 				html: htmlContent,
 			}).catch(() => {});
+		}
+
+		// Notify the Spoke hub of new signups
+		if (inquiryType === "spoke") {
+			const SPOKE_HUB_URL = locals.runtime.env.SPOKE_HUB_URL;
+			const SPOKE_HUB_API_KEY = locals.runtime.env.SPOKE_HUB_API_KEY;
+			fetch(SPOKE_HUB_URL, {
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${SPOKE_HUB_API_KEY}`,
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ name, email, organization }),
+			}).catch((err) => {
+				console.error("Spoke hub notification failed:", err);
+			});
 		}
 
 		const access_token = await getGoogleAccessToken(GOOGLE_SERVICE_KEY_BASE64);
@@ -99,16 +109,13 @@ export const POST = async ({
 					inquiryType,
 					dateSubmitted,
 					organization,
-					primaryLocation,
-					subdomain,
-					billingAddress,
 					needs,
 					timelineLabel,
-					budgetLabel, 
+					budgetLabel,
 					secondaryContact,
+					website,
 					orgDescription,
 					hearAboutUs,
-					audienceSize,
 				];
 
 		const sheetsResponse = await fetch(

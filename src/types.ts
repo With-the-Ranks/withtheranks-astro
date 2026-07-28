@@ -1,4 +1,4 @@
-export type InquiryType = "new-project" | "spoke-services" | "general-contact" | "schedule-meeting" | ""
+export type InquiryType = "new-project" | "spoke" | "general-contact" | "schedule-meeting" | ""
 
 export interface FormData {
   name: string
@@ -8,11 +8,7 @@ export interface FormData {
   timeline: string
   secondaryContact: string
   orgDescription: string
-  primaryLocation: string
-  subdomain: string
-  billingAddress: string
   hearAboutUs: string
-  audienceSize: string
   budget: string
 }
 

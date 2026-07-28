@@ -1,10 +1,10 @@
 const CALENDLY = "https://calendly.com/with-the-ranks/team-meeting";
 
-type Flow = "new-project" | "spoke-services" | "general-contact" | "schedule-meeting";
+type Flow = "new-project" | "spoke" | "general-contact" | "schedule-meeting";
 
 const FLOW_MAX: Partial<Record<Flow, number>> = {
 	"new-project": 4,
-	"spoke-services": 4,
+	"spoke": 2,
 	"general-contact": 2,
 };
 
