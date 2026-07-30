@@ -90,7 +90,7 @@ export const POST = async ({
 					Authorization: `Bearer ${SPOKE_HUB_API_KEY}`,
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify({ name, email, organization }),
+				body: JSON.stringify({ contactName: name, email, organization }),
 			}).catch((err) => {
 				console.error("Spoke hub notification failed:", err);
 			});
