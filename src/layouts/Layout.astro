@@ -57,6 +57,7 @@ const chatwootBaseUrl = (rawChatwootBaseUrl || "https://app.chatwoot.com").repla
       plausible.init()
     </script>
 
+    <slot name="head" />
   </head>
   <body>
     <Nav theme={theme} surfaceClass={navSurfaceClass} />
