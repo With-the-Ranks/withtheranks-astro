@@ -601,3 +601,17 @@ html.pause-animations *::before,
 html.pause-animations *::after {
     animation-play-state: paused !important;
 }
+
+/* The Spoke chat preview's entrance animations settle at a specific end state
+   (all bubbles visible, typing dots idle) — show that instead of an arbitrary
+   mid-animation freeze frame. */
+html.pause-animations .spoke-hero-chat-card,
+html.pause-animations .spoke-hero-chat-bubble--in,
+html.pause-animations .spoke-hero-chat-bubble--out,
+html.pause-animations .spoke-hero-chat-bubble--typing,
+html.pause-animations .spoke-hero-chat-typing {
+    animation: none !important;
+    filter: none;
+    opacity: 1;
+    transform: none;
+}

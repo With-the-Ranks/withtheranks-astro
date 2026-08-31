@@ -1,10 +1,32 @@
 ---
+interface Props {
+  /** Pinned to the bottom-left of its confining region (hero/footer use). Set false for a plain inline button in normal flow. */
+  sticky?: boolean;
+  /** Force the light (on-cream-card) styling regardless of the page's data-theme. */
+  forceLight?: boolean;
+  class?: string;
+}
+
+const { sticky = true, forceLight = false, class: className } = Astro.props;
+
+const positionClasses = sticky
+  ? "js-pause-animations-toggle-sticky sticky bottom-4 left-4 sm:bottom-6 sm:left-6 lg:left-8"
+  : "relative";
+
+const themeClasses = forceLight
+  ? "border-black/15 bg-black/5 text-brand-navy hover:bg-black/10"
+  : "border-black/15 bg-white/40 text-brand-navy hover:bg-white/60 dark:border-white/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/20";
 ---
 
 <button
   aria-label="Pause animations"
   aria-pressed="false"
-  class="js-pause-animations-toggle sticky bottom-4 left-4 z-20 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-white/40 px-4 py-2.5 text-sm font-bold text-brand-navy transition-colors hover:bg-white/60 sm:bottom-6 sm:left-6 lg:left-8 dark:border-white/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+  class:list={[
+    "js-pause-animations-toggle z-20 inline-flex cursor-pointer items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-bold transition-colors",
+    positionClasses,
+    themeClasses,
+    className,
+  ]}
   type="button"
 >
   <i aria-hidden="true" class="iconoir-pause-solid not-italic text-base leading-none" data-pause-icon></i>
@@ -16,7 +38,7 @@
   /* Beyond max-w-screen-2xl (1536px), the mx-auto containers stop growing and center
      themselves — track that same left edge instead of drifting toward the viewport edge. */
   @media (min-width: 1536px) {
-    .js-pause-animations-toggle {
+    .js-pause-animations-toggle-sticky {
       left: max(2rem, calc((100vw - 1536px) / 2 + 2rem));
     }
   }
