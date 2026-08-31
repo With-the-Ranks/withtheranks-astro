@@ -1,4 +1,13 @@
 ---
+import PauseAnimationsToggle from "./PauseAnimationsToggle.astro";
+
+interface Props {
+  /** Ambient video background (same clip as the hero) confined to the footer, homepage only. */
+  videoBg?: boolean;
+}
+
+const { videoBg = false } = Astro.props;
+
 const toolsLinks = [{ href: "/spoke", label: "Spoke" }];
 const connectLinks = [{ href: "/contact", label: "Say Hello" }];
 const workLinks = [{ href: "/our-work", label: "Case Studies" }, { href: "/about", label: "About Our Co-Op" }];
@@ -13,9 +22,29 @@ const socialIcons = [
 ] as const;
 ---
 
-<footer class="border-black/20 bg-brand-blue text-brand-cream">
-  <div class="mx-auto max-w-screen-xl px-20 py-16 sm:py-20 lg:py-28">
-    <div class="mt-20 mb-16 sm:mt-24 lg:mt-0 lg:mb-20">
+<footer class:list={["relative border-black/20 bg-brand-blue text-brand-cream", videoBg && "isolate pb-4 sm:pb-6"]}>
+  {
+    videoBg && (
+      <div
+        class="pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-20"
+        style="mask-image: linear-gradient(to bottom, transparent 0%, transparent 10%, black 60%), radial-gradient(circle at 50% 25%, transparent 0%, transparent 30%, black 75%); mask-composite: intersect; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 10%, black 60%), radial-gradient(circle at 50% 25%, transparent 0%, transparent 30%, black 75%); -webkit-mask-composite: source-in;"
+      >
+        <video
+          class="h-full w-full object-cover mix-blend-screen motion-reduce:hidden"
+          data-bg-video
+          loop
+          muted
+          playsinline
+          poster="/assets/home/hero-bg-poster.jpg"
+          preload="none"
+        >
+          <source src="/assets/home/hero-bg.mp4" type="video/mp4" />
+        </video>
+      </div>
+    )
+  }
+  <div class="relative mx-auto max-w-screen-xl px-20 pt-16 pb-20 sm:pt-20 sm:pb-24 lg:pt-28 lg:pb-32">
+    <div class="mt-20 sm:mt-24 lg:mt-0">
       <img alt="With the Ranks Worker Cooperative" class="mx-auto h-auto w-full max-w-full" src="/assets/home/footer-wordmark.svg" />
     </div>
 
@@ -27,7 +56,7 @@ const socialIcons = [
       ))}
     </div> -->
 
-    <p class="mx-auto mt-16 max-w-screen-sm text-center text-brand-cream text-[16px]">
+    <p class="mx-auto mt-20 sm:mt-24 lg:mt-32 max-w-screen-sm text-center text-brand-cream text-[16px]">
       This site and its content are <a href="https://github.com/With-the-Ranks/withtheranks-astro" target="_blank" class="font-bold underline underline-offset-4 text-white">open-source</a> under the <a href="https://github.com/With-the-Ranks/withtheranks-astro/blob/main/LICENSE" target="_blank" class="font-bold underline underline-offset-4 text-white">GNU General Public License</a>, except where proprietary branding, third-party assets, client references, or partner content carry their own licenses.
       <br />
       <br />
@@ -43,4 +72,5 @@ const socialIcons = [
       We don’t use cookies.
     </p>
   </div>
+  {videoBg && <PauseAnimationsToggle />}
 </footer>

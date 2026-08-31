@@ -594,3 +594,10 @@ animation: spoke-hero-chat-typing-pulse 1.1s ease-in-out 1.55s infinite;
     transform: none;
 }
 }
+
+/* Manual "Pause Animations" toggle (src/components/PauseAnimationsToggle.astro) */
+html.pause-animations *,
+html.pause-animations *::before,
+html.pause-animations *::after {
+    animation-play-state: paused !important;
+}

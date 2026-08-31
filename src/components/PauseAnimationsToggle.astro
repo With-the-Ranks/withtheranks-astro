@@ -1,0 +1,119 @@
+---
+---
+
+<button
+  aria-label="Pause animations"
+  aria-pressed="false"
+  class="js-pause-animations-toggle sticky bottom-4 left-4 z-20 inline-flex cursor-pointer items-center gap-2 rounded-lg bg-white/40 px-4 py-2.5 text-sm font-bold text-brand-navy transition-colors hover:bg-white/60 sm:bottom-6 sm:left-6 lg:left-8 dark:border-white/20 dark:bg-white/10 dark:text-white dark:hover:bg-white/20"
+  type="button"
+>
+  <i aria-hidden="true" class="iconoir-pause-solid not-italic text-base leading-none" data-pause-icon></i>
+  <i aria-hidden="true" class="iconoir-play-solid not-italic text-base leading-none" data-play-icon style="display: none;"></i>
+  <span data-toggle-label>Pause animations</span>
+</button>
+
+<style>
+  /* Beyond max-w-screen-2xl (1536px), the mx-auto containers stop growing and center
+     themselves — track that same left edge instead of drifting toward the viewport edge. */
+  @media (min-width: 1536px) {
+    .js-pause-animations-toggle {
+      left: max(2rem, calc((100vw - 1536px) / 2 + 2rem));
+    }
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = "wtr-pause-animations";
+
+  function readStoredPreference(): boolean | null {
+    try {
+      const value = window.localStorage.getItem(STORAGE_KEY);
+      return value === null ? null : value === "1";
+    } catch {
+      return null;
+    }
+  }
+
+  function writeStoredPreference(paused: boolean) {
+    try {
+      window.localStorage.setItem(STORAGE_KEY, paused ? "1" : "0");
+    } catch {
+      // localStorage unavailable (private browsing, disabled storage) — toggle still works for this page view
+    }
+  }
+
+  function isManuallyPaused() {
+    return document.documentElement.classList.contains("pause-animations");
+  }
+
+  // Ambient background videos (hero, footer, ...) only decode while their own
+  // section is actually on screen — at most one plays at a time, usually zero.
+  function setupAmbientVideoVisibility() {
+    if (!("IntersectionObserver" in window)) return;
+    document.querySelectorAll<HTMLVideoElement>("video[data-bg-video]").forEach((video) => {
+      if (video.dataset.visibilityBound === "true") return;
+      video.dataset.visibilityBound = "true";
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting && !isManuallyPaused()) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        },
+        { threshold: 0 },
+      );
+      observer.observe(video);
+    });
+  }
+
+  function setAmbientVideosPaused(paused: boolean) {
+    document.querySelectorAll<HTMLVideoElement>("video[data-bg-video]").forEach((video) => {
+      if (paused) {
+        video.pause();
+        return;
+      }
+      const rect = video.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) video.play().catch(() => {});
+    });
+  }
+
+  function setup() {
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".js-pause-animations-toggle");
+    setupAmbientVideoVisibility();
+    if (buttons.length === 0 || document.documentElement.dataset.pauseToggleBound === "true") return;
+    document.documentElement.dataset.pauseToggleBound = "true";
+
+    function applyState(paused: boolean) {
+      document.documentElement.classList.toggle("pause-animations", paused);
+      setAmbientVideosPaused(paused);
+      document.querySelectorAll<HTMLButtonElement>(".js-pause-animations-toggle").forEach((btn) => {
+        btn.setAttribute("aria-pressed", String(paused));
+        const pauseIcon = btn.querySelector<HTMLElement>("[data-pause-icon]");
+        const playIcon = btn.querySelector<HTMLElement>("[data-play-icon]");
+        const label = btn.querySelector("[data-toggle-label]");
+        if (pauseIcon) pauseIcon.style.display = paused ? "none" : "";
+        if (playIcon) playIcon.style.display = paused ? "" : "none";
+        if (label) label.textContent = paused ? "Resume animations" : "Pause animations";
+      });
+    }
+
+    const stored = readStoredPreference();
+    const initialPaused = stored ?? window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    applyState(initialPaused);
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const next = !document.documentElement.classList.contains("pause-animations");
+        writeStoredPreference(next);
+        applyState(next);
+        window.dispatchEvent(new CustomEvent("wtr:animations-paused-change", { detail: { paused: next } }));
+      });
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", setup);
+  document.addEventListener("astro:page-load", setup);
+</script>
