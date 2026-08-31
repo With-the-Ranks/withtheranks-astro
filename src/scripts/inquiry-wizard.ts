@@ -1,10 +1,12 @@
 const CALENDLY = "https://calendly.com/with-the-ranks/team-meeting";
 
-type Flow = "new-project" | "spoke-services" | "general-contact" | "schedule-meeting";
+type Flow = "new-project" | "spoke" | "general-contact" | "schedule-meeting";
+// for Facebook ads
+type WindowWithFbq = Window & { fbq?: (...args: unknown[]) => void };
 
 const FLOW_MAX: Partial<Record<Flow, number>> = {
 	"new-project": 4,
-	"spoke-services": 4,
+	"spoke": 2,
 	"general-contact": 2,
 };
 
@@ -329,6 +331,9 @@ function initSingleRoot(root: HTMLElement) {
 			});
 			const result = (await res.json()) as { success?: boolean; error?: string };
 			if (result.success) {
+				if (flow === "spoke") {
+					(window as WindowWithFbq).fbq?.("track", "CompleteRegistration");
+				}
 				clearBodyFields(form);
 				setFlowFields(root, flow);
 				go(THANK_YOU_STEP);

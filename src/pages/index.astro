@@ -4,6 +4,7 @@ import ContactOptionsSection from "../components/ContactOptionsSection.astro";
 import HeroSection from "../components/HeroSection.astro";
 import Layout from "../layouts/Layout.astro";
 import MailerSection from "../components/MailerSection.astro";
+import MetaPixel from "../components/MetaPixel.astro";
 import NewsletterSection from "../components/NewsletterSection.astro";
 import Partners from "../components/Partners.astro";
 import WorkSection from "../components/WorkSection.astro";
@@ -20,6 +21,9 @@ const workCards = [
 ---
 
 <Layout navSurfaceClass="bg-transparent" title="With the Ranks">
+  <Fragment slot="head">
+    <MetaPixel />
+  </Fragment>
   <Fragment slot="hero-bg">
     <video
       data-bg-video

@@ -6,12 +6,9 @@ export const getInquiryHtml = ({
 	needs,
 	timeline,
 	secondaryContact,
+	website,
 	orgDescription,
-	primaryLocation,
-	subdomain,
-	billingAddress,
 	hearAboutUs,
-	audienceSize,
 	budget,
 }: {
 	name: string;
@@ -21,18 +18,15 @@ export const getInquiryHtml = ({
 	needs?: string | null;
 	timeline?: string | null;
 	secondaryContact?: string | null;
+	website?: string | null;
 	orgDescription?: string | null;
-	primaryLocation?: string | null;
-	subdomain?: string | null;
-	billingAddress?: string | null;
 	hearAboutUs?: string | null;
-	audienceSize?: string | null;
 	budget?: string | null;
 }) => {
 	// Define Inquiry Titles based on type
 	const inquiryTitles: Record<string, string> = {
 		"new-project": "New Project Inquiry",
-		"spoke-services": "Spoke Services Inquiry",
+		"spoke": "Spoke Inquiry",
 		"general-contact": "General Contact Request",
 	};
 
@@ -135,13 +129,10 @@ export const getInquiryHtml = ({
           ${renderField("Needs", needs)}
           ${renderField("Timeline", timeline)}
           ${renderField("Secondary Contact", secondaryContact)}
+          ${renderField("Website", website)}
           ${renderField("Organization Description", orgDescription)}
-          ${renderField("Primary Location", primaryLocation)}
-          ${renderField("Subdomain Requested", subdomain)}
-          ${renderField("Billing Address", billingAddress)}
           ${renderField("How Did You Hear About Us?", hearAboutUs)}
-          ${renderField("Audience Size", audienceSize)}
-          ${inquiryType === "spoke-services" ? "" : renderField("Budget", budget)}
+          ${inquiryType === "spoke" ? "" : renderField("Budget", budget)}
         </div>
 
         <p class="text">
