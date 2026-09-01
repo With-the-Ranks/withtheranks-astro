@@ -1,5 +1,6 @@
 ---
 import Button from "./Button.astro";
+import PauseAnimationsToggle from "./PauseAnimationsToggle.astro";
 import SpokePreview from "./SpokePreview.astro";
 ---
 
@@ -23,6 +24,7 @@ import SpokePreview from "./SpokePreview.astro";
 
         <div class="p-6 sm:p-10 lg:p-16">
           <SpokePreview alt="Spoke interface preview" />
+          <PauseAnimationsToggle class="mt-4" forceLight sticky={false} />
         </div>
       </div>
     </section>

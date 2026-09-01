@@ -1,6 +1,7 @@
 ---
 import { CALENDLY_TEAM_MEETING } from "../../constants/spoke";
 import Button from "../Button.astro";
+import PauseAnimationsToggle from "../PauseAnimationsToggle.astro";
 import SpokePreview from "../SpokePreview.astro";
 ---
 
@@ -45,8 +46,9 @@ import SpokePreview from "../SpokePreview.astro";
         </Button>
       </div>
     </div>
-    <div class="relative flex min-w-0 flex-1 justify-center lg:justify-end lg:p-8 xl:p-16">
+    <div class="relative flex min-w-0 flex-1 flex-col items-center gap-4 lg:items-end lg:p-8 xl:p-16">
       <SpokePreview />
+      <PauseAnimationsToggle sticky={false} />
     </div>
   </div>
 </section>

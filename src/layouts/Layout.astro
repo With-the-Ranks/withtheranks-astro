@@ -2,6 +2,7 @@
 import "../styles/main.css";
 import Nav from "../components/Nav.astro";
 import Footer from "../components/Footer.astro";
+import PauseAnimationsToggle from "../components/PauseAnimationsToggle.astro";
 
 interface Props {
   title?: string;
@@ -50,6 +51,17 @@ const chatwootBaseUrl = (rawChatwootBaseUrl || "https://app.chatwoot.com").repla
       crossorigin="anonymous"
     />
 
+    <!-- Applies the visitor's stored "pause animations" choice before first paint, to avoid a flash of motion. Reads only a local, first-party UI preference — no personal data, nothing sent anywhere. -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = window.localStorage.getItem("wtr-pause-animations");
+          var paused = stored === null ? window.matchMedia("(prefers-reduced-motion: reduce)").matches : stored === "1";
+          if (paused) document.documentElement.classList.add("pause-animations");
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Privacy-friendly analytics by Plausible -->
     <script is:inline async src="https://plausible.io/js/pa-BALMX4v31s3298qZ4wbvA.js"></script>
     <script is:inline>
@@ -60,10 +72,29 @@ const chatwootBaseUrl = (rawChatwootBaseUrl || "https://app.chatwoot.com").repla
     <slot name="head" />
   </head>
   <body>
-    <Nav theme={theme} surfaceClass={navSurfaceClass} />
-    <slot name="sticky-subnav" />
+    {
+      Astro.slots.has("hero-bg") ? (
+        <div class="relative pb-4 sm:pb-6" id="hero-animation-region">
+          <div
+            class="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+            style="mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%), radial-gradient(circle at center, transparent 0%, transparent 30%, black 75%); mask-composite: intersect; -webkit-mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%), radial-gradient(circle at center, transparent 0%, transparent 30%, black 75%); -webkit-mask-composite: source-in;"
+          >
+            <slot name="hero-bg" />
+          </div>
+          <Nav theme={theme} surfaceClass={navSurfaceClass} />
+          <slot name="sticky-subnav" />
+          <slot name="hero" />
+          <PauseAnimationsToggle />
+        </div>
+      ) : (
+        <>
+          <Nav theme={theme} surfaceClass={navSurfaceClass} />
+          <slot name="sticky-subnav" />
+        </>
+      )
+    }
     <slot />
-    <Footer />
+    <Footer videoBg={Astro.slots.has("hero-bg")} />
     {
       chatwootWebsiteToken ? (
         <script

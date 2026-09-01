@@ -48,11 +48,18 @@ const marqueeLogos = [...logos, ...logos];
   const el = document.getElementById("partners-scroll") as HTMLElement | null;
   if (el) {
     const speed = .6;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let paused = prefersReducedMotion;
+    let reduceMotion =
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      document.documentElement.classList.contains("pause-animations");
+    let paused = reduceMotion;
     let isDragging = false;
     let dragStartX = 0;
     let dragScrollStart = 0;
+
+    window.addEventListener("wtr:animations-paused-change", (e) => {
+      reduceMotion = (e as CustomEvent<{ paused: boolean }>).detail.paused;
+      if (!isDragging) paused = reduceMotion;
+    });
 
     // Auto-scroll loop — resets seamlessly at the halfway point (doubled logos)
     function tick() {
@@ -77,7 +84,7 @@ const marqueeLogos = [...logos, ...logos];
     window.addEventListener("mouseup", () => {
       if (isDragging) {
         isDragging = false;
-        paused = false;
+        paused = reduceMotion;
       }
     });
     el.addEventListener("mousemove", (e) => {
@@ -98,7 +105,7 @@ const marqueeLogos = [...logos, ...logos];
       el.scrollLeft = touchScrollStart - (e.touches[0].pageX - touchStartX);
     }, { passive: true });
     el.addEventListener("touchend", () => {
-      if (!prefersReducedMotion) paused = false;
+      paused = reduceMotion;
     }, { passive: true });
   }
 </script>
