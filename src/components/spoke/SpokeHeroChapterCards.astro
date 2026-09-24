@@ -1,0 +1,43 @@
+---
+export interface ChapterCard {
+  id: string;
+  number: string;
+  cardTitle: string;
+  cardBody: string;
+  /** Title for the narrow phone tiles. */
+  shortTitle: string;
+}
+
+interface Props {
+  chapters: readonly ChapterCard[];
+}
+
+const { chapters } = Astro.props;
+---
+
+{/*
+  Rendered once, outside the hero's panels, so opening a chapter never moves or resizes them: the
+  script only sets aria-current on the open chapter's card, which swaps its border for the outline.
+  Below lg they're a row of three tiles; descriptions only show where there's room (xl, not short).
+*/}
+<nav aria-label="Spoke chapters" class="grid grid-cols-3 gap-2 sm:gap-3 lg:gap-6" data-hero-cards>
+  {
+    chapters.map((chapter) => (
+      <a
+        class="group flex flex-col items-start gap-1 rounded-lg border-4 border-[#0a0908]/20 px-3 py-2 no-underline transition-colors hover:border-cta-end hover:bg-white/8 focus-visible:border-cta-end focus-visible:bg-white/8 aria-[current=true]:border-cta-end aria-[current=true]:bg-cta-end/14 sm:px-4 sm:py-3 lg:flex-row lg:items-baseline lg:gap-4 lg:px-5"
+        data-hero-nav={chapter.id}
+        href={`#${chapter.id}`}
+      >
+        <span class="shrink-0 font-display text-[22px] leading-none text-cta-end sm:text-[26px] lg:text-[32px]">{chapter.number}</span>
+        <span class="font-sans text-sm font-bold leading-tight text-white sm:hidden">{chapter.shortTitle}</span>
+        <span class="hidden grow font-sans text-base font-normal leading-snug text-white/88 sm:inline xl:text-[17px]">
+          <span class="font-bold text-white underline decoration-cta-end decoration-[0.15rem] underline-offset-4">{chapter.cardTitle}</span><span class="hidden xl:inline [@media(max-height:719px)]:hidden">&nbsp;— {chapter.cardBody}</span>
+        </span>
+        <i
+          aria-hidden="true"
+          class="iconoir-arrow-up-right-square not-italic shrink-0 self-center text-2xl leading-none text-cta-end transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5 max-lg:!hidden"
+        />
+      </a>
+    ))
+  }
+</nav>

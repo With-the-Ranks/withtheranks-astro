@@ -1,6 +1,7 @@
 ---
 import PauseAnimationsToggle from "../PauseAnimationsToggle.astro";
 import SpokeHeroChapter from "./SpokeHeroChapter.astro";
+import SpokeHeroChapterCards from "./SpokeHeroChapterCards.astro";
 import SpokeHeroChat from "./SpokeHeroChat.astro";
 import SpokeHeroCtas from "./SpokeHeroCtas.astro";
 
@@ -9,89 +10,60 @@ const SEGMENTS_URL = "https://spoke.withtheranks.com/docs/spoke-admin/segments_a
 const chapters = {
   pricing: {
     id: "spoke-pricing",
+    shortTitle: "Most affordable",
     number: "01",
-    tab: "01 · Most affordable",
-    shortTab: "Affordable",
     cardTitle: "The most affordable outreach tool",
-    cardBody: "Have 1,000 real conversations for less than $15 with no setup fees.",
+    cardBody: "1,000 real conversations for under $15, no setup fees.",
     title: "1,000 conversations for under $15.",
-    intro:
-      "We negotiate bulk rates on behalf of everyone who uses Spoke and keep pricing transparent, with no setup fees, so the money you raise goes to organizing.",
+    intro: "Bulk rates negotiated for everyone who uses Spoke, with transparent pricing and no setup fees.",
     points: [
-      { title: "Pay as you go", body: "Pay per message segment, only for the texts you send." },
-      {
-        title: "Try it for free",
-        body: "We waive invoices under $5, so you can send several hundred messages before you pay anything.",
-      },
-      {
-        title: "Bulk discounts",
-        body: "Planning a big program? Commitments earn lower rates and help lower prices for everyone.",
-      },
+      { title: "Pay as you go", body: "Pay per segment, only for the texts you send." },
+      { title: "Try it for free", body: "Invoices under $5 are waived." },
+      { title: "Bulk discounts", body: "Commitments earn lower rates for everyone." },
     ],
   },
   volunteers: {
     id: "spoke-volunteers",
+    shortTitle: "Do more with less",
     number: "02",
-    tab: "02 · Do more with less",
-    shortTab: "Do more",
     cardTitle: "Do more with less people",
-    cardBody: "Handle hundreds of conversations with just one person.",
+    cardBody: "Handle hundreds of conversations with one person.",
     title: "Hundreds of conversations, one person.",
-    intro:
-      "Spoke handles the busywork, so a small team can keep up with every reply instead of wrestling with software.",
+    intro: "Spoke handles the busywork, so a small team can keep up with every reply.",
     points: [
-      {
-        title: "Send the opener in bulk",
-        body: "Send the approved first message to a whole assignment at once.",
-      },
-      { title: "Replies come to you", body: "Spoke assigns incoming replies to available texters automatically." },
-      {
-        title: "Answers in one click",
-        body: "Canned responses and survey questions let you reply and record answers without typing it all out.",
-      },
-      {
-        title: "Opt-outs handled",
-        body: "Opt-out keywords are caught for you, so no one gets texted again by mistake.",
-      },
+      { title: "Send the opener in bulk", body: "Message a whole assignment at once." },
+      { title: "Replies come to you", body: "Routed to available texters automatically." },
+      { title: "Answers in one click", body: "Canned responses and surveys, no retyping." },
+      { title: "Opt-outs handled", body: "Opt-out keywords are caught for you." },
     ],
   },
   gotv: {
     id: "spoke-gotv",
+    shortTitle: "GOTV & fundraising",
     number: "03",
-    tab: "03 · GOTV & Fundraising",
-    shortTab: "GOTV",
     cardTitle: "Built for GOTV & Fundraising",
-    cardBody: "Instantly send thousands of reminders, and receive replies in real-time.",
+    cardBody: "Send thousands of reminders, get replies in real time.",
     title: "Send thousands of reminders at once.",
-    intro:
-      "Turn a list into real conversations, answer supporters as their replies come in, and send what you learned straight back to your CRM.",
+    intro: "Turn a list into real conversations, reply as answers come in, and sync results to your CRM.",
     points: [
-      {
-        title: "Autosending",
-        body: "Send opening messages automatically, so your team spends its time on replies.",
-      },
-      { title: "Connected to NGP VAN", body: "Pull contact lists from VAN and sync survey responses back to it." },
-      {
-        title: "Texting hours, enforced",
-        body: "Spoke won’t text anyone outside your set hours, using each contact’s ZIP code to find their time zone.",
-      },
-      {
-        title: "Landline filtering, free",
-        body: "Filter out landlines before you send so every text goes to a phone that can receive it.",
-      },
+      { title: "Autosending", body: "Opening messages go out automatically." },
+      { title: "Connected to NGP VAN", body: "Pull lists and sync responses back." },
+      { title: "Texting hours, enforced", body: "Timed to each contact’s time zone." },
+      { title: "Landline filtering, free", body: "Only text phones that can receive it." },
     ],
   },
 } as const;
 
 const chapterList = [chapters.pricing, chapters.volunteers, chapters.gotv];
-const tabs = chapterList.map(({ id, tab, shortTab }) => ({ id, label: tab, shortLabel: shortTab }));
 
 const neverCharged = ["Setup", "Inbound messages", "10DLC registration", "Landline filtering", "Technical support"];
 
 // The white frame lives on the <img> itself (padding + border) so max-width/max-height can size it
-// against the visual area without distorting the screenshot.
+// against the visual area without distorting the screenshot. Below lg the screenshots sit centered
+// in a flex row; from lg they're pinned to the corners of the visual area.
 const screenshot =
-  "absolute box-border h-auto w-auto rounded-2xl border-4 border-[#0a0908] bg-white object-contain p-1.5 sm:p-2.5";
+  "box-border h-auto min-h-0 w-auto min-w-0 rounded-2xl border-4 border-[#0a0908] bg-white object-contain p-1.5 sm:p-2.5 lg:absolute";
+const screenshotStage = "absolute inset-0 flex items-center justify-center lg:block";
 ---
 
 <section
@@ -100,9 +72,15 @@ const screenshot =
   id="overview"
 >
   <div class="mx-auto flex w-full max-w-screen-2xl flex-1 flex-col">
-    <div class="spoke-hero-panel flex flex-1 flex-col gap-4 lg:gap-6 max-lg:[@media(max-height:700px)]:gap-3" data-hero-panel="overview">
+    {/*
+      Every panel sits in the same grid cell; inactive ones are `inert` and invisible but still take
+      up space, so the cell is always as tall as the tallest panel and switching never moves the
+      cards below.
+    */}
+    <div class="grid flex-1 grid-cols-[minmax(0,1fr)]">
       <div
-        class="flex flex-1 flex-col gap-4 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-12 xl:grid-cols-[540px_minmax(0,1fr)] xl:gap-16"
+        class="spoke-hero-panel col-start-1 row-start-1 flex flex-col gap-4 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-12 xl:grid-cols-[540px_minmax(0,1fr)] xl:gap-16"
+        data-hero-panel="overview"
       >
         <div class="flex flex-col gap-4 lg:gap-6 xl:gap-8">
           <div class="flex flex-col gap-3 text-white lg:gap-4">
@@ -117,49 +95,18 @@ const screenshot =
           </div>
           <SpokeHeroCtas />
         </div>
-        {/* The conversation takes whatever height is left over, so the whole overview fits one screen. */}
-        <div class="relative order-first flex min-h-[140px] flex-1 flex-col gap-3 lg:min-h-[240px] lg:self-stretch max-lg:[@media(max-height:700px)]:min-h-[100px]">
-          <div class="relative flex-1 lg:max-h-[560px]">
-            <div class="absolute inset-0">
-              <SpokeHeroChat />
-            </div>
-          </div>
-          {/* Below lg it floats over the conversation's faded top edge as an icon-only button (the aria-label stays). */}
-          <div class="absolute right-0 top-0 z-10 max-lg:[&_.js-pause-animations-toggle]:p-2.5 max-lg:[&_[data-toggle-label]]:sr-only lg:static">
-            <PauseAnimationsToggle sticky={false} />
+        {/* The conversation takes whatever height is left over. */}
+        <div class="relative order-first min-h-[140px] flex-1 max-lg:[@media(max-height:700px)]:min-h-[100px] lg:max-h-[560px] lg:min-h-[240px] lg:self-stretch">
+          <div class="absolute inset-0">
+            <SpokeHeroChat />
           </div>
         </div>
       </div>
-
-      <nav aria-label="Spoke overview" class="grid grid-cols-1 gap-2 sm:gap-3 lg:grid-cols-3 lg:gap-6">
-        {
-          chapterList.map((chapter) => (
-            <a
-              class="group flex items-center gap-3 rounded-lg border-4 border-[#0a0908]/20 px-3.5 py-2 no-underline transition-colors hover:border-cta-end hover:bg-white/8 focus-visible:border-cta-end focus-visible:bg-white/8 sm:items-baseline sm:px-4 sm:py-3.5 lg:gap-4 lg:px-5 lg:py-3"
-              data-hero-nav={chapter.id}
-              href={`#${chapter.id}`}
-            >
-              <span class="shrink-0 font-display text-[26px] leading-none text-cta-end lg:text-[32px]">
-                {chapter.number}
-              </span>
-              <span class="grow font-sans text-base font-normal leading-snug text-white/88 sm:text-[17px] sm:leading-6 lg:text-lg lg:leading-[1.4]">
-                <span class="font-bold text-white underline decoration-cta-end decoration-[0.15rem] underline-offset-4">{chapter.cardTitle}</span><span class="hidden sm:inline lg:hidden xl:inline [@media(max-height:719px)]:hidden">&nbsp;— {chapter.cardBody}</span>
-              </span>
-              <i
-                aria-hidden="true"
-                class="iconoir-arrow-up-right-square not-italic shrink-0 self-center text-2xl leading-none text-cta-end transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5"
-              />
-            </a>
-          ))
-        }
-      </nav>
-    </div>
 
     <SpokeHeroChapter
       id={chapters.pricing.id}
       intro={chapters.pricing.intro}
       points={chapters.pricing.points}
-      tabs={tabs}
       title={chapters.pricing.title}
     >
       <div class="flex flex-col gap-4">
@@ -204,12 +151,12 @@ const screenshot =
       id={chapters.volunteers.id}
       intro={chapters.volunteers.intro}
       points={chapters.volunteers.points}
-      tabs={tabs}
       title={chapters.volunteers.title}
     >
+      <div class={screenshotStage}>
       <img
         alt="Spoke texter view: a supporter replies, the volunteer records their answer and picks a response"
-        class:list={[screenshot, "left-0 top-0 max-h-full max-w-full sm:max-h-[88%] sm:max-w-[80%]"]}
+        class:list={[screenshot, "max-h-full max-w-full lg:left-0 lg:top-0 lg:max-h-[88%] lg:max-w-[80%]"]}
         height="1722"
         loading="lazy"
         src="/assets/spoke/send-replies.png"
@@ -217,7 +164,7 @@ const screenshot =
       />
       <div
         aria-hidden="true"
-        class="absolute bottom-0 right-0 hidden h-[min(100%,380px)] w-[220px] rounded-[32px] border-[3px] border-[#d4d4d9] bg-[#e8e8ed] p-1.5 shadow-[0_8px_22px_rgba(0,0,0,0.18)] sm:block"
+        class="absolute bottom-0 right-0 hidden h-[min(100%,380px)] w-[220px] rounded-[32px] border-[3px] border-[#d4d4d9] bg-[#e8e8ed] p-1.5 shadow-[0_8px_22px_rgba(0,0,0,0.18)] lg:block"
       >
         <div class="flex h-full flex-col justify-end gap-2 overflow-hidden rounded-[26px] bg-[#f2f2f7] px-3 py-4 font-sans">
           <p class="mb-0 max-w-[85%] self-start rounded-[14px_14px_14px_4px] bg-[#e9eaff] px-3 py-2 text-[13px] leading-[1.35] text-[#0a0908]">
@@ -234,18 +181,20 @@ const screenshot =
           </p>
         </div>
       </div>
+      </div>
     </SpokeHeroChapter>
 
     <SpokeHeroChapter
       id={chapters.gotv.id}
       intro={chapters.gotv.intro}
       points={chapters.gotv.points}
-      tabs={tabs}
       title={chapters.gotv.title}
     >
+      {/* Phones and tablets: an overlapping pair, the upload step in front and lower. */}
+      <div class={screenshotStage}>
       <img
         alt="Spoke campaign builder: Basics, Campaign Groups, Texting Hours and Integration all checked off"
-        class:list={[screenshot, "left-0 top-0 max-h-[78%] max-w-[82%]"]}
+        class:list={[screenshot, "max-h-[88%] max-w-[68%] self-start lg:left-0 lg:top-0 lg:max-h-[78%] lg:max-w-[82%]"]}
         height="1897"
         loading="lazy"
         src="/assets/spoke/create-campaign.png"
@@ -253,13 +202,35 @@ const screenshot =
       />
       <img
         alt="Spoke contact upload step"
-        class:list={[screenshot, "bottom-0 right-0 max-h-[58%] max-w-[60%] shadow-[0_8px_22px_rgba(0,0,0,0.18)]"]}
+        class:list={[screenshot, "relative z-10 -ml-[14%] max-h-[70%] max-w-[50%] self-end shadow-[0_8px_22px_rgba(0,0,0,0.18)] lg:bottom-0 lg:right-0 lg:ml-0 lg:max-h-[58%] lg:max-w-[60%]"]}
         height="1905"
         loading="lazy"
         src="/assets/spoke/upload-list.png"
         width="2682"
       />
+      </div>
     </SpokeHeroChapter>
+    </div>
+
+    <div class="mt-4 flex flex-col gap-2 lg:mt-5">
+      <SpokeHeroChapterCards chapters={chapterList} />
+      {/* Same slot in every state: the pause control on the overview, the way back inside a chapter. */}
+      <div class="grid">
+        <div class="col-start-1 row-start-1 self-center [&_.js-pause-animations-toggle]:py-1.5" data-hero-only="overview">
+          <PauseAnimationsToggle sticky={false} />
+        </div>
+        <a
+          class="col-start-1 row-start-1 inline-flex items-center gap-2 self-center justify-self-start font-sans text-base font-bold text-white underline decoration-[0.15rem] underline-offset-4 sm:text-lg"
+          data-hero-nav="overview"
+          data-hero-only="chapter"
+          href="#overview"
+          inert
+        >
+          <i aria-hidden="true" class="iconoir-arrow-left not-italic text-xl leading-none" />
+          Back to overview
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -275,6 +246,12 @@ const screenshot =
     }
   }
 
+  /* Inactive panels (and the bottom-row control that doesn't apply) keep their space but can't be
+     seen, focused or read. Global: the chapter panels live in SpokeHeroChapter. */
+  :global([data-spoke-hero] [inert]) {
+    visibility: hidden;
+  }
+
   @keyframes spoke-hero-panel-in {
     from {
       opacity: 0;
@@ -287,11 +264,11 @@ const screenshot =
   }
   /* Only animate panels swapped in by a click, and never while animations are paused
      (a paused fade-in would freeze the panel invisible). */
-  :global(html:not(.pause-animations)) .spoke-hero-panel[data-entering] {
+  :global(html:not(.pause-animations) .spoke-hero-panel[data-entering]) {
     animation: spoke-hero-panel-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
   @media (prefers-reduced-motion: reduce) {
-    .spoke-hero-panel[data-entering] {
+    :global(.spoke-hero-panel[data-entering]) {
       animation: none !important;
     }
   }
@@ -316,6 +293,8 @@ const screenshot =
 
     const panels = Array.from(hero.querySelectorAll<HTMLElement>("[data-hero-panel]"));
     const panelIds = panels.map((panel) => panel.dataset.heroPanel);
+    const cards = Array.from(hero.querySelectorAll<HTMLElement>("[data-hero-cards] [data-hero-nav]"));
+    const stateOnly = Array.from(hero.querySelectorAll<HTMLElement>("[data-hero-only]"));
     let current = OVERVIEW;
 
     // null = the hash points somewhere else on the page (#signup, #pricing, ...): leave the hero as is.
@@ -330,9 +309,16 @@ const screenshot =
       current = id;
       panels.forEach((panel) => {
         const isActive = panel.dataset.heroPanel === id;
-        panel.hidden = !isActive;
+        panel.inert = !isActive;
         if (isActive && animate) panel.setAttribute("data-entering", "");
         else panel.removeAttribute("data-entering");
+      });
+      cards.forEach((card) => {
+        if (card.dataset.heroNav === id) card.setAttribute("aria-current", "true");
+        else card.removeAttribute("aria-current");
+      });
+      stateOnly.forEach((el) => {
+        el.inert = (el.dataset.heroOnly === OVERVIEW) !== (id === OVERVIEW);
       });
       return previous;
     }
@@ -348,7 +334,7 @@ const screenshot =
     function focusFor(id: string, previous: string) {
       const target =
         id === OVERVIEW
-          ? hero!.querySelector<HTMLElement>(`[data-hero-panel="${OVERVIEW}"] [data-hero-nav="${previous}"]`)
+          ? hero!.querySelector<HTMLElement>(`[data-hero-cards] [data-hero-nav="${previous}"]`)
           : hero!.querySelector<HTMLElement>(`[data-hero-panel="${id}"] [data-hero-heading]`);
       target?.focus({ preventScroll: true });
     }
