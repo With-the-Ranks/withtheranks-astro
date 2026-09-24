@@ -1,54 +1,385 @@
 ---
-import { CALENDLY_TEAM_MEETING } from "../../constants/spoke";
-import Button from "../Button.astro";
 import PauseAnimationsToggle from "../PauseAnimationsToggle.astro";
-import SpokePreview from "../SpokePreview.astro";
+import SpokeHeroChapter from "./SpokeHeroChapter.astro";
+import SpokeHeroChat from "./SpokeHeroChat.astro";
+import SpokeHeroCtas from "./SpokeHeroCtas.astro";
+
+const SEGMENTS_URL = "https://spoke.withtheranks.com/docs/spoke-admin/segments_and_encodings/";
+
+const chapters = {
+  pricing: {
+    id: "spoke-pricing",
+    number: "01",
+    tab: "01 · Most affordable",
+    shortTab: "Affordable",
+    cardTitle: "The most affordable outreach tool",
+    cardBody: "Have 1,000 real conversations for less than $15 with no setup fees.",
+    title: "1,000 conversations for under $15.",
+    intro:
+      "We negotiate bulk rates on behalf of everyone who uses Spoke and keep pricing transparent, with no setup fees, so the money you raise goes to organizing.",
+    points: [
+      { title: "Pay as you go", body: "Pay per message segment, only for the texts you send." },
+      {
+        title: "Try it for free",
+        body: "We waive invoices under $5, so you can send several hundred messages before you pay anything.",
+      },
+      {
+        title: "Bulk discounts",
+        body: "Planning a big program? Commitments earn lower rates and help lower prices for everyone.",
+      },
+    ],
+  },
+  volunteers: {
+    id: "spoke-volunteers",
+    number: "02",
+    tab: "02 · Do more with less",
+    shortTab: "Do more",
+    cardTitle: "Do more with less people",
+    cardBody: "Handle hundreds of conversations with just one person.",
+    title: "Hundreds of conversations, one person.",
+    intro:
+      "Spoke handles the busywork, so a small team can keep up with every reply instead of wrestling with software.",
+    points: [
+      {
+        title: "Send the opener in bulk",
+        body: "Send the approved first message to a whole assignment at once.",
+      },
+      { title: "Replies come to you", body: "Spoke assigns incoming replies to available texters automatically." },
+      {
+        title: "Answers in one click",
+        body: "Canned responses and survey questions let you reply and record answers without typing it all out.",
+      },
+      {
+        title: "Opt-outs handled",
+        body: "Opt-out keywords are caught for you, so no one gets texted again by mistake.",
+      },
+    ],
+  },
+  gotv: {
+    id: "spoke-gotv",
+    number: "03",
+    tab: "03 · GOTV & Fundraising",
+    shortTab: "GOTV",
+    cardTitle: "Built for GOTV & Fundraising",
+    cardBody: "Instantly send thousands of reminders, and receive replies in real-time.",
+    title: "Send thousands of reminders at once.",
+    intro:
+      "Turn a list into real conversations, answer supporters as their replies come in, and send what you learned straight back to your CRM.",
+    points: [
+      {
+        title: "Autosending",
+        body: "Send opening messages automatically, so your team spends its time on replies.",
+      },
+      { title: "Connected to NGP VAN", body: "Pull contact lists from VAN and sync survey responses back to it." },
+      {
+        title: "Texting hours, enforced",
+        body: "Spoke won’t text anyone outside your set hours, using each contact’s ZIP code to find their time zone.",
+      },
+      {
+        title: "Landline filtering, free",
+        body: "Filter out landlines before you send so every text goes to a phone that can receive it.",
+      },
+    ],
+  },
+} as const;
+
+const chapterList = [chapters.pricing, chapters.volunteers, chapters.gotv];
+const tabs = chapterList.map(({ id, tab, shortTab }) => ({ id, label: tab, shortLabel: shortTab }));
+
+const neverCharged = ["Setup", "Inbound messages", "10DLC registration", "Landline filtering", "Technical support"];
+
+// The white frame lives on the <img> itself (padding + border) so max-width/max-height can size it
+// against the visual area without distorting the screenshot.
+const screenshot =
+  "absolute box-border h-auto w-auto rounded-2xl border-4 border-[#0a0908] bg-white object-contain p-1.5 sm:p-2.5";
 ---
 
 <section
-  class="border-b-4 border-[#0a0908]/20 bg-brand-blue px-4 pb-10 pt-2 sm:px-6 lg:px-8"
+  class="flex flex-col border-b-4 border-[#0a0908]/20 bg-brand-blue px-5 pb-6 pt-4 max-lg:[@media(max-height:700px)]:pb-4 max-lg:[@media(max-height:700px)]:pt-3 sm:px-6 lg:px-16 lg:py-[clamp(16px,3.5svh,40px)]"
+  data-spoke-hero
   id="overview"
 >
-  <div class="mx-auto flex max-w-screen-2xl flex-col gap-10 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
-    <div class="flex max-w-xl flex-col gap-8 lg:py-8 lg:pl-4 xl:pl-8">
-      <div class="flex flex-col gap-4 text-white">
-        <h1 class="font-display text-5xl leading-none sm:text-5xl lg:text-[48px]">
-          Spoke makes it easy for organizers to send and reply to millions of text messages.
-        </h1>
-        <p class="font-sans text-lg leading-normal sm:text-xl">
-          Start sending effective organizing messages with the proven open-source peer-to-peer texting platform, now
-          backed by With the Ranks.
-        </p>
+  <div class="mx-auto flex w-full max-w-screen-2xl flex-1 flex-col">
+    <div class="spoke-hero-panel flex flex-1 flex-col gap-4 lg:gap-6 max-lg:[@media(max-height:700px)]:gap-3" data-hero-panel="overview">
+      <div
+        class="flex flex-1 flex-col gap-4 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-center lg:gap-12 xl:grid-cols-[540px_minmax(0,1fr)] xl:gap-16"
+      >
+        <div class="flex flex-col gap-4 lg:gap-6 xl:gap-8">
+          <div class="flex flex-col gap-3 text-white lg:gap-4">
+            <h1
+              class="font-display text-[40px] leading-[0.98] text-balance max-lg:[@media(max-height:700px)]:text-[34px] sm:text-6xl lg:text-[length:clamp(48px,8svh,72px)] xl:text-[length:clamp(56px,9svh,84px)]"
+            >
+              The texting tool used to send millions of GOTV messages.
+            </h1>
+            <p class="mb-0 font-sans text-[15px] leading-[1.4] sm:text-xl lg:text-lg xl:text-[22px] xl:leading-[1.35]">
+              The proven open-source peer-to-peer texting platform, now backed by With the Ranks.
+            </p>
+          </div>
+          <SpokeHeroCtas />
+        </div>
+        {/* The conversation takes whatever height is left over, so the whole overview fits one screen. */}
+        <div class="relative order-first flex min-h-[140px] flex-1 flex-col gap-3 lg:min-h-[240px] lg:self-stretch max-lg:[@media(max-height:700px)]:min-h-[100px]">
+          <div class="relative flex-1 lg:max-h-[560px]">
+            <div class="absolute inset-0">
+              <SpokeHeroChat />
+            </div>
+          </div>
+          {/* Below lg it floats over the conversation's faded top edge as an icon-only button (the aria-label stays). */}
+          <div class="absolute right-0 top-0 z-10 max-lg:[&_.js-pause-animations-toggle]:p-2.5 max-lg:[&_[data-toggle-label]]:sr-only lg:static">
+            <PauseAnimationsToggle sticky={false} />
+          </div>
+        </div>
       </div>
-      <div class="flex flex-wrap gap-6">
-        <Button
-          class="label-button !inline-flex !gap-1 px-8 py-4 !text-black"
-          href="#signup"
-          icon="/assets/home/contact-icon.svg"
-          iconClass="size-9 shrink-0"
-          iconPosition="start"
-          soft
-          variant="cta"
+
+      <nav aria-label="Spoke overview" class="grid grid-cols-1 gap-2 sm:gap-3 lg:grid-cols-3 lg:gap-6">
+        {
+          chapterList.map((chapter) => (
+            <a
+              class="group flex items-center gap-3 rounded-lg border-4 border-[#0a0908]/20 px-3.5 py-2 no-underline transition-colors hover:border-cta-end hover:bg-white/8 focus-visible:border-cta-end focus-visible:bg-white/8 sm:items-baseline sm:px-4 sm:py-3.5 lg:gap-4 lg:px-5 lg:py-3"
+              data-hero-nav={chapter.id}
+              href={`#${chapter.id}`}
+            >
+              <span class="shrink-0 font-display text-[26px] leading-none text-cta-end lg:text-[32px]">
+                {chapter.number}
+              </span>
+              <span class="grow font-sans text-base font-normal leading-snug text-white/88 sm:text-[17px] sm:leading-6 lg:text-lg lg:leading-[1.4]">
+                <span class="font-bold text-white underline decoration-cta-end decoration-[0.15rem] underline-offset-4">{chapter.cardTitle}</span><span class="hidden sm:inline lg:hidden xl:inline [@media(max-height:719px)]:hidden">&nbsp;— {chapter.cardBody}</span>
+              </span>
+              <i
+                aria-hidden="true"
+                class="iconoir-arrow-up-right-square not-italic shrink-0 self-center text-2xl leading-none text-cta-end transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5"
+              />
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <SpokeHeroChapter
+      id={chapters.pricing.id}
+      intro={chapters.pricing.intro}
+      points={chapters.pricing.points}
+      tabs={tabs}
+      title={chapters.pricing.title}
+    >
+      <div class="flex flex-col gap-4">
+        <div
+          class="grid grid-cols-2 gap-4 rounded-2xl border-4 border-[#0a0908] bg-gradient-to-l from-cta-start to-cta-end p-5 text-[#0a0908] max-lg:[@media(max-height:700px)]:p-4 sm:gap-8 lg:p-6 [@media(max-height:759px)]:lg:p-4"
         >
-          Sign Up
-        </Button>
-        <Button
-          class="label-button no-underline !rounded-lg !border-4 !border-[#0a0908]/20 !border-solid !bg-transparent !px-8 !py-4 !text-xl !font-bold !text-white !shadow-none transition duration-300 hover:!-translate-y-px hover:!bg-white/10 hover:!brightness-110 hover:!shadow-none focus-visible:!-translate-y-px focus-visible:!bg-white/10 focus-visible:!brightness-110 sm:!text-[20px] [&>span]:!gap-1"
-          href={CALENDLY_TEAM_MEETING}
-          icon="iconoir-calendar"
-          iconClass="size-9 shrink-0 text-[2.25rem] leading-none text-white"
-          iconPosition="start"
-          rel="noopener noreferrer"
-          target="_blank"
-          variant="secondary"
-        >
-          Schedule a Demo
-        </Button>
+          <div class="flex flex-col gap-2">
+            <span class="font-display text-[64px] leading-[0.9] max-lg:[@media(max-height:700px)]:text-[48px] sm:text-[100px] lg:text-[length:clamp(52px,9svh,140px)]">1.3¢</span>
+            <span class="font-sans text-base font-bold leading-[1.35] xl:text-lg">per outbound SMS segment</span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <span class="font-display text-[64px] leading-[0.9] max-lg:[@media(max-height:700px)]:text-[48px] sm:text-[100px] lg:text-[length:clamp(52px,9svh,140px)]">3.25¢</span>
+            <span class="font-sans text-base font-bold leading-[1.35] xl:text-lg">per outbound MMS message</span>
+          </div>
+        </div>
+        {/* Below lg the price card alone keeps the chapter within one screen. */}
+        <div class="hidden flex-col gap-2.5 rounded-2xl border-4 border-[#0a0908] bg-white p-5 text-[#0a0908] lg:flex xl:px-6 [@media(max-height:759px)]:gap-1.5 [@media(max-height:759px)]:p-4">
+          <h3 class="font-display text-[34px] leading-[0.95] xl:text-[40px] [@media(max-height:759px)]:text-[28px]">What we never charge for</h3>
+          <ul class="flex list-none flex-wrap gap-x-5 gap-y-1.5 p-0">
+            {
+              neverCharged.map((item) => (
+                <li class="flex items-center gap-1.5 font-sans text-base leading-[1.35] xl:text-lg">
+                  <i aria-hidden="true" class="iconoir-check not-italic shrink-0 text-xl leading-none text-brand-blue" />
+                  {item}
+                </li>
+              ))
+            }
+          </ul>
+          <a
+            class="self-start font-sans text-base font-bold text-[#1f2aff] underline decoration-[0.15rem] underline-offset-4"
+            href={SEGMENTS_URL}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Learn more about message segments
+          </a>
+        </div>
       </div>
-    </div>
-    <div class="relative flex min-w-0 flex-1 flex-col items-center gap-4 lg:items-end lg:p-8 xl:p-16">
-      <SpokePreview />
-      <PauseAnimationsToggle sticky={false} />
-    </div>
+    </SpokeHeroChapter>
+
+    <SpokeHeroChapter
+      id={chapters.volunteers.id}
+      intro={chapters.volunteers.intro}
+      points={chapters.volunteers.points}
+      tabs={tabs}
+      title={chapters.volunteers.title}
+    >
+      <img
+        alt="Spoke texter view: a supporter replies, the volunteer records their answer and picks a response"
+        class:list={[screenshot, "left-0 top-0 max-h-full max-w-full sm:max-h-[88%] sm:max-w-[80%]"]}
+        height="1722"
+        loading="lazy"
+        src="/assets/spoke/send-replies.png"
+        width="2289"
+      />
+      <div
+        aria-hidden="true"
+        class="absolute bottom-0 right-0 hidden h-[min(100%,380px)] w-[220px] rounded-[32px] border-[3px] border-[#d4d4d9] bg-[#e8e8ed] p-1.5 shadow-[0_8px_22px_rgba(0,0,0,0.18)] sm:block"
+      >
+        <div class="flex h-full flex-col justify-end gap-2 overflow-hidden rounded-[26px] bg-[#f2f2f7] px-3 py-4 font-sans">
+          <p class="mb-0 max-w-[85%] self-start rounded-[14px_14px_14px_4px] bg-[#e9eaff] px-3 py-2 text-[13px] leading-[1.35] text-[#0a0908]">
+            Hi Sarah — it’s Chris from With the Ranks. Can you make it to our community event this Saturday?
+          </p>
+          <p class="mb-0 max-w-[85%] self-end rounded-[14px_14px_4px_14px] bg-[#1f2aff] px-3 py-2 text-[13px] leading-[1.35] text-white shadow-[0_2px_8px_rgba(31,42,255,0.35)]">
+            Maybe! Where at?
+          </p>
+          <p class="mb-0 max-w-[85%] self-start rounded-[14px_14px_14px_4px] bg-[#e9eaff] px-3 py-2 text-[13px] leading-[1.35] text-[#0a0908]">
+            At the rec center, 10am!
+          </p>
+          <p class="mb-0 max-w-[85%] self-end rounded-[14px_14px_4px_14px] bg-[#1f2aff] px-3 py-2 text-[13px] leading-[1.35] text-white shadow-[0_2px_8px_rgba(31,42,255,0.35)]">
+            Count me in
+          </p>
+        </div>
+      </div>
+    </SpokeHeroChapter>
+
+    <SpokeHeroChapter
+      id={chapters.gotv.id}
+      intro={chapters.gotv.intro}
+      points={chapters.gotv.points}
+      tabs={tabs}
+      title={chapters.gotv.title}
+    >
+      <img
+        alt="Spoke campaign builder: Basics, Campaign Groups, Texting Hours and Integration all checked off"
+        class:list={[screenshot, "left-0 top-0 max-h-[78%] max-w-[82%]"]}
+        height="1897"
+        loading="lazy"
+        src="/assets/spoke/create-campaign.png"
+        width="2623"
+      />
+      <img
+        alt="Spoke contact upload step"
+        class:list={[screenshot, "bottom-0 right-0 max-h-[58%] max-w-[60%] shadow-[0_8px_22px_rgba(0,0,0,0.18)]"]}
+        height="1905"
+        loading="lazy"
+        src="/assets/spoke/upload-list.png"
+        width="2682"
+      />
+    </SpokeHeroChapter>
   </div>
 </section>
+
+<style>
+  /* One screen under the site nav. A floor rather than a fixed height, so content can still grow
+     on very short screens instead of overflowing. --hero-offset is measured by the script below. */
+  [data-spoke-hero] {
+    min-height: calc(100svh - var(--hero-offset, 105px));
+  }
+  @media (min-width: 1024px) {
+    [data-spoke-hero] {
+      min-height: calc(100svh - var(--hero-offset, 165px));
+    }
+  }
+
+  @keyframes spoke-hero-panel-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  /* Only animate panels swapped in by a click, and never while animations are paused
+     (a paused fade-in would freeze the panel invisible). */
+  :global(html:not(.pause-animations)) .spoke-hero-panel[data-entering] {
+    animation: spoke-hero-panel-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .spoke-hero-panel[data-entering] {
+      animation: none !important;
+    }
+  }
+</style>
+
+<script>
+  const OVERVIEW = "overview";
+
+  function setup() {
+    const hero = document.querySelector<HTMLElement>("[data-spoke-hero]");
+    if (!hero || hero.dataset.bound === "true") return;
+    hero.dataset.bound = "true";
+
+    const measureOffset = () => {
+      const offset = Math.round(hero.getBoundingClientRect().top + window.scrollY);
+      hero.style.setProperty("--hero-offset", `${offset}px`);
+    };
+    measureOffset();
+    window.addEventListener("resize", () => requestAnimationFrame(measureOffset));
+    const siteNav = document.getElementById("site-nav");
+    if (siteNav && "ResizeObserver" in window) new ResizeObserver(measureOffset).observe(siteNav);
+
+    const panels = Array.from(hero.querySelectorAll<HTMLElement>("[data-hero-panel]"));
+    const panelIds = panels.map((panel) => panel.dataset.heroPanel);
+    let current = OVERVIEW;
+
+    // null = the hash points somewhere else on the page (#signup, #pricing, ...): leave the hero as is.
+    const panelFromHash = () => {
+      const id = window.location.hash.slice(1);
+      if (!id || id === OVERVIEW) return OVERVIEW;
+      return panelIds.includes(id) ? id : null;
+    };
+
+    function show(id: string, { animate }: { animate: boolean }) {
+      const previous = current;
+      current = id;
+      panels.forEach((panel) => {
+        const isActive = panel.dataset.heroPanel === id;
+        panel.hidden = !isActive;
+        if (isActive && animate) panel.setAttribute("data-entering", "");
+        else panel.removeAttribute("data-entering");
+      });
+      return previous;
+    }
+
+    function revealTop() {
+      if (hero!.getBoundingClientRect().top < 0) {
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        hero!.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" });
+      }
+    }
+
+    // Move focus into the newly shown content so keyboard and screen-reader users follow along.
+    function focusFor(id: string, previous: string) {
+      const target =
+        id === OVERVIEW
+          ? hero!.querySelector<HTMLElement>(`[data-hero-panel="${OVERVIEW}"] [data-hero-nav="${previous}"]`)
+          : hero!.querySelector<HTMLElement>(`[data-hero-panel="${id}"] [data-hero-heading]`);
+      target?.focus({ preventScroll: true });
+    }
+
+    hero.addEventListener("click", (event) => {
+      const link = (event.target as Element).closest<HTMLAnchorElement>("[data-hero-nav]");
+      if (!link) return;
+      const id = link.dataset.heroNav!;
+      if (!panelIds.includes(id)) return;
+      event.preventDefault();
+      if (id === current) return;
+
+      const url = id === OVERVIEW ? window.location.pathname + window.location.search : `#${id}`;
+      history.pushState(null, "", url);
+      const previous = show(id, { animate: true });
+      revealTop();
+      focusFor(id, previous);
+    });
+
+    window.addEventListener("popstate", () => {
+      const id = panelFromHash();
+      if (id === null || id === current) return;
+      const previous = show(id, { animate: true });
+      revealTop();
+      focusFor(id, previous);
+    });
+
+    const initial = panelFromHash();
+    if (initial && initial !== OVERVIEW) show(initial, { animate: false });
+  }
+
+  document.addEventListener("DOMContentLoaded", setup);
+  document.addEventListener("astro:page-load", setup);
+</script>

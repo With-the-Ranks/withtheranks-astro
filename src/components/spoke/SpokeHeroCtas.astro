@@ -1,0 +1,31 @@
+---
+import { CALENDLY_TEAM_MEETING } from "../../constants/spoke";
+import Button from "../Button.astro";
+---
+
+{/* Kept on one row at every width (compact below sm and in the narrow lg column) so the hero fits one screen. */}
+<div class="flex flex-wrap items-center gap-2.5 sm:gap-5">
+  <Button
+    class="label-button !inline-flex flex-1 !gap-1 whitespace-nowrap px-3 py-3 !text-base !text-black sm:flex-none sm:px-8 sm:py-4 sm:!text-xl lg:px-5 lg:py-3 lg:!text-lg xl:px-8 xl:py-4 xl:!text-xl"
+    href="#signup"
+    icon="/assets/home/contact-icon.svg"
+    iconClass="size-7 shrink-0 sm:size-9 lg:size-8 xl:size-9"
+    iconPosition="start"
+    soft
+    variant="cta"
+  >
+    Sign Up
+  </Button>
+  <Button
+    class="label-button no-underline flex-1 whitespace-nowrap !rounded-lg !border-4 !border-[#0a0908]/20 !border-solid !bg-transparent !px-3 !py-3 !text-base !font-bold !text-white !shadow-none transition duration-300 hover:!-translate-y-px hover:!bg-white/10 hover:!brightness-110 hover:!shadow-none focus-visible:!-translate-y-px focus-visible:!bg-white/10 focus-visible:!brightness-110 sm:flex-none sm:!px-8 sm:!py-4 sm:!text-[20px] lg:!px-5 lg:!py-3 lg:!text-lg xl:!px-8 xl:!py-4 xl:!text-[20px] [&>span]:!gap-1"
+    href={CALENDLY_TEAM_MEETING}
+    icon="iconoir-calendar"
+    iconClass="size-7 shrink-0 text-[1.75rem] leading-none text-white sm:size-9 sm:text-[2.25rem] lg:size-8 lg:text-[2rem] xl:size-9 xl:text-[2.25rem]"
+    iconPosition="start"
+    rel="noopener noreferrer"
+    target="_blank"
+    variant="secondary"
+  >
+    Schedule a Demo
+  </Button>
+</div>

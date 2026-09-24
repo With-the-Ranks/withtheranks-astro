@@ -1,0 +1,206 @@
+---
+type ChatItem =
+  | { kind: "out" | "in"; text: string; delay: number }
+  | { kind: "place"; delay: number }
+  | { kind: "divider"; text: string; delay: number }
+  | { kind: "typing"; delay: number };
+
+const items: ChatItem[] = [
+  {
+    kind: "out",
+    text: "Hey it's Chris from With the Ranks. Election day is Tuesday, Nov 3. Do you know where you'll be voting?",
+    delay: 0.4,
+  },
+  { kind: "in", text: "I would like to, I'm not sure where to vote", delay: 2.4 },
+  { kind: "out", text: "No problem! Here's your polling place:", delay: 4.6 },
+  { kind: "place", delay: 5.6 },
+  { kind: "out", text: "Polls are open 7am to 8pm. Do you have a plan to vote?", delay: 8.2 },
+  { kind: "in", text: "Yes! I'll head over after work.", delay: 10.6 },
+  { kind: "out", text: "Great plan. I'll check back in with you on Tuesday.", delay: 12.8 },
+  { kind: "divider", text: "Tuesday, Nov 3 · 9:04 AM", delay: 14.8 },
+  { kind: "out", text: "It's election day! Were you able to cast your vote today?", delay: 15.8 },
+  { kind: "in", text: "Just voted! The line only took 10 minutes.", delay: 18.2 },
+  { kind: "out", text: "Amazing, thank you for voting! Your voice counts.", delay: 20.6 },
+  { kind: "typing", delay: 22.4 },
+];
+
+const bubble =
+  "m-[6px_2px_4px] px-[13px] py-[9px] font-sans text-[15px] leading-[1.35] text-[#0a0908] shadow-[0_3px_8px_rgba(0,0,0,0.16)] lg:m-[10px_4px_6px] lg:px-[18px] lg:py-[14px] lg:text-lg";
+const outBubble = `${bubble} max-w-[250px] rounded-[16px_16px_4px_16px] bg-cta-end lg:max-w-[400px] lg:rounded-[20px_20px_4px_20px]`;
+const inBubble = `${bubble} max-w-[230px] rounded-[16px_16px_16px_4px] bg-white lg:max-w-[360px] lg:rounded-[20px_20px_20px_4px]`;
+---
+
+<div aria-label="Example text conversation" class="spoke-chat" role="region" tabindex="0">
+  <div class="spoke-chat-thread">
+    {
+      items.map((item) => {
+        const side = item.kind === "in" || item.kind === "typing" ? "m-in" : "m-out";
+        const style = `animation-delay: ${item.delay}s`;
+
+        if (item.kind === "out") {
+          return (
+            <div class:list={["m", side]} style={style}>
+              <p class:list={[outBubble, "mb-0"]}>{item.text}</p>
+            </div>
+          );
+        }
+        if (item.kind === "in") {
+          return (
+            <div class:list={["m", side]} style={style}>
+              <p class:list={[inBubble, "mb-0"]}>{item.text}</p>
+            </div>
+          );
+        }
+        if (item.kind === "place") {
+          return (
+            <div class:list={["m", side]} style={style}>
+              <div class="m-[2px_2px_4px] w-[220px] overflow-hidden rounded-[16px_16px_4px_16px] bg-white font-sans text-[#0a0908] shadow-[0_3px_8px_rgba(0,0,0,0.16)] lg:m-[4px_4px_6px] lg:w-[320px] lg:rounded-[20px_20px_4px_20px]">
+                <div class="spoke-chat-map flex h-[60px] items-center justify-center lg:h-24">
+                  <span class="flex size-8 items-center justify-center rounded-full bg-brand-blue text-white shadow-[0_0_0_4px_rgba(0,18,216,0.18)] lg:size-11 lg:shadow-[0_0_0_6px_rgba(0,18,216,0.18)]">
+                    <i aria-hidden="true" class="iconoir-map-pin not-italic text-lg leading-none lg:text-[22px]" />
+                  </span>
+                </div>
+                <div class="flex flex-col gap-px px-3 pb-2.5 pt-2 lg:gap-0.5 lg:px-4 lg:pb-3.5 lg:pt-3">
+                  <span class="text-[15px] font-bold leading-[1.35] lg:text-lg">Lincoln Elementary School</span>
+                  <span class="text-[13px] leading-[1.35] text-[#3d3b38] lg:text-base">1234 Main St · Gym entrance</span>
+                  <span class="mt-1 text-[13px] font-bold leading-[1.35] text-brand-blue lg:mt-1.5 lg:text-base">
+                    Get directions →
+                  </span>
+                </div>
+              </div>
+            </div>
+          );
+        }
+        if (item.kind === "divider") {
+          return (
+            <div class:list={["m", side, "justify-center!"]} style={style}>
+              <p class="mb-0 mt-3 font-sans text-xs font-bold tracking-[0.02em] text-white/80 lg:mt-[18px] lg:text-sm">
+                {item.text}
+              </p>
+            </div>
+          );
+        }
+        return (
+          <div aria-label="Typing" class:list={["m", side]} role="img" style={style}>
+            <div class="m-[6px_2px_4px] flex items-center gap-1.5 rounded-[16px_16px_16px_4px] bg-white px-3.5 py-3 shadow-[0_3px_8px_rgba(0,0,0,0.16)] lg:m-[10px_4px_6px] lg:rounded-[20px_20px_20px_4px] lg:px-5 lg:py-4">
+              <span class="dot size-[7px] rounded-full bg-[#0a0908] lg:size-[9px]" />
+              <span class="dot size-[7px] rounded-full bg-[#0a0908] lg:size-[9px]" />
+              <span class="dot size-[7px] rounded-full bg-[#0a0908] lg:size-[9px]" />
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</div>
+
+<style>
+  /* column-reverse keeps the scroll pinned to the newest message as bubbles pop in.
+     Fills its container's height, so the hero decides how tall the conversation is. */
+  .spoke-chat {
+    --fade: 28px;
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+    border-radius: 8px;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--fade));
+    mask-image: linear-gradient(to bottom, transparent 0, #000 var(--fade));
+  }
+  @media (min-width: 1024px) {
+    .spoke-chat {
+      --fade: 40px;
+    }
+  }
+  .spoke-chat:focus-visible {
+    outline: 3px solid var(--color-cta-end);
+    outline-offset: 4px;
+  }
+  .spoke-chat-thread {
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--fade);
+  }
+  .spoke-chat-map {
+    background-color: #e8ecff;
+    background-image:
+      linear-gradient(rgba(0, 18, 216, 0.08) 2px, transparent 2px),
+      linear-gradient(90deg, rgba(0, 18, 216, 0.08) 2px, transparent 2px);
+    background-size: 20px 20px;
+  }
+  @media (min-width: 1024px) {
+    .spoke-chat-map {
+      background-size: 28px 28px;
+    }
+  }
+
+  .m {
+    display: flex;
+    flex-shrink: 0;
+    overflow: hidden;
+    animation: spoke-chat-pop 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .m-out {
+    justify-content: flex-end;
+    transform-origin: 100% 100%;
+  }
+  .m-in {
+    justify-content: flex-start;
+    transform-origin: 0% 100%;
+  }
+  @keyframes spoke-chat-pop {
+    from {
+      opacity: 0;
+      max-height: 0;
+      transform: translateY(12px) scale(0.94);
+    }
+    to {
+      opacity: 1;
+      max-height: 320px;
+      transform: none;
+    }
+  }
+
+  .dot {
+    animation: spoke-chat-dot 1.2s ease-in-out infinite;
+  }
+  .dot:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+  .dot:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  @keyframes spoke-chat-dot {
+    0%,
+    60%,
+    100% {
+      transform: translateY(0);
+      opacity: 0.4;
+    }
+    30% {
+      transform: translateY(-5px);
+      opacity: 0.9;
+    }
+  }
+
+  /* Paused or reduced motion: show the finished conversation rather than a mid-animation freeze frame. */
+  :global(html.pause-animations) .m,
+  :global(html.pause-animations) .dot {
+    animation: none !important;
+  }
+  :global(html.pause-animations) .dot {
+    opacity: 0.6;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .m,
+    .dot {
+      animation: none;
+    }
+    .dot {
+      opacity: 0.6;
+    }
+  }
+</style>

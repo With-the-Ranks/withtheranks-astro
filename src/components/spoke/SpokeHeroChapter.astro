@@ -1,0 +1,105 @@
+---
+import SpokeHeroCtas from "./SpokeHeroCtas.astro";
+
+export interface ChapterTab {
+  id: string;
+  label: string;
+  /** Tab label below xl, where all three full labels don't fit on one row. */
+  shortLabel: string;
+}
+
+interface Props {
+  id: string;
+  tabs: readonly ChapterTab[];
+  title: string;
+  intro: string;
+  points: readonly { title: string; body: string }[];
+}
+
+const { id, tabs, title, intro, points } = Astro.props;
+---
+
+{/*
+  Sized to fit one screen under the site nav: the heading scales with viewport height, the visual
+  (default slot) absorbs whatever height is left, and checklist details are dropped on phones and short screens.
+*/}
+<div class="spoke-hero-panel flex flex-1 flex-col gap-4 lg:gap-5 max-lg:[@media(max-height:700px)]:gap-3" data-hero-panel={id} hidden id={id}>
+  <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+    <a
+      class="inline-flex items-center gap-2 self-start font-sans text-base font-bold text-white underline decoration-[0.15rem] underline-offset-4 sm:text-lg"
+      data-hero-nav="overview"
+      href="#overview"
+    >
+      <i aria-hidden="true" class="iconoir-arrow-left not-italic text-xl leading-none" />
+      Back to Spoke overview
+    </a>
+    <nav aria-label="Spoke chapters" class="flex gap-2 sm:gap-3">
+      {
+        tabs.map((tab) => {
+          const labels = (
+            <>
+              <span class="xl:hidden">{tab.shortLabel}</span>
+              <span class="hidden xl:inline">{tab.label}</span>
+            </>
+          );
+          return tab.id === id ? (
+            <span
+              aria-current="page"
+              class="rounded-xl bg-gradient-to-l from-cta-start to-cta-end px-3.5 py-2 font-sans text-sm font-bold leading-snug text-[#0a0908] sm:px-[18px] sm:py-2.5 sm:text-base"
+            >
+              {labels}
+            </span>
+          ) : (
+            <a
+              class="rounded-xl border-2 border-white/35 px-3 py-1.5 font-sans text-sm font-bold leading-snug text-white no-underline transition-colors hover:border-cta-end hover:bg-white/8 sm:px-4 sm:py-2 sm:text-base"
+              data-hero-nav={tab.id}
+              href={`#${tab.id}`}
+            >
+              {labels}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+
+  <div
+    class="flex flex-1 flex-col gap-4 max-lg:[@media(max-height:700px)]:gap-3 lg:grid lg:grid-cols-2 lg:gap-10 xl:grid-cols-[520px_minmax(0,1fr)] xl:gap-16"
+  >
+    <div class="flex flex-col gap-3 lg:justify-center lg:gap-4">
+      <h2
+        class="font-display text-[40px] leading-[0.94] text-white text-balance outline-none max-lg:[@media(max-height:700px)]:text-[34px] sm:text-6xl lg:text-[length:clamp(48px,7.5svh,80px)] xl:text-[length:clamp(56px,8.5svh,96px)]"
+        data-hero-heading
+        tabindex="-1"
+      >
+        {title}
+      </h2>
+      <p class="mb-0 font-sans text-[15px] leading-[1.4] text-white sm:text-lg lg:text-base xl:text-xl xl:leading-[1.35]">{intro}</p>
+      <div class="pt-1">
+        <SpokeHeroCtas />
+      </div>
+    </div>
+    <div class="relative flex min-h-[160px] flex-1 flex-col justify-center lg:min-h-[300px] max-lg:[@media(max-height:700px)]:min-h-[110px]">
+      <slot />
+    </div>
+  </div>
+
+  <ul
+    class:list={[
+      "grid list-none grid-cols-1 gap-x-8 p-0 sm:grid-cols-2",
+      points.length === 4 ? "lg:grid-cols-4" : "lg:grid-cols-3",
+    ]}
+  >
+    {
+      points.map((point) => (
+        <li class="flex items-start gap-3 border-t-2 border-[#0a0908]/20 py-1.5 sm:py-2.5 max-lg:[@media(max-height:700px)]:py-1">
+          <i aria-hidden="true" class="iconoir-check not-italic mt-0.5 shrink-0 text-xl leading-none text-cta-end" />
+          <div class="flex flex-col gap-1">
+            <span class="font-sans text-base font-bold leading-[1.35] text-white lg:text-lg">{point.title}</span>
+            <span class="hidden font-sans text-[15px] leading-[1.4] text-white/88 sm:block lg:hidden xl:block [@media(max-height:719px)]:hidden">{point.body}</span>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
