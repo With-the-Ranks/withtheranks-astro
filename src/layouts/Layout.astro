@@ -8,9 +8,11 @@ interface Props {
   title?: string;
   theme?: string;
   navSurfaceClass?: string;
+  /** Use the shorter site header (see Nav's `compact`). */
+  compactNav?: boolean;
 }
 
-const { title = "With the Ranks", theme = "dark", navSurfaceClass } = Astro.props;
+const { title = "With the Ranks", theme = "dark", navSurfaceClass, compactNav = false } = Astro.props;
 const description = "With the Ranks is a worker-owned technology cooperative supporting the organizers and candidates fighting for working class power and a sustainable future.";
 
 const metaEnv = (import.meta as ImportMeta & { env: Record<string, string | undefined> }).env;
@@ -81,14 +83,14 @@ const chatwootBaseUrl = (rawChatwootBaseUrl || "https://app.chatwoot.com").repla
           >
             <slot name="hero-bg" />
           </div>
-          <Nav theme={theme} surfaceClass={navSurfaceClass} />
+          <Nav compact={compactNav} theme={theme} surfaceClass={navSurfaceClass} />
           <slot name="sticky-subnav" />
           <slot name="hero" />
           <PauseAnimationsToggle />
         </div>
       ) : (
         <>
-          <Nav theme={theme} surfaceClass={navSurfaceClass} />
+          <Nav compact={compactNav} theme={theme} surfaceClass={navSurfaceClass} />
           <slot name="sticky-subnav" />
         </>
       )

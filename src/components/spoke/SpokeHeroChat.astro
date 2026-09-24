@@ -20,14 +20,14 @@ const items: ChatItem[] = [
   { kind: "divider", text: "Tuesday, Nov 3 · 9:04 AM", delay: 14.8 },
   { kind: "out", text: "It's election day! Were you able to cast your vote today?", delay: 15.8 },
   { kind: "in", text: "Just voted! The line only took 10 minutes.", delay: 18.2 },
-  { kind: "out", text: "Amazing, thank you for voting! Your voice counts.", delay: 20.6 },
+  { kind: "out", text: "Amazing, thank you for voting!", delay: 20.6 },
   { kind: "typing", delay: 22.4 },
 ];
 
 const bubble =
-  "m-[6px_2px_4px] px-[13px] py-[9px] font-sans text-[15px] leading-[1.35] text-[#0a0908] shadow-[0_3px_8px_rgba(0,0,0,0.16)] lg:m-[10px_4px_6px] lg:px-[18px] lg:py-[14px] lg:text-lg";
-const outBubble = `${bubble} max-w-[250px] rounded-[16px_16px_4px_16px] bg-cta-end lg:max-w-[400px] lg:rounded-[20px_20px_4px_20px]`;
-const inBubble = `${bubble} max-w-[230px] rounded-[16px_16px_16px_4px] bg-white lg:max-w-[360px] lg:rounded-[20px_20px_20px_4px]`;
+  "m-[6px_2px_4px] px-[13px] py-[9px] font-sans text-[15px] leading-[1.35] text-[#0a0908] shadow-[0_3px_8px_rgba(0,0,0,0.16)] hero-mid:m-[10px_4px_6px] xl:m-[10px_4px_6px] hero-mid:px-[18px] xl:px-[18px] hero-mid:py-[14px] xl:py-[14px] hero-mid:text-lg xl:text-lg";
+const outBubble = `${bubble} max-w-[250px] rounded-[16px_16px_4px_16px] bg-cta-end hero-mid:max-w-[400px] xl:max-w-[400px] hero-mid:rounded-[20px_20px_4px_20px] xl:rounded-[20px_20px_4px_20px]`;
+const inBubble = `${bubble} max-w-[230px] rounded-[16px_16px_16px_4px] bg-white hero-mid:max-w-[360px] xl:max-w-[360px] hero-mid:rounded-[20px_20px_20px_4px] xl:rounded-[20px_20px_20px_4px]`;
 ---
 
 <div aria-label="Example text conversation" class="spoke-chat" role="region" tabindex="0">
@@ -54,16 +54,16 @@ const inBubble = `${bubble} max-w-[230px] rounded-[16px_16px_16px_4px] bg-white 
         if (item.kind === "place") {
           return (
             <div class:list={["m", side]} style={style}>
-              <div class="m-[2px_2px_4px] w-[220px] overflow-hidden rounded-[16px_16px_4px_16px] bg-white font-sans text-[#0a0908] shadow-[0_3px_8px_rgba(0,0,0,0.16)] lg:m-[4px_4px_6px] lg:w-[320px] lg:rounded-[20px_20px_4px_20px]">
-                <div class="spoke-chat-map flex h-[60px] items-center justify-center lg:h-24">
-                  <span class="flex size-8 items-center justify-center rounded-full bg-brand-blue text-white shadow-[0_0_0_4px_rgba(0,18,216,0.18)] lg:size-11 lg:shadow-[0_0_0_6px_rgba(0,18,216,0.18)]">
-                    <i aria-hidden="true" class="iconoir-map-pin not-italic text-lg leading-none lg:text-[22px]" />
+              <div class="m-[2px_2px_4px] w-[220px] overflow-hidden rounded-[16px_16px_4px_16px] bg-white font-sans text-[#0a0908] shadow-[0_3px_8px_rgba(0,0,0,0.16)] hero-mid:m-[4px_4px_6px] xl:m-[4px_4px_6px] hero-mid:w-[320px] xl:w-[320px] hero-mid:rounded-[20px_20px_4px_20px] xl:rounded-[20px_20px_4px_20px]">
+                <div class="spoke-chat-map flex h-[60px] items-center justify-center hero-mid:h-24 xl:h-24">
+                  <span class="flex size-8 items-center justify-center rounded-full bg-brand-blue text-white shadow-[0_0_0_4px_rgba(0,18,216,0.18)] hero-mid:size-11 xl:size-11 hero-mid:shadow-[0_0_0_6px_rgba(0,18,216,0.18)] xl:shadow-[0_0_0_6px_rgba(0,18,216,0.18)]">
+                    <i aria-hidden="true" class="iconoir-map-pin not-italic text-lg leading-none hero-mid:text-[22px] xl:text-[22px]" />
                   </span>
                 </div>
-                <div class="flex flex-col gap-px px-3 pb-2.5 pt-2 lg:gap-0.5 lg:px-4 lg:pb-3.5 lg:pt-3">
-                  <span class="text-[15px] font-bold leading-[1.35] lg:text-lg">Lincoln Elementary School</span>
-                  <span class="text-[13px] leading-[1.35] text-[#3d3b38] lg:text-base">1234 Main St · Gym entrance</span>
-                  <span class="mt-1 text-[13px] font-bold leading-[1.35] text-brand-blue lg:mt-1.5 lg:text-base">
+                <div class="flex flex-col gap-px px-3 pb-2.5 pt-2 hero-mid:gap-0.5 xl:gap-0.5 hero-mid:px-4 xl:px-4 hero-mid:pb-3.5 xl:pb-3.5 hero-mid:pt-3 xl:pt-3">
+                  <span class="text-[15px] font-bold leading-[1.35] hero-mid:text-lg xl:text-lg">Lincoln Elementary School</span>
+                  <span class="text-[13px] leading-[1.35] text-[#3d3b38] hero-mid:text-base xl:text-base">1234 Main St · Gym entrance</span>
+                  <span class="mt-1 text-[13px] font-bold leading-[1.35] text-brand-blue hero-mid:mt-1.5 xl:mt-1.5 hero-mid:text-base xl:text-base">
                     Get directions →
                   </span>
                 </div>
@@ -74,7 +74,7 @@ const inBubble = `${bubble} max-w-[230px] rounded-[16px_16px_16px_4px] bg-white 
         if (item.kind === "divider") {
           return (
             <div class:list={["m", side, "justify-center!"]} style={style}>
-              <p class="mb-0 mt-3 font-sans text-xs font-bold tracking-[0.02em] text-white/80 lg:mt-[18px] lg:text-sm">
+              <p class="mb-0 mt-3 font-sans text-xs font-bold tracking-[0.02em] text-white/80 hero-mid:mt-[18px] xl:mt-[18px] hero-mid:text-sm xl:text-sm">
                 {item.text}
               </p>
             </div>
@@ -82,10 +82,10 @@ const inBubble = `${bubble} max-w-[230px] rounded-[16px_16px_16px_4px] bg-white 
         }
         return (
           <div aria-label="Typing" class:list={["m", side]} role="img" style={style}>
-            <div class="m-[6px_2px_4px] flex items-center gap-1.5 rounded-[16px_16px_16px_4px] bg-white px-3.5 py-3 shadow-[0_3px_8px_rgba(0,0,0,0.16)] lg:m-[10px_4px_6px] lg:rounded-[20px_20px_20px_4px] lg:px-5 lg:py-4">
-              <span class="dot size-[7px] rounded-full bg-[#0a0908] lg:size-[9px]" />
-              <span class="dot size-[7px] rounded-full bg-[#0a0908] lg:size-[9px]" />
-              <span class="dot size-[7px] rounded-full bg-[#0a0908] lg:size-[9px]" />
+            <div class="m-[6px_2px_4px] flex items-center gap-1.5 rounded-[16px_16px_16px_4px] bg-white px-3.5 py-3 shadow-[0_3px_8px_rgba(0,0,0,0.16)] hero-mid:m-[10px_4px_6px] xl:m-[10px_4px_6px] hero-mid:rounded-[20px_20px_20px_4px] xl:rounded-[20px_20px_20px_4px] hero-mid:px-5 xl:px-5 hero-mid:py-4 xl:py-4">
+              <span class="dot size-[7px] rounded-full bg-[#0a0908] hero-mid:size-[9px] xl:size-[9px]" />
+              <span class="dot size-[7px] rounded-full bg-[#0a0908] hero-mid:size-[9px] xl:size-[9px]" />
+              <span class="dot size-[7px] rounded-full bg-[#0a0908] hero-mid:size-[9px] xl:size-[9px]" />
             </div>
           </div>
         );
@@ -95,8 +95,7 @@ const inBubble = `${bubble} max-w-[230px] rounded-[16px_16px_16px_4px] bg-white 
 </div>
 
 <style>
-  /* column-reverse keeps the scroll pinned to the newest message as bubbles pop in.
-     Fills its container's height, so the hero decides how tall the conversation is. */
+  /* column-reverse keeps the scroll pinned to the newest message. */
   .spoke-chat {
     --fade: 28px;
     display: flex;
@@ -110,7 +109,7 @@ const inBubble = `${bubble} max-w-[230px] rounded-[16px_16px_16px_4px] bg-white 
     -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--fade));
     mask-image: linear-gradient(to bottom, transparent 0, #000 var(--fade));
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px), (min-width: 1024px) and (min-aspect-ratio: 5/4) {
     .spoke-chat {
       --fade: 40px;
     }
@@ -131,7 +130,7 @@ const inBubble = `${bubble} max-w-[230px] rounded-[16px_16px_16px_4px] bg-white 
       linear-gradient(90deg, rgba(0, 18, 216, 0.08) 2px, transparent 2px);
     background-size: 20px 20px;
   }
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px), (min-width: 1024px) and (min-aspect-ratio: 5/4) {
     .spoke-chat-map {
       background-size: 28px 28px;
     }
@@ -186,7 +185,7 @@ const inBubble = `${bubble} max-w-[230px] rounded-[16px_16px_16px_4px] bg-white 
     }
   }
 
-  /* Paused or reduced motion: show the finished conversation rather than a mid-animation freeze frame. */
+  /* Paused or reduced motion: show the finished conversation. */
   :global(html.pause-animations) .m,
   :global(html.pause-animations) .dot {
     animation: none !important;

@@ -4,9 +4,11 @@ import Button from "./Button.astro";
 interface Props {
   theme?: string;
   surfaceClass?: string;
+  /** Shorter header (less padding, smaller logo) for pages whose hero needs the vertical room. */
+  compact?: boolean;
 }
 
-const { theme = "dark", surfaceClass } = Astro.props;
+const { theme = "dark", surfaceClass, compact = false } = Astro.props;
 
 const navLinks = [
   { href: "/our-work", label: "Our Work", icon: "/assets/home/nav-our-work.svg" },
@@ -17,16 +19,18 @@ const navLinks = [
 const isLight = theme === "light";
 const wrapperBg =
   surfaceClass ?? (isLight ? "bg-white" : "bg-brand-blue");
+const headerPadding = compact ? "py-3 sm:py-4" : "py-6 sm:py-8";
+const logoWidth = compact ? "w-28 sm:w-32 lg:w-36" : "w-32 sm:w-40 lg:w-48 xl:w-56";
 const lightFilter =
   "brightness(0) saturate(100%) invert(9%) sepia(28%) saturate(1940%) hue-rotate(210deg) brightness(94%) contrast(96%)";
 ---
 
 <div class={wrapperBg} id="site-nav">
-  <header class="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+  <header class:list={["mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8", headerPadding]}>
     <div class="flex min-w-0 items-center justify-between gap-4 xl:grid xl:grid-cols-[auto_1fr_auto] xl:items-center xl:gap-10">
       <div class="flex items-center justify-between gap-4">
         <a class="block shrink-0 text-inherit no-underline" href="/">
-          <img alt="With the Ranks" class="h-auto w-32 sm:w-40 lg:w-48 xl:w-56" src="/assets/home/logo.svg" style={isLight ? `filter: ${lightFilter};` : undefined} />
+          <img alt="With the Ranks" class:list={["h-auto", logoWidth]} src="/assets/home/logo.svg" style={isLight ? `filter: ${lightFilter};` : undefined} />
         </a>
       </div>
       <button aria-label="Open menu" class={`inline-flex size-12 appearance-none items-center justify-center rounded-lg border-0 bg-transparent p-0 shadow-none transition-colors xl:hidden ${isLight ? "text-brand-navy hover:bg-brand-blue/10" : "text-white hover:bg-white/10"}`} id="mobile-menu-btn" type="button">
@@ -56,14 +60,14 @@ const lightFilter =
       </nav>
 
       <div class="hidden xl:flex xl:justify-end">
-        <Button class="label-button !inline-flex !gap-1 px-8 py-4 !text-black" href="/contact" icon="/assets/home/contact-icon.svg" iconClass="size-9 shrink-0" soft variant="cta"><span>Contact us</span></Button>
+        <Button class:list={["label-button !inline-flex !gap-1 !text-black", compact ? "px-6 py-2.5" : "px-8 py-4"]} href="/contact" icon="/assets/home/contact-icon.svg" iconClass={compact ? "size-8 shrink-0" : "size-9 shrink-0"} soft variant="cta"><span>Contact us</span></Button>
       </div>
     </div>
   </header>
 
   <div class={`fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 xl:hidden ${isLight ? "bg-brand-cream" : "bg-brand-blue"}`} id="mobile-menu">
     <div class="flex h-full flex-col">
-      <div class="flex items-start justify-end px-4 py-6 sm:px-6 sm:py-8">
+      <div class:list={["flex items-start justify-end px-4 sm:px-6", headerPadding]}>
         <button aria-label="Close menu" class={`inline-flex size-12 appearance-none items-center justify-center rounded-lg border-0 bg-transparent p-0 shadow-none transition-colors ${isLight ? "text-brand-navy hover:bg-brand-blue/10" : "text-white hover:bg-white/10"}`} id="mobile-menu-close" type="button">
           <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </button>
