@@ -17,6 +17,18 @@ Right now we're not using any preprocessors, just CSS variables, but Tailwind is
 
 @custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
 
+/* Spoke hero: below xl, side by side only in landscape windows (hero-mid), else stacked. */
+@custom-variant hero-mid {
+    @media (min-width: 64rem) and (max-width: 79.99rem) and (min-aspect-ratio: 5/4) {
+        @slot;
+    }
+}
+@custom-variant hero-stacked {
+    @media (max-width: 63.99rem), (max-width: 79.99rem) and (max-aspect-ratio: 5/4) {
+        @slot;
+    }
+}
+
 @theme inline {
     --font-display: var(--font-display-stack);
     --font-sans: var(--font-body);

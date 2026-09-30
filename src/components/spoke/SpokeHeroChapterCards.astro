@@ -1,0 +1,38 @@
+---
+export interface ChapterCard {
+  id: string;
+  number: string;
+  cardTitle: string;
+  cardBody: string;
+  /** Title for the narrow phone tiles. */
+  shortTitle: string;
+}
+
+interface Props {
+  chapters: readonly ChapterCard[];
+}
+
+const { chapters } = Astro.props;
+---
+
+<nav aria-label="Spoke chapters" class="grid grid-cols-3 gap-2 sm:gap-3 hero-mid:gap-6 xl:gap-6" data-hero-cards>
+  {
+    chapters.map((chapter) => (
+      <a
+        class="group flex flex-col items-start gap-1 rounded-lg border-4 border-[#0a0908]/20 px-3 py-2 no-underline transition-colors hover:border-cta-end hover:bg-white/8 focus-visible:border-cta-end focus-visible:bg-white/8 aria-[current=true]:border-cta-end aria-[current=true]:bg-cta-end/14 sm:px-4 sm:py-3 hero-mid:flex-row xl:flex-row hero-mid:items-baseline xl:items-baseline hero-mid:gap-4 xl:gap-4 hero-mid:px-5 xl:px-5"
+        data-hero-nav={chapter.id}
+        href={`#${chapter.id}`}
+      >
+        <span class="shrink-0 font-display text-[22px] leading-none text-cta-end sm:text-[26px] hero-mid:text-[32px] xl:text-[32px]">{chapter.number}</span>
+        <span class="font-sans text-sm font-bold leading-tight text-white sm:hidden">{chapter.shortTitle}</span>
+        <span class="hidden grow font-sans text-base font-normal leading-snug text-white/88 sm:inline xl:text-[17px]">
+          <span class="font-bold text-white underline decoration-cta-end decoration-[0.15rem] underline-offset-4">{chapter.cardTitle}</span><span class="hidden xl:inline [@media(max-height:719px)]:hidden">&nbsp;— {chapter.cardBody}</span>
+        </span>
+        <i
+          aria-hidden="true"
+          class="iconoir-arrow-up-right-square not-italic shrink-0 self-center text-2xl leading-none text-cta-end transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-focus-visible:translate-x-0.5 group-focus-visible:-translate-y-0.5 hero-stacked:!hidden"
+        />
+      </a>
+    ))
+  }
+</nav>
