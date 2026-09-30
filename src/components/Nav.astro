@@ -6,9 +6,11 @@ interface Props {
   surfaceClass?: string;
   /** Shorter header (less padding, smaller logo) for pages whose hero needs the vertical room. */
   compact?: boolean;
+  ctaLabel?: string;
+  ctaHref?: string;
 }
 
-const { theme = "dark", surfaceClass, compact = false } = Astro.props;
+const { theme = "dark", surfaceClass, compact = false, ctaLabel = "Contact us", ctaHref = "/contact" } = Astro.props;
 
 const navLinks = [
   { href: "/our-work", label: "Our Work", icon: "/assets/home/nav-our-work.svg" },
@@ -60,7 +62,7 @@ const lightFilter =
       </nav>
 
       <div class="hidden xl:flex xl:justify-end">
-        <Button class:list={["label-button !inline-flex !gap-1 !text-black", compact ? "px-6 py-2.5" : "px-8 py-4"]} href="/contact" icon="/assets/home/contact-icon.svg" iconClass={compact ? "size-8 shrink-0" : "size-9 shrink-0"} soft variant="cta"><span>Contact us</span></Button>
+        <Button class:list={["label-button !inline-flex !gap-1 !text-black", compact ? "px-6 py-2.5" : "px-8 py-4"]} href={ctaHref} icon="/assets/home/contact-icon.svg" iconClass={compact ? "size-8 shrink-0" : "size-9 shrink-0"} soft variant="cta"><span>{ctaLabel}</span></Button>
       </div>
     </div>
   </header>
@@ -80,7 +82,7 @@ const lightFilter =
             </a>
           ))
         }
-        <Button class="label-button mt-4 !gap-1 px-8 py-4 !text-black" href="/contact" icon="/assets/home/contact-icon.svg" iconClass="size-9 shrink-0" soft variant="cta"><span>Contact us</span></Button>
+        <Button class="label-button mt-4 !gap-1 px-8 py-4 !text-black" href={ctaHref} icon="/assets/home/contact-icon.svg" iconClass="size-9 shrink-0" soft variant="cta"><span>{ctaLabel}</span></Button>
       </nav>
     </div>
   </div>
