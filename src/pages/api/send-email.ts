@@ -19,7 +19,7 @@ export const POST = async ({
 
 		// Extracting form fields
 		const email = formData.get("email") as string | null;
-		const name = formData.get("name") as string | null;
+		const name = (formData.get("name") ?? formData.get("organization")) as string | null;
 		const inquiryType = formData.get("inquiryType") as string | null;
 		const organization = formData.get("organization") as string | null;
 		const needs = formData.get("needs") as string | null;
@@ -70,7 +70,7 @@ export const POST = async ({
 				});
 
 		// Send email
-		if (!isQuickSignUp) {
+		if (!isQuickSignUp && inquiryType !== "spoke") {
 			resend.emails.send({
 				from: "With The Ranks <no-reply@email.withtheranks.coop>",
 				to: [email],
