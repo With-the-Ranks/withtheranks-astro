@@ -70,7 +70,7 @@ export const POST = async ({
 				});
 
 		// Send email
-		if (!isQuickSignUp) {
+		if (!isQuickSignUp && inquiryType !== "spoke") {
 			resend.emails.send({
 				from: "With The Ranks <no-reply@email.withtheranks.coop>",
 				to: [email],
