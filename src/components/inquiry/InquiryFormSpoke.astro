@@ -1,23 +1,14 @@
 ---
 import InquiryFormFooter from "./InquiryFormFooter.astro";
 import Button from "@/components/Button.astro";
-import TextField from "@/components/forms/TextField.astro";
-import SelectField from "@/components/forms/SelectField.astro";
 
 const signupChipRow =
-	"box-border inline-flex min-w-0 max-w-full flex-1 flex-row flex-wrap items-center justify-start gap-1 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
+	"box-border inline-flex min-w-0 max-w-full flex-1 flex-row items-center gap-2 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
 const signupChipRowMd1 = `${signupChipRow} md:col-span-1`;
-const signupChipRowMd2 = `${signupChipRow} md:col-span-2`;
-const signupFormGrid = "grid min-w-0 max-w-full grid-cols-1 gap-4 md:grid-cols-2 md:gap-4";
+const signupFormGrid = "grid min-w-0 max-w-full grid-cols-1 gap-4";
 const signupFieldLabel = "shrink-0 font-sans text-base font-bold leading-none text-zinc-900";
-const signupFieldLabelWide = `${signupFieldLabel} w-full min-w-0`;
 const signupFieldInput =
 	"min-w-0 flex-1 border-0 bg-transparent p-0 font-sans text-base leading-tight text-zinc-900 outline-none focus:ring-0";
-const signupFieldBoxTextarea =
-	"box-border flex min-w-0 max-w-full flex-col gap-1 self-stretch overflow-x-clip rounded-lg bg-white p-4 ring-4 ring-inset ring-white/20";
-const signupFieldBoxTextareaGridFull = `${signupFieldBoxTextarea} col-span-full min-w-0 max-w-full md:col-span-2`;
-const signupTextareaInput =
-	"box-border min-h-[12rem] min-w-0 max-w-full w-full resize-y border-0 bg-transparent p-0 font-sans text-base leading-snug text-zinc-900 outline-none focus:ring-0";
 
 interface Props {
   formUid: string;
@@ -38,18 +29,13 @@ const top = removeTopMargin ? "" : "mt-16";
 const isSignupSurface = signupSurface;
 
 const signupCopy = {
-  name: "Your name",
   email: "Email Address",
   org: "Organization",
-  secondary: "Secondary contact (optional)",
-  website: "Organization Website (optional)",
-  orgDesc: "Short description of your organization's work",
 };
 
 const spokeLabel = "block font-sans text-sm font-semibold leading-tight text-[#0a0908]";
 const spokeControl =
   "mt-1.5 w-full min-h-[44px] rounded-xl border-2 border-[#0a0908]/15 bg-white px-3 py-2.5 font-sans text-base text-[#0a0908] placeholder:text-[#0a0908]/40 outline-none transition-colors focus:border-brand-blue";
-const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
 ---
 
 <div
@@ -73,7 +59,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
     <form
       class:list={[
         isSignupSurface
-          ? "mx-auto flex w-full min-w-0 max-w-2xl flex-col gap-4 lg:mt-0"
+          ? "mx-auto flex w-full min-w-0 max-w-2xl flex-col gap-4 lg:mt-0 lg:w-2/3"
           : "mx-auto max-w-[800px] space-y-6 md:space-y-8 lg:mt-6",
       ]}
       data-inquiry-form
@@ -117,19 +103,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
         {
           isSignupSurface ? (
             <div class={signupFormGrid}>
-              <div class={signupChipRowMd1} data-inquiry-signup-field>
-                <label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-name`}>{signupCopy.name}<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label>
-                <input
-                  class={signupFieldInput}
-                  id={`inquiry-${formUid}-name`}
-                  type="text"
-                  name="name"
-                  autocomplete="name"
-                  placeholder=""
-                  required
-                />
-              </div>
-              <div class={signupChipRowMd1} data-inquiry-signup-field>
+              <div class={signupChipRowMd1}>
                 <label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-email`}>{signupCopy.email}<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label>
                 <input
                   class={signupFieldInput}
@@ -141,46 +115,14 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
                   required
                 />
               </div>
-              <div class={signupChipRowMd2} data-inquiry-signup-field>
-                <label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-org`}>{signupCopy.org}</label>
+              <div class={signupChipRowMd1}>
+                <label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-org`}>{signupCopy.org}<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label>
                 <input
                   class={signupFieldInput}
                   id={`inquiry-${formUid}-org`}
                   type="text"
                   name="organization"
                   autocomplete="organization"
-                  placeholder=""
-                />
-              </div>
-              <div class={signupChipRowMd2} data-inquiry-signup-field>
-                <label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-secondary`}>{signupCopy.secondary}</label>
-                <input
-                  class={signupFieldInput}
-                  id={`inquiry-${formUid}-secondary`}
-                  type="text"
-                  name="secondaryContact"
-                  autocomplete="off"
-                  placeholder=""
-                />
-              </div>
-              <div class={signupChipRowMd2} data-inquiry-signup-field>
-                <label class={signupFieldLabel} data-signup-field-label for={`inquiry-${formUid}-website`}>{signupCopy.website}</label>
-                <input
-                  class={signupFieldInput}
-                  id={`inquiry-${formUid}-website`}
-                  type="url"
-                  name="website"
-                  autocomplete="url"
-                  placeholder=""
-                />
-              </div>
-
-              <div class={signupFieldBoxTextareaGridFull}>
-                <label class={signupFieldLabelWide} for={`inquiry-${formUid}-orgdesc`}>{signupCopy.orgDesc}<span class="ml-0.5 text-red-600" aria-hidden="true">*</span></label>
-                <textarea
-                  class={signupTextareaInput}
-                  id={`inquiry-${formUid}-orgdesc`}
-                  name="orgDescription"
                   placeholder=""
                   required
                 />
@@ -189,28 +131,12 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
           ) : (
             <div class="space-y-5">
               <label class={spokeLabel}>
-                {signupCopy.name}
-                <input class={spokeControl} type="text" name="name" placeholder="" required />
-              </label>
-              <label class={spokeLabel}>
                 {signupCopy.email}
-                <input class={spokeControl} type="email" name="email" placeholder="" required />
+                <input class={spokeControl} type="email" name="email" autocomplete="email" placeholder="" required />
               </label>
               <label class={spokeLabel}>
                 {signupCopy.org}
-                <input class={spokeControl} type="text" name="organization" placeholder="" />
-              </label>
-              <label class={spokeLabel}>
-                {signupCopy.secondary}
-                <input class={spokeControl} type="text" name="secondaryContact" placeholder="" />
-              </label>
-              <label class={spokeLabel}>
-                {signupCopy.website}
-                <input class={spokeControl} type="url" name="website" placeholder="" />
-              </label>
-              <label class={spokeLabel}>
-                {signupCopy.orgDesc}
-                <textarea class={spokeTextarea} name="orgDescription" placeholder="" required />
+                <input class={spokeControl} type="text" name="organization" autocomplete="organization" placeholder="" required />
               </label>
             </div>
           )
@@ -247,7 +173,7 @@ const spokeTextarea = `${spokeControl} min-h-[120px] resize-y md:min-h-[140px]`;
         </Button>
       </div>
 
-      <InquiryFormFooter variant="spoke" tight={isSignupSurface} dotsMode={isSignupSurface ? "spoke-signup" : "default"} />
+      <InquiryFormFooter variant="spoke" tight={isSignupSurface} dotsMode={isSignupSurface ? "spoke-signup" : "default"} submitLabel="Get started" />
     </form>
   </div>
 </div>

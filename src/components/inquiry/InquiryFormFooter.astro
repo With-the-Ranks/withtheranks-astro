@@ -10,9 +10,10 @@ interface Props {
 	variant?: "default" | "spoke";
 	tight?: boolean;
 	dotsMode?: InquiryFooterDotsMode;
+	submitLabel?: string;
 }
 
-const { variant = "default", tight = false, dotsMode = "default" } = Astro.props;
+const { variant = "default", tight = false, dotsMode = "default", submitLabel = "Submit" } = Astro.props;
 const spokeSignupDots = dotsMode === "spoke-signup";
 ---
 
@@ -69,7 +70,7 @@ const spokeSignupDots = dotsMode === "spoke-signup";
 							<span>Next</span>
 							<i class="iconoir-arrow-right size-6 shrink-0 not-italic leading-none" aria-hidden="true" />
 						</span>
-						<span data-label-submit class="hidden">Submit</span>
+						<span data-label-submit class="hidden">{submitLabel}</span>
 						<span data-label-sending class="hidden">Sending…</span>
 					</>
 				) : (
@@ -78,7 +79,7 @@ const spokeSignupDots = dotsMode === "spoke-signup";
 							Next{" "}
 							<i class="iconoir-arrow-right ml-2 text-xl not-italic" aria-hidden="true" />
 						</span>
-						<span data-label-submit class="hidden">Submit</span>
+						<span data-label-submit class="hidden">{submitLabel}</span>
 						<span data-label-sending class="hidden">Sending…</span>
 					</>
 				)
